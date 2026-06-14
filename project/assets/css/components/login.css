@@ -2,12 +2,11 @@
  * ============================================================
  * FILE: assets/css/components/login.css
  * ============================================================
- * Login Page — Scan 4 Style with Figma BOOLEAN_OPERATION shape
+ * Login Page — SVG Shape Cards
  *
  * Two-column layout: mascot left, card right.
  * White/blue ethereal bokeh background.
- * Card shape via CSS mask-image with SVG path (no clip-path).
- * Neumorphism shadows via filter: drop-shadow() on parent.
+ * Cards use pre-made SVG shapes as backgrounds.
  */
 
 :root {
@@ -18,9 +17,6 @@
   --login-input-border: #E0E0E0;
   --login-btn-gradient-start: #E4D8DC;
   --login-btn-gradient-end: #95B4C6;
-  --login-card-signin: #D0DCE1;
-  --login-card-signup: #E4D8DC;
-  --login-card-back: #E4D8DC;
 }
 
 /* ── Page ── */
@@ -36,90 +32,37 @@
 }
 
 /* ── Blurred Bokeh Background — White/Blue Ethereal ── */
-.login-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.login-bg__blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  -webkit-filter: blur(90px);
-}
-
-.login-bg__blob--1 {
-  width: 70vw;
-  height: 70vh;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.95) 0%, transparent 65%);
-  top: -15vh;
-  left: -10vw;
-}
-
-.login-bg__blob--2 {
-  width: 65vw;
-  height: 65vh;
-  background: radial-gradient(ellipse at center, rgba(210,225,248,0.7) 0%, transparent 60%);
-  top: 10vh;
-  right: -15vw;
-}
-
-.login-bg__blob--3 {
-  width: 60vw;
-  height: 60vh;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, transparent 60%);
-  bottom: -20vh;
-  left: 15vw;
-}
-
-.login-bg__blob--4 {
-  width: 55vw;
-  height: 55vh;
-  background: radial-gradient(ellipse at center, rgba(200,215,245,0.6) 0%, transparent 55%);
-  bottom: -10vh;
-  right: 5vw;
-}
-
-.login-bg__blob--5 {
-  width: 40vw;
-  height: 40vh;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.85) 0%, transparent 60%);
-  top: 40%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-}
 
 /* ── Layout — Two Column ── */
 .login-layout {
   position: relative;
-  z-index: 10;
+  /* z-index: 10; */
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 64px;
+  gap: 60px;
   width: 100%;
   max-width: 1100px;
   padding: 40px;
 }
 
-/* ── Mascot ── */
+/* ── Mascot (Bigger) ── */
 .login-mascot {
   flex-shrink: 0;
-  width: 380px;
-  height: 396px;
+  width: auto;
+  height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: loginMascotFloat 4s ease-in-out infinite;
   filter: drop-shadow(0 24px 48px rgba(149, 180, 198, 0.25));
+  z-index: 1;
 }
 
 .login-mascot__svg {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 @keyframes loginMascotFloat {
@@ -133,107 +76,77 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 0;
 }
 
-/* ── Card Stack (Back + Front) ── */
-.login-card-stack {
+/* ── Card Container ── */
+.login-card-container {
   position: relative;
-  width: 460px;
-  height: 618px;
+  width: 593px;
+  height: 639px;
 }
 
-/* ── Back Card (behind, peeking out) ── */
-.login-card-back {
+/* ── SVG Card (stacked) ── */
+.login-card-svg {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 460px;
-  height: 618px;
-  background: var(--login-card-back);
-  border-radius: 16px;
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 573 618'%3E%3Cpath d='M20,0 H344 L573,185 V534 V602 Q573,618 557,618 H513 V534 H60 V618 H16 Q0,618 0,602 V534 V20 Q0,0 20,0 Z'/%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 573 618'%3E%3Cpath d='M20,0 H344 L573,185 V534 V602 Q573,618 557,618 H513 V534 H60 V618 H16 Q0,618 0,602 V534 V20 Q0,0 20,0 Z'/%3E%3C/svg%3E");
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  filter: drop-shadow(0 8px 32px rgba(100, 120, 150, 0.12));
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* ── Front Card ── */
-.login-card-front {
-  position: relative;
-  width: 460px;
-  height: 618px;
+.login-card-svg--signin {
+  z-index: 2;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.login-card-svg--signup {
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(12px);
+}
+
+/* Active states */
+.login-card-container[data-tab="signup"] .login-card-svg--signin {
+  opacity: 0;
+  transform: translateX(-12px);
+  z-index: 1;
+}
+
+.login-card-container[data-tab="signup"] .login-card-svg--signup {
+  opacity: 1;
+  transform: translateX(0);
   z-index: 2;
 }
 
-/* ── Front Card Background (with mask shape) ── */
-.login-card-bg {
-  position: absolute;
-  inset: 0;
-  background: var(--login-card-signin);
-  border-radius: 16px;
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 573 618'%3E%3Cpath d='M20,0 H344 L573,185 V534 V602 Q573,618 557,618 H513 V534 H60 V618 H16 Q0,618 0,602 V534 V20 Q0,0 20,0 Z'/%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 573 618'%3E%3Cpath d='M20,0 H344 L573,185 V534 V602 Q573,618 557,618 H513 V534 H60 V618 H16 Q0,618 0,602 V534 V20 Q0,0 20,0 Z'/%3E%3C/svg%3E");
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  filter: drop-shadow(0 8px 32px rgba(100, 120, 150, 0.15))
-         drop-shadow(0 2px 8px rgba(100, 120, 150, 0.05));
-  transition: background-color 0.3s ease;
-}
-
-/* Sign Up card color */
-.login-card-front[data-tab="signup"] .login-card-bg {
-  background: var(--login-card-signup);
-}
-
-/* ── Fold Shadow (diagonal at top-right) ── */
-.login-card-fold {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-  overflow: hidden;
-}
-
-.login-card-fold::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 40%;
-  background: linear-gradient(
-    225deg,
-    rgba(0, 0, 0, 0.06) 0%,
-    rgba(0, 0, 0, 0.02) 30%,
-    transparent 50%
-  );
-  transform: skewX(-15deg);
-  transform-origin: top right;
-}
-
-/* ── Card Content (on top of background) ── */
+/* ── Card Content (overlay on top of SVG) ── */
 .login-card-content {
-  position: relative;
-  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 36px 28px;
+  padding: 90px 90px 140px 90px;
+  pointer-events: none;
+}
+
+.login-card-content > * {
+  pointer-events: auto;
 }
 
 /* ── Tabs ── */
 .login-tabs {
   display: flex;
-  align-self: flex-start;
-  gap: 44px;
-  margin-bottom: 28px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .login-tab {
@@ -267,7 +180,7 @@
 /* ── Social Buttons ── */
 .login-social {
   display: flex;
-  gap: 20px;
+  gap: 50px;
   margin-bottom: 14px;
 }
 
@@ -312,9 +225,9 @@
 
 .login-divider__line {
   flex: 1;
-  height: 1px;
+  height: 2px;
   background-color: var(--login-text-primary);
-  opacity: 0.2;
+  opacity: 1;
 }
 
 .login-divider__text {
@@ -435,73 +348,78 @@
   min-height: 18px;
 }
 
-/* ── Sign In / Sign Up Button — Pill Capsule ── */
+/* ── Sign In / Sign Up Button — Pill Capsule (BIG) ── */
+/* ── Sign In / Sign Up Button — Updated for Figma Style ── */
 .login-btn-wrap {
   position: relative;
   z-index: 10;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -44px;
+  /* Sesuaikan margin-top agar overlap pas dengan potongan kaki kartu */
+  margin-top: -80px; 
 }
 
 .login-btn {
-  width: 320px;
-  height: 56px;
-  background: linear-gradient(135deg, var(--login-btn-gradient-start) 0%, var(--login-btn-gradient-end) 100%);
+  width: 400px;
+  height: 80px;
+  background: linear-gradient(to right, #F9F7F7 43%, #E4D8DC 88%);
   border: none;
-  border-radius: 50px;
-  font-size: 17px;
+  border-radius: 25px; /* Dibuat lebih membulat agar sesuai dengan proporsi kapsul */
+  font-size: 22px;
   font-weight: 600;
   color: var(--login-text-body);
   cursor: pointer;
   font-family: inherit;
-  box-shadow:
-    0 4px 14px rgba(149, 180, 198, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  
+  /* Shadow yang lebih dalam dan lembut untuk kesan 3D Figma */
+box-shadow:
+    0 -4px 8px rgba(255, 255, 255, 0.9),      /* Cahaya putih di tepi atas (outer) */
+    0 8px 20px rgba(0, 0, 0, 0.5),      /* Bayangan dasar untuk kedalaman */
+    inset 0 1px 2px rgba(255, 255, 255, 1), /* Highlight lembut di sisi dalam atas */
+    inset -4px -4px 6px rgba(0, 0, 0, 0.5); /* Shadow dalam yang lebih lembut untuk efek emboss */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .login-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   box-shadow:
-    0 6px 20px rgba(149, 180, 198, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 16px 32px rgba(149, 180, 198, 0.5),
+    inset 0 3px 4px rgba(255, 255, 255, 0.6);
 }
 
 .login-btn:active {
   transform: translateY(0);
   box-shadow:
-    0 2px 8px rgba(149, 180, 198, 0.2),
-    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    0 4px 12px rgba(149, 180, 198, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .login-btn--loading {
   opacity: 0.7;
   pointer-events: none;
 }
-
 /* ── Responsive ── */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .login-layout {
     gap: 32px;
     padding: 24px;
   }
   .login-mascot {
-    width: 260px;
-    height: 272px;
+    width: 320px;
+    height: 340px;
   }
-  .login-card-stack {
-    width: 400px;
-    height: 560px;
-  }
-  .login-card-back,
-  .login-card-front {
-    width: 400px;
-    height: 560px;
+  .login-card-container {
+    width: 500px;
+    height: 542px;
   }
   .login-card-content {
-    padding: 28px 28px 24px;
+    padding: 16px 40px 120px;
+  }
+  .login-btn {
+    width: 340px;
+    height: 70px;
+    font-size: 18px;
   }
 }
 
@@ -512,36 +430,29 @@
     padding: 16px;
   }
   .login-mascot {
-    width: 180px;
-    height: 188px;
+    width: 200px;
+    height: 210px;
   }
-  .login-card-stack {
+  .login-card-container {
     width: 100%;
     max-width: 420px;
     height: auto;
-    min-height: 520px;
-  }
-  .login-card-back,
-  .login-card-front {
-    width: 100%;
-    max-width: 420px;
-    height: auto;
-    min-height: 520px;
+    aspect-ratio: 593 / 639;
   }
   .login-card-content {
-    padding: 24px 20px 20px;
+    padding: 12px 20px 100px;
   }
   .login-btn {
     width: 100%;
-    height: 50px;
-    font-size: 15px;
+    height: 60px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
   .login-mascot {
-    width: 140px;
-    height: 147px;
+    width: 150px;
+    height: 158px;
   }
   .login-tabs {
     gap: 24px;
@@ -563,7 +474,8 @@
   .login-mascot,
   .login-social__btn,
   .login-btn,
-  .login-tab::after {
+  .login-tab::after,
+  .login-card-svg {
     animation: none;
     transition: none;
   }

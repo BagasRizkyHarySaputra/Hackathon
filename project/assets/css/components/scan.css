@@ -2,28 +2,15 @@
  * ============================================================
  * FILE: assets/css/components/scan.css
  * ============================================================
- * FEATURE: Scan Page — Skin Type Selection Styles
- *
- * PURPOSE:
- *   Styles for the skin type selection card, bubble options,
- *   mascot, and background decorations. Follows the same
- *   design language as loading.css and login.css.
- *
- * DEPENDENCIES:
- *   - main.css (CSS reset, custom properties)
- *
- * COLOR PALETTE (from Figma layer_Scan.json):
- *   - White:           #FFFFFF
- *   - Light Pink:      #FFE3E2
- *   - Dusty Rose:      #E4D8DC
- *   - Blue-Grey:       #95B4C6
- *   - Slate Blue:      #6E7F99
- *   - Selected Red:    #E57373
+ * FEATURE: Scan Page — Premium 3D Bubble & Glassmorphism
+ * PURPOSE: 
+ * Recreates the exact tactile feel of final UI design mockup.
+ * Uses a full-screen dynamic SVG background with custom 3D lighting.
  * ============================================================
  */
 
 /* ──────────────────────────────────────────────
- * Page Layout
+ * Main Layout Setup
  * ────────────────────────────────────────────── */
 .scan-page {
   position: relative;
@@ -32,7 +19,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #EEF2F7;
   overflow: hidden;
 }
 
@@ -44,111 +30,191 @@
   z-index: 10;
   width: 100%;
   max-width: 900px;
-  padding: 20px;
+  padding: 24px;
 }
 
 /* ──────────────────────────────────────────────
- * Bubble Background (foam texture)
- * Soft pastel 3D bubbles filling the entire screen.
+ * SVG Full-Screen Background Implementation
  * ────────────────────────────────────────────── */
 .scan-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
   pointer-events: none;
-  background: linear-gradient(135deg, #E8EEF4 0%, #F0ECF2 40%, #E4EAF0 70%, #E8EEF4 100%);
-}
-
-.scan-bg__bubble {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.scan-bg__bubble--1 {
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 227, 226, 0.4) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
-  filter: blur(40px);
-  top: -100px;
-  left: -80px;
-}
-
-.scan-bg__bubble--2 {
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.85) 0%, rgba(228, 216, 220, 0.35) 45%, rgba(255, 255, 255, 0.08) 72%, transparent 100%);
-  filter: blur(45px);
-  top: -140px;
-  right: -120px;
-}
-
-.scan-bg__bubble--3 {
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.8) 0%, rgba(149, 180, 198, 0.2) 50%, transparent 75%);
-  filter: blur(35px);
-  top: 10%;
-  left: 50%;
-}
-
-.scan-bg__bubble--4 {
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle at 45% 40%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 227, 226, 0.3) 40%, rgba(228, 216, 220, 0.15) 65%, transparent 100%);
-  filter: blur(50px);
-  top: 5%;
-  right: -80px;
-}
-
-.scan-bg__bubble--5 {
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.85) 0%, rgba(149, 180, 198, 0.25) 45%, rgba(110, 127, 153, 0.08) 68%, transparent 100%);
-  filter: blur(42px);
-  bottom: -160px;
-  left: -100px;
-}
-
-.scan-bg__bubble--6 {
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(228, 216, 220, 0.3) 50%, transparent 72%);
-  filter: blur(38px);
-  bottom: -100px;
-  right: -60px;
-}
-
-.scan-bg__bubble--7 {
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 227, 226, 0.25) 50%, transparent 70%);
-  filter: blur(32px);
-  bottom: 30%;
-  left: 15%;
-}
-
-.scan-bg__bubble--8 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.7) 0%, rgba(149, 180, 198, 0.15) 55%, transparent 75%);
-  filter: blur(28px);
-  top: 40%;
-  right: 8%;
+  
+  /* Menumpuk file Scan.svg di atas gradasi warna linear yang lembut */
+  background-image: 
+    url('/assets/icons/Scan.svg'), 
+    linear-gradient(180deg, #EBF1F6 0%, #F6F4F8 40%, #E9EDF4 100%);
+  
+  /* Memastikan gelembung SVG memenuhi layar dan posisinya di tengah */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* Efek overlay agar perpaduan warna putih gelembung dan gradien menyatu sempurna */
+  background-blend-mode: normal;
 }
 
 /* ──────────────────────────────────────────────
- * Mascot (Water Drop - Bottom Right Outside Card)
- * VERY LARGE — at least 3x button size.
+ * Floating Frosted Card Structure
+ * ────────────────────────────────────────────── */
+.scan-card {
+  position: relative;
+  background: rgba(255, 254, 254, 0.55);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  
+  /* Asymmetric organic rounded shape for liquid theme */
+  border-radius: 38px 32px 42px 36px;
+  padding: 56px 64px 48px;
+  width: 100%;
+  max-width: 720px;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  
+  /* Combined Outer Ambient + Soft Deep Shadows */
+  box-shadow: 
+    0 30px 70px rgba(130, 145, 165, 0.2),
+    0 12px 28px rgba(130, 145, 165, 0.1),
+    inset 0 4px 12px rgba(255, 255, 255, 0.65),
+    inset 0 -4px 12px rgba(130, 145, 165, 0.08);
+}
+
+.scan-card__title {
+  font-size: 34px;
+  font-weight: 500;
+  color: #2D2D2D;
+  text-align: center;
+  margin-bottom: 38px;
+  letter-spacing: -0.5px;
+}
+
+/* ──────────────────────────────────────────────
+ * 3D Bubble Buttons Layout
+ * ────────────────────────────────────────────── */
+.scan-card__options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 18px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* Base Bubble Button (Slate/Blue-Grey Gel) */
+.scan-type-btn {
+  position: relative;
+  background: linear-gradient(135deg, #CFDFEE 0%, #B4C5D4 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #4A5664;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 28px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Liquid Form — custom corner curves for water drop physics */
+  border-radius: 24px 30px 22px 28px;
+  
+  /* 3D KICKER SHADOWS: Heavy drop shadow + inner glossy reflection */
+  box-shadow: 
+    0 10px 18px rgba(95, 112, 135, 0.38),
+    0 4px 6px rgba(95, 112, 135, 0.15),
+    inset 0 5px 6px rgba(255, 255, 255, 0.75),
+    inset 0 -4px 8px rgba(65, 78, 94, 0.22);
+    
+  /* Bouncy spring physics effect when interacted */
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover: Bubble inflates and glows */
+.scan-type-btn:hover {
+  transform: scale(1.05) translateY(-3px);
+  background: linear-gradient(135deg, #DCEAF7 0%, #BDCEDD 100%);
+  box-shadow: 
+    0 15px 26px rgba(95, 112, 135, 0.45),
+    0 6px 10px rgba(95, 112, 135, 0.18),
+    inset 0 6px 8px rgba(255, 255, 255, 0.9),
+    inset 0 -5px 10px rgba(65, 78, 94, 0.26);
+}
+
+.scan-type-btn:active {
+  transform: scale(0.97) translateY(1px);
+}
+
+/* Selected State: Shiny Pink Gel Bubble */
+.scan-type-btn--selected {
+  background: linear-gradient(135deg, #FFF1F1 0%, #FBE0E0 100%);
+  border-color: rgba(235, 200, 200, 0.6);
+  color: #724646;
+  
+  box-shadow: 
+    0 10px 20px rgba(226, 178, 178, 0.5),
+    0 4px 6px rgba(226, 178, 178, 0.2),
+    inset 0 5px 6px rgba(255, 255, 255, 0.95),
+    inset 0 -5px 9px rgba(189, 131, 131, 0.32);
+}
+
+.scan-type-btn__label {
+  pointer-events: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ──────────────────────────────────────────────
+ * Bottom Actions (Confirm Button)
+ * ────────────────────────────────────────────── */
+.scan-card__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 46px;
+}
+
+.scan-confirm-btn {
+  background: linear-gradient(135deg, #9CB5C7 0%, #839EB1 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #2F3E49;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 11px 40px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 16px rgba(114, 141, 158, 0.38),
+    inset 0 3px 4px rgba(255, 255, 255, 0.4);
+}
+
+.scan-confirm-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 22px rgba(114, 141, 158, 0.48),
+    inset 0 4px 5px rgba(255, 255, 255, 0.5);
+}
+
+.scan-confirm-btn:disabled {
+  background: #CBD6E0;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #8493A0;
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ──────────────────────────────────────────────
+ * Mascot Corner Anchoring (Masskot.svg)
  * ────────────────────────────────────────────── */
 .scan-mascot {
   position: absolute;
-  bottom: -70px;
-  right: -50px;
-  z-index: 20;
-  width: 200px;
-  height: 210px;
-  filter: drop-shadow(0 8px 24px rgba(110, 127, 153, 0.35));
+  bottom: -32px;  
+  right: -32px;  
+  z-index: 30;
+  width: 96px;   
+  height: 96px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+  pointer-events: none;
 }
 
 .scan-mascot__img {
@@ -158,141 +224,34 @@
 }
 
 /* ──────────────────────────────────────────────
- * Card
+ * Responsive Viewport Engineering
  * ────────────────────────────────────────────── */
-.scan-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 28px;
-  padding: 44px 40px 32px;
-  box-shadow:
-    0 12px 48px rgba(110, 127, 153, 0.15),
-    0 4px 16px rgba(110, 127, 153, 0.08);
-  min-width: 400px;
-  max-width: 480px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.scan-card__title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2B2B2B;
-  text-align: center;
-  margin-bottom: 28px;
-  letter-spacing: -0.3px;
-}
-
-/* ──────────────────────────────────────────────
- * Skin Type Options (Bubbles) — 3×2 Grid
- * ────────────────────────────────────────────── */
-.scan-card__options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 28px;
-}
-
-.scan-option {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 16px;
-  border-radius: 24px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4A5568;
-  background: #E8EDF2;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  white-space: nowrap;
-  min-height: 48px;
-  box-shadow: 0 2px 6px rgba(110, 127, 153, 0.08);
-}
-
-.scan-option:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(110, 127, 153, 0.2);
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-.scan-option--selected {
-  background: #E57373 !important;
-  color: #FFFFFF !important;
-  border-color: #E57373 !important;
-  box-shadow: 0 4px 20px rgba(229, 115, 115, 0.5) !important;
-  transform: translateY(-2px);
-}
-
-/* ──────────────────────────────────────────────
- * Card Footer
- * ────────────────────────────────────────────── */
-.scan-card__footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
-}
-
-/* ──────────────────────────────────────────────
- * Confirm Button (Ok - Bottom Right)
- * ────────────────────────────────────────────── */
-.scan-confirm-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 32px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #FFFFFF;
-  background: linear-gradient(135deg, #95B4C6 0%, #6E7F99 100%);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(110, 127, 153, 0.3);
-  border: none;
-  min-width: 80px;
-}
-
-.scan-confirm-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(110, 127, 153, 0.4);
-}
-
-.scan-confirm-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* ──────────────────────────────────────────────
- * Responsive
- * ────────────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 680px) {
   .scan-card {
-    min-width: 320px;
-    max-width: 360px;
-    padding: 36px 20px 24px;
+    padding: 44px 28px;
+    border-radius: 28px;
+    margin: 10px;
   }
 
   .scan-card__title {
-    font-size: 20px;
+    font-size: 26px;
+    margin-bottom: 28px;
   }
 
   .scan-card__options {
-    gap: 10px;
+    gap: 12px 10px;
   }
 
-  .scan-option {
-    padding: 10px 12px;
-    font-size: 13px;
-    min-height: 40px;
+  .scan-type-btn {
+    font-size: 13.5px;
+    padding: 10px 22px;
+    border-radius: 18px 22px 16px 20px;
   }
 
   .scan-mascot {
-    width: 140px;
-    height: 148px;
-    bottom: -50px;
-    right: -30px;
+    width: 80px;
+    height: 80px;
+    bottom: -24px;
+    right: -24px;
   }
 }

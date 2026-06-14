@@ -1,17 +1,3 @@
-<!--
-  ============================================================
-  FILE: pages/scan/index.html
-  ============================================================
-  FEATURE: Scan Page — Skin Type Selection
-  PURPOSE:
-    Complete HTML page for selecting skin type before analysis.
-    Uses Alpine.js for reactive UI and HTMX for server communication.
-  HTMX CONTRACT:
-    - On load: fetches partial from GET /api/scan/partial
-  ALPINE DEPENDENCIES:
-    - createScanComponent() from assets/js/alpine/components/scan.js
-  ============================================================
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +7,12 @@
   <meta name="theme-color" content="#95B4C6" />
   <title>SkinGlow — Skin Type</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/scan.css" />
 </head>
 <body>
+  <div class="scan-bg" aria-hidden="true"></div>
+
   <main
     class="scan-page"
     id="scan-container"
@@ -34,26 +21,13 @@
     hx-swap="innerHTML"
     hx-target="#scan-container"
   >
-    <!-- Background -->
-    <div class="scan-bg" aria-hidden="true">
-      <div class="scan-bg__bubble scan-bg__bubble--1"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--2"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--3"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--4"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--5"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--6"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--7"></div>
-      <div class="scan-bg__bubble scan-bg__bubble--8"></div>
-    </div>
-
     <div class="scan-layout" x-data="createScanComponent()">
-      <!-- Card -->
       <div class="scan-card">
-        <!-- Mascot — bottom-right outside card, VERY LARGE -->
+        
         <div class="scan-mascot" aria-hidden="true">
           <img 
-            src="/assets/icons/water-drop-mascot.svg" 
-            alt="" 
+            src="assets/images/Scan.svg" 
+            alt="Mascot" 
             class="scan-mascot__img"
           />
         </div>
@@ -63,13 +37,13 @@
         <div class="scan-card__options">
           <template x-for="type in skinTypes" :key="type.id">
             <button
-              class="scan-option"
-              :class="{ 'scan-option--selected': selectedType === type.id }"
-              :style="'background-color: ' + type.color"
+              class="scan-type-btn"
+              :class="{ 'scan-type-btn--selected': selectedType === type.id }"
               @click="selectType(type.id)"
               type="button"
-              x-text="type.label"
-            ></button>
+            >
+              <span class="scan-type-btn__label" x-text="type.label"></span>
+            </button>
           </template>
         </div>
 
@@ -77,17 +51,16 @@
           <button
             class="scan-confirm-btn"
             @click="confirmSelection()"
-            type="button"
             :disabled="!selectedType"
+            type="button"
           >
-            Ok
+            Confirm
           </button>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Scripts — Order matters -->
   <script src="/config/app.config.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
   <script src="https://unpkg.com/htmx.org@2.0.0"></script>
