@@ -1,0 +1,12 @@
+{
+  "token": "mock_jwt_token_1234567890",
+  "user": {
+    "id": 1,
+    "name": "Demo User",
+    "email": "demo@skinglow.app",
+    "role": "user",
+    "avatar": null
+  },
+  "expires_in": 86400,
+  "message": "Login successful"
+}

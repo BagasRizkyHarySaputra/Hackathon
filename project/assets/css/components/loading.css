@@ -1,0 +1,395 @@
+/**
+ * ============================================================
+ * FILE: assets/css/components/loading.css
+ * ============================================================
+ * FEATURE: Loading Page Styles
+ *
+ * PURPOSE:
+ *   Styles for the skin analysis loading screen. Features a
+ *   heavily blurred gradient background (soft pink + blue-grey
+ *   blobs), a 3D SVG water-drop mascot, animated progress bar,
+ *   and a frosted-glass content card.
+ *
+ * COLOR PALETTE (from Figma JSON):
+ *   - #FFFFFF  → Page background
+ *   - #FFE3E2  → Soft pink blur blob (top-left, bottom-right)
+ *   - #E4D8DC  → Dusty rose blur blob
+ *   - #95B4C6  → Blue-grey blur blob (bottom-left, top-right)
+ *   - #6E7F99  → Slate blue accent blob
+ *   - #535F73  → Dark slate (heading, icons, percentage)
+ *   - #44474C  → Dark grey (subtext)
+ *
+ * DEPENDENCIES:
+ *   - assets/js/alpine/components/loading.js (Alpine component)
+ *   - assets/css/main.css (global CSS custom properties)
+ *   - assets/icons/water-drop-mascot.svg (3D mascot SVG)
+ *
+ * PHASE: Frontend (Mock) — Loading screen with simulated progress
+ * ============================================================
+ */
+
+/* ──────────────────────────────────────────────
+ * CSS Custom Properties — Loading Page Scope
+ * ────────────────────────────────────────────── */
+:root {
+  --loading-bg: #FFFFFF;
+  --loading-blob-pink: #FFE3E2;
+  --loading-blob-dusty: #E4D8DC;
+  --loading-blob-blue: #95B4C6;
+  --loading-blob-slate: #6E7F99;
+  --loading-text-heading: #535F73;
+  --loading-text-sub: #44474C;
+  --loading-progress-track: #E4D8DC;
+  --loading-progress-fill: #95B4C6;
+  --loading-content-width: 480px;
+  --loading-progress-width: 382px;
+  --loading-progress-height: 16px;
+}
+
+/* ──────────────────────────────────────────────
+ * Page Container — Full viewport, overflow hidden
+ * ────────────────────────────────────────────── */
+.loading-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--loading-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ──────────────────────────────────────────────
+ * Blurred Gradient Background
+ * Large colored blobs with heavy CSS blur to create
+ * the soft, dreamy gradient effect from the Figma design.
+ * Pink blobs at top-left & bottom-right,
+ * Blue-grey blobs at bottom-left & top-right,
+ * White center creates the focal point.
+ * ────────────────────────────────────────────── */
+.loading-bg-blur {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  filter: blur(80px);
+  -webkit-filter: blur(80px);
+}
+
+/* Top-left pink blob */
+.loading-bg-blur__blob--pink-tl {
+  position: absolute;
+  width: 90vw;
+  height: 90vh;
+  background: radial-gradient(ellipse at center, var(--loading-blob-pink) 0%, transparent 65%);
+  top: -30vh;
+  left: -30vw;
+  border-radius: 50%;
+  opacity: 1;
+}
+
+/* Bottom-right pink blob */
+.loading-bg-blur__blob--pink-br {
+  position: absolute;
+  width: 85vw;
+  height: 85vh;
+  background: radial-gradient(ellipse at center, var(--loading-blob-pink) 0%, transparent 65%);
+  bottom: -35vh;
+  right: -25vw;
+  border-radius: 50%;
+  opacity: 1;
+}
+
+/* Bottom-left blue-grey blob */
+.loading-bg-blur__blob--blue-bl {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(ellipse at center, var(--loading-blob-blue) 0%, transparent 65%);
+  bottom: -30vh;
+  left: -25vw;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+/* Top-right blue-grey blob */
+.loading-bg-blur__blob--blue-tr {
+  position: absolute;
+  width: 75vw;
+  height: 75vh;
+  background: radial-gradient(ellipse at center, var(--loading-blob-blue) 0%, transparent 65%);
+  top: -25vh;
+  right: -20vw;
+  border-radius: 50%;
+  opacity: 0.65;
+}
+
+/* Center dusty rose accent */
+.loading-bg-blur__blob--dusty-center {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(ellipse at center, var(--loading-blob-dusty) 0%, transparent 65%);
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Slate accent blob */
+.loading-bg-blur__blob--slate {
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at center, var(--loading-blob-slate) 0%, transparent 65%);
+  top: -15vh;
+  right: 5vw;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+/* ──────────────────────────────────────────────
+ * Layout Wrapper — Vertical stack, centered
+ * Mascot above, card below
+ * ────────────────────────────────────────────── */
+.loading-layout {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ──────────────────────────────────────────────
+ * SVG Mascot — 3D Water Drop Character
+ * Uses the Group 2667 SVG from Figma with built-in
+ * gradients, shadows, and 3D effects.
+ * ────────────────────────────────────────────── */
+.loading-mascot {
+  width: 220px;
+  height: 234px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: mascotFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(149, 180, 198, 0.3));
+}
+
+.loading-mascot__svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(1deg); }
+  75% { transform: translateY(4px) rotate(-1deg); }
+}
+
+/* ──────────────────────────────────────────────
+ * Content Panel — Frosted glass card, centered
+ * From JSON: 448 x ~257px, auto_layout VERTICAL, padding 32px
+ * ────────────────────────────────────────────── */
+.loading-content {
+  position: relative;
+  z-index: 10;
+  width: var(--loading-content-width);
+  max-width: 90vw;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow:
+    0 8px 32px rgba(83, 95, 115, 0.08),
+    0 2px 8px rgba(83, 95, 115, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ──────────────────────────────────────────────
+ * Heading Text
+ * From JSON: "Analyzing your skin\nglow..." in #535F73
+ * ────────────────────────────────────────────── */
+.loading-heading {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--loading-text-heading);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.loading-heading span {
+  color: var(--loading-blob-blue);
+}
+
+/* ──────────────────────────────────────────────
+ * Subtext
+ * From JSON: "Please wait a moment" in #44474C
+ * ────────────────────────────────────────────── */
+.loading-subtext {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--loading-text-sub);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ──────────────────────────────────────────────
+ * Progress Bar Container
+ * From JSON: 382 x 16px
+ * ────────────────────────────────────────────── */
+.loading-progress-wrapper {
+  width: 100%;
+  max-width: var(--loading-progress-width);
+  margin: 0 auto;
+}
+
+.loading-progress-track {
+  width: 100%;
+  height: var(--loading-progress-height);
+  background-color: rgba(228, 216, 220, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.loading-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--loading-blob-blue) 0%, #7da5bb 50%, var(--loading-blob-blue) 100%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease-out;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(149, 180, 198, 0.4);
+}
+
+/* Shimmer animation on progress bar */
+.loading-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ──────────────────────────────────────────────
+ * Percentage Display
+ * From JSON: "2%" text + icon in #535F73
+ * ────────────────────────────────────────────── */
+.loading-percentage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.loading-percentage__icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--loading-text-heading);
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-percentage__text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--loading-text-heading);
+  min-width: 36px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ──────────────────────────────────────────────
+ * Responsive Adjustments
+ * ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .loading-content {
+    width: 90vw;
+    padding: 24px 20px;
+  }
+
+  .loading-mascot {
+    width: 170px;
+    height: 181px;
+  }
+
+  .loading-heading {
+    font-size: 22px;
+  }
+
+  .loading-bg-blur {
+    filter: blur(80px);
+    -webkit-filter: blur(80px);
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-content {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .loading-mascot {
+    width: 140px;
+    height: 149px;
+  }
+
+  .loading-heading {
+    font-size: 18px;
+  }
+
+  .loading-subtext {
+    font-size: 13px;
+  }
+
+  .loading-bg-blur {
+    filter: blur(60px);
+    -webkit-filter: blur(60px);
+  }
+}
+
+/* ──────────────────────────────────────────────
+ * Reduced Motion — Accessibility
+ * ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .loading-mascot,
+  .loading-progress-fill::after,
+  .loading-percentage__icon {
+    animation: none;
+  }
+
+  .loading-progress-fill {
+    transition: none;
+  }
+}

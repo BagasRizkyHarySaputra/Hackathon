@@ -1,0 +1,62 @@
+<!--
+  ============================================================
+  FILE: partials/scan/scan-content.html
+  ============================================================
+  FEATURE: Scan Page — HTMX Partial Content
+  PURPOSE:
+    HTML partial returned by HTMX for the skin type selection screen.
+    Contains the same markup as the fallback in pages/scan/index.html
+  HTMX CONTRACT:
+    - Served via GET /api/scan/partial
+  ============================================================
+-->
+<div class="scan-bg" aria-hidden="true">
+  <div class="scan-bg__bubble scan-bg__bubble--1"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--2"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--3"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--4"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--5"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--6"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--7"></div>
+  <div class="scan-bg__bubble scan-bg__bubble--8"></div>
+</div>
+
+<div class="scan-layout" x-data="createScanComponent()">
+  <!-- Card -->
+  <div class="scan-card">
+    <!-- Mascot — bottom-right outside card, VERY LARGE -->
+    <div class="scan-mascot" aria-hidden="true">
+      <img 
+        src="/assets/icons/water-drop-mascot.svg" 
+        alt="" 
+        class="scan-mascot__img"
+      />
+    </div>
+
+    <h1 class="scan-card__title">What's Your Skin Type?</h1>
+
+    <div class="scan-card__options">
+      <template x-for="type in skinTypes" :key="type.id">
+        <button
+          class="scan-option"
+          :class="{ 'scan-option--selected': selectedType === type.id }"
+          :style="'background-color: ' + type.color"
+          @click="selectType(type.id)"
+          type="button"
+          x-text="type.label"
+        ></button>
+      </template>
+    </div>
+
+    <div class="scan-card__footer">
+      <button
+        class="scan-confirm-btn"
+        @click="confirmSelection()"
+        type="button"
+        :disabled="!selectedType"
+      >
+        Ok
+      </button>
+    </div>
+  </div>
+</div>

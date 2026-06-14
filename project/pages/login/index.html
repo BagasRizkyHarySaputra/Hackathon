@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — Sign in to your account" />
+  <meta name="theme-color" content="#eef2fa" />
+  <title>SkinGlow — Sign In</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/loading.css" />
+  <link rel="stylesheet" href="/assets/css/components/login.css" />
+</head>
+<body>
+  <main
+    class="login-page"
+    id="login-container"
+    hx-get="/api/login/partial"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+    hx-target="#login-container"
+  >
+    <!-- Fallback content -->
+    <div class="login-bg" aria-hidden="true">
+      <div class="login-bg__blob login-bg__blob--1"></div>
+      <div class="login-bg__blob login-bg__blob--2"></div>
+      <div class="login-bg__blob login-bg__blob--3"></div>
+      <div class="login-bg__blob login-bg__blob--4"></div>
+      <div class="login-bg__blob login-bg__blob--5"></div>
+    </div>
+
+    <div class="login-layout" x-data="createLoginComponent()">
+      <div class="login-mascot" aria-hidden="true">
+        <img class="login-mascot__svg" src="/assets/icons/water-drop-mascot.svg" alt="SkinGlow mascot" width="273" height="283" loading="eager" />
+      </div>
+
+      <div class="login-card-area">
+        <div class="login-card-stack">
+          <div class="login-card-back" aria-hidden="true"></div>
+          <div class="login-card-front" :data-tab="activeTab">
+            <div class="login-card-bg" aria-hidden="true"></div>
+            <div class="login-card-fold" aria-hidden="true"></div>
+            <div class="login-card-content">
+              <div class="login-tabs">
+                <button class="login-tab login-tab--active" type="button">Sign In</button>
+                <button class="login-tab" type="button">Sign Up</button>
+              </div>
+              <div class="login-social">
+                <button class="login-social__btn" type="button" aria-label="Google">
+                  <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+                </button>
+                <button class="login-social__btn" type="button" aria-label="Facebook">
+                  <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#0866FF"/><path d="M28.01 23.5h-3.51V36h-5.5V23.5h-2.5V18.5h2.5v-3c0-2.5 1.2-6 5.8-6h4.2v5h-2.8c-.5 0-1.2.3-1.2 1.3v2.7h4.1l-.6 5z" fill="#FFF"/></svg>
+                </button>
+              </div>
+              <div class="login-divider">
+                <div class="login-divider__line"></div>
+                <span class="login-divider__text">Or</span>
+                <div class="login-divider__line"></div>
+              </div>
+              <p style="color:#5A5959; text-align:center;">Loading form...</p>
+            </div>
+          </div>
+        </div>
+        <div class="login-btn-wrap">
+          <button class="login-btn" type="button">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/config/app.config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+  <script src="/assets/js/alpine/app.js"></script>
+  <script src="/assets/js/alpine/stores/ui.store.js"></script>
+  <script src="/assets/js/alpine/stores/auth.store.js"></script>
+  <script src="/assets/js/alpine/components/login.js"></script>
+  <script src="/assets/js/htmx/config.js"></script>
+  <script src="/assets/js/htmx/interceptors.js"></script>
+  <script src="/assets/js/pwa/sw-register.js"></script>
+</body>
+</html>

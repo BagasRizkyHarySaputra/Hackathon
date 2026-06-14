@@ -1,0 +1,102 @@
+<!--
+  ============================================================
+  FILE: pages/scan/index.html
+  ============================================================
+  FEATURE: Scan Page — Skin Type Selection
+  PURPOSE:
+    Complete HTML page for selecting skin type before analysis.
+    Uses Alpine.js for reactive UI and HTMX for server communication.
+  HTMX CONTRACT:
+    - On load: fetches partial from GET /api/scan/partial
+  ALPINE DEPENDENCIES:
+    - createScanComponent() from assets/js/alpine/components/scan.js
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — Select your skin type" />
+  <meta name="theme-color" content="#95B4C6" />
+  <title>SkinGlow — Skin Type</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/scan.css" />
+</head>
+<body>
+  <main
+    class="scan-page"
+    id="scan-container"
+    hx-get="/api/scan/partial"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+    hx-target="#scan-container"
+  >
+    <!-- Background -->
+    <div class="scan-bg" aria-hidden="true">
+      <div class="scan-bg__bubble scan-bg__bubble--1"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--2"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--3"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--4"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--5"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--6"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--7"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--8"></div>
+    </div>
+
+    <div class="scan-layout" x-data="createScanComponent()">
+      <!-- Card -->
+      <div class="scan-card">
+        <!-- Mascot — bottom-right outside card, VERY LARGE -->
+        <div class="scan-mascot" aria-hidden="true">
+          <img 
+            src="/assets/icons/water-drop-mascot.svg" 
+            alt="" 
+            class="scan-mascot__img"
+          />
+        </div>
+
+        <h1 class="scan-card__title">What's Your Skin Type?</h1>
+
+        <div class="scan-card__options">
+          <template x-for="type in skinTypes" :key="type.id">
+            <button
+              class="scan-option"
+              :class="{ 'scan-option--selected': selectedType === type.id }"
+              :style="'background-color: ' + type.color"
+              @click="selectType(type.id)"
+              type="button"
+              x-text="type.label"
+            ></button>
+          </template>
+        </div>
+
+        <div class="scan-card__footer">
+          <button
+            class="scan-confirm-btn"
+            @click="confirmSelection()"
+            type="button"
+            :disabled="!selectedType"
+          >
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts — Order matters -->
+  <script src="/config/app.config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+  <script src="/assets/js/alpine/app.js"></script>
+  <script src="/assets/js/alpine/stores/ui.store.js"></script>
+  <script src="/assets/js/alpine/stores/auth.store.js"></script>
+  <script src="/assets/js/alpine/components/scan.js"></script>
+  <script src="/assets/js/htmx/config.js"></script>
+  <script src="/assets/js/htmx/interceptors.js"></script>
+  <script src="/assets/js/pwa/sw-register.js"></script>
+</body>
+</html>

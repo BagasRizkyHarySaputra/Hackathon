@@ -1,0 +1,16 @@
+{
+  "name": "SkinGlow Analyzer",
+  "short_name": "SkinGlow",
+  "description": "AI-powered skin analysis and glow detection application.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#95B4C6",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["health", "lifestyle"],
+  "screenshots": []
+}

@@ -1,0 +1,98 @@
+<!--
+  ============================================================
+  FILE: partials/loading/loading-content.html
+  ============================================================
+  FEATURE: Loading Content — HTMX Partial Response
+  PURPOSE:
+    HTML fragment returned by the mock/real server in response
+    to HTMX GET /api/analysis/status. Renders the loading progress
+    UI including SVG mascot, heading, progress bar, and percentage.
+  HTMX CONTRACT:
+    - Triggered by: hx-get="/api/analysis/status" hx-trigger="load"
+    - Target: #loading-container
+    - Swap method: hx-swap="innerHTML"
+  ALPINE DEPENDENCIES:
+    - createLoadingComponent() from assets/js/alpine/components/loading.js
+  ============================================================
+-->
+
+<!-- Blurred Gradient Background -->
+<div class="loading-bg-blur" aria-hidden="true">
+  <div class="loading-bg-blur__blob--pink-tl"></div>
+  <div class="loading-bg-blur__blob--blue-tr"></div>
+  <div class="loading-bg-blur__blob--dusty-center"></div>
+  <div class="loading-bg-blur__blob--blue-bl"></div>
+  <div class="loading-bg-blur__blob--pink-br"></div>
+  <div class="loading-bg-blur__blob--slate"></div>
+</div>
+
+<!-- Layout Wrapper: Mascot + Content Card -->
+<div class="loading-layout">
+
+  <!-- 3D SVG Water Drop Mascot (Group 2667 from Figma) -->
+  <div class="loading-mascot" aria-hidden="true">
+    <img
+      class="loading-mascot__svg"
+      src="/assets/icons/water-drop-mascot.svg"
+      alt=""
+      width="220"
+      height="234"
+      loading="eager"
+    />
+  </div>
+
+  <!-- Main Content Panel (Frosted Glass Card) -->
+  <div class="loading-content" x-data="createLoadingComponent()" @beforeunload.window="destroy()">
+
+    <!-- Heading Text: "Analyzing your skin glow..." (#535F73) -->
+    <div class="loading-heading-wrapper">
+      <h1 class="loading-heading" x-html="statusMessage.replace('\n', '<br>')"></h1>
+    </div>
+
+    <!-- Subtext: "Please wait a moment" (#44474C) -->
+    <p class="loading-subtext" x-text="subtext"></p>
+
+    <!-- Progress Bar: 382 x 16px from JSON -->
+    <div class="loading-progress-wrapper">
+      <div
+        class="loading-progress-track"
+        role="progressbar"
+        :aria-valuenow="displayProgress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        :aria-label="'Analysis progress: ' + displayProgress + '%'"
+      >
+        <div
+          class="loading-progress-fill"
+          :style="'width: ' + progress + '%'"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Percentage Display: icon + "2%" (#535F73) -->
+    <div class="loading-percentage">
+      <!-- Spinner Icon: 18.33 x 18.33 from JSON -->
+      <svg
+        class="loading-percentage__icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        x-show="isLoading"
+      >
+        <path d="M12 2C6.48 2 2 6.48 2 12h2c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8v2c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+      </svg>
+      <!-- Checkmark Icon when complete -->
+      <svg
+        class="loading-percentage__icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        x-show="isComplete"
+        x-cloak
+        style="animation: none; fill: #4CAF50;"
+      >
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+      </svg>
+      <span class="loading-percentage__text" x-text="displayProgress + '%'"></span>
+    </div>
+
+  </div>
+</div>
