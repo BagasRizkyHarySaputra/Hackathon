@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;overflow:hidden;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — Home" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>SkinGlow — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/home.css" />
+</head>
+<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+  <div class="home-viewport">
+    <!-- Blurred gradient background (from Loading page) -->
+    <div class="loading-bg-blur" aria-hidden="true">
+      <div class="loading-bg-blur__blob--pink-tl"></div>
+      <div class="loading-bg-blur__blob--blue-tr"></div>
+      <div class="loading-bg-blur__blob--dusty-center"></div>
+      <div class="loading-bg-blur__blob--blue-bl"></div>
+      <div class="loading-bg-blur__blob--pink-br"></div>
+      <div class="loading-bg-blur__blob--slate"></div>
+    </div>
+
+    <div class="home-app" id="app-root">
+      <div id="sidebar-root" data-active="home"></div>
+
+      <main class="home-main">
+        <div class="home-main__top-bg"></div>
+
+        <header id="header-root" class="home-header" data-show-greeting="true"></header>
+
+        <div class="home-grid">
+          <section class="card card--diary">
+            <div class="diary-top">
+              <div>
+                <h2 class="card__title">Skin Diary</h2>
+                <p class="card__subtitle">Track your skin journey!</p>
+              </div>
+              <button class="add-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                <span>Add new entry</span>
+              </button>
+            </div>
+
+            <div class="week-tabs">
+              <div class="week-pill">Week 1</div>
+              <div class="week-line"></div>
+              <div class="week-pill">Week 2</div>
+              <div class="week-line"></div>
+              <div class="week-pill">Week 3</div>
+            </div>
+
+            <div class="diary-grid">
+              <div class="diary-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+              <div class="diary-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+              <div class="diary-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+            </div>
+
+            <h2 class="card__title card__title--section">Progress</h2>
+
+            <div class="diary-bottom-row">
+              <div class="before-after">
+                <div class="before-after__container">
+
+                  <div class="before-after__right">
+                    <div class="ba-thumb">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                    </div>
+                  </div>
+                
+                  <div class="before-after__left">
+                    <div class="ba-thumb">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                    </div>
+                  </div>
+                
+                  <input type="range" class="ba-slider" min="1" max="100" value="50" />
+                
+                    <div class="before-after__line">
+                    <div class="ba-dot">
+                      <svg class="ba-arrow ba-arrow--left" viewBox="0 0 24 24" fill="none" stroke="#6E7F99" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="10 6 4 12 10 18"/></svg>
+                      <svg class="ba-arrow ba-arrow--right" viewBox="0 0 24 24" fill="none" stroke="#6E7F99" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="4" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="before-after__labels">
+                  <span>Before</span>
+                  <span>After</span>
+                </div>
+              </div>
+
+              <div class="home-mascot-bubble">
+                <div class="bubble">Keep it up</div>
+                <img src="/assets/icons/water-drop-mascot.svg" alt="" aria-hidden="true" class="mascot-img mascot-bubble" />
+              </div>
+            </div>
+          </section>
+
+          <section class="card card--summary">
+            <h2 class="card__title">Skin Diary Summary</h2>
+            <p class="card__subtitle">Overall Improvement</p>
+            <div class="donut-wrap">
+              <div class="donut">
+                <svg viewBox="0 0 120 120" class="donut__svg">
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="#F6F5F6" stroke-width="14"/>
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="url(#donutGrad)" stroke-width="14" stroke-dasharray="261" stroke-dashoffset="52" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                  <defs>
+                    <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#FFE3E2"/>
+                      <stop offset="100%" stop-color="#95B4C6"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="donut__center">
+                  <span class="donut__pct">+80%</span>
+                  <span class="donut__label">Improvement</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card card--progress">
+            <h2 class="card__title">Progress</h2>
+            <div class="progress-table">
+              <div class="progress-row">
+                <span class="progress-row__name">Blackheads</span>
+                <span class="progress-row__before">2.0%</span>
+                <span class="progress-row__after">1.0%</span>
+                <span class="progress-row__delta progress-row__delta--down">↓ 1.0%</span>
+              </div>
+              <div class="progress-row">
+                <span class="progress-row__name">Dark Spot</span>
+                <span class="progress-row__before">0.0%</span>
+                <span class="progress-row__after">0.0%</span>
+                <span class="progress-row__delta">— 0.0%</span>
+              </div>
+              <div class="progress-row">
+                <span class="progress-row__name">Nodules</span>
+                <span class="progress-row__before">0.0%</span>
+                <span class="progress-row__after">0.0%</span>
+                <span class="progress-row__delta">— 0.0%</span>
+              </div>
+              <div class="progress-row">
+                <span class="progress-row__name">Popules</span>
+                <span class="progress-row__before">15.0%</span>
+                <span class="progress-row__after">5.0%</span>
+                <span class="progress-row__delta progress-row__delta--down">↓ 10.0%</span>
+              </div>
+              <div class="progress-row">
+                <span class="progress-row__name">Pustules</span>
+                <span class="progress-row__before">7.0%</span>
+                <span class="progress-row__after">8.0%</span>
+                <span class="progress-row__delta progress-row__delta--up">↑ 1.0%</span>
+              </div>
+              <div class="progress-row">
+                <span class="progress-row__name">Whiteheads</span>
+                <span class="progress-row__before">10.0%</span>
+                <span class="progress-row__after">8.0%</span>
+                <span class="progress-row__delta progress-row__delta--down">↓ 2.0%</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="/config/app.config.js"></script>
+  <script>
+    (function() {
+      var container = document.querySelector('.before-after__container');
+      if (!container) return;
+      var slider = container.querySelector('.ba-slider');
+      if (!slider) return;
+
+      function updateSlider(pos) {
+        container.style.setProperty('--ba-position', pos + '%');
+      }
+
+      slider.addEventListener('input', function(e) {
+        updateSlider(e.target.value);
+      });
+
+      container.addEventListener('click', function(e) {
+        var rect = container.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var pct = Math.round((x / rect.width) * 100);
+        pct = Math.max(1, Math.min(100, pct));
+        slider.value = pct;
+        updateSlider(pct);
+      });
+
+      updateSlider(slider.value);
+    })();
+  </script>
+  <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+<script src="/assets/js/router.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+[
+  {
+    "id": "mistakes",
+    "title": "Common Skincare Mistakes That May Be Harming Your Skin",
+    "tags": ["acne", "sensitive"],
+    "content": "Washing your face too often or using the wrong cleanser can strip your skin of its natural oils. Avoid using hot water, over-exfoliating, and skipping sunscreen. Stick to a gentle routine suitable for your skin type to maintain a healthy barrier.",
+    "sections": [
+      {
+        "heading": "Over-Cleansing",
+        "text": "Washing your face more than twice a day strips away protective oils. Your skin compensates by producing even more sebum, leading to breakouts and irritation."
+      },
+      {
+        "heading": "Skipping Sunscreen",
+        "text": "UV exposure is the number one cause of premature aging. Even on cloudy days, UVA rays penetrate through clouds and windows. Apply SPF 30+ every morning."
+      },
+      {
+        "heading": "Using Too Many Actives",
+        "text": "Layering retinol, AHA, BHA, and vitamin C all at once overwhelms your skin barrier. Introduce one active at a time and wait 2-4 weeks before adding another."
+      }
+    ],
+    "tips": [
+      "Use lukewarm water instead of hot water",
+      "Pat dry with a clean towel, never rub",
+      "Apply products from thinnest to thickest consistency",
+      "Always patch-test new products on your jawline first"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "routine",
+    "title": "How to Build a Simple Skincare Routine That Actually Works",
+    "tags": ["combination", "dry"],
+    "content": "A basic routine involves three steps: cleansing, moisturizing, and applying sunscreen. Keep it simple and consistent to see the best results without overwhelming your skin.",
+    "sections": [
+      {
+        "heading": "Essential Products",
+        "text": "Cleanser removes dirt, oil, and impurities. Moisturizer keeps the skin hydrated and supports the skin barrier. Sunscreen protects against UV damage and premature aging."
+      },
+      {
+        "heading": "Benefits of a Simple Routine",
+        "text": "A minimal routine maintains healthy skin, prevents dehydration and irritation, supports long-term skin health, and is suitable for most skin types."
+      },
+      {
+        "heading": "Key Tips",
+        "text": "Choose products that match your skin type. Introduce new products gradually. Avoid using too many active ingredients at once. Be patient and consistent with your routine."
+      }
+    ],
+    "tips": [
+      "Cleanse morning and night",
+      "Apply moisturizer to damp skin for better absorption",
+      "Sunscreen is non-negotiable — rain or shine",
+      "Consistency beats complexity every time"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "lifestyle",
+    "title": "How Lifestyle Habits Affect Your Skin Health",
+    "tags": ["acne", "oily"],
+    "content": "Your skin reflects your overall health. Sleep, diet, stress levels, and hydration all play crucial roles in how your skin looks and feels day to day.",
+    "sections": [
+      {
+        "heading": "Sleep & Skin Repair",
+        "text": "During deep sleep, your body increases blood flow to the skin, rebuilding collagen and repairing UV damage. Aim for 7-9 hours of quality sleep each night to support natural cell turnover."
+      },
+      {
+        "heading": "Diet & Inflammation",
+        "text": "High-glycemic foods and dairy have been linked to increased acne in some individuals. Incorporate omega-3 fatty acids, antioxidants from fruits and vegetables, and plenty of water."
+      },
+      {
+        "heading": "Stress Management",
+        "text": "Cortisol spikes from chronic stress trigger excess oil production and inflammation. Practice mindfulness, exercise regularly, and set boundaries to keep stress in check."
+      }
+    ],
+    "tips": [
+      "Drink at least 8 glasses of water daily",
+      "Change pillowcases weekly to reduce bacteria",
+      "Avoid touching your face throughout the day",
+      "Exercise boosts circulation for a natural glow"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "acne",
+    "title": "Acne Basics: Understanding Causes and Prevention",
+    "tags": ["acne", "oily"],
+    "content": "Acne occurs when hair follicles become clogged with oil and dead skin cells. Understanding the root causes helps you choose the right treatment approach.",
+    "sections": [
+      {
+        "heading": "Types of Acne",
+        "text": "Blackheads and whiteheads are non-inflammatory comedones. Papules and pustules involve inflammation. Nodules and cysts are deep, painful lesions that often require professional treatment."
+      },
+      {
+        "heading": "Common Triggers",
+        "text": "Hormonal fluctuations, excess sebum production, bacteria (C. acnes), and clogged pores are the four primary acne triggers. External factors include humidity, pore-clogging cosmetics, and friction."
+      },
+      {
+        "heading": "Prevention Strategies",
+        "text": "Use non-comedogenic products, cleanse after sweating, avoid picking or squeezing blemishes, and consider ingredients like salicylic acid or benzoyl peroxide for mild to moderate acne."
+      }
+    ],
+    "tips": [
+      "Use BHA (salicylic acid) to unclog pores",
+      "Benzoyl peroxide kills acne-causing bacteria",
+      "Never pop pimples — it causes scarring",
+      "See a dermatologist for persistent or severe acne"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "sunscreen",
+    "title": "The Importance of Sunscreen for Healthy Skin",
+    "tags": ["sensitive", "dry"],
+    "content": "Sunscreen is the most effective anti-aging product you can use. It protects against UVA and UVB rays that cause wrinkles, dark spots, and skin cancer.",
+    "sections": [
+      {
+        "heading": "UVA vs UVB",
+        "text": "UVA rays penetrate deep into the skin causing premature aging and wrinkles. UVB rays burn the surface. Broad-spectrum sunscreen protects against both types."
+      },
+      {
+        "heading": "How to Choose",
+        "text": "Look for SPF 30 or higher with broad-spectrum protection. Chemical sunscreens absorb UV rays while physical (mineral) sunscreens reflect them. Choose based on your skin sensitivity."
+      },
+      {
+        "heading": "Application Tips",
+        "text": "Apply a generous amount (about two finger-lengths for the face) 15 minutes before sun exposure. Reapply every 2 hours, or immediately after swimming or sweating."
+      }
+    ],
+    "tips": [
+      "SPF 30 blocks 97% of UVB rays",
+      "Reapply every 2 hours when outdoors",
+      "Don't forget ears, neck, and hands",
+      "Mineral sunscreen is best for sensitive skin"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "skin-type",
+    "title": "Understanding Your Skin Type: The First Step to Better Skincare",
+    "tags": ["combination", "dry", "oily"],
+    "content": "Knowing your skin type is essential for choosing the right products and building an effective routine. The five main types are normal, dry, oily, combination, and sensitive.",
+    "sections": [
+      {
+        "heading": "Identifying Your Skin Type",
+        "text": "Wash your face with a gentle cleanser and wait one hour without applying any products. If your skin feels tight, it is dry. If it is shiny all over, it is oily. Shiny T-zone with dry cheeks means combination."
+      },
+      {
+        "heading": "Products by Skin Type",
+        "text": "Dry skin benefits from cream cleansers and rich moisturizers. Oily skin does well with gel cleansers and lightweight lotions. Combination skin needs a balanced approach — lighter products on oily areas, richer ones on dry patches."
+      },
+      {
+        "heading": "Skin Type Can Change",
+        "text": "Your skin type is not permanent. Hormones, climate, age, and medications can all shift it. Re-evaluate your skin every season and adjust your routine accordingly."
+      }
+    ],
+    "tips": [
+      "Do the bare-face test to identify your type",
+      "Oily skin still needs moisturizer",
+      "Sensitive skin should avoid fragrance",
+      "Reassess your skin type every season"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  }
+]

@@ -156,7 +156,7 @@ function createLoadingComponent() {
        */
       if (APP_CONFIG.IS_MOCK_MODE) {
         setTimeout(() => {
-          window.location.href = '/pages/scan/';
+          window.location.href = '/pages/login/index.html';
         }, 1500);
       }
     },

@@ -190,10 +190,16 @@ function createLoginComponent() {
 
       try {
         if (APP_CONFIG.IS_MOCK_MODE) {
-          /** Simulate API delay */
           await new Promise(resolve => setTimeout(resolve, 1200));
 
-          /** Mock successful login */
+          if (this.activeTab === 'signin') {
+            if (this.email !== 'contoh@gmail.com' || this.password !== 'contoh') {
+              this.errorMessage = 'Email atau password salah.';
+              this.isSubmitting = false;
+              return;
+            }
+          }
+
           const mockToken = 'mock_jwt_token_' + Date.now();
           const mockUser = {
             name: this.fullName || this.email.split('@')[0],
@@ -216,9 +222,8 @@ function createLoginComponent() {
             `Welcome back, ${mockUser.name}!`
           );
 
-          /** Mock redirect after delay */
           setTimeout(() => {
-            this.$dispatch('auth:redirect', { target: '/dashboard' });
+            window.location.href = '/pages/home/index.html';
           }, 1500);
         } else {
           /**

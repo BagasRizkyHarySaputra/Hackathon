@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;overflow:hidden;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — Tips & Artikel" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>SkinGlow — Tips & Artikel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/home.css" />
+  <link rel="stylesheet" href="/assets/css/components/tips-artikel.css" />
+</head>
+<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+  <div class="article-viewport">
+    <!-- Background blobs -->
+    <div class="article-bg" aria-hidden="true">
+      <div class="article-bg__blob article-bg__blob--pink-tl"></div>
+      <div class="article-bg__blob article-bg__blob--pink-br"></div>
+      <div class="article-bg__blob article-bg__blob--gray-right"></div>
+      <div class="article-bg__blob article-bg__blob--blue-bl"></div>
+      <div class="article-bg__blob article-bg__blob--slate-tr"></div>
+    </div>
+
+    <div class="article-app">
+      <div id="sidebar-root" data-active="diary"></div>
+
+      <main class="article-main">
+        <!-- Header -->
+        <header class="article-header">
+          <span class="article-header__brand">L I C I N</span>
+          <div class="article-header__actions">
+            <button class="article-header__back" aria-label="Back">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+              </svg>
+            </button>
+            <span class="article-header__notif-dot"></span>
+            <button class="article-header__profile" aria-label="Profile">
+              <svg viewBox="0 0 55 59.71" fill="none" width="32" height="35">
+                <ellipse cx="27.5" cy="15" rx="15.7" ry="13.7" fill="#95B4C6" opacity="0.8"/>
+                <path d="M0 45.71 C0 34 12 25 27.5 25 C43 25 55 34 55 45.71 L55 59.71 L0 59.71 Z" fill="#95B4C6" opacity="0.8"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Toolbar: Tags + Search -->
+        <div class="article-toolbar">
+          <div class="article-tags">
+            <span class="article-tag article-tag--acne">Acne</span>
+            <span class="article-tag article-tag--dry">Dry Skin</span>
+            <span class="article-tag article-tag--oily">Oily Skin</span>
+            <span class="article-tag article-tag--sensitive">Sensitive</span>
+            <span class="article-tag article-tag--combination">Combination</span>
+          </div>
+          <div class="article-search">
+            <input type="text" class="article-search__input" placeholder="Search..." />
+            <svg class="article-search__icon" viewBox="0 0 16.19 17" fill="none" stroke="#2B2B2B" stroke-width="1.5" width="16" height="17">
+              <circle cx="7" cy="7" r="6"/>
+              <line x1="11.5" y1="12" x2="15.5" y2="16"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Article Card -->
+        <section class="article-card">
+          <h1 class="article-card__title">How to Build a Simple Skincare Routine That Actually Works</h1>
+
+          <div class="article-card__body">
+            <!-- Left Column -->
+            <div class="article-card__col article-card__col--left">
+              <p class="article-card__text">
+                A simple skincare routine is often more effective than using many products at once. By focusing on the essentials and staying consistent, you can maintain healthy and balanced skin.
+              </p>
+
+              <div class="article-card__section">
+                <h3 class="article-card__section-title">Essential Products</h3>
+                <ul class="article-card__list">
+                  <li><strong>Cleanser:</strong> Removes dirt, oil, and impurities.</li>
+                  <li><strong>Moisturizer:</strong> Keeps the skin hydrated and supports the skin barrier.</li>
+                  <li><strong>Sunscreen:</strong> Protects against UV damage and premature aging.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="article-card__col article-card__col--middle">
+              <div class="article-card__section">
+                <h3 class="article-card__section-title">Benefits of a Simple Routine</h3>
+                <ul class="article-card__list">
+                  <li>Maintains healthy skin.</li>
+                  <li>Prevents dehydration and irritation.</li>
+                  <li>Supports long-term skin health.</li>
+                  <li>Suitable for most skin types.</li>
+                </ul>
+              </div>
+
+              <div class="article-card__section">
+                <h3 class="article-card__section-title">Key Tips</h3>
+                <ul class="article-card__list">
+                  <li>Choose products that match your skin type.</li>
+                  <li>Introduce new products gradually.</li>
+                  <li>Avoid using too many active ingredients at once.</li>
+                  <li>Be patient and consistent with your routine.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="article-card__col article-card__col--right">
+              <img src="/assets/images/SkincareBottleMockup2.png" alt="Skincare bottle" class="article-card__image" />
+            </div>
+          </div>
+
+          <div class="article-card__footer">
+            <button class="article-card__back">Back</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/components/sidebar.js"></script>
+<script src="/assets/js/router.js"></script>
+</body>
+</html>

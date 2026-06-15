@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;overflow:hidden;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — Community Admin" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>SkinGlow — Community Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/home.css" />
+  <link rel="stylesheet" href="/assets/css/components/community.css" />
+</head>
+<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+  <div class="community-viewport">
+    <div class="loading-bg-blur" aria-hidden="true">
+      <div class="loading-bg-blur__blob--pink-tl"></div>
+      <div class="loading-bg-blur__blob--blue-tr"></div>
+      <div class="loading-bg-blur__blob--dusty-center"></div>
+      <div class="loading-bg-blur__blob--blue-bl"></div>
+      <div class="loading-bg-blur__blob--pink-br"></div>
+      <div class="loading-bg-blur__blob--slate"></div>
+    </div>
+
+    <div class="community-app">
+      <div id="sidebar-root" data-active="community"></div>
+
+      <main class="community-main">
+        <div class="home-main__top-bg"></div>
+
+        <header id="header-root" class="home-header"></header>
+
+        <section class="community-card">
+
+          <div class="channel-section">
+            <div class="channel-avatar">
+              <div class="channel-avatar__circle"></div>
+            </div>
+            <span class="channel-label">Channel?</span>
+
+            <div class="channel-avatar">
+              <div class="channel-avatar__circle"></div>
+            </div>
+            <span class="channel-label">Channel?</span>
+          </div>
+
+          <div class="topic-panel">
+            <div class="topic-panel__header">
+              <h2 class="topic-panel__title">Topic</h2>
+              <button class="topic-panel__add-btn" aria-label="Add topic">
+                <img src="/assets/icons/nav/add.svg" alt="" class="topic-panel__add-icon" />
+              </button>
+            </div>
+
+            <div class="topic-item">
+              <span class="topic-item__name">#Acne Fighter</span>
+            </div>
+
+            <div class="topic-item">
+              <span class="topic-item__name">#Review Skincare</span>
+            </div>
+
+            <div class="topic-item">
+              <span class="topic-item__name">#Skincare</span>
+            </div>
+          </div>
+
+          <div class="chat-area">
+            <div class="chat-messages">
+              <div class="chat-msg-row chat-msg-row--received">
+                <div class="chat-avatar">
+                  <div class="chat-avatar__circle"></div>
+                </div>
+                <div class="chat-bubble chat-bubble--received">
+                  <p class="chat-bubble__text">Hadirin sekalian, dimohon untuk selalu menjaga kesehatan kulit wajah masing-masing ya.</p>
+                </div>
+              </div>
+
+              <div class="chat-msg-row chat-msg-row--received">
+                <div class="chat-avatar">
+                  <div class="chat-avatar__circle"></div>
+                </div>
+                <div class="chat-bubble chat-bubble--received">
+                  <p class="chat-bubble__text">Jangan lupa untuk selalu menggunakan sunscreen setiap hari.</p>
+                </div>
+              </div>
+
+              <div class="chat-msg-row chat-msg-row--sent">
+                <div class="chat-bubble chat-bubble--sent">
+                  <p class="chat-bubble__text">Noted kak, makasih infonya.</p>
+                </div>
+                <div class="chat-avatar">
+                  <div class="chat-avatar__circle chat-avatar__circle--self"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-input">
+              <div class="chat-input__field">
+                <span class="chat-input__placeholder">Type something...</span>
+              </div>
+              <div class="chat-input__actions">
+                <img src="/assets/icons/nav/face-smile-wink.svg" alt="" class="chat-input__icon" />
+                <img src="/assets/icons/nav/paper-plane.svg" alt="" class="chat-input__icon chat-input__icon--send" />
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+<script src="/assets/js/router.js"></script>
+</body>
+</html>

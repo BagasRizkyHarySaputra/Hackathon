@@ -1,0 +1,551 @@
+/* ──────────────────────────────────────────────
+ * Home Page Styles
+ * Colors derived from layer_Home.json Figma tokens
+ * Responsive layout: 100vw x 100vh, no scrolling
+ * Design frame: 1440x1024
+ * ────────────────────────────────────────────── */
+
+/* ─── Viewport Wrapper (full screen, no scroll) ─── */
+.home-viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+/* ─── App Layout: sidebar + main, fills viewport ─── */
+.home-app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* ─── Blurred Gradient Background (from Loading page) ─── */
+.loading-bg-blur {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  filter: blur(80px);
+  -webkit-filter: blur(80px);
+}
+
+/* Top-left pink blob */
+.loading-bg-blur__blob--pink-tl {
+  position: absolute;
+  width: 90vw;
+  height: 90vh;
+  background: radial-gradient(ellipse at center, #FFE3E2 0%, transparent 65%);
+  top: -30vh;
+  left: -30vw;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* Bottom-right pink blob */
+.loading-bg-blur__blob--pink-br {
+  position: absolute;
+  width: 85vw;
+  height: 85vh;
+  background: radial-gradient(ellipse at center, #FFE3E2 0%, transparent 65%);
+  bottom: -35vh;
+  right: -25vw;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* Bottom-left blue-grey blob */
+.loading-bg-blur__blob--blue-bl {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(ellipse at center, #95B4C6 0%, transparent 65%);
+  bottom: -30vh;
+  left: -25vw;
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+/* Top-right blue-grey blob */
+.loading-bg-blur__blob--blue-tr {
+  position: absolute;
+  width: 75vw;
+  height: 75vh;
+  background: radial-gradient(ellipse at center, #95B4C6 0%, transparent 65%);
+  top: -25vh;
+  right: -20vw;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* Center dusty rose accent */
+.loading-bg-blur__blob--dusty-center {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(ellipse at center, #E4D8DC 0%, transparent 65%);
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* Slate accent blob */
+.loading-bg-blur__blob--slate {
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at center, #6E7F99 0%, transparent 65%);
+  top: -15vh;
+  right: 5vw;
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+/* ─── Main Content ─── */
+.home-main {
+  flex: 1;
+  padding: 7.23vh 8vw 3.61vh 4.03vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.home-main__top-bg {
+  position: absolute;
+  top: -11.72vh;
+  right: -5.56vw;
+  width: 48.61vw;
+  height: 68.36vh;
+  background: radial-gradient(circle, #FFE3E2 0%, transparent 70%);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ─── Grid Layout ─── */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 30.42vw;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.25vh 1.74vw;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── Cards ─── */
+.card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 1.67vw;
+  padding: 1.94vh 2.22vw;
+  box-shadow: 0 4px 24px rgba(110, 127, 153, 0.08);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.card__title {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(1rem, 1.67vw, 1.5rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  margin-bottom: 0.20vh;
+}
+
+.card__title--section {
+  margin-top: 1.56vh;
+  margin-bottom: 1.17vh;
+}
+
+.card__subtitle {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.97vw, 0.875rem);
+  color: rgba(43, 43, 43, 0.7);
+  font-weight: 500;
+}
+
+/* ─── Skin Diary Card ─── */
+.card--diary {
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  padding-bottom: var(--diary-bottom-gap, 8vh);
+}
+
+.diary-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.56vw;
+  background: rgba(229, 233, 243, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.39vw;
+  padding: 0.56vh 1.25vw;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.97vw, 0.875rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.add-btn:hover {
+  background: #D5DAE5;
+}
+
+/* ─── Week Tabs ─── */
+.week-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 1.56vh 0 1.76vh;
+  flex-shrink: 0;
+}
+
+.week-pill {
+  background: #FFE3E2;
+  border-radius: 1.39vw;
+  padding: 0.59vh 1.5vw;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.90vw, 0.8125rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  white-space: nowrap; 
+}
+
+.week-line {
+  flex: 1;
+  height: 2px;
+  background: #2B2B2B;
+  opacity: 0.2;
+}
+
+/* ─── Diary Grid ─── */
+.diary-grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;  
+  grid-template-columns: repeat(3, 0.3fr);
+  gap: 5vw;
+  flex-shrink: 0;
+}
+
+.diary-thumb {
+  aspect-ratio: 1;
+  background: rgba(135, 150, 168, 0.15);
+  border-radius: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ─── Before / After Image Slider ─── */
+.diary-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  flex-shrink: 0;
+}
+
+.before-after {
+  flex: 0 0 60%;
+  min-width: 0;
+  position: relative;
+}
+
+/* Container — stacked layers for slider system */
+.before-after__container {
+  position: relative;
+  width: 100%;
+  height: 20vh;
+  min-height: 17.5vh;
+  background: rgba(135, 150, 168, 0.15);
+  border-radius: 1.11vw;
+  overflow: hidden;
+}
+
+/* Both before/after layers stack absolute, cover full width */
+.before-after__left,
+.before-after__right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.before-after__right {
+  width: 100%;
+  z-index: 1;
+  border-radius: 0;
+}
+
+.before-after__left {
+  width: var(--ba-position, 50%);
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Hide placeholder thumb when background-image is set */
+.before-after__left[style*="background-image"] .ba-thumb,
+.before-after__right[style*="background-image"] .ba-thumb {
+  display: none;
+}
+
+/* ─── Transparent Range Input ─── */
+input.ba-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: ew-resize;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ─── Divider Line ─── */
+.before-after__line {
+  position: absolute;
+  top: 0;
+  left: var(--ba-position, 50%);
+  width: 2px;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.before-after__line::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* ─── Drag Handle (Dot/Circle) ─── */
+.ba-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5vw;
+  height: 2.5vw;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ba-dot .ba-arrow {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+/* ─── Labels ─── */
+.before-after__labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.17vh;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.97vw, 0.875rem);
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.ba-thumb {
+  width: 5.56vw;
+  height: 7.81vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-mascot-bubble { /* ─── Mascot & Bubble (inside diary card, right of Before/After) ─── */
+  flex: 0 0 30%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0vh;
+  margin-top: 0;
+}
+.mascot-bubble{
+  width: 15.42vw;
+  max-width: 200px;
+}
+
+.bubble {
+  background: #6E7F99;
+  color: #FFFFFF;
+  font-family: 'Onest', sans-serif;
+  font-size: 1.2cqw;
+  font-weight: 600;
+  padding: 2.17vh 2.67vw;
+  border-radius: 1.39vw 1.39vw 1.39vw 0.28vw;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 15;
+  bottom: 27vh;
+  right: -2vw;
+}
+
+/* ─── Summary Card ─── */
+.card--summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.donut-wrap {
+  margin-top: 1.56vh;
+}
+
+.donut {
+  width: 16.15vw;
+  max-width: 233px;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.donut__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.donut__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut__pct {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(1.4rem, 2.78vw, 2.5rem);
+  font-weight: 700;
+  color: #435571;
+  line-height: 1;
+}
+
+.donut__label {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.97vw, 0.875rem);
+  color: #435571;
+  opacity: 0.8;
+  margin-top: 0.39vh;
+}
+
+/* ─── Progress Card ─── */
+.card--progress {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.progress-table {
+  margin-top: 1.17vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+.progress-row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr;
+  align-items: center;
+  padding: 0.78vh 1.11vw;
+  border-radius: 0.56vw;
+  gap: 0.56vw;
+}
+
+.progress-row:nth-child(odd) {
+  background: rgba(246, 247, 250, 0.5);
+}
+
+.progress-row:nth-child(even) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-row__name {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.97vw, 0.875rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.75);
+  background: rgba(135, 150, 168, 0.15);
+  border-radius: 0.83vw;
+  padding: 0.39vh 0.83vw;
+  display: inline-block;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.progress-row__before,
+.progress-row__after {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.97vw, 0.875rem);
+  color: rgba(43, 43, 43, 0.75);
+  text-align: center;
+}
+
+.progress-row__delta {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.97vw, 0.875rem);
+  font-weight: 600;
+  text-align: center;
+  color: rgba(43, 43, 43, 0.75);
+}
+
+.progress-row__delta--down {
+  color: #71B977;
+}
+
+.progress-row__delta--up {
+  color: #CC5D5D;
+}
