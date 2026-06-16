@@ -24,7 +24,7 @@
       "Apply products from thinnest to thickest consistency",
       "Always patch-test new products on your jawline first"
     ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "image": "/assets/images/article-sunscreen.jpg"
   },
   {
     "id": "routine",
@@ -146,7 +146,7 @@
       },
       {
         "heading": "Products by Skin Type",
-        "text": "Dry skin benefits from cream cleansers and rich moisturizers. Oily skin does well with gel cleansers and lightweight lotions. Combination skin needs a balanced approach — lighter products on oily areas, richer ones on dry patches."
+        "text": "Dry skin benefits from cream cleansers and rich moisturizers. Oily skin does well with gel cleansers and lightweight lotions. Combination skin needs a balanced approach."
       },
       {
         "heading": "Skin Type Can Change",
@@ -158,6 +158,118 @@
       "Oily skin still needs moisturizer",
       "Sensitive skin should avoid fragrance",
       "Reassess your skin type every season"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "dry-skin-relief",
+    "title": "The Best Ingredients for Dry Skin Relief",
+    "tags": ["dry"],
+    "content": "Dry skin needs ingredients that restore the skin barrier and lock in moisture. Using the right humectants, emollients, and occlusives can transform dehydrated skin into a healthy, glowing complexion.",
+    "sections": [
+      {
+        "heading": "Key Hydrating Ingredients",
+        "text": "Hyaluronic Acid holds 1000x its weight in water, drawing moisture into the skin. Glycerin is a gentle humectant suitable for all skin types. Ceramides restore and strengthen the skin barrier. Squalane provides lightweight, non-greasy hydration."
+      },
+      {
+        "heading": "Building a Dry Skin Routine",
+        "text": "Start with a cream or milk cleanser, follow with a hydrating toner, apply hyaluronic acid serum on damp skin, seal with a rich moisturizer containing ceramides, and finish with SPF in the morning. At night, consider adding a facial oil."
+      },
+      {
+        "heading": "Ingredients to Avoid",
+        "text": "Stay away from alcohol-based toners, sulfates in cleansers, and high concentrations of AHAs. These ingredients strip the skin barrier and worsen dryness."
+      }
+    ],
+    "tips": [
+      "Use lukewarm water — hot water strips natural oils",
+      "Apply moisturizer while skin is still damp",
+      "Use a humidifier in dry environments, especially at night",
+      "Exfoliate gently once a week maximum",
+      "Layer products from thinnest to thickest consistency"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "oily-skin-care",
+    "title": "Oily Skin Care: How to Control Shine Naturally",
+    "tags": ["oily"],
+    "content": "Oily skin can be frustrating, but with the right approach, you can balance sebum production without stripping your skin. The key is to manage oil production while maintaining a healthy skin barrier.",
+    "sections": [
+      {
+        "heading": "Understanding Sebum Production",
+        "text": "Genetics, hormones, and climate all influence how much oil your skin produces. Over-cleansing can actually trigger more oil production as the skin tries to compensate for lost moisture."
+      },
+      {
+        "heading": "Best Ingredients for Oily Skin",
+        "text": "Niacinamide (Vitamin B3) regulates oil production and minimizes pores. Salicylic acid (BHA) exfoliates inside pores. Clay masks absorb excess sebum. Lightweight gel moisturizers provide hydration without clogging pores."
+      },
+      {
+        "heading": "Daily Routine for Oily Skin",
+        "text": "Use a foaming gel cleanser morning and night. Apply a niacinamide serum after cleansing. Moisturize with an oil-free gel moisturizer. In the morning, finish with a matte SPF. At night, consider a gentle BHA exfoliant 2-3 times per week."
+      }
+    ],
+    "tips": [
+      "Don't skip moisturizer — use oil-free gel formulas",
+      "Blotting papers are better than washing mid-day",
+      "Look for 'non-comedogenic' on all product labels",
+      "Clay masks 1-2 times per week help control shine",
+      "Avoid heavy creams and oil-based products"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "sensitive-skin-guide",
+    "title": "Sensitive Skin Guide: Soothing Products and Routine Tips",
+    "tags": ["sensitive"],
+    "content": "Sensitive skin requires extra care and attention. Choosing the wrong products can trigger redness, itching, burning, or stinging sensations. A minimalist routine with soothing ingredients is the best approach.",
+    "sections": [
+      {
+        "heading": "Common Irritants to Avoid",
+        "text": "Fragrance (both natural and synthetic), essential oils, denatured alcohol, sulfates, and harsh physical exfoliants are common triggers for sensitive skin. Always read ingredient labels and avoid products with long lists of botanical extracts."
+      },
+      {
+        "heading": "Soothing Ingredients to Look For",
+        "text": "Centella Asiatica (Cica) calms inflammation and supports healing. Aloe Vera provides hydration and soothes irritation. Oat extract protects the skin barrier with beta-glucans. Panthenol (Vitamin B5) promotes wound healing and reduces redness."
+      },
+      {
+        "heading": "Building a Sensitive Skin Routine",
+        "text": "Keep it minimal: gentle cream cleanser, hydrating toner with soothing ingredients, a simple moisturizer with ceramides, and a mineral (physical) sunscreen. Introduce new products one at a time with two weeks between each."
+      }
+    ],
+    "tips": [
+      "Stick to fragrance-free and hypoallergenic products",
+      "Patch test on your inner arm before applying to face",
+      "Avoid hot water and extreme temperature changes",
+      "Use a mineral (zinc oxide) sunscreen instead of chemical",
+      "Less is more — a 3-step routine is often enough"
+    ],
+    "image": "/assets/images/SkincareBottleMockup2.png"
+  },
+  {
+    "id": "nighttime-skincare",
+    "title": "Nighttime Skincare: Why Your PM Routine Matters",
+    "tags": ["combination"],
+    "content": "Your skin works hard while you sleep — cell turnover accelerates and your skin becomes more receptive to active ingredients. A proper nighttime routine can dramatically improve your skin's health and appearance.",
+    "sections": [
+      {
+        "heading": "The Science of Night Repair",
+        "text": "During sleep, skin blood flow increases by 40-50%, cell regeneration accelerates, and the skin barrier repairs itself. This biological shift makes nighttime the perfect opportunity to apply reparative ingredients like retinoids, peptides, and growth factors."
+      },
+      {
+        "heading": "The Ideal PM Routine",
+        "text": "Step 1: Double cleanse (oil-based cleanser followed by water-based). Step 2: Apply treatment serums (retinol, niacinamide, or peptides). Step 3: Apply a nourishing night cream. Step 4: Use an eye cream for the delicate under-eye area."
+      },
+      {
+        "heading": "Ingredients That Work Best at Night",
+        "text": "Retinoids (retinol, tretinoin) increase cell turnover but degrade in sunlight — use only at night. Peptides stimulate collagen production. AHAs exfoliate while you sleep. Bakuchiol is a gentle, plant-based alternative to retinol."
+      }
+    ],
+    "tips": [
+      "Always remove makeup before bed — never sleep with it on",
+      "Apply retinol only at night — it degrades in sunlight",
+      "Use a silk or satin pillowcase to reduce friction",
+      "Keep water by your bedside to stay hydrated overnight",
+      "Consistency matters more than intensity — start simple and build up"
     ],
     "image": "/assets/images/SkincareBottleMockup2.png"
   }

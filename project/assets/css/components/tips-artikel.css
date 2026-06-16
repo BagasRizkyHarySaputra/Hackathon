@@ -85,7 +85,6 @@
 /* ─── Main Content ─── */
 .article-main {
   flex: 1;
-  padding: 5.5vh 0 0 0;
   position: relative;
   overflow: hidden;
   display: flex;

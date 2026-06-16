@@ -11,377 +11,459 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
-  <link rel="stylesheet" href="/assets/css/components/home.css" />
   <link rel="stylesheet" href="/assets/css/components/profile.css" />
 </head>
 <body style="height:100%;overflow:hidden;background:#FFFFFF;">
   <div class="profile-viewport">
-    <div class="profile-bg" aria-hidden="true">
-      <div class="profile-bg__blob profile-bg__blob--pink-tl"></div>
-      <div class="profile-bg__blob profile-bg__blob--blue-mid"></div>
-      <div class="profile-bg__blob profile-bg__blob--pink-br"></div>
-      <div class="profile-bg__blob profile-bg__blob--slate-tr"></div>
-      <div class="profile-bg__blob profile-bg__blob--dusty"></div>
-    </div>
-
     <div class="profile-app">
       <div id="sidebar-root" data-active="profile"></div>
 
       <main class="profile-main">
-        <!-- Profile Header Card -->
-        <div class="profile-header-card">
-          <div class="profile-avatar">
-            <svg class="profile-avatar__icon" viewBox="0 0 55 59.71">
-              <ellipse cx="27.5" cy="15" rx="15.7" ry="13.7" fill="#FFFFFF" opacity="0.9"/>
-              <path d="M0 45.71 C0 34 12 25 27.5 25 C43 25 55 34 55 45.71 L55 59.71 L0 59.71 Z" fill="#FFFFFF" opacity="0.9"/>
-            </svg>
-          </div>
-          <div class="profile-info">
-            <h1 class="profile-info__name">Username</h1>
-            <div class="profile-info__row">
-              <span class="profile-info__skin-type">Combination</span>
-              <button class="profile-info__edit-badge" data-tab="edit">Edit</button>
-            </div>
-            <span class="profile-info__member">Member since Juni 2026</span>
-          </div>
-        </div>
+        <!-- Decorative band -->
+        <div class="profile-deco-band" aria-hidden="true"></div>
 
-        <!-- Tab Navigation -->
-        <nav class="profile-nav">
-          <button class="profile-nav__tab profile-nav__tab--active" data-tab="morning">Morning Routine</button>
-          <button class="profile-nav__tab" data-tab="night">Night Routine</button>
-          <button class="profile-nav__tab" data-tab="settings">Settings</button>
-          <button class="profile-nav__tab" data-tab="help">Help Center</button>
-          <button class="profile-nav__tab" data-tab="edit">Edit Profile</button>
-        </nav>
+        <div class="profile-content">
 
-        <!-- ═══ Morning Routine Panel ═══ -->
-        <div class="profile-panel profile-panel--active" id="panel-morning">
-          <div class="routine-section">
-            <h2 class="routine-section__title">Skincare Routine</h2>
-            <p class="routine-section__subtitle">Your personalized morning skincare steps</p>
-            <div class="routine-steps">
-              <div class="routine-step">
-                <span class="routine-step__num">1</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Gentle Cleanser</p>
-                  <p class="routine-step__desc">Wash face with lukewarm water and gentle cleanser</p>
-                </div>
-                <span class="routine-step__time">2 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">2</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Toner</p>
-                  <p class="routine-step__desc">Apply hydrating toner with cotton pad or hands</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">3</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Serum (Vitamin C)</p>
-                  <p class="routine-step__desc">Apply antioxidant serum to protect against UV damage</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">4</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Moisturizer</p>
-                  <p class="routine-step__desc">Lock in hydration with lightweight moisturizer</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">5</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Sunscreen SPF 50+</p>
-                  <p class="routine-step__desc">Apply broad-spectrum sunscreen as final step</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
+          <!-- ═══ Profile Header ═══ -->
+          <div class="profile-header">
+            <div class="profile-avatar-wrap">
+              <svg viewBox="0 0 100 100" fill="none">
+                <ellipse cx="50" cy="36" rx="28" ry="26" fill="#FFFFFF" opacity="0.9"/>
+                <path d="M10 85 C10 58 28 46 50 46 C72 46 90 58 90 85 L90 100 L10 100 Z" fill="#FFFFFF" opacity="0.9"/>
+              </svg>
             </div>
-            <button class="routine-save-btn">Save Routine &gt;</button>
-          </div>
-        </div>
-
-        <!-- ═══ Night Routine Panel ═══ -->
-        <div class="profile-panel" id="panel-night">
-          <div class="routine-section">
-            <h2 class="routine-section__title">Skincare Routine</h2>
-            <p class="routine-section__subtitle">Your personalized night skincare steps</p>
-            <div class="routine-steps">
-              <div class="routine-step">
-                <span class="routine-step__num">1</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Oil Cleanser</p>
-                  <p class="routine-step__desc">Remove makeup and sunscreen with oil-based cleanser</p>
-                </div>
-                <span class="routine-step__time">2 min</span>
+            <div class="profile-header__info">
+              <h1 class="profile-header__name">Username</h1>
+              <div class="profile-header__row">
+                <span class="profile-header__skin-type">Combination</span>
+                <button class="profile-header__edit-badge">
+                  <img src="/assets/icons/profile/edit.svg" alt="Edit" width="28" height="28" />
+                </button>
               </div>
-              <div class="routine-step">
-                <span class="routine-step__num">2</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Water-Based Cleanser</p>
-                  <p class="routine-step__desc">Double cleanse to remove remaining impurities</p>
-                </div>
-                <span class="routine-step__time">2 min</span>
+              <div class="profile-header__member">
+                <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
+                <span>Member since Juni 2026</span>
               </div>
-              <div class="routine-step">
-                <span class="routine-step__num">3</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Exfoliant (2-3x/week)</p>
-                  <p class="routine-step__desc">BHA/AHA to unclog pores and smooth skin texture</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">4</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Serum (Retinol/Niacinamide)</p>
-                  <p class="routine-step__desc">Target specific skin concerns overnight</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">5</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Night Cream</p>
-                  <p class="routine-step__desc">Rich moisturizer for overnight skin repair</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-              <div class="routine-step">
-                <span class="routine-step__num">6</span>
-                <div class="routine-step__body">
-                  <p class="routine-step__name">Eye Cream</p>
-                  <p class="routine-step__desc">Gently pat around eye area to reduce puffiness</p>
-                </div>
-                <span class="routine-step__time">1 min</span>
-              </div>
-            </div>
-            <button class="routine-save-btn">Save Routine &gt;</button>
-          </div>
-        </div>
-
-        <!-- ═══ Settings Panel (Notification + Privacy) ═══ -->
-        <div class="profile-panel" id="panel-settings">
-          <div class="settings-group">
-            <h3 class="settings-group__title">Notification</h3>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Routine Reminder</div>
-                <div class="settings-row__desc">Get reminded for your morning &amp; night routine</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Skin Diary Reminder</div>
-                <div class="settings-row__desc">Weekly reminder to update your skin diary</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Community Updates</div>
-                <div class="settings-row__desc">New posts and replies in your community threads</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox">
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Product Recommendations</div>
-                <div class="settings-row__desc">Personalized product suggestions based on skin analysis</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="settings-group">
-            <h3 class="settings-group__title">Privacy</h3>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Profile Visibility</div>
-                <div class="settings-row__desc">Allow others to see your profile in community</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Skin Diary Sharing</div>
-                <div class="settings-row__desc">Share skin diary progress with community</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox">
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-            <div class="settings-row">
-              <div>
-                <div class="settings-row__label">Analytics Data</div>
-                <div class="settings-row__desc">Help improve LICIN by sharing usage analytics</div>
-              </div>
-              <label class="toggle">
-                <input type="checkbox" checked>
-                <span class="toggle__slider"></span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- ═══ Help Center Panel ═══ -->
-        <div class="profile-panel" id="panel-help">
-          <div class="help-section">
-            <h3 class="help-section__title">Frequently Asked Questions</h3>
-
-            <div class="help-item">
-              <div class="help-item__q" onclick="this.parentElement.classList.toggle('help-item--open')">
-                <span>How does the skin scan work?</span>
-                <svg class="help-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="help-item__a">LICIN uses AI-powered image analysis to detect skin conditions like acne, blackheads, whiteheads, and dark spots. Simply take a clear photo of your face in good lighting, and our algorithm will analyze your skin within seconds.</div>
             </div>
 
-            <div class="help-item">
-              <div class="help-item__q" onclick="this.parentElement.classList.toggle('help-item--open')">
-                <span>Is my skin data secure?</span>
-                <svg class="help-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="help-item__a">Yes. All photos and skin analysis data are encrypted and stored securely. We never share your personal skin data with third parties. You can delete your data at any time from the Privacy settings.</div>
-            </div>
-
-            <div class="help-item">
-              <div class="help-item__q" onclick="this.parentElement.classList.toggle('help-item--open')">
-                <span>How accurate is the skin analysis?</span>
-                <svg class="help-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="help-item__a">Our AI model has been trained on thousands of dermatological images and achieves high accuracy for common skin conditions. However, it is not a substitute for professional medical advice. Always consult a dermatologist for serious skin concerns.</div>
-            </div>
-
-            <div class="help-item">
-              <div class="help-item__q" onclick="this.parentElement.classList.toggle('help-item--open')">
-                <span>Can I customize my skincare routine?</span>
-                <svg class="help-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="help-item__a">Yes! Go to your Morning Routine or Night Routine tabs to view and customize your skincare steps. LICIN provides personalized recommendations based on your skin type and analysis results.</div>
-            </div>
-
-            <div class="help-item">
-              <div class="help-item__q" onclick="this.parentElement.classList.toggle('help-item--open')">
-                <span>How do I track my skin progress?</span>
-                <svg class="help-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-              <div class="help-item__a">Use the Skin Diary feature on the Home page to take weekly photos and track your skin health over time. The Progress section shows before/after comparisons and improvement percentages for each skin condition.</div>
-            </div>
-          </div>
-
-          <div class="help-contact">
-            <div class="help-contact__icon">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </div>
-            <div class="help-contact__text">
-              Still need help? Contact us
-              <span>support@licin.app</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ═══ Edit Profile Panel ═══ -->
-        <div class="profile-panel" id="panel-edit">
-          <div class="edit-form">
-            <div class="edit-avatar-section">
-              <div class="profile-avatar" style="width:70px;height:70px;">
-                <svg class="profile-avatar__icon" viewBox="0 0 55 59.71" style="width:40px;height:40px;">
-                  <ellipse cx="27.5" cy="15" rx="15.7" ry="13.7" fill="#FFFFFF" opacity="0.9"/>
-                  <path d="M0 45.71 C0 34 12 25 27.5 25 C43 25 55 34 55 45.71 L55 59.71 L0 59.71 Z" fill="#FFFFFF" opacity="0.9"/>
+            <!-- Notification bell top-right -->
+            <div class="profile-notif-bell" onclick="openModal('notif-modal')">
+              <div class="profile-notif-bell__icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
                 </svg>
+                <div class="profile-notif-bell__dot"></div>
               </div>
-              <button class="edit-avatar-btn">Change Photo</button>
             </div>
-
-            <div class="edit-field">
-              <label class="edit-field__label">Full Name</label>
-              <input class="edit-field__input" type="text" value="Username" />
-            </div>
-
-            <div class="edit-field">
-              <label class="edit-field__label">Email</label>
-              <input class="edit-field__input" type="email" value="contoh@gmail.com" />
-            </div>
-
-            <div class="edit-field">
-              <label class="edit-field__label">Skin Type</label>
-              <select class="edit-field__select">
-                <option>Normal</option>
-                <option>Dry</option>
-                <option>Oily</option>
-                <option selected>Combination</option>
-                <option>Sensitive</option>
-              </select>
-            </div>
-
-            <div class="edit-field">
-              <label class="edit-field__label">Date of Birth</label>
-              <input class="edit-field__input" type="date" value="2000-01-01" />
-            </div>
-
-            <div class="edit-field">
-              <label class="edit-field__label">Bio</label>
-              <input class="edit-field__input" type="text" placeholder="Tell us about yourself..." />
-            </div>
-
-            <button class="edit-save-btn">Save Changes</button>
           </div>
+
+          <!-- ═══ Content Grid ═══ -->
+          <div class="profile-grid">
+
+            <!-- Left Column -->
+            <div class="profile-grid__left">
+
+              <!-- Skin Type Card -->
+              <div class="profile-card profile-card--skin-type">
+                <div class="skin-type__title">Skin Type</div>
+                <div class="skin-type__body">
+                  <div class="skin-type__icon">
+                    <img src="/assets/icons/profile/waterdrop.svg" alt="Skin Type" width="60" height="66" />
+                  </div>
+                  <div>
+                    <div class="skin-type__label">Combination</div>
+                    <p class="skin-type__desc">Balance but can be oily on T-Zone and dry on cheeks.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skin Score Card -->
+              <div class="profile-card profile-card--skin-score">
+                <div class="skin-score__title">Skin Score</div>
+                <div class="skin-score__circle-wrap">
+                  <div class="skin-score__circle">
+                    <svg viewBox="0 0 150 150">
+                      <circle cx="75" cy="75" r="63" fill="none" stroke="#F6F5F6" stroke-width="8"/>
+                      <circle cx="75" cy="75" r="63" fill="none" stroke="#95B4C6" stroke-width="8"
+                        stroke-dasharray="396" stroke-dashoffset="79" stroke-linecap="round"
+                        transform="rotate(-90 75 75)"/>
+                    </svg>
+                    <div class="skin-score__circle-inner">
+                      <span class="skin-score__value">80</span>
+                      <span class="skin-score__label">Good</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="profile-grid__right">
+
+              <!-- Skincare Routine Card -->
+              <div class="profile-card profile-card--routine">
+                <div class="routine__title">Skincare Routine</div>
+
+                <!-- Tabs -->
+                <div class="routine-tabs">
+                  <button class="routine-tab routine-tab--active" data-routine="morning" onclick="switchRoutine('morning')">Morning Routine</button>
+                  <button class="routine-tab routine-tab--inactive" data-routine="night" onclick="switchRoutine('night')">Night Routine</button>
+                </div>
+
+                <!-- Morning Routine Items -->
+                <div class="routine-items" id="routine-morning">
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <img src="/assets/images/profile/product-1.png" alt="" width="40" height="40" />
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">Facial Treatment Gentle Cleanser</div>
+                      <p class="routine-item__desc">Gentle foaming cleanser with low pH formula for daily face wash</p>
+                    </div>
+                  </div>
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <img src="/assets/images/profile/product-2.png" alt="" width="40" height="40" />
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">CERAMIC SKIN Saviour Moisturizer Gel</div>
+                      <p class="routine-item__desc">Ceramide-infused gel moisturizer to restore skin barrier</p>
+                    </div>
+                  </div>
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <img src="/assets/images/profile/product-3.png" alt="" width="40" height="40" />
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">Holyshield! Sunscreen Shake Mist SPF46 PA+++</div>
+                      <p class="routine-item__desc">Lightweight sun protection mist with PA+++ rating</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Night Routine Items -->
+                <div class="routine-items" id="routine-night" style="display:none;">
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                      </svg>
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">Oil Cleanser</div>
+                      <p class="routine-item__desc">Remove makeup and sunscreen with oil-based cleanser</p>
+                    </div>
+                  </div>
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                      </svg>
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">Water-Based Cleanser</div>
+                      <p class="routine-item__desc">Double cleanse to remove remaining impurities</p>
+                    </div>
+                  </div>
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                      </svg>
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">Night Cream</div>
+                      <p class="routine-item__desc">Rich moisturizer for overnight skin repair</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ Settings & Account Bottom Bar ═══ -->
+          <div class="profile-settings-bar">
+            <div class="settings-bar__title">Settings &amp; Account</div>
+            <div class="settings-bar__items">
+              <!-- Account -->
+              <div class="settings-bar__item settings-bar__item--disabled">
+                <div class="settings-bar__icon">
+                  <svg viewBox="0 0 45 45" fill="none">
+                    <ellipse cx="22.5" cy="15.5" rx="10" ry="9" stroke="#6E7F99" stroke-width="2"/>
+                    <path d="M8 38 C8 28 14.5 22 22.5 22 C30.5 22 37 28 37 38" stroke="#6E7F99" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="settings-bar__label">Account</span>
+              </div>
+
+              <!-- Notification -->
+              <div class="settings-bar__item" onclick="openModal('notif-modal')">
+                <div class="settings-bar__icon">
+                  <svg viewBox="0 0 45 45" fill="none">
+                    <path d="M33 15A10.5 10.5 0 0 0 12 15c0 12.3-5.3 15.8-5.3 15.8h31.6S33 27.3 33 15Z" stroke="#6E7F99" stroke-width="2"/>
+                    <path d="M25.5 36a3 3 0 0 1-6 0" stroke="#6E7F99" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="settings-bar__label">Notification</span>
+              </div>
+
+              <!-- Privacy -->
+              <div class="settings-bar__item" onclick="openModal('privacy-modal')">
+                <div class="settings-bar__icon">
+                  <img src="/assets/icons/profile/shield-check.svg" alt="Privacy" width="45" height="45" />
+                </div>
+                <span class="settings-bar__label">Privacy</span>
+              </div>
+
+              <!-- Help Center -->
+              <div class="settings-bar__item" onclick="openModal('help-modal')">
+                <div class="settings-bar__icon">
+                  <img src="/assets/icons/profile/question.svg" alt="Help" width="45" height="45" />
+                </div>
+                <span class="settings-bar__label">Help Center</span>
+              </div>
+
+              <!-- Sign Out -->
+              <div class="settings-bar__item settings-bar__item--disabled">
+                <div class="settings-bar__icon">
+                  <img src="/assets/icons/profile/sign-out.svg" alt="Sign Out" width="45" height="45" />
+                </div>
+                <span class="settings-bar__label">Sign Out</span>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- /profile-content -->
+      </main>
+    </div> <!-- /profile-app -->
+
+    <!-- ═══ Modal: Notification ═══ -->
+    <div class="modal-overlay" id="notif-modal" onclick="closeOnOverlay(event, 'notif-modal')">
+      <div class="modal">
+        <button class="modal__close" onclick="closeModal('notif-modal')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h2 class="modal__title">Notification</h2>
+        <p class="modal__subtitle">Manage your notification preferences. Choose what you want to be notified about.</p>
+
+        <div class="notif-option">
+          <div class="notif-option__info">
+            <div class="notif-option__label">Routine Reminder</div>
+            <div class="notif-option__desc">Get reminded for your morning &amp; night routine</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-switch__slider"></span>
+          </label>
         </div>
 
-      </main>
+        <div class="notif-option">
+          <div class="notif-option__info">
+            <div class="notif-option__label">Skin Diary Reminder</div>
+            <div class="notif-option__desc">Weekly reminder to update your skin diary</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+
+        <div class="notif-option">
+          <div class="notif-option__info">
+            <div class="notif-option__label">Community Updates</div>
+            <div class="notif-option__desc">New posts and replies in your community threads</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+
+        <div class="notif-option">
+          <div class="notif-option__info">
+            <div class="notif-option__label">Product Recommendations</div>
+            <div class="notif-option__desc">Personalized product suggestions based on skin analysis</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <!-- ═══ Modal: Privacy ═══ -->
+    <div class="modal-overlay" id="privacy-modal" onclick="closeOnOverlay(event, 'privacy-modal')">
+      <div class="modal">
+        <button class="modal__close" onclick="closeModal('privacy-modal')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h2 class="modal__title">Privacy</h2>
+        <p class="modal__subtitle">Control your privacy settings. Your data security matters to us.</p>
+
+        <div class="privacy-option">
+          <div class="privacy-option__info">
+            <div class="privacy-option__label">Profile Visibility</div>
+            <div class="privacy-option__desc">Allow others to see your profile in community</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+
+        <div class="privacy-option">
+          <div class="privacy-option__info">
+            <div class="privacy-option__label">Skin Diary Sharing</div>
+            <div class="privacy-option__desc">Share skin diary progress with community</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+
+        <div class="privacy-option">
+          <div class="privacy-option__info">
+            <div class="privacy-option__label">Analytics Data</div>
+            <div class="privacy-option__desc">Help improve LICIN by sharing usage analytics</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+
+        <div class="privacy-option">
+          <div class="privacy-option__info">
+            <div class="privacy-option__label">Data Export</div>
+            <div class="privacy-option__desc">Request a copy of your personal data</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-switch__slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Modal: Help Center ═══ -->
+    <div class="modal-overlay" id="help-modal" onclick="closeOnOverlay(event, 'help-modal')">
+      <div class="modal">
+        <button class="modal__close" onclick="closeModal('help-modal')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h2 class="modal__title">Help Center</h2>
+        <p class="modal__subtitle">Frequently asked questions and support resources.</p>
+
+        <div class="help-list-item" onclick="toggleHelp(this)">
+          <div class="help-list-item__q">
+            <span>How does the skin scan work?</span>
+            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="help-list-item__a">LICIN uses AI-powered image analysis to detect skin conditions like acne, blackheads, whiteheads, and dark spots. Simply take a clear photo of your face in good lighting, and our algorithm will analyze your skin within seconds.</div>
+        </div>
+
+        <div class="help-list-item" onclick="toggleHelp(this)">
+          <div class="help-list-item__q">
+            <span>Is my skin data secure?</span>
+            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="help-list-item__a">Yes. All photos and skin analysis data are encrypted and stored securely. We never share your personal skin data with third parties. You can delete your data at any time from the Privacy settings.</div>
+        </div>
+
+        <div class="help-list-item" onclick="toggleHelp(this)">
+          <div class="help-list-item__q">
+            <span>How accurate is the skin analysis?</span>
+            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="help-list-item__a">Our AI model has been trained on thousands of dermatological images and achieves high accuracy for common skin conditions. However, it is not a substitute for professional medical advice. Always consult a dermatologist for serious skin concerns.</div>
+        </div>
+
+        <div class="help-list-item" onclick="toggleHelp(this)">
+          <div class="help-list-item__q">
+            <span>Can I customize my skincare routine?</span>
+            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="help-list-item__a">Yes! Go to your Morning Routine or Night Routine tabs to view and customize your skincare steps. LICIN provides personalized recommendations based on your skin type and analysis results.</div>
+        </div>
+
+        <div class="help-list-item" onclick="toggleHelp(this)">
+          <div class="help-list-item__q">
+            <span>How do I track my skin progress?</span>
+            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="help-list-item__a">Use the Skin Diary feature on the Home page to take weekly photos and track your skin health over time. The Progress section shows before/after comparisons and improvement percentages for each skin condition.</div>
+        </div>
+
+        <div class="help-footer">
+          <div class="help-footer__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="help-footer__text">
+            Still need help? Contact us
+            <span>support@licin.app</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- /profile-viewport -->
 
   <script src="/assets/js/components/sidebar.js"></script>
   <script>
     (function() {
-      var tabs = document.querySelectorAll('.profile-nav__tab');
-      var panels = document.querySelectorAll('.profile-panel');
-      var editBadge = document.querySelector('.profile-info__edit-badge');
+      // ── Modal Functions ──
+      window.openModal = function(id) {
+        document.getElementById(id).classList.add('modal-overlay--open');
+        document.body.style.overflow = 'hidden';
+      };
 
-      function switchTab(tabName) {
-        tabs.forEach(function(t) {
-          t.classList.toggle('profile-nav__tab--active', t.getAttribute('data-tab') === tabName);
-        });
-        panels.forEach(function(p) {
-          p.classList.toggle('profile-panel--active', p.id === 'panel-' + tabName);
-        });
-      }
+      window.closeModal = function(id) {
+        document.getElementById(id).classList.remove('modal-overlay--open');
+        document.body.style.overflow = '';
+      };
 
-      tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          switchTab(this.getAttribute('data-tab'));
-        });
+      window.closeOnOverlay = function(event, id) {
+        if (event.target === event.currentTarget) {
+          closeModal(id);
+        }
+      };
+
+      // Close modals on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal-overlay--open').forEach(function(el) {
+            el.classList.remove('modal-overlay--open');
+          });
+          document.body.style.overflow = '';
+        }
       });
 
-      if (editBadge) {
-        editBadge.addEventListener('click', function() {
-          switchTab('edit');
+      // ── Help Toggle ──
+      window.toggleHelp = function(el) {
+        el.classList.toggle('help-list-item--open');
+      };
+
+      // ── Routine Tab Switching ──
+      window.switchRoutine = function(routine) {
+        var tabs = document.querySelectorAll('.routine-tab');
+        tabs.forEach(function(t) {
+          var r = t.getAttribute('data-routine');
+          if (r === routine) {
+            t.classList.add('routine-tab--active');
+            t.classList.remove('routine-tab--inactive');
+          } else {
+            t.classList.remove('routine-tab--active');
+            t.classList.add('routine-tab--inactive');
+          }
         });
-      }
+
+        document.getElementById('routine-morning').style.display = routine === 'morning' ? '' : 'none';
+        document.getElementById('routine-night').style.display = routine === 'night' ? '' : 'none';
+      };
     })();
   </script>
   <script src="/assets/js/router.js"></script>
