@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
   <link rel="stylesheet" href="/assets/css/components/home.css" />
 </head>
 <body style="height:100%;overflow:hidden;background:#FFFFFF;">
@@ -25,10 +27,10 @@
       <div class="loading-bg-blur__blob--slate"></div>
     </div>
 
-    <div class="home-app" id="app-root">
+    <div class="home-app app-layout" id="app-root">
       <div id="sidebar-root" data-active="home"></div>
 
-      <main class="home-main">
+      <main class="home-main app-main app-main--fixed">
         <div class="home-main__top-bg"></div>
 
         <header id="header-root" class="home-header" data-show-greeting="true"></header>

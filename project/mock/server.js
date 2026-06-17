@@ -149,6 +149,76 @@ function getScanPartial() {
 }
 
 /**
+ * Generates the artikel page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getArtikelPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'artikel', 'artikel-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Artikel loading...</p>';
+  }
+}
+
+/**
+ * Generates the community page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getCommunityPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'community', 'community-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Community loading...</p>';
+  }
+}
+
+/**
+ * Generates the community admin page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getCommunityAdminPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'community-admin', 'community-admin-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Community admin loading...</p>';
+  }
+}
+
+/**
+ * Generates the profile page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getProfilePartial() {
+  const partialPath = path.join(ROOT, 'partials', 'profile', 'profile-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Profile loading...</p>';
+  }
+}
+
+/**
+ * Generates the tips-artikel page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getTipsArtikelPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'tips-artikel', 'tips-artikel-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Tips & Artikel loading...</p>';
+  }
+}
+
+/**
  * Main request handler. Routes requests to appropriate handlers.
  *
  * @param {http.IncomingMessage} req
@@ -209,6 +279,36 @@ function handleRequest(req, res) {
       res.end(getScanPartial());
       break;
 
+    /** HTMX Partial — Artikel page content */
+    case pathname === '/api/artikel/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getArtikelPartial());
+      break;
+
+    /** HTMX Partial — Community page content */
+    case pathname === '/api/community/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getCommunityPartial());
+      break;
+
+    /** HTMX Partial — Community Admin page content */
+    case pathname === '/api/community-admin/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getCommunityAdminPartial());
+      break;
+
+    /** HTMX Partial — Profile page content */
+    case pathname === '/api/profile/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getProfilePartial());
+      break;
+
+    /** HTMX Partial — Tips & Artikel page content */
+    case pathname === '/api/tips-artikel/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getTipsArtikelPartial());
+      break;
+
     /** Root — serve index.html */
     case pathname === '/':
       serveFile(res, path.join(ROOT, 'index.html'));
@@ -255,11 +355,19 @@ server.listen(PORT, () => {
   ║  Mock Mode:  ENABLED                         ║
   ║                                              ║
   ║  Endpoints:                                  ║
-  ║    GET /                   → App Shell       ║
-  ║    GET /api/loading/partial → Loading HTML   ║
-  ║    GET /api/analysis/status → Status JSON    ║
-  ║    GET /api/scan/partial    → Scan HTML      ║
-  ║    Any path + ?dry_run=true → 200 OK         ║
+  ║    GET /                       → App Shell       ║
+  ║    GET /api/loading/partial    → Loading HTML    ║
+  ║    GET /api/analysis/status    → Status JSON     ║
+  ║    GET /api/login/partial      → Login HTML      ║
+  ║    GET /api/scan/partial       → Scan HTML       ║
+  ║    GET /api/artikel/partial    → Artikel HTML    ║
+  ║    GET /api/community/partial  → Community HTML  ║
+  ║    GET /api/community-admin/partial              ║
+  ║                              → Community Admin  ║
+  ║    GET /api/profile/partial   → Profile HTML    ║
+  ║    GET /api/tips-artikel/partial                 ║
+  ║                              → Tips & Artikel   ║
+  ║    Any path + ?dry_run=true   → 200 OK          ║
   ╚══════════════════════════════════════════════╝
   `);
 });

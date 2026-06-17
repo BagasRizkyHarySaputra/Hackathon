@@ -13,20 +13,13 @@
 <body>
   <div class="scan-bg" aria-hidden="true"></div>
 
-  <main
-    class="scan-page"
-    id="scan-container"
-    hx-get="/api/scan/partial"
-    hx-trigger="load"
-    hx-swap="innerHTML"
-    hx-target="#scan-container"
-  >
+  <main class="scan-page" id="scan-container">
     <div class="scan-layout" x-data="createScanComponent()">
       <div class="scan-card">
         
         <div class="scan-mascot" aria-hidden="true">
           <img 
-            src="assets/images/Scan.svg" 
+            src="/assets/icons/water-drop-mascot.svg" 
             alt="Mascot" 
             class="scan-mascot__img"
           />

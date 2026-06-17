@@ -1,0 +1,355 @@
+<!--
+  ============================================================
+  FILE: partials/profile/profile-content.html
+  ============================================================
+  FEATURE: Profile Page — HTMX Partial
+  PURPOSE:
+    HTML fragment for the user profile page with skin type
+    info, skin score, skincare routine, settings, and modals.
+  HTMX CONTRACT:
+    - Served via GET /api/profile/partial
+  ============================================================
+-->
+<div class="profile-viewport">
+  <div class="profile-app">
+    <div id="sidebar-root" data-active="profile"></div>
+
+    <main class="profile-main app-main app-main--scroll">
+      <!-- Uses .profile-content → same as unified .app-content pattern -->
+    <div class="profile-content">
+
+        <!-- ═══ Profile Header ═══ -->
+        <div class="profile-header">
+          <div class="profile-avatar-wrap">
+            <svg viewBox="0 0 100 100" fill="none">
+              <ellipse cx="50" cy="36" rx="28" ry="26" fill="#FFFFFF" opacity="0.9"/>
+              <path d="M10 85 C10 58 28 46 50 46 C72 46 90 58 90 85 L90 100 L10 100 Z" fill="#FFFFFF" opacity="0.9"/>
+            </svg>
+          </div>
+          <div class="profile-header__info">
+            <h1 class="profile-header__name">Username</h1>
+            <div class="profile-header__row">
+              <span class="profile-header__skin-type">Combination</span>
+              <button class="profile-header__edit-badge">
+                <img src="/assets/icons/profile/edit.svg" alt="Edit" width="28" height="28" />
+              </button>
+            </div>
+            <div class="profile-header__member">
+              <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
+              <span>Member since Juni 2026</span>
+            </div>
+          </div>
+
+          <!-- Notification bell top-right -->
+          <div class="profile-notif-bell" onclick="openModal('notif-modal')">
+            <div class="profile-notif-bell__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              <div class="profile-notif-bell__dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ Content Grid ═══ -->
+        <div class="profile-grid">
+
+          <!-- Left Column -->
+          <div class="profile-grid__left">
+
+            <!-- Skin Type Card -->
+            <div class="profile-card profile-card--skin-type">
+              <div class="skin-type__title">Skin Type</div>
+              <div class="skin-type__body">
+                <div class="skin-type__icon">
+                  <img src="/assets/icons/profile/waterdrop.svg" alt="Skin Type" width="60" height="66" />
+                </div>
+                <div>
+                  <div class="skin-type__label">Combination</div>
+                  <p class="skin-type__desc">Balance but can be oily on T-Zone and dry on cheeks.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skin Score Card -->
+            <div class="profile-card profile-card--skin-score">
+              <div class="skin-score__title">Skin Score</div>
+              <div class="skin-score__circle-wrap">
+                <div class="skin-score__circle">
+                  <svg viewBox="0 0 150 150">
+                    <circle cx="75" cy="75" r="63" fill="none" stroke="#F6F5F6" stroke-width="8"/>
+                    <circle cx="75" cy="75" r="63" fill="none" stroke="#95B4C6" stroke-width="8"
+                      stroke-dasharray="396" stroke-dashoffset="79" stroke-linecap="round"
+                      transform="rotate(-90 75 75)"/>
+                  </svg>
+                  <div class="skin-score__circle-inner">
+                    <span class="skin-score__value">80</span>
+                    <span class="skin-score__label">Good</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="profile-grid__right">
+
+            <!-- Skincare Routine Card -->
+            <div class="profile-card profile-card--routine">
+              <div class="routine__title">Skincare Routine</div>
+
+              <!-- Tabs -->
+              <div class="routine-tabs">
+                <button class="routine-tab routine-tab--active" data-routine="morning" onclick="switchRoutine('morning')">Morning Routine</button>
+                <button class="routine-tab routine-tab--inactive" data-routine="night" onclick="switchRoutine('night')">Night Routine</button>
+              </div>
+
+              <!-- Morning Routine Items -->
+              <div class="routine-items" id="routine-morning">
+                <div class="routine-item">
+                  <div class="routine-item__img">
+                    <img src="/assets/images/profile/product-1.png" alt="" width="40" height="40" />
+                  </div>
+                  <div class="routine-item__info">
+                    <div class="routine-item__name">Facial Treatment Gentle Cleanser</div>
+                    <p class="routine-item__desc">Gentle foaming cleanser with low pH formula for daily face wash</p>
+                  </div>
+                </div>
+                <div class="routine-item">
+                  <div class="routine-item__img">
+                    <img src="/assets/images/profile/product-2.png" alt="" width="40" height="40" />
+                  </div>
+                  <div class="routine-item__info">
+                    <div class="routine-item__name">CERAMIC SKIN Saviour Moisturizer Gel</div>
+                    <p class="routine-item__desc">Ceramide-infused gel moisturizer to restore skin barrier</p>
+                  </div>
+                </div>
+                <div class="routine-item">
+                  <div class="routine-item__img">
+                    <img src="/assets/images/profile/product-3.png" alt="" width="40" height="40" />
+                  </div>
+                  <div class="routine-item__info">
+                    <div class="routine-item__name">Holyshield! Sunscreen Shake Mist SPF46 PA+++</div>
+                    <p class="routine-item__desc">Lightweight sun protection mist with PA+++ rating</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Night Routine Items -->
+              <div class="routine-items" id="routine-night" style="display:none;">
+                <div class="routine-item">
+                  <div class="routine-item__img">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                  </div>
+                  <div class="routine-item__info">
+                    <div class="routine-item__name">Oil Cleanser</div>
+                    <p class="routine-item__desc">Remove makeup and sunscreen with oil-based cleanser</p>
+                  </div>
+                </div>
+                <div class="routine-item">
+                  <div class="routine-item__img">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                  </div>
+                  <div class="routine-item__info">
+                    <div class="routine-item__name">Water-Based Cleanser</div>
+                    <p class="routine-item__desc">Double cleanse to remove remaining impurities</p>
+                  </div>
+                </div>
+                <div class="routine-item">
+                  <div class="routine-item__img">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M12 6v6l4 2"/>
+                    </svg>
+                  </div>
+                  <div class="routine-item__info">
+                    <div class="routine-item__name">Night Cream</div>
+                    <p class="routine-item__desc">Rich moisturizer for overnight skin repair</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ Settings & Account Bottom Bar ═══ -->
+        <div class="profile-settings-bar">
+          <div class="settings-bar__title">Settings &amp; Account</div>
+          <div class="settings-bar__items">
+            <!-- Account -->
+            <div class="settings-bar__item settings-bar__item--disabled">
+              <div class="settings-bar__icon">
+                <svg viewBox="0 0 45 45" fill="none">
+                  <ellipse cx="22.5" cy="15.5" rx="10" ry="9" stroke="#6E7F99" stroke-width="2"/>
+                  <path d="M8 38 C8 28 14.5 22 22.5 22 C30.5 22 37 28 37 38" stroke="#6E7F99" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="settings-bar__label">Account</span>
+            </div>
+
+            <!-- Notification -->
+            <div class="settings-bar__item" onclick="openModal('notif-modal')">
+              <div class="settings-bar__icon">
+                <svg viewBox="0 0 45 45" fill="none">
+                  <path d="M33 15A10.5 10.5 0 0 0 12 15c0 12.3-5.3 15.8-5.3 15.8h31.6S33 27.3 33 15Z" stroke="#6E7F99" stroke-width="2"/>
+                  <path d="M25.5 36a3 3 0 0 1-6 0" stroke="#6E7F99" stroke-width="2"/>
+                </svg>
+              </div>
+              <span class="settings-bar__label">Notification</span>
+            </div>
+
+            <!-- Privacy -->
+            <div class="settings-bar__item" onclick="openModal('privacy-modal')">
+              <div class="settings-bar__icon">
+                <img src="/assets/icons/profile/shield-check.svg" alt="Privacy" width="45" height="45" />
+              </div>
+              <span class="settings-bar__label">Privacy</span>
+            </div>
+
+            <!-- Help Center -->
+            <div class="settings-bar__item" onclick="openModal('help-modal')">
+              <div class="settings-bar__icon">
+                <img src="/assets/icons/profile/question.svg" alt="Help" width="45" height="45" />
+              </div>
+              <span class="settings-bar__label">Help Center</span>
+            </div>
+
+            <!-- Sign Out -->
+            <div class="settings-bar__item settings-bar__item--disabled">
+              <div class="settings-bar__icon">
+                <img src="/assets/icons/profile/sign-out.svg" alt="Sign Out" width="45" height="45" />
+              </div>
+              <span class="settings-bar__label">Sign Out</span>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- /profile-content -->
+    </main>
+  </div> <!-- /profile-app -->
+
+  <!-- ═══ Modal: Notification ═══ -->
+  <div class="modal-overlay" id="notif-modal" onclick="closeOnOverlay(event, 'notif-modal')">
+    <div class="modal modal--notif">
+      <div class="notif-icon">
+        <img src="/assets/icons/profile/notification.svg" alt="Notification" width="80" height="80" />
+      </div>
+      <h2 class="modal__title modal__title--center">Get notified</h2>
+      <div class="notif-buttons">
+        <button class="notif-btn notif-btn--primary" onclick="closeModal('notif-modal')">Turn On</button>
+        <button class="notif-btn notif-btn--secondary" onclick="closeModal('notif-modal')">Not Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Modal: Privacy ═══ -->
+  <div class="modal-overlay" id="privacy-modal" onclick="closeOnOverlay(event, 'privacy-modal')">
+    <div class="modal modal--privacy">
+      <h2 class="modal__title">Privacy & Security</h2>
+
+      <div class="privacy-list">
+        <div class="privacy-item">
+          <div class="privacy-item__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="privacy-item__info">
+            <div class="privacy-item__label">Allow AI Analysis History</div>
+            <div class="privacy-item__desc">Save scan results for progress tracking</div>
+          </div>
+        </div>
+
+        <div class="privacy-item">
+          <div class="privacy-item__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="privacy-item__info">
+            <div class="privacy-item__label">Store Skin Diary Data</div>
+            <div class="privacy-item__desc">Keep your skin diary entries securely</div>
+          </div>
+        </div>
+
+        <div class="privacy-item">
+          <div class="privacy-item__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="privacy-item__info">
+            <div class="privacy-item__label">Share Anonymous Data</div>
+            <div class="privacy-item__desc">Help improve AI recommendations</div>
+          </div>
+        </div>
+
+        <div class="privacy-item">
+          <div class="privacy-item__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="privacy-item__info">
+            <div class="privacy-item__label">Email Notifications</div>
+            <div class="privacy-item__desc">Receive important account updates</div>
+          </div>
+        </div>
+
+        <div class="privacy-item">
+          <div class="privacy-item__check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="privacy-item__info">
+            <div class="privacy-item__label">Community Privacy</div>
+            <div class="privacy-item__desc">Hide your real name</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-confirm">
+        <button class="privacy-confirm__btn" onclick="closeModal('privacy-modal')">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Modal: Help Center ═══ -->
+  <div class="modal-overlay" id="help-modal" onclick="closeOnOverlay(event, 'help-modal')">
+    <div class="modal modal--help">
+      <h2 class="modal__title">Need help?</h2>
+
+      <div class="help-contact-list">
+        <div class="help-contact-item">
+          <div class="help-contact-item__icon">
+            <img src="/assets/icons/profile/email.svg" alt="Email" width="24" height="24" />
+          </div>
+          <div class="help-contact-item__info">
+            <span class="help-contact-item__text">kekejardeadline1@gmail.com</span>
+          </div>
+        </div>
+
+        <div class="help-contact-item">
+          <div class="help-contact-item__icon">
+            <img src="/assets/icons/profile/msg.svg" alt="Phone" width="24" height="24" />
+          </div>
+          <div class="help-contact-item__info">
+            <span class="help-contact-item__text">Phone Number?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- /profile-viewport -->

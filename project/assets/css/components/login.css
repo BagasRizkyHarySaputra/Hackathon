@@ -17,6 +17,8 @@
   --login-input-border: #E0E0E0;
   --login-btn-gradient-start: #E4D8DC;
   --login-btn-gradient-end: #95B4C6;
+  /* Dynamic shared size for mascot and card (1:1 ratio) */
+  --login-element-size: clamp(300px, 35vw, 700px);
 }
 
 /* ── Page ── */
@@ -46,11 +48,11 @@
   padding: 40px;
 }
 
-/* ── Mascot (Bigger) ── */
+/* ── Mascot ── */
 .login-mascot {
   flex-shrink: 0;
-  width: auto;
-  height: 700px;
+  width: var(--login-element-size);
+  height: var(--login-element-size);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,8 +84,8 @@
 /* ── Card Container ── */
 .login-card-container {
   position: relative;
-  width: 593px;
-  height: 639px;
+  width: var(--login-element-size);
+  aspect-ratio: 593 / 639;
 }
 
 /* ── SVG Card (stacked) ── */
@@ -349,15 +351,13 @@
 }
 
 /* ── Sign In / Sign Up Button — Pill Capsule (BIG) ── */
-/* ── Sign In / Sign Up Button — Updated for Figma Style ── */
 .login-btn-wrap {
   position: relative;
   z-index: 10;
   width: 100%;
   display: flex;
   justify-content: center;
-  /* Sesuaikan margin-top agar overlap pas dengan potongan kaki kartu */
-  margin-top: -80px; 
+  margin-top: -40px;
 }
 
 .login-btn {
@@ -401,17 +401,12 @@ box-shadow:
 }
 /* ── Responsive ── */
 @media (max-width: 1000px) {
+  :root {
+    --login-element-size: clamp(280px, 40vw, 500px);
+  }
   .login-layout {
     gap: 32px;
     padding: 24px;
-  }
-  .login-mascot {
-    width: 320px;
-    height: 340px;
-  }
-  .login-card-container {
-    width: 500px;
-    height: 542px;
   }
   .login-card-content {
     padding: 16px 40px 120px;
@@ -424,20 +419,13 @@ box-shadow:
 }
 
 @media (max-width: 768px) {
+  :root {
+    --login-element-size: clamp(200px, 50vw, 420px);
+  }
   .login-layout {
     flex-direction: column;
     gap: 16px;
     padding: 16px;
-  }
-  .login-mascot {
-    width: 200px;
-    height: 210px;
-  }
-  .login-card-container {
-    width: 100%;
-    max-width: 420px;
-    height: auto;
-    aspect-ratio: 593 / 639;
   }
   .login-card-content {
     padding: 12px 20px 100px;
@@ -450,9 +438,8 @@ box-shadow:
 }
 
 @media (max-width: 480px) {
-  .login-mascot {
-    width: 150px;
-    height: 158px;
+  :root {
+    --login-element-size: clamp(150px, 60vw, 300px);
   }
   .login-tabs {
     gap: 24px;

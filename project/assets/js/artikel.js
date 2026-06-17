@@ -11,7 +11,7 @@
  *   renders the card grid, and wires up search + tag filtering.
  *
  * DEPENDENCIES:
- *   - /assets/data/articles.json (dummy data with 10 articles)
+ *   - /assets/data/articles.json (20+ articles with Title, Description, etc.)
  *   - /assets/css/components/artikel.css (listing grid styles)
  * ============================================================
  */
@@ -47,28 +47,12 @@
       return;
     }
 
-    var existingCards = gridContainer.querySelectorAll('.artikel-card');
-    if (existingCards.length > 0) {
-      wireStaticButtons();
-      return;
-    }
-
     fetchArticles().then(function () {
       renderGrid(allArticles);
       wireSearch();
       wireTags();
       wireBackButton();
     });
-  }
-
-  function wireStaticButtons() {
-    var btns = gridContainer.querySelectorAll('.artikel-card__btn');
-    for (var j = 0; j < btns.length; j++) {
-      btns[j].addEventListener('click', function (e) {
-        var id = this.getAttribute('data-id');
-        navigateToDetail(id);
-      });
-    }
   }
 
   /* ─── Fetch Data ─── */
@@ -79,7 +63,12 @@
         return res.json();
       })
       .then(function (data) {
-        allArticles = data;
+        // Normalize: ensure every article has id, tags, Title, Description, Link-Image
+        allArticles = data.map(function (a, i) {
+          if (!a.id) a.id = 'artikel-' + i;
+          if (!a.tags) a.tags = [];
+          return a;
+        });
       })
       .catch(function (err) {
         console.error('Failed to load articles:', err);
@@ -88,10 +77,19 @@
       });
   }
 
-  var CARD_LAYOUTS = ['horizontal', 'square', 'square', 'square', 'vertical', 'square', 'square', 'horizontal', 'square', 'vertical'];
+  // Grid positions: [column, row, colspan, rowspan] for first 6 cards matching design layout
+  var GRID_PLACEMENTS = [
+    [1, 1, 1, 2],       // Card 1: col 1, row 1, span 1 col, 2 rows → vertical
+    [2, 1, 1, 1],       // Card 2: col 2, row 1 → horizontal
+    [3, 1, 1, 1],       // Card 3: col 3, row 1 → small
+    [3, 2, 1, 1],       // Card 4: col 3, row 2 → small
+    [2, 2, 1, 1],       // Card 5: col 2, row 2 → small
+    [2, 3, 2, 1],       // Card 6: col 2-3, row 3 → horizontal wide
+  ];
+  var CARD_LAYOUTS = ['vertical', 'horizontal', 'small', 'small', 'small', 'horizontal'];
 
   function getCardLayout(index) {
-    return CARD_LAYOUTS[index] || 'square';
+    return CARD_LAYOUTS[index] || 'small';
   }
 
   /* ─── Render Grid ─── */
@@ -112,7 +110,7 @@
       var a = articles[i];
       var tag = (a.tags && a.tags.length > 0) ? a.tags[0] : 'all';
       var layout = getCardLayout(i);
-      var titleHtml = escHtml(a.title);
+      var titleHtml = escHtml(a.Title || a.title || '');
       if (searchQuery) {
         titleHtml = highlightMatch(titleHtml, searchQuery);
       }
@@ -133,15 +131,22 @@
   }
 
   function buildCardHtml(article, layout, tag, titleHtml) {
+    var idx = allArticles.indexOf(article);
     var baseClass = 'artikel-card artikel-card--' + layout;
-    var imgSrc = escAttr(article.image || '/assets/images/SkincareBottleMockup2.png');
-    var excerpt = article.content ? escHtml(article.content.substring(0, 80)) + '...' : '';
+    var imgSrc = escAttr(article['Link-Image'] || article.image || '/assets/images/SkincareBottleMockup2.png');
+    var descText = article.Description || article['Simple-desc'] || article.content || '';
+    var excerpt = descText ? escHtml(descText.substring(0, 80)) + '...' : '';
     var tagEsc = escHtml(tag);
     var tagAttr = escAttr(tag);
+    var gridStyle = '';
+    if (idx >= 0 && idx < GRID_PLACEMENTS.length) {
+      var pos = GRID_PLACEMENTS[idx];
+      gridStyle = ' style="grid-column: ' + pos[0] + (pos[2] > 1 ? ' / ' + (pos[0] + pos[2]) : '') + '; grid-row: ' + pos[1] + (pos[3] > 1 ? ' / ' + (pos[1] + pos[3]) : '') + ';"';
+    }
 
     if (layout === 'horizontal') {
       return '' +
-        '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '">' +
+        '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '"' + gridStyle + '>' +
           '<div class="artikel-card__img-wrap">' +
             '<img src="' + imgSrc + '" alt="" class="artikel-card__img" loading="lazy" />' +
           '</div>' +
@@ -156,7 +161,7 @@
 
     if (layout === 'vertical') {
       return '' +
-        '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '">' +
+        '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '"' + gridStyle + '>' +
           '<div class="artikel-card__img-wrap">' +
             '<img src="' + imgSrc + '" alt="" class="artikel-card__img" loading="lazy" />' +
           '</div>' +
@@ -170,7 +175,7 @@
     }
 
     return '' +
-      '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '">' +
+      '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '"' + gridStyle + '>' +
         '<div class="artikel-card__img-wrap">' +
           '<img src="' + imgSrc + '" alt="" class="artikel-card__img" loading="lazy" />' +
         '</div>' +
@@ -238,7 +243,7 @@
       document.body.style.transition = 'opacity 0.15s ease';
       document.body.style.opacity = '0';
       setTimeout(function () {
-        window.location.href = window.location.pathname.replace(/\/+$/, '') + '/';
+        window.location.href = window.location.pathname;
       }, 150);
     });
   }
@@ -289,7 +294,7 @@
 
       var matchesSearch = true;
       if (searchQuery) {
-        var haystack = (a.title + ' ' + a.content + ' ' + (a.tags ? a.tags.join(' ') : '')).toLowerCase();
+        var haystack = ((a.Title || a.title || '') + ' ' + (a.Description || a.content || '') + ' ' + (a.tags ? a.tags.join(' ') : '')).toLowerCase();
         matchesSearch = haystack.indexOf(searchQuery) !== -1;
       }
 
@@ -305,23 +310,36 @@
   function renderArticleDetail(article) {
     if (!article) {
       var titleEl = document.getElementById('article-title');
-      var summaryEl = document.getElementById('article-summary');
       if (titleEl) titleEl.textContent = 'Article Not Found';
-      if (summaryEl) summaryEl.textContent = 'The requested article could not be found.';
+      var descEl = document.getElementById('article-description');
+      if (descEl) descEl.innerHTML = '<p class="article-card__text">The requested article could not be found.</p>';
       return;
     }
 
     var titleEl = document.getElementById('article-title');
-    var summaryEl = document.getElementById('article-summary');
+    var descEl = document.getElementById('article-description');
     var sectionsEl = document.getElementById('article-sections');
     var tipsEl = document.getElementById('article-tips-list');
     var imgEl = document.getElementById('article-image');
+    var sourceEl = document.getElementById('article-source');
+    var sourceTextEl = document.getElementById('article-source-text');
 
-    if (titleEl) titleEl.textContent = article.title;
-    if (summaryEl) summaryEl.textContent = article.content;
+    var artTitle = article.Title || article.title || '';
+    if (titleEl) titleEl.textContent = artTitle;
     if (imgEl) {
-      imgEl.src = article.image || '/assets/images/SkincareBottleMockup2.png';
-      imgEl.alt = article.title;
+      imgEl.src = article['Link-Image'] || article.image || '/assets/images/SkincareBottleMockup2.png';
+      imgEl.alt = artTitle;
+    }
+
+    // Split description into multiple short paragraphs
+    if (descEl) {
+      var descText = article.Description || article.content || '';
+      var paragraphs = splitIntoParagraphs(descText);
+      var descHtml = '';
+      for (var k = 0; k < paragraphs.length; k++) {
+        descHtml += '<p class="article-card__text">' + escHtml(paragraphs[k]) + '</p>';
+      }
+      descEl.innerHTML = descHtml || '<p class="article-card__text">' + escHtml(descText) + '</p>';
     }
 
     if (sectionsEl && article.sections) {
@@ -348,6 +366,38 @@
       tipHtml += '</ul></div>';
       tipsEl.innerHTML = tipHtml;
     }
+
+    // Show source if available
+    if (sourceEl && sourceTextEl && article.Source) {
+      sourceTextEl.textContent = article.Source;
+      sourceEl.style.display = 'flex';
+    } else if (sourceEl) {
+      sourceEl.style.display = 'none';
+    }
+  }
+
+  /**
+   * Split long description text into short paragraphs (2-3 sentences each).
+   * Falls back to single paragraph for short text.
+   */
+  function splitIntoParagraphs(text) {
+    if (!text) return [];
+    // Split into sentences by . ! ? followed by space or end
+    var sentences = text.match(/([^.!?]+[.!?]+(?:\s|$))/g);
+    if (!sentences || sentences.length <= 2) return text ? [text] : [];
+
+    // Group into paragraphs: 2-3 sentences for long text, 1-2 for medium
+    var groupSize = sentences.length > 6 ? 3 : 2;
+    var paragraphs = [];
+    for (var i = 0; i < sentences.length; i += groupSize) {
+      var group = sentences.slice(i, i + groupSize);
+      var cleaned = [];
+      for (var j = 0; j < group.length; j++) {
+        cleaned.push(group[j].trim());
+      }
+      paragraphs.push(cleaned.join(' '));
+    }
+    return paragraphs;
   }
 
   /* ─── Helpers ─── */
@@ -379,7 +429,9 @@
       .then(function (articles) {
         var article = null;
         for (var i = 0; i < articles.length; i++) {
-          if (articles[i].id === id) {
+          // Normalize id for lookup
+          var aid = articles[i].id || 'artikel-' + i;
+          if (aid === id) {
             article = articles[i];
             break;
           }

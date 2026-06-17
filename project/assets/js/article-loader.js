@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!article) {
         document.querySelector('.article-card__title').textContent = 'Article Not Found';
-        document.getElementById('article-summary').textContent = \`The article with ID "\${id}" could not be found.\`;
+        document.getElementById('article-summary').textContent = `The article with ID "${id}" could not be found.`;
         return;
     }
 
@@ -24,22 +24,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tipsContainerEl = document.getElementById('article-tips-list');
     const imgEl = document.getElementById('article-image');
 
-    if (titleEl) titleEl.textContent = article.title;
-    if (imgEl && article.image) imgEl.src = article.image;
+    if (titleEl) titleEl.textContent = article.Title || article.title || '';
+    if (imgEl) imgEl.src = article['Link-Image'] || article.image || '';
 
     /** Populate Summary Text */
-    if (summaryEl) summaryEl.textContent = article.content;
+    if (summaryEl) summaryEl.textContent = article.Description || article.content || '';
 
     /** Populate Sections */
     if (sectionsContainerEl && article.sections && article.sections.length > 0) {
       let sectionsHtml = '';
-      article.sections.forEach(section => {
-        sectionsHtml += \`
-          <div class="article-card__section">
-            <h3 class="article-card__section-title">\${section.heading}</h3>
-            <p class="article-card__text">\${section.text}</p>
-          </div>
-        \`;
+      article.sections.forEach(function(section) {
+        sectionsHtml +=
+          '<div class="article-card__section">' +
+            '<h3 class="article-card__section-title">' + section.heading + '</h3>' +
+            '<p class="article-card__text">' + section.text + '</p>' +
+          '</div>';
       });
       sectionsContainerEl.innerHTML = sectionsHtml;
     } else {
@@ -48,14 +47,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     /** Populate Tips List */
     if (tipsContainerEl && article.tips && article.tips.length > 0) {
-      let tipsHtml = \`
-        <div class="article-card__section">
-          <h3 class="article-card__section-title">Key Tips</h3>
-          <ul class="article-card__list">\`;
-      article.tips.forEach(tip => {
-        tipsHtml += \`<li>\${tip}</li>\`;
+      let tipsHtml =
+        '<div class="article-card__section">' +
+          '<h3 class="article-card__section-title">Key Tips</h3>' +
+          '<ul class="article-card__list">';
+      article.tips.forEach(function(tip) {
+        tipsHtml += '<li>' + tip + '</li>';
       });
-      tipsHtml += \`</ul></div>\`;
+      tipsHtml += '</ul></div>';
       tipsContainerEl.innerHTML = tipsHtml;
     } else {
         tipsContainerEl.style.display = 'none';

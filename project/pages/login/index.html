@@ -11,15 +11,7 @@
   <link rel="stylesheet" href="/assets/css/components/login.css" />
 </head>
 <body>
-  <main
-    class="login-page"
-    id="login-container"
-    hx-get="/api/login/partial"
-    hx-trigger="load"
-    hx-swap="innerHTML"
-    hx-target="#login-container"
-  >
-    <!-- Fallback content -->
+  <main class="login-page" id="login-container">
     <div class="login-layout" x-data="createLoginComponent()">
       <div class="login-mascot" aria-hidden="true">
         <img class="login-mascot__svg" src="/assets/icons/water-drop-mascot.svg" alt="SkinGlow mascot"/>
@@ -32,14 +24,14 @@
 
           <div class="login-card-content">
             <div class="login-tabs">
-              <button class="login-tab login-tab--active" type="button">Sign In</button>
-              <button class="login-tab" type="button">Sign Up</button>
+              <button class="login-tab" :class="{ 'login-tab--active': activeTab === 'signin' }" type="button" @click="switchTab('signin')">Sign In</button>
+              <button class="login-tab" :class="{ 'login-tab--active': activeTab === 'signup' }" type="button" @click="switchTab('signup')">Sign Up</button>
             </div>
             <div class="login-social">
               <button class="login-social__btn" type="button" aria-label="Google">
                 <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
               </button>
-              <button class="login-social__btn" type="button" aria-label="Facebook">
+              <button class="login-social__btn" type="button" aria-label="Facebook" @click="handleSocialLogin('facebook')">
                 <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#0866FF"/><path d="M28.01 23.5h-3.51V36h-5.5V23.5h-2.5V18.5h2.5v-3c0-2.5 1.2-6 5.8-6h4.2v5h-2.8c-.5 0-1.2.3-1.2 1.3v2.7h4.1l-.6 5z" fill="#FFF"/></svg>
               </button>
             </div>
@@ -48,11 +40,70 @@
               <span class="login-divider__text">Or</span>
               <div class="login-divider__line"></div>
             </div>
-            <p style="color:#5A5959; text-align:center;">Loading form...</p>
+
+            <!-- Sign In Form -->
+            <form id="login-form" class="login-form" x-show="activeTab === 'signin'" @submit.prevent="handleSubmit">
+              <div class="login-input-group">
+                <span class="login-input-group__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4V6z"/><polyline points="22 6 12 13 2 6"/></svg>
+                </span>
+                <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
+              </div>
+              <div class="login-input-group">
+                <span class="login-input-group__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input class="login-input" :type="passwordType" x-model="password" placeholder="Password" autocomplete="current-password" />
+                <button class="login-input-group__toggle" type="button" @click="togglePassword">
+                  <svg x-show="!showPassword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg x-show="showPassword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+              <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
+              <p class="login-account-link">Don't have an account? <a href="#" @click.prevent="switchTab('signup')">Sign Up</a></p>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="login-form" x-show="activeTab === 'signup'" @submit.prevent="handleSubmit">
+              <div class="login-input-group">
+                <span class="login-input-group__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <input class="login-input" type="text" x-model="fullName" placeholder="Full Name" autocomplete="name" />
+              </div>
+              <div class="login-input-group">
+                <span class="login-input-group__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4V6z"/><polyline points="22 6 12 13 2 6"/></svg>
+                </span>
+                <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
+              </div>
+              <div class="login-input-group">
+                <span class="login-input-group__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input class="login-input" :type="passwordType" x-model="password" placeholder="Password" autocomplete="new-password" />
+                <button class="login-input-group__toggle" type="button" @click="togglePassword">
+                  <svg x-show="!showPassword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg x-show="showPassword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+              <div class="login-input-group">
+                <span class="login-input-group__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input class="login-input" :type="confirmPasswordType" x-model="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" />
+                <button class="login-input-group__toggle" type="button" @click="toggleConfirmPassword">
+                  <svg x-show="!showConfirmPassword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg x-show="showConfirmPassword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
+              <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
+              <p class="login-account-link">Already have an account? <a href="#" @click.prevent="switchTab('signin')">Sign In</a></p>
+            </form>
           </div>
         </div>
         <div class="login-btn-wrap">
-          <button class="login-btn" type="button">Sign In</button>
+          <button class="login-btn" type="button" @click="handleSubmit" x-text="activeTab === 'signin' ? 'Sign In' : 'Sign Up'" :class="{ 'login-btn--loading': isSubmitting }"></button>
         </div>
       </div>
     </div>

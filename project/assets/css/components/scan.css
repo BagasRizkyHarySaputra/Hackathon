@@ -44,7 +44,7 @@
   
   /* Menumpuk file Scan.svg di atas gradasi warna linear yang lembut */
   background-image: 
-    url('/assets/icons/Scan.svg'), 
+    url('/assets/images/Scan.svg'), 
     linear-gradient(180deg, #EBF1F6 0%, #F6F4F8 40%, #E9EDF4 100%);
   
   /* Memastikan gelembung SVG memenuhi layar dan posisinya di tengah */
@@ -61,7 +61,7 @@
  * ────────────────────────────────────────────── */
 .scan-card {
   position: relative;
-  background: rgba(255, 254, 254, 0.55);
+  background: rgb(252, 239, 239);
   backdrop-filter: blur(35px);
   -webkit-backdrop-filter: blur(35px);
   
@@ -87,6 +87,7 @@
   text-align: center;
   margin-bottom: 38px;
   letter-spacing: -0.5px;
+text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
 }
 
 /* ──────────────────────────────────────────────

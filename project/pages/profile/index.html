@@ -11,20 +11,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
   <link rel="stylesheet" href="/assets/css/components/profile.css" />
 </head>
-<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+<body style="height:100%;overflow:hidden;">
   <div class="profile-viewport">
     <div class="profile-app">
       <div id="sidebar-root" data-active="profile"></div>
 
-      <main class="profile-main">
-        <!-- Decorative band -->
-        <div class="profile-deco-band" aria-hidden="true"></div>
+      <main class="profile-main app-main app-main--scroll">
+        <!-- Blurred gradient background -->
+        <div class="loading-bg-blur" aria-hidden="true">
+          <div class="loading-bg-blur__blob--pink-tl"></div>
+          <div class="loading-bg-blur__blob--blue-tr"></div>
+          <div class="loading-bg-blur__blob--dusty-center"></div>
+          <div class="loading-bg-blur__blob--blue-bl"></div>
+          <div class="loading-bg-blur__blob--pink-br"></div>
+          <div class="loading-bg-blur__blob--slate"></div>
+        </div>
 
         <div class="profile-content">
 
-          <!-- ═══ Profile Header ═══ -->
+          <header id="header-root" class="home-header"></header>
+
+          <!-- ═══ Profile Info ═══ -->
           <div class="profile-header">
             <div class="profile-avatar-wrap">
               <svg viewBox="0 0 100 100" fill="none">
@@ -43,17 +54,6 @@
               <div class="profile-header__member">
                 <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
                 <span>Member since Juni 2026</span>
-              </div>
-            </div>
-
-            <!-- Notification bell top-right -->
-            <div class="profile-notif-bell" onclick="openModal('notif-modal')">
-              <div class="profile-notif-bell__icon">
-                <svg viewBox="0 0 24 24">
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                </svg>
-                <div class="profile-notif-bell__dot"></div>
               </div>
             </div>
           </div>
@@ -241,170 +241,118 @@
 
     <!-- ═══ Modal: Notification ═══ -->
     <div class="modal-overlay" id="notif-modal" onclick="closeOnOverlay(event, 'notif-modal')">
-      <div class="modal">
-        <button class="modal__close" onclick="closeModal('notif-modal')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-        <h2 class="modal__title">Notification</h2>
-        <p class="modal__subtitle">Manage your notification preferences. Choose what you want to be notified about.</p>
-
-        <div class="notif-option">
-          <div class="notif-option__info">
-            <div class="notif-option__label">Routine Reminder</div>
-            <div class="notif-option__desc">Get reminded for your morning &amp; night routine</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-switch__slider"></span>
-          </label>
+      <div class="modal modal--notif">
+        <div class="notif-icon">
+          <img src="/assets/icons/profile/notification.svg" alt="Notification" width="80" height="80" />
         </div>
-
-        <div class="notif-option">
-          <div class="notif-option__info">
-            <div class="notif-option__label">Skin Diary Reminder</div>
-            <div class="notif-option__desc">Weekly reminder to update your skin diary</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-switch__slider"></span>
-          </label>
-        </div>
-
-        <div class="notif-option">
-          <div class="notif-option__info">
-            <div class="notif-option__label">Community Updates</div>
-            <div class="notif-option__desc">New posts and replies in your community threads</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-switch__slider"></span>
-          </label>
-        </div>
-
-        <div class="notif-option">
-          <div class="notif-option__info">
-            <div class="notif-option__label">Product Recommendations</div>
-            <div class="notif-option__desc">Personalized product suggestions based on skin analysis</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-switch__slider"></span>
-          </label>
+        <h2 class="modal__title modal__title--center">Get notified</h2>
+        <div class="notif-buttons">
+          <button class="notif-btn notif-btn--primary" onclick="closeModal('notif-modal')">Turn On</button>
+          <button class="notif-btn notif-btn--secondary" onclick="closeModal('notif-modal')">Not Now</button>
         </div>
       </div>
     </div>
 
     <!-- ═══ Modal: Privacy ═══ -->
     <div class="modal-overlay" id="privacy-modal" onclick="closeOnOverlay(event, 'privacy-modal')">
-      <div class="modal">
-        <button class="modal__close" onclick="closeModal('privacy-modal')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-        <h2 class="modal__title">Privacy</h2>
-        <p class="modal__subtitle">Control your privacy settings. Your data security matters to us.</p>
+      <div class="modal modal--privacy">
+        <h2 class="modal__title">Privacy & Security</h2>
 
-        <div class="privacy-option">
-          <div class="privacy-option__info">
-            <div class="privacy-option__label">Profile Visibility</div>
-            <div class="privacy-option__desc">Allow others to see your profile in community</div>
+        <div class="privacy-list">
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Allow AI Analysis History</div>
+              <div class="privacy-item__desc">Save scan results for progress tracking</div>
+            </div>
           </div>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-switch__slider"></span>
-          </label>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Store Skin Diary Data</div>
+              <div class="privacy-item__desc">Keep your skin diary entries securely</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Share Anonymous Data</div>
+              <div class="privacy-item__desc">Help improve AI recommendations</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Email Notifications</div>
+              <div class="privacy-item__desc">Receive important account updates</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Community Privacy</div>
+              <div class="privacy-item__desc">Hide your real name</div>
+            </div>
+          </div>
         </div>
 
-        <div class="privacy-option">
-          <div class="privacy-option__info">
-            <div class="privacy-option__label">Skin Diary Sharing</div>
-            <div class="privacy-option__desc">Share skin diary progress with community</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-switch__slider"></span>
-          </label>
-        </div>
-
-        <div class="privacy-option">
-          <div class="privacy-option__info">
-            <div class="privacy-option__label">Analytics Data</div>
-            <div class="privacy-option__desc">Help improve LICIN by sharing usage analytics</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-switch__slider"></span>
-          </label>
-        </div>
-
-        <div class="privacy-option">
-          <div class="privacy-option__info">
-            <div class="privacy-option__label">Data Export</div>
-            <div class="privacy-option__desc">Request a copy of your personal data</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-switch__slider"></span>
-          </label>
+        <div class="privacy-confirm">
+          <button class="privacy-confirm__btn" onclick="closeModal('privacy-modal')">Confirm</button>
         </div>
       </div>
     </div>
 
     <!-- ═══ Modal: Help Center ═══ -->
     <div class="modal-overlay" id="help-modal" onclick="closeOnOverlay(event, 'help-modal')">
-      <div class="modal">
-        <button class="modal__close" onclick="closeModal('help-modal')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-        <h2 class="modal__title">Help Center</h2>
-        <p class="modal__subtitle">Frequently asked questions and support resources.</p>
+      <div class="modal modal--help">
+        <h2 class="modal__title">Need help?</h2>
 
-        <div class="help-list-item" onclick="toggleHelp(this)">
-          <div class="help-list-item__q">
-            <span>How does the skin scan work?</span>
-            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="help-contact-list">
+          <div class="help-contact-item">
+            <div class="help-contact-item__icon">
+              <img src="/assets/icons/profile/email.svg" alt="Email" width="24" height="24" />
+            </div>
+            <div class="help-contact-item__info">
+              <span class="help-contact-item__text">kekejardeadline1@gmail.com</span>
+            </div>
           </div>
-          <div class="help-list-item__a">LICIN uses AI-powered image analysis to detect skin conditions like acne, blackheads, whiteheads, and dark spots. Simply take a clear photo of your face in good lighting, and our algorithm will analyze your skin within seconds.</div>
-        </div>
 
-        <div class="help-list-item" onclick="toggleHelp(this)">
-          <div class="help-list-item__q">
-            <span>Is my skin data secure?</span>
-            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="help-list-item__a">Yes. All photos and skin analysis data are encrypted and stored securely. We never share your personal skin data with third parties. You can delete your data at any time from the Privacy settings.</div>
-        </div>
-
-        <div class="help-list-item" onclick="toggleHelp(this)">
-          <div class="help-list-item__q">
-            <span>How accurate is the skin analysis?</span>
-            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="help-list-item__a">Our AI model has been trained on thousands of dermatological images and achieves high accuracy for common skin conditions. However, it is not a substitute for professional medical advice. Always consult a dermatologist for serious skin concerns.</div>
-        </div>
-
-        <div class="help-list-item" onclick="toggleHelp(this)">
-          <div class="help-list-item__q">
-            <span>Can I customize my skincare routine?</span>
-            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="help-list-item__a">Yes! Go to your Morning Routine or Night Routine tabs to view and customize your skincare steps. LICIN provides personalized recommendations based on your skin type and analysis results.</div>
-        </div>
-
-        <div class="help-list-item" onclick="toggleHelp(this)">
-          <div class="help-list-item__q">
-            <span>How do I track my skin progress?</span>
-            <svg class="help-list-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="help-list-item__a">Use the Skin Diary feature on the Home page to take weekly photos and track your skin health over time. The Progress section shows before/after comparisons and improvement percentages for each skin condition.</div>
-        </div>
-
-        <div class="help-footer">
-          <div class="help-footer__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="help-footer__text">
-            Still need help? Contact us
-            <span>support@licin.app</span>
+          <div class="help-contact-item">
+            <div class="help-contact-item__icon">
+              <img src="/assets/icons/profile/msg.svg" alt="Phone" width="24" height="24" />
+            </div>
+            <div class="help-contact-item__info">
+              <span class="help-contact-item__text">Phone Number?</span>
+            </div>
           </div>
         </div>
       </div>
@@ -413,8 +361,13 @@
   </div> <!-- /profile-viewport -->
 
   <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
   <script>
     (function() {
+      // ── Wire up global header notification bell ──
+      var notifBtn = document.querySelector('.header-action-btn');
+      if (notifBtn) notifBtn.addEventListener('click', function() { openModal('notif-modal'); });
+
       // ── Modal Functions ──
       window.openModal = function(id) {
         document.getElementById(id).classList.add('modal-overlay--open');
@@ -441,11 +394,6 @@
           document.body.style.overflow = '';
         }
       });
-
-      // ── Help Toggle ──
-      window.toggleHelp = function(el) {
-        el.classList.toggle('help-list-item--open');
-      };
 
       // ── Routine Tab Switching ──
       window.switchRoutine = function(routine) {

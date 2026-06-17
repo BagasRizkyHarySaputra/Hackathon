@@ -1,0 +1,30 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan-page/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - button "Notifications" [ref=e19] [cursor=pointer]
+      - button "Profile" [ref=e20] [cursor=pointer]
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - button "Back" [ref=e23] [cursor=pointer]:
+          - img "<" [ref=e24]
+        - heading "Ready to scan your skin?" [level=1] [ref=e25]
+        - button "Help" [ref=e26] [cursor=pointer]:
+          - img "?" [ref=e27]
+      - generic [ref=e28]:
+        - generic "Camera preview" [ref=e29]
+        - button "Capture photo" [ref=e30] [cursor=pointer]

@@ -86,7 +86,7 @@
 .article-main {
   flex: 1;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -166,7 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7vh 5.3vw 1.5vh 4.1vw;
+  padding: 0.5vh 5.3vw 0.8vh 4.1vw;
   flex-shrink: 0;
 }
 
@@ -253,31 +253,34 @@
 .article-card__body {
   flex: 1;
   display: flex;
-  gap: 2.5vw;
+  flex-direction: column;
   min-height: 0;
 }
 
-.article-card__col {
-  flex: 1;
+/* ─── Image Wrap (full width, below title) ─── */
+.article-card__image-wrap {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 1vw;
+  margin-bottom: 3.5vh;
+  background: #F6F5F6;
+}
+
+.article-card__image-wrap .article-card__image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 1vw;
+}
+
+/* ─── Content area (single column) ─── */
+.article-card__content {
   display: flex;
   flex-direction: column;
-  gap: 3vh;
-}
-
-.article-card__col--left {
-  flex: 0 0 32%;
-}
-
-.article-card__col--middle {
-  flex: 0 0 30%;
-}
-
-.article-card__col--right {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 2vh;
+  gap: 2.5vh;
 }
 
 /* ─── Article Text ─── */
@@ -329,12 +332,31 @@
   color: rgba(43, 43, 43, 0.85);
 }
 
-.article-card__image {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 1vw;
+/* ─── Source ─── */
+.article-card__source {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  padding: 1.5vh 1.5vw;
+  background: rgba(110, 127, 153, 0.08);
+  border-radius: 0.6vw;
+  margin-top: 1vh;
+}
+
+.article-card__source-label {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+  font-weight: 600;
+  color: rgba(43, 43, 43, 0.6);
+  flex-shrink: 0;
+}
+
+.article-card__source-text {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.7);
+  font-style: italic;
 }
 
 .article-card__footer {

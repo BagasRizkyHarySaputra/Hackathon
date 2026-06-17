@@ -1,0 +1,103 @@
+<!--
+  ============================================================
+  FILE: partials/artikel/artikel-content.html
+  ============================================================
+  FEATURE: Artikel Listing + Detail — HTMX Partial
+  PURPOSE:
+    HTML fragment for the article listing page with search,
+    tag filtering, dynamic card grid, and detail view.
+  HTMX CONTRACT:
+    - Served via GET /api/artikel/partial
+  DEPENDENCIES:
+    - sidebar.js, header.js, artikel.js
+  ============================================================
+-->
+<div class="article-viewport">
+  <!-- Background blobs -->
+  <div class="article-bg" aria-hidden="true">
+    <div class="article-bg__blob article-bg__blob--pink-tl"></div>
+    <div class="article-bg__blob article-bg__blob--pink-br"></div>
+    <div class="article-bg__blob article-bg__blob--gray-right"></div>
+    <div class="article-bg__blob article-bg__blob--blue-bl"></div>
+    <div class="article-bg__blob article-bg__blob--slate-tr"></div>
+  </div>
+
+  <div class="article-app">
+    <div id="sidebar-root" data-active="diary"></div>
+
+    <main class="article-main" id="article-main">
+      <!-- ========== LISTING VIEW ========== -->
+      <div id="listing-view">
+        <header id="header-root" class="home-header"></header>
+
+        <!-- Toolbar: Tags + Search -->
+        <div class="article-toolbar" id="artikel-toolbar">
+          <div class="article-tags" id="artikel-tags">
+            <span class="article-tag article-tag--all" data-tag="all">All</span>
+            <span class="article-tag article-tag--acne" data-tag="acne">Acne</span>
+            <span class="article-tag article-tag--dry" data-tag="dry">Dry Skin</span>
+            <span class="article-tag article-tag--oily" data-tag="oily">Oily Skin</span>
+            <span class="article-tag article-tag--sensitive" data-tag="sensitive">Sensitive</span>
+            <span class="article-tag article-tag--combination" data-tag="combination">Combination</span>
+          </div>
+          <div class="article-search">
+            <input type="text" class="article-search__input" id="artikel-search-input" placeholder="Search..." />
+            <svg class="article-search__icon" viewBox="0 0 16.19 17" fill="none" stroke="#2B2B2B" stroke-width="1.5" width="16" height="17">
+              <circle cx="7" cy="7" r="6"/>
+              <line x1="11.5" y1="12" x2="15.5" y2="16"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="artikel-grid" id="artikel-grid"></div>
+
+        <!-- Empty State (hidden by default) -->
+        <div class="artikel-empty" id="artikel-empty" style="display:none;">
+          <svg viewBox="0 0 80 80" fill="none" width="80" height="80">
+            <circle cx="40" cy="40" r="35" stroke="#E4D8DC" stroke-width="2" fill="none"/>
+            <circle cx="40" cy="35" r="10" stroke="#E4D8DC" stroke-width="2" fill="none"/>
+            <path d="M20 60 C20 50 28 44 40 44 C52 44 60 50 60 60" stroke="#E4D8DC" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <line x1="65" y1="65" x2="75" y2="75" stroke="#E4D8DC" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <h3 class="artikel-empty__title">No articles found</h3>
+          <p class="artikel-empty__text">Try adjusting your search or filter to find what you're looking for.</p>
+        </div>
+      </div>
+
+      <!-- ========== DETAIL VIEW ========== -->
+      <section class="article-card" id="detail-view" style="display:none;">
+        <!-- Title -->
+        <h1 class="article-card__title" id="article-title">Loading Article...</h1>
+
+        <!-- Image Article (full width, below title) -->
+        <div class="article-card__image-wrap">
+          <img id="article-image" src="" alt="Article image" class="article-card__image" />
+        </div>
+
+        <!-- Description + Content (single column) -->
+        <div class="article-card__body">
+          <div class="article-card__content">
+            <!-- Description paragraphs injected here -->
+            <div id="article-description"></div>
+
+            <!-- Sections dynamically injected here -->
+            <div class="article-card__section" id="article-sections"></div>
+
+            <!-- Tips dynamically injected here -->
+            <div id="article-tips-list"></div>
+
+            <!-- Sumber Artikel -->
+            <div class="article-card__source" id="article-source" style="display:none;">
+              <span class="article-card__source-label">Sumber:</span>
+              <span class="article-card__source-text" id="article-source-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card__footer">
+          <button class="article-card__back" id="artikel-back-btn">Back</button>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

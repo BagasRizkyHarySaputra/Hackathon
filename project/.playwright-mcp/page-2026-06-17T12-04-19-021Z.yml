@@ -1,0 +1,153 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - button "Notifications" [ref=e21] [cursor=pointer]
+        - button "Profile" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]: All
+          - generic [ref=e26] [cursor=pointer]: Acne
+          - generic [ref=e27] [cursor=pointer]: Dry Skin
+          - generic [ref=e28] [cursor=pointer]: Oily Skin
+          - generic [ref=e29] [cursor=pointer]: Sensitive
+          - generic [ref=e30] [cursor=pointer]: Combination
+        - generic [ref=e31]:
+          - textbox "Search..." [ref=e32]
+          - img [ref=e33]
+      - generic [ref=e36]:
+        - article [ref=e37]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: acne
+            - heading "Jangan Keliru, Begini Cara Tepat Pakai Retinol untuk Pemula" [level=3] [ref=e41]
+            - paragraph [ref=e42]: Retinol merupakan salah satu bahan aktif yang paling sering digunakan dalam berb...
+            - button "Read article" [ref=e43] [cursor=pointer]
+        - article [ref=e44]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: acne
+            - heading "Retinol yang Bagus Merk Apa? Cek Rekomendasi Ini!" [level=3] [ref=e48]
+            - paragraph [ref=e49]: Retinol adalah turunan dari vitamin A yang termasuk dalam kelompok retinoid. Zat...
+            - button "Read article" [ref=e50] [cursor=pointer]
+        - article [ref=e51]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: combination
+            - heading "Moisturizer Dulu atau Sunscreen Dulu? Urutan Skincare!" [level=3] [ref=e55]
+            - paragraph [ref=e56]: Banyak orang bertanya-tanya, pakai sunscreen dulu atau moisturizer dulu? Urutan ...
+            - button "Read article" [ref=e57] [cursor=pointer]
+        - article [ref=e58]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: acne
+            - heading "Cari Serum Bagus? Ini Pilihan Terbaik Sesuai Kulit" [level=3] [ref=e62]
+            - paragraph [ref=e63]: Memilih serum yang tepat merupakan langkah krusial dalam rutinitas perawatan kul...
+            - button "Read article" [ref=e64] [cursor=pointer]
+        - article [ref=e65]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: acne
+            - heading "Cerahkan Wajah! Manfaat Serum Vitamin C untuk Kulit Glowing" [level=3] [ref=e69]
+            - paragraph [ref=e70]: Serum vitamin C telah menjadi salah satu produk perawatan kulit yang paling dica...
+            - button "Read article" [ref=e71] [cursor=pointer]
+        - article [ref=e72]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: acne
+            - heading "Ini 6 Manfaat Niacinamide untuk Perawatan Kulit" [level=3] [ref=e76]
+            - paragraph [ref=e77]: Niacinamide atau yang juga dikenal dengan niasin merupakan salah satu bentuk vit...
+            - button "Read article" [ref=e78] [cursor=pointer]
+        - article [ref=e79]:
+          - generic [ref=e81]:
+            - generic [ref=e82]: combination
+            - 'heading "Skincare Bagus: Panduan Pemula Kulit Sehat dan Glowing!" [level=3] [ref=e83]'
+            - paragraph [ref=e84]: Skincare adalah serangkaian perawatan kulit yang bertujuan untuk menjaga kesehat...
+            - button "Read article" [ref=e85] [cursor=pointer]
+        - article [ref=e86]:
+          - generic [ref=e88]:
+            - generic [ref=e89]: oily
+            - heading "Ini 5 Rekomendasi Sunscreen untuk Kulit Berminyak" [level=3] [ref=e90]
+            - paragraph [ref=e91]: Bagi pemilik kulit berminyak, pemilihan sunscreen yang tepat adalah kunci menjag...
+            - button "Read article" [ref=e92] [cursor=pointer]
+        - article [ref=e93]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: acne
+            - heading "Ini Alasan Pria Juga Harus Pakai Skincare Wajah" [level=3] [ref=e97]
+            - paragraph [ref=e98]: Tak hanya wanita, pria juga membutuhkan skincare guna menjaga kesehatan kulit wa...
+            - button "Read article" [ref=e99] [cursor=pointer]
+        - article [ref=e100]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: acne
+            - heading "Skincare Cowok Berjerawat dan Berminyak, Auto Glowing" [level=3] [ref=e104]
+            - paragraph [ref=e105]: Kulit berjerawat dan berminyak adalah kondisi umum yang sering dialami banyak co...
+            - button "Read article" [ref=e106] [cursor=pointer]
+        - article [ref=e107]:
+          - generic [ref=e109]:
+            - generic [ref=e110]: acne
+            - heading "Ini Khasiat Glycolic Acid pada Kulit yang Perlu Diketahui" [level=3] [ref=e111]
+            - paragraph [ref=e112]: Glycolic acid adalah jenis asam alfa-hidroksi (AHA) yang banyak digunakan dalam ...
+            - button "Read article" [ref=e113] [cursor=pointer]
+        - article [ref=e114]:
+          - generic [ref=e116]:
+            - generic [ref=e117]: acne
+            - 'heading "Sunscreen Sekaligus Moisturizer: Lembap dan Terlindungi" [level=3] [ref=e118]'
+            - paragraph [ref=e119]: Memiliki kulit wajah yang rentan berjerawat sering kali membuat kita merasa dile...
+            - button "Read article" [ref=e120] [cursor=pointer]
+        - article [ref=e121]:
+          - generic [ref=e123]:
+            - generic [ref=e124]: acne
+            - heading "Common Skincare Mistakes That May Be Harming Your Skin" [level=3] [ref=e125]
+            - paragraph [ref=e126]: Washing your face too often or using the wrong cleanser can strip your skin of i...
+            - button "Read article" [ref=e127] [cursor=pointer]
+        - article [ref=e128]:
+          - generic [ref=e130]:
+            - generic [ref=e131]: combination
+            - heading "How to Build a Simple Skincare Routine That Actually Works" [level=3] [ref=e132]
+            - paragraph [ref=e133]: "A basic routine involves three steps: cleansing, moisturizing, and applying suns..."
+            - button "Read article" [ref=e134] [cursor=pointer]
+        - article [ref=e135]:
+          - generic [ref=e137]:
+            - generic [ref=e138]: acne
+            - heading "How Lifestyle Habits Affect Your Skin Health" [level=3] [ref=e139]
+            - paragraph [ref=e140]: During deep sleep, your body increases blood flow to the skin, rebuilding collag...
+            - button "Read article" [ref=e141] [cursor=pointer]
+        - article [ref=e142]:
+          - generic [ref=e144]:
+            - generic [ref=e145]: acne
+            - 'heading "Acne Basics: Understanding Causes and Prevention" [level=3] [ref=e146]'
+            - paragraph [ref=e147]: Blackheads and whiteheads are non-inflammatory comedones. Papules and pustules i...
+            - button "Read article" [ref=e148] [cursor=pointer]
+        - article [ref=e149]:
+          - generic [ref=e151]:
+            - generic [ref=e152]: acne
+            - heading "The Importance of Sunscreen for Healthy Skin" [level=3] [ref=e153]
+            - paragraph [ref=e154]: UVA rays penetrate deep into the skin causing premature aging and wrinkles. UVB ...
+            - button "Read article" [ref=e155] [cursor=pointer]
+        - article [ref=e156]:
+          - generic [ref=e158]:
+            - generic [ref=e159]: combination
+            - 'heading "Understanding Your Skin Type: The First Step to Better Skincare" [level=3] [ref=e160]'
+            - paragraph [ref=e161]: Wash your face with a gentle cleanser and wait one hour without applying any pro...
+            - button "Read article" [ref=e162] [cursor=pointer]
+        - article [ref=e163]:
+          - generic [ref=e165]:
+            - generic [ref=e166]: dry
+            - heading "The Best Ingredients for Dry Skin Relief" [level=3] [ref=e167]
+            - paragraph [ref=e168]: Hyaluronic Acid holds 1000x its weight in water, drawing moisture into the skin....
+            - button "Read article" [ref=e169] [cursor=pointer]
+        - article [ref=e170]:
+          - generic [ref=e172]:
+            - generic [ref=e173]: oily
+            - 'heading "Oily Skin Care: How to Control Shine Naturally" [level=3] [ref=e174]'
+            - paragraph [ref=e175]: Genetics, hormones, and climate all influence how much oil your skin produces. O...
+            - button "Read article" [ref=e176] [cursor=pointer]

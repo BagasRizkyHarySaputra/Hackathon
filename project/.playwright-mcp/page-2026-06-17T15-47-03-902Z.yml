@@ -1,0 +1,81 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - button "Notifications" [ref=e21] [cursor=pointer]
+        - button "Profile" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - img [ref=e25]
+          - button "Edit" [ref=e28] [cursor=pointer]:
+            - img "Edit" [ref=e29]
+        - generic [ref=e30]:
+          - heading "Username" [level=1] [ref=e31]
+          - generic [ref=e32]: Combination
+          - generic [ref=e34]: Member since Juni 2026
+        - button "Edit Profile" [ref=e35] [cursor=pointer]
+      - generic [ref=e36]:
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - img [ref=e41]
+            - generic [ref=e44]: Data Personal
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - generic [ref=e47]: Nama Lengkap*
+              - textbox [ref=e48]
+            - generic [ref=e49]:
+              - generic [ref=e50]: Email Pengguna*
+              - textbox [ref=e51]
+            - generic [ref=e52]:
+              - generic [ref=e53]: Jenis Kelamin*
+              - textbox [ref=e54]
+            - generic [ref=e55]:
+              - generic [ref=e56]: Tanggal Lahir
+              - textbox [ref=e57]
+          - button "Save" [ref=e59] [cursor=pointer]:
+            - img [ref=e60]
+            - text: Save
+        - generic [ref=e63]:
+          - generic [ref=e64]: Skin Type
+          - generic [ref=e65]:
+            - button "Oily Skin" [ref=e66] [cursor=pointer]
+            - button "Dry Skin" [ref=e67] [cursor=pointer]
+            - button "Combination Skin" [ref=e68] [cursor=pointer]
+            - button "Sensitive Skin" [ref=e69] [cursor=pointer]
+            - button "Not Sure :(" [ref=e70] [cursor=pointer]
+      - generic [ref=e71]:
+        - img "Mascot" [ref=e73]
+        - generic [ref=e75]: Let's complete your profile
+      - generic [ref=e76]:
+        - generic [ref=e77]: Settings & Account
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - img [ref=e81]
+            - generic [ref=e84]: Account
+          - generic [ref=e85] [cursor=pointer]:
+            - img [ref=e87]
+            - generic [ref=e90]: Notification
+          - generic [ref=e91] [cursor=pointer]:
+            - img "Privacy" [ref=e93]
+            - generic [ref=e94]: Privacy
+          - generic [ref=e95] [cursor=pointer]:
+            - img "Help" [ref=e97]
+            - generic [ref=e98]: Help Center
+          - generic [ref=e99]:
+            - img "Sign Out" [ref=e101]
+            - generic [ref=e102]: Sign Out

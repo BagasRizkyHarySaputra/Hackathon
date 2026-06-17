@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
   <link rel="stylesheet" href="/assets/css/components/tips-artikel.css" />
   <link rel="stylesheet" href="/assets/css/components/artikel.css" />
 </head>
@@ -25,10 +27,10 @@
       <div class="article-bg__blob article-bg__blob--slate-tr"></div>
     </div>
 
-    <div class="article-app">
+    <div class="article-app app-layout">
       <div id="sidebar-root" data-active="diary"></div>
 
-      <main class="article-main" id="article-main">
+      <main class="article-main app-main app-main--scroll" id="article-main">
         <!-- ========== LISTING VIEW ========== -->
         <div id="listing-view">
           <header id="header-root" class="home-header"></header>
@@ -36,6 +38,7 @@
           <!-- Toolbar: Tags + Search -->
           <div class="article-toolbar" id="artikel-toolbar">
             <div class="article-tags" id="artikel-tags">
+              <span class="article-tag article-tag--all" data-tag="all">All</span>
               <span class="article-tag article-tag--acne" data-tag="acne">Acne</span>
               <span class="article-tag article-tag--dry" data-tag="dry">Dry Skin</span>
               <span class="article-tag article-tag--oily" data-tag="oily">Oily Skin</span>
@@ -51,61 +54,7 @@
             </div>
           </div>
 
-          <div class="artikel-grid" id="artikel-grid">
-            <article class="artikel-card artikel-card--vertical" data-id="1" style="grid-column: 1; grid-row: 1 / 3;">
-              <div class="artikel-card__img-wrap">
-                <img src="/assets/images/SkincareBottleMockup2.png" alt="" class="artikel-card__img" />
-              </div>
-              <div class="artikel-card__body">
-                <h3 class="artikel-card__title">Common Skincare Mistakes That May Be Harming Your Skin</h3>
-              </div>
-              <div class="artikel-card__img-wrap artikel-card__img-wrap--pink"></div>
-              <div class="artikel-card__footer">
-                <button class="artikel-card__btn" data-id="1">Read article</button>
-              </div>
-            </article>
-
-            <article class="artikel-card artikel-card--horizontal" data-id="2" style="grid-column: 2; grid-row: 1;">
-              <div class="artikel-card__body">
-                <h3 class="artikel-card__title">How to Build a Simple Skincare Routine That Actually Works</h3>
-                <button class="artikel-card__btn" data-id="2">Read article</button>
-              </div>
-              <div class="artikel-card__img-wrap">
-                <img src="/assets/images/SkincareBottleMockup2.png" alt="" class="artikel-card__img" />
-              </div>
-            </article>
-
-            <article class="artikel-card artikel-card--small" data-id="3" style="grid-column: 3; grid-row: 1;">
-              <div class="artikel-card__body">
-                <h3 class="artikel-card__title">How Lifestyle Habits Affect Your Skin Health</h3>
-                <button class="artikel-card__btn" data-id="3">Read article</button>
-              </div>
-            </article>
-
-            <article class="artikel-card artikel-card--small" data-id="4" style="grid-column: 3; grid-row: 2;">
-              <div class="artikel-card__body">
-                <h3 class="artikel-card__title">Acne Basics: Understanding Causes and Prevention</h3>
-                <button class="artikel-card__btn" data-id="4">Read article</button>
-              </div>
-            </article>
-
-            <article class="artikel-card artikel-card--small" data-id="5" style="grid-column: 2; grid-row: 2;">
-              <div class="artikel-card__body">
-                <h3 class="artikel-card__title">The Importance of Sunscreen for Healthy Skin</h3>
-                <button class="artikel-card__btn" data-id="5">Read article</button>
-              </div>
-            </article>
-
-            <article class="artikel-card artikel-card--horizontal" data-id="6" style="grid-column: 2 / 4; grid-row: 3;">
-              <div class="artikel-card__body">
-                <h3 class="artikel-card__title">Understanding Your Skin Type: The First Step to Better Skincare</h3>
-                <button class="artikel-card__btn" data-id="6">Read article</button>
-              </div>
-              <div class="artikel-card__img-wrap">
-                <img src="/assets/images/SkincareBottleMockup2.png" alt="" class="artikel-card__img" />
-              </div>
-            </article>
-          </div>
+          <div class="artikel-grid" id="artikel-grid"></div>
 
           <!-- Empty State (hidden by default) -->
           <div class="artikel-empty" id="artikel-empty" style="display:none;">
@@ -122,25 +71,31 @@
 
         <!-- ========== DETAIL VIEW ========== -->
         <section class="article-card" id="detail-view" style="display:none;">
+          <!-- Title -->
           <h1 class="article-card__title" id="article-title">Loading Article...</h1>
 
+          <!-- Image Article (full width, below title) -->
+          <div class="article-card__image-wrap">
+            <img id="article-image" src="" alt="Article image" class="article-card__image" />
+          </div>
+
+          <!-- Description + Content (single column) -->
           <div class="article-card__body">
-            <!-- Left Column -->
-            <div class="article-card__col article-card__col--left">
-              <p class="article-card__text" id="article-summary"></p>
-              <div class="article-card__section" id="article-sections">
-                <!-- Sections dynamically injected here -->
-              </div>
-            </div>
+            <div class="article-card__content">
+              <!-- Description paragraphs injected here -->
+              <div id="article-description"></div>
 
-            <div class="article-card__col article-card__col--middle">
-              <div class="article-card__section" id="article-tips-list">
-                <!-- Tips dynamically injected here -->
-              </div>
-            </div>
+              <!-- Sections dynamically injected here -->
+              <div class="article-card__section" id="article-sections"></div>
 
-            <div class="article-card__col article-card__col--right">
-              <img id="article-image" src="" alt="Article image" class="article-card__image" />
+              <!-- Tips dynamically injected here -->
+              <div id="article-tips-list"></div>
+
+              <!-- Sumber Artikel -->
+              <div class="article-card__source" id="article-source" style="display:none;">
+                <span class="article-card__source-label">Sumber:</span>
+                <span class="article-card__source-text" id="article-source-text"></span>
+              </div>
             </div>
           </div>
 

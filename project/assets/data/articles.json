@@ -1,276 +1,245 @@
 [
   {
-    "id": "mistakes",
-    "title": "Common Skincare Mistakes That May Be Harming Your Skin",
-    "tags": ["acne", "sensitive"],
-    "content": "Washing your face too often or using the wrong cleanser can strip your skin of its natural oils. Avoid using hot water, over-exfoliating, and skipping sunscreen. Stick to a gentle routine suitable for your skin type to maintain a healthy barrier.",
-    "sections": [
-      {
-        "heading": "Over-Cleansing",
-        "text": "Washing your face more than twice a day strips away protective oils. Your skin compensates by producing even more sebum, leading to breakouts and irritation."
-      },
-      {
-        "heading": "Skipping Sunscreen",
-        "text": "UV exposure is the number one cause of premature aging. Even on cloudy days, UVA rays penetrate through clouds and windows. Apply SPF 30+ every morning."
-      },
-      {
-        "heading": "Using Too Many Actives",
-        "text": "Layering retinol, AHA, BHA, and vitamin C all at once overwhelms your skin barrier. Introduce one active at a time and wait 2-4 weeks before adding another."
-      }
+    "id": "retinol-pemula",
+    "tags": [
+      "acne",
+      "dry"
     ],
-    "tips": [
-      "Use lukewarm water instead of hot water",
-      "Pat dry with a clean towel, never rub",
-      "Apply products from thinnest to thickest consistency",
-      "Always patch-test new products on your jawline first"
-    ],
-    "image": "/assets/images/article-sunscreen.jpg"
+    "Title": "Jangan Keliru, Begini Cara Tepat Pakai Retinol untuk Pemula",
+    "Simple-desc": "Panduan lengkap cara pakai retinol untuk pemula agar tidak mengalami iritasi. Mulai dari pemilihan produk, frekuensi, hingga tips aman.",
+    "Description": "Retinol merupakan salah satu bahan aktif yang paling sering digunakan dalam berbagai produk perawatan kulit. Produk ini diklaim mampu memberikan beberapa manfaat, mulai dari membuat kulit tampak lebih bercahaya, mengurangi pigmentasi, menyembuhkan jerawat, dan menyamarkan garis halus serta kerutan. Meski manfaatnya banyak, memilih serum retinol yang tepat untuk kulit bisa dibilang tidak mudah. Tak hanya itu, mengetahui bagaimana cara memakainya yang benar juga tak kalah sulitnya, terutama untuk pemula. Sebab, salah cara pakai retinol bisa membuat kulit mengalami iritasi. Cara memakai serum retinol yang pertama adalah memilih produk yang tepat. Produk perawatan kulit yang mengandung retinyl palmitate penggunaannya cocok untuk kamu yang memiliki kulit sensitif. Hindari pemakaian produk keras secara bersamaan. Ahli kecantikan kulit menganjurkan pemakaian retinol pada malam hari, jangan gunakan bersamaan dengan produk yang memiliki sifat asam. Mulai dengan frekuensi 1-2 kali seminggu, tingkatkan perlahan jika tidak ada iritasi. Jangan lupa memakai sunscreen setiap pagi karena retinol membuat kulit lebih sensitif terhadap sinar matahari.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/08/04050537/Jangan-Keliru-Begini-Cara-Tepat-Pakai-Retinol-untuk-Pemula.jpg.webp",
+    "Source": "Parapuan.co"
   },
   {
-    "id": "routine",
-    "title": "How to Build a Simple Skincare Routine That Actually Works",
-    "tags": ["combination", "dry"],
-    "content": "A basic routine involves three steps: cleansing, moisturizing, and applying sunscreen. Keep it simple and consistent to see the best results without overwhelming your skin.",
-    "sections": [
-      {
-        "heading": "Essential Products",
-        "text": "Cleanser removes dirt, oil, and impurities. Moisturizer keeps the skin hydrated and supports the skin barrier. Sunscreen protects against UV damage and premature aging."
-      },
-      {
-        "heading": "Benefits of a Simple Routine",
-        "text": "A minimal routine maintains healthy skin, prevents dehydration and irritation, supports long-term skin health, and is suitable for most skin types."
-      },
-      {
-        "heading": "Key Tips",
-        "text": "Choose products that match your skin type. Introduce new products gradually. Avoid using too many active ingredients at once. Be patient and consistent with your routine."
-      }
+    "id": "retinol-bagus",
+    "tags": [
+      "acne",
+      "dry"
     ],
-    "tips": [
-      "Cleanse morning and night",
-      "Apply moisturizer to damp skin for better absorption",
-      "Sunscreen is non-negotiable — rain or shine",
-      "Consistency beats complexity every time"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "Retinol yang Bagus Merk Apa? Cek Rekomendasi Ini!",
+    "Simple-desc": "Rekomendasi merk retinol terbaik di Indonesia dari Skintific, Avoskin, Somethinc hingga La Roche-Posay. Cocok untuk pemula dan kulit sensitif.",
+    "Description": "Retinol adalah turunan dari vitamin A yang termasuk dalam kelompok retinoid. Zat ini bekerja dengan merangsang pergantian sel kulit dan produksi kolagen. Proses ini penting untuk menjaga kekencangan dan elastisitas kulit. Penggunaan retinol secara teratur dapat memberikan sejumlah manfaat signifikan untuk kulit, termasuk mengurangi tampilan garis halus dan kerutan, menyamarkan flek hitam atau hiperpigmentasi, serta memperbaiki tekstur kulit agar tampak lebih halus dan cerah. Memilih produk retinol yang tepat membutuhkan pertimbangan beberapa faktor kunci: konsentrasi retinol (pemula disarankan 0.01% hingga 0.03%), bentuk retinol, dan jenis kulit. Untuk pemula dan kulit sensitif, produk seperti Skintific Retinol Skin Renewal Serum, Hanasui Advance Retinol Serum, dan La Roche-Posay Retinol B3 Serum sangat direkomendasikan. Untuk masalah flek hitam dan kerutan, Avoskin Miraculous Retinol Ampoule dan Somethinc Level 1% Encapsulated Retinol bisa menjadi pilihan.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/03/05062613/retinol-yang-bagus-merk-apa.jpg.webp",
+    "Source": "Parapuan.co"
   },
   {
-    "id": "lifestyle",
-    "title": "How Lifestyle Habits Affect Your Skin Health",
-    "tags": ["acne", "oily"],
-    "content": "Your skin reflects your overall health. Sleep, diet, stress levels, and hydration all play crucial roles in how your skin looks and feels day to day.",
-    "sections": [
-      {
-        "heading": "Sleep & Skin Repair",
-        "text": "During deep sleep, your body increases blood flow to the skin, rebuilding collagen and repairing UV damage. Aim for 7-9 hours of quality sleep each night to support natural cell turnover."
-      },
-      {
-        "heading": "Diet & Inflammation",
-        "text": "High-glycemic foods and dairy have been linked to increased acne in some individuals. Incorporate omega-3 fatty acids, antioxidants from fruits and vegetables, and plenty of water."
-      },
-      {
-        "heading": "Stress Management",
-        "text": "Cortisol spikes from chronic stress trigger excess oil production and inflammation. Practice mindfulness, exercise regularly, and set boundaries to keep stress in check."
-      }
+    "id": "moisturizer-sunscreen",
+    "tags": [
+      "combination"
     ],
-    "tips": [
-      "Drink at least 8 glasses of water daily",
-      "Change pillowcases weekly to reduce bacteria",
-      "Avoid touching your face throughout the day",
-      "Exercise boosts circulation for a natural glow"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "Moisturizer Dulu atau Sunscreen Dulu? Urutan Skincare!",
+    "Simple-desc": "Panduan urutan skincare pagi yang benar. Jawaban atas pertanyaan: pakai moisturizer dulu atau sunscreen dulu untuk perlindungan optimal.",
+    "Description": "Banyak orang bertanya-tanya, pakai sunscreen dulu atau moisturizer dulu? Urutan pemakaian skincare yang benar sangat penting untuk memastikan produk bekerja efektif, terutama dalam melindungi kulit dari kerusakan akibat sinar matahari. Moisturizer atau pelembap adalah produk perawatan kulit yang berfungsi menghidrasi dan menjaga kelembapan kulit. Sunscreen atau tabir surya adalah produk yang melindungi kulit dari radiasi ultraviolet (UV) yang berbahaya dari matahari. Urutan skincare pagi hari yang standar adalah: Pembersih Wajah, Toner (jika pakai), Serum (jika pakai), Moisturizer, dan Sunscreen. Alasan moisturizer dipakai sebelum sunscreen: sunscreen berfungsi membentuk lapisan pelindung di permukaan kulit, jika moisturizer digunakan setelah sunscreen, lapisan pelindung ini bisa terganggu. Pengecualian: beberapa ahli menyarankan chemical sunscreen sebelum moisturizer agar bahan aktif lebih cepat meresap.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/02/24084301/pakai-sunscreen-dulu-atau-moisturizer-dulu.jpg.webp",
+    "Source": "Parapuan.co"
   },
   {
-    "id": "acne",
-    "title": "Acne Basics: Understanding Causes and Prevention",
-    "tags": ["acne", "oily"],
-    "content": "Acne occurs when hair follicles become clogged with oil and dead skin cells. Understanding the root causes helps you choose the right treatment approach.",
-    "sections": [
-      {
-        "heading": "Types of Acne",
-        "text": "Blackheads and whiteheads are non-inflammatory comedones. Papules and pustules involve inflammation. Nodules and cysts are deep, painful lesions that often require professional treatment."
-      },
-      {
-        "heading": "Common Triggers",
-        "text": "Hormonal fluctuations, excess sebum production, bacteria (C. acnes), and clogged pores are the four primary acne triggers. External factors include humidity, pore-clogging cosmetics, and friction."
-      },
-      {
-        "heading": "Prevention Strategies",
-        "text": "Use non-comedogenic products, cleanse after sweating, avoid picking or squeezing blemishes, and consider ingredients like salicylic acid or benzoyl peroxide for mild to moderate acne."
-      }
+    "id": "serum-bagus",
+    "tags": [
+      "acne",
+      "dry",
+      "oily"
     ],
-    "tips": [
-      "Use BHA (salicylic acid) to unclog pores",
-      "Benzoyl peroxide kills acne-causing bacteria",
-      "Never pop pimples — it causes scarring",
-      "See a dermatologist for persistent or severe acne"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "Cari Serum Bagus? Ini Pilihan Terbaik Sesuai Kulit",
+    "Simple-desc": "Panduan memilih serum wajah yang tepat berdasarkan jenis kulit dan masalah kulit. Rekomendasi produk untuk kulit kering, berminyak, dan sensitif.",
+    "Description": "Memilih serum yang tepat merupakan langkah krusial dalam rutinitas perawatan kulit untuk mencapai kondisi kulit yang sehat dan terawat. Serum adalah produk perawatan kulit konsentrat dengan bahan aktif tinggi yang dirancang untuk menargetkan masalah kulit spesifik, seperti kekeringan, kusam, tanda penuaan, atau jerawat. Faktor penentu serum bagus tergantung pada kebutuhan kulit dan bahan aktif. Hyaluronic Acid untuk melembapkan, Niacinamide untuk meredakan peradangan dan memperkuat skin barrier, Retinol untuk stimulasi kolagen, dan Vitamin C untuk mencerahkan kulit. Untuk melembapkan dan mencerahkan kulit kusam: The Originote Hyalu-C Serum, Avoskin Miraculous Refining Serum. Untuk masalah jerawat dan anti-aging: Somethinc Retinol, Skintific 5% Niacinamide Brightening Serum. Untuk kulit sensitif: Hanasui Power Bright Serum, Whitelab Niacinamide + Collagen Serum.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/04/24075932/Skincare-dan-Kecantikan-1138.jpg.webp",
+    "Source": "Parapuan.co"
   },
   {
-    "id": "sunscreen",
-    "title": "The Importance of Sunscreen for Healthy Skin",
-    "tags": ["sensitive", "dry"],
-    "content": "Sunscreen is the most effective anti-aging product you can use. It protects against UVA and UVB rays that cause wrinkles, dark spots, and skin cancer.",
-    "sections": [
-      {
-        "heading": "UVA vs UVB",
-        "text": "UVA rays penetrate deep into the skin causing premature aging and wrinkles. UVB rays burn the surface. Broad-spectrum sunscreen protects against both types."
-      },
-      {
-        "heading": "How to Choose",
-        "text": "Look for SPF 30 or higher with broad-spectrum protection. Chemical sunscreens absorb UV rays while physical (mineral) sunscreens reflect them. Choose based on your skin sensitivity."
-      },
-      {
-        "heading": "Application Tips",
-        "text": "Apply a generous amount (about two finger-lengths for the face) 15 minutes before sun exposure. Reapply every 2 hours, or immediately after swimming or sweating."
-      }
+    "id": "vitamin-c-serum",
+    "tags": [
+      "acne",
+      "dry"
     ],
-    "tips": [
-      "SPF 30 blocks 97% of UVB rays",
-      "Reapply every 2 hours when outdoors",
-      "Don't forget ears, neck, and hands",
-      "Mineral sunscreen is best for sensitive skin"
+    "Title": "Cerahkan Wajah! Manfaat Serum Vitamin C untuk Kulit Glowing",
+    "Simple-desc": "Serum vitamin C membantu mencerahkan kulit kusam, menyamarkan noda hitam, melawan penuaan dini, dan melindungi dari radikal bebas.",
+    "Description": "Serum vitamin C telah menjadi salah satu produk perawatan kulit yang paling dicari berkat khasiatnya yang beragam. Kandungan antioksidan kuat di dalamnya membantu mengatasi berbagai masalah kulit. Serum vitamin C adalah produk perawatan kulit topikal yang mengandung konsentrasi tinggi vitamin C atau asam askorbat. Vitamin C merupakan nutrisi esensial yang dikenal sebagai antioksidan kuat. Manfaat utama serum vitamin C: mencerahkan kulit kusam dan meratakan warna kulit dengan menghambat produksi melanin; menyamarkan noda hitam dan bekas jerawat; melawan tanda penuaan dini dengan merangsang produksi kolagen; melindungi kulit dari radikal bebas dan sinar UV; serta melembapkan dan meredakan peradangan. Tips penggunaan: aplikasikan di pagi hari setelah cleansing, mulai dengan konsentrasi rendah untuk kulit sensitif, ikuti dengan pelembap dan tabir surya SPF minimal 30.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/04/27113858/Penyakit-Gejala-7000.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "niacinamide",
+    "tags": [
+      "acne",
+      "oily"
     ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "Ini 6 Manfaat Niacinamide untuk Perawatan Kulit",
+    "Simple-desc": "Niacinamide atau vitamin B3 memiliki segudang manfaat untuk kulit: melembapkan, mengatasi jerawat, mencerahkan, dan mengurangi tanda penuaan.",
+    "Description": "Niacinamide atau yang juga dikenal dengan niasin merupakan salah satu bentuk vitamin B3. Sebagai salah satu nutrisi penting yang dibutuhkan tubuh, zat tersebut diyakini memiliki beragam manfaat bagi tubuh. Dalam industri perawatan kulit, niacinamide dikenal luas sebagai bahan aktif yang sangat diunggulkan. Fungsinya beragam dan cocok untuk berbagai jenis kulit. Manfaat niacinamide untuk kulit: menyehatkan dan melembapkan kulit dengan membantu produksi keratin; mengatasi hiperpigmentasi dan mencerahkan kulit; mengurangi tanda penuaan termasuk garis halus dan keriput; mengendalikan produksi minyak pada kulit wajah dan mengecilkan pori-pori; mengatasi jerawat berkat sifat antiinflamasinya; serta membantu mencegah melanoma. Niacinamide bekerja dengan cara meningkatkan produksi ceramide, asam lemak yang penting untuk fungsi skin barrier. Tips aman: mulai dari konsentrasi rendah (2-5%), gunakan secara bertahap, dan hindari penggunaan bersamaan dengan vitamin C murni bila kulit mudah iritasi.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/10/29041142/8.-Ini-X-Manfaat-Niacinamide-untuk-Perawatan-Kulit-1.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "skincare-pemula",
+    "tags": [
+      "combination",
+      "dry"
+    ],
+    "Title": "Skincare Bagus: Panduan Pemula Kulit Sehat dan Glowing!",
+    "Simple-desc": "Panduan lengkap skincare untuk pemula. Mulai dari rangkaian dasar, rekomendasi produk, hingga tips memilih skincare sesuai jenis kulit.",
+    "Description": "Skincare adalah serangkaian perawatan kulit yang bertujuan untuk menjaga kesehatan, kebersihan, dan penampilan kulit. Bagi pemula, memulai rutinitas skincare mungkin terasa membingungkan. Namun, perawatan kulit yang tepat sejak dini sangat penting untuk mencegah masalah kulit di kemudian hari. Manfaat rutin skincare: mencegah masalah kulit seperti jerawat, kulit kusam, dan penuaan dini; menjaga kesehatan kulit dengan membantu hidrasi dan perlindungan dari radikal bebas; serta meningkatkan kepercayaan diri. Rangkaian basic skincare untuk pemula: Pembersih wajah (Cleanser), Toner, Pelembap (Moisturizer), dan Tabir surya (Sunscreen). Tips memilih skincare yang tepat: kenali jenis kulitmu, pilih produk sesuai jenis kulit, perhatikan kandungan bahan, dan baca ulasan produk. Kesalahan umum yang harus dihindari: tidak membersihkan wajah sebelum tidur, menggunakan produk terlalu banyak, tidak menggunakan tabir surya, dan eksfoliasi berlebihan.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2025/04/15091427/Skincare_Bagus_article_702x465.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "sunscreen-berminyak",
+    "tags": [
+      "oily"
+    ],
+    "Title": "Ini 5 Rekomendasi Sunscreen untuk Kulit Berminyak",
+    "Simple-desc": "Rekomendasi sunscreen terbaik untuk kulit berminyak. Dari CeraVe, La Roche-Posay, hingga Banana Boat. Bebas kilap dan tidak menyumbat pori.",
+    "Description": "Bagi pemilik kulit berminyak, pemilihan sunscreen yang tepat adalah kunci menjaga kesehatan kulit tanpa membuatnya semakin berminyak atau memicu jerawat. Cari sunscreen dengan formula ringan, bebas minyak (oil-free), dan berlabel non-comedogenic yang tidak menyumbat pori-pori. Sunscreen berbahan dasar gel atau cairan biasanya lebih cocok untuk kulit berminyak. Pastikan juga memilih sunscreen mengandung SPF 30 atau lebih tinggi. Rekomendasi sunscreen untuk kulit berminyak: CeraVe AM Facial Moisturizing Lotion with Sunscreen dengan tekstur ringan dan tidak menyebabkan white cast; La Roche Posay Anthelios UV Mune 400 Oil Control Gel Cream yang mengurangi kilap pada kulit; Votre Peau Daily Facial Sun Shield SPF 50 PA++ yang tidak menyumbat pori-pori; La Roche Posay Anthelios UV Mune 400 Invisible Fluid dengan perlindungan UVA ultra long; dan Banana Boat Sport Sunscreen SPF 50 Lotion dengan kandungan vitamin C dan E.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2024/08/01020108/Ini-5-Rekomendasi-Sunscreen-Untuk-Kulit-Berminyak.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "skincare-pria",
+    "tags": [
+      "acne",
+      "oily"
+    ],
+    "Title": "Ini Alasan Pria Juga Harus Pakai Skincare Wajah",
+    "Simple-desc": "Tak hanya wanita, pria juga butuh skincare. Ketahui alasan, tahapan, dan tips memilih produk skincare yang tepat untuk pria.",
+    "Description": "Tak hanya wanita, pria juga membutuhkan skincare guna menjaga kesehatan kulit wajah. Penggunaan skincare pria dibutuhkan karena jenis kulitnya cenderung lebih kasar, memiliki banyak folikel rambut, kandungan kolagen dan minyak atau sebum. Karena kondisi tersebut, pria sebenarnya lebih rentan mengalami masalah kulit. Alasan skincare pria diperlukan: aktivitas di luar ruangan membuat pori-pori tersumbat debu; mencegah dampak paparan sinar UV seperti bintik hitam dan penuaan dini; mengurangi keriput akibat hilangnya kolagen; menghilangkan noda di wajah akibat jerawat; serta meningkatkan rasa percaya diri. Tahapan penggunaan skincare pria: Facial Wash (cuci muka 2 kali sehari), Pelembap (setelah cuci muka), dan Tabir Surya (SPF minimal 30). Tips memilih skincare untuk pria: kenali jenis kulit, pilih produk yang sederhana, perhatikan kandungan bahan, dan gunakan tabir surya setiap hari.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/10/07075350/Ini-Alasan-Pria-Juga-Harus-pakai-Skincare-Wajah.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "skincare-cowok",
+    "tags": [
+      "acne",
+      "oily"
+    ],
+    "Title": "Skincare Cowok Berjerawat dan Berminyak, Auto Glowing",
+    "Simple-desc": "Panduan lengkap skincare untuk cowok dengan kulit berjerawat dan berminyak. Langkah dasar dan kandungan bahan aktif yang efektif.",
+    "Description": "Kulit berjerawat dan berminyak adalah kondisi umum yang sering dialami banyak cowok. Produksi minyak berlebih dapat menyumbat pori-pori dan menjadi tempat berkembang biak bakteri penyebab jerawat. Tanpa perawatan yang tepat, masalah kulit ini bisa memburuk dan memengaruhi kepercayaan diri. Kulit cowok cenderung memiliki kelenjar sebaceous yang lebih aktif, menyebabkan produksi minyak atau sebum yang lebih banyak. Langkah dasar skincare wajib: Pembersih wajah dengan Salicylic Acid (BHA) atau Tea Tree Oil; Toner untuk menyeimbangkan pH kulit; Serum dengan Niacinamide atau Centella Asiatica; Pelembap ringan water-based dan non-comedogenic; Tabir surya dengan SPF minimal 30. Kandungan skincare efektif: Salicylic Acid membersihkan pori-pori, Niacinamide mengurangi produksi minyak, Centella Asiatica menenangkan peradangan, Tea Tree Oil sebagai antimikroba alami, dan Hyaluronic Acid untuk hidrasi tanpa menyumbat pori.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/04/22100212/Skincare-dan-Kecantikan-748.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "glycolic-acid",
+    "tags": [
+      "acne",
+      "dry"
+    ],
+    "Title": "Ini Khasiat Glycolic Acid pada Kulit yang Perlu Diketahui",
+    "Simple-desc": "Glycolic acid adalah AHA yang efektif untuk eksfoliasi, mencerahkan kulit, menyamarkan noda, mengecilkan pori-pori, dan anti-aging.",
+    "Description": "Glycolic acid adalah jenis asam alfa-hidroksi (AHA) yang banyak digunakan dalam industri kosmetik dan dermatologi. Berasal dari tebu, zat ini merupakan asam karboksilat dengan struktur molekul terkecil di antara AHA lainnya. Hal ini menjadikannya sangat efektif dalam menembus lapisan terluar kulit. Glycolic acid bekerja dengan cara memecah perekat atau desmosom yang mengikat sel-sel kulit mati di lapisan epidermis. Proses eksfoliasi ini merangsang sel kulit untuk beregenerasi lebih cepat. Manfaat glycolic acid: memudarkan bekas jerawat dengan meningkatkan pergantian sel; anti penuaan dengan menghasilkan kolagen dan elastin; mencerahkan kulit dengan mengangkat sel kulit mati; menghaluskan kulit dan membuatnya lebih lembap; mengecilkan pori-pori dan mencegah sumbatan. Tips aman: mulai dengan konsentrasi rendah di bawah 10%, lakukan patch test, gunakan di malam hari, wajib gunakan tabir surya di pagi hari.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/11/03040642/Ini-Khasiat-Glycolic-Acid-pada-Kulit-yang-Perlu-Diketahui.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "sunscreen-moisturizer",
+    "tags": [
+      "acne",
+      "oily"
+    ],
+    "Title": "Sunscreen Sekaligus Moisturizer: Lembap dan Terlindungi",
+    "Simple-desc": "Tips memilih sunscreen yang juga berfungsi sebagai moisturizer untuk kulit berjerawat. Rekomendasi produk Wardah Acne Calming Sunscreen.",
+    "Description": "Memiliki kulit wajah yang rentan berjerawat sering kali membuat kita merasa dilema dalam memilih produk perawatan kulit, terutama tabir surya atau sunscreen. Banyak anggapan keliru bahwa penggunaan sunscreen justru akan menyumbat pori-pori dan memperparah jerawat. Padahal, paparan sinar ultraviolet (UV) tanpa perlindungan dapat memicu inflamasi yang lebih hebat pada jerawat. Penting untuk memilih formulasi yang tepat, yaitu yang bersifat non-comedogenic dan mengandung bahan aktif yang mampu menenangkan kemerahan. Rekomendasi produk: Wardah UV Shield Acne Calming Sunscreen SPF 50 PA++++ dengan Sebum Absorber untuk mengontrol minyak serta Panthenol dan Allantoin untuk menenangkan kulit; Wardah Acnederm Pure Foaming Cleanser dengan Salicylic Acid; Wardah Acnederm Day Moisturizer dengan formula gel ringan. Tips: gunakan 15-30 menit sebelum terpapar sinar matahari, re-apply setiap 2-3 jam.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/05/04054745/Skincare-dan-Kecantikan-100.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "skincare-mistakes",
+    "tags": [
+      "acne",
+      "dry",
+      "oily"
+    ],
+    "Title": "Common Skincare Mistakes That May Be Harming Your Skin",
+    "Simple-desc": "Avoid these common skincare mistakes: over-cleansing, skipping sunscreen, and using too many active ingredients at once.",
+    "Description": "Washing your face too often or using the wrong cleanser can strip your skin of its natural oils. Your skin compensates by producing even more sebum, leading to breakouts and irritation. UV exposure is the number one cause of premature aging. Even on cloudy days, UVA rays penetrate through clouds and windows. Always apply SPF 30+ every morning. Layering retinol, AHA, BHA, and vitamin C all at once overwhelms your skin barrier. Introduce one active at a time and wait 2-4 weeks before adding another. Use lukewarm water instead of hot water, pat dry with a clean towel never rub, apply products from thinnest to thickest consistency, and always patch-test new products on your jawline first.",
+    "Link-Image": "/assets/images/article-mistakes.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "simple-routine",
+    "tags": [
+      "combination"
+    ],
+    "Title": "How to Build a Simple Skincare Routine That Actually Works",
+    "Simple-desc": "A basic three-step routine: cleanse, moisturize, and protect with sunscreen. Keep it simple and consistent for the best results.",
+    "Description": "A basic routine involves three steps: cleansing, moisturizing, and applying sunscreen. Cleanser removes dirt, oil, and impurities. Moisturizer keeps the skin hydrated and supports the skin barrier. Sunscreen protects against UV damage and premature aging. A minimal routine maintains healthy skin, prevents dehydration and irritation, supports long-term skin health, and is suitable for most skin types. Choose products that match your skin type. Introduce new products gradually. Avoid using too many active ingredients at once. Be patient and consistent with your routine. Cleanse morning and night, apply moisturizer to damp skin for better absorption, sunscreen is non-negotiable rain or shine, and consistency beats complexity every time.",
+    "Link-Image": "/assets/images/article-routine.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "lifestyle-habits",
+    "tags": [
+      "acne",
+      "dry",
+      "oily"
+    ],
+    "Title": "How Lifestyle Habits Affect Your Skin Health",
+    "Simple-desc": "Your skin reflects your overall health. Sleep, diet, stress levels, and hydration all play crucial roles in skin appearance.",
+    "Description": "During deep sleep, your body increases blood flow to the skin, rebuilding collagen and repairing UV damage. Aim for 7-9 hours of quality sleep each night to support natural cell turnover. High-glycemic foods and dairy have been linked to increased acne in some individuals. Incorporate omega-3 fatty acids, antioxidants from fruits and vegetables, and plenty of water. Cortisol spikes from chronic stress trigger excess oil production and inflammation. Practice mindfulness, exercise regularly, and set boundaries to keep stress in check. Drink at least 8 glasses of water daily, change pillowcases weekly to reduce bacteria, avoid touching your face throughout the day, and exercise boosts circulation for a natural glow.",
+    "Link-Image": "/assets/images/article-lifestyle.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "acne-basics",
+    "tags": [
+      "acne"
+    ],
+    "Title": "Acne Basics: Understanding Causes and Prevention",
+    "Simple-desc": "Acne occurs when hair follicles become clogged with oil and dead skin cells. Learn the types, triggers, and prevention strategies.",
+    "Description": "Blackheads and whiteheads are non-inflammatory comedones. Papules and pustules involve inflammation. Nodules and cysts are deep, painful lesions that often require professional treatment. Hormonal fluctuations, excess sebum production, bacteria (C. acnes), and clogged pores are the four primary acne triggers. External factors include humidity, pore-clogging cosmetics, and friction. Use non-comedogenic products, cleanse after sweating, avoid picking or squeezing blemishes, and consider ingredients like salicylic acid or benzoyl peroxide for mild to moderate acne. Use BHA (salicylic acid) to unclog pores, benzoyl peroxide kills acne-causing bacteria, never pop pimples it causes scarring, and see a dermatologist for persistent or severe acne.",
+    "Link-Image": "/assets/images/SkincareBottleMockup2.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "sunscreen-importance",
+    "tags": [
+      "acne",
+      "dry",
+      "oily",
+      "sensitive",
+      "combination"
+    ],
+    "Title": "The Importance of Sunscreen for Healthy Skin",
+    "Simple-desc": "Sunscreen is the most effective anti-aging product. It protects against UVA and UVB rays that cause wrinkles, dark spots, and skin cancer.",
+    "Description": "UVA rays penetrate deep into the skin causing premature aging and wrinkles. UVB rays burn the surface. Broad-spectrum sunscreen protects against both types. Look for SPF 30 or higher with broad-spectrum protection. Chemical sunscreens absorb UV rays while physical (mineral) sunscreens reflect them. Choose based on your skin sensitivity. Apply a generous amount (about two finger-lengths for the face) 15 minutes before sun exposure. Reapply every 2 hours, or immediately after swimming or sweating. SPF 30 blocks 97% of UVB rays, don't forget ears neck and hands, and mineral sunscreen is best for sensitive skin.",
+    "Link-Image": "/assets/images/SkincareBottleMockup2.png",
+    "Source": "SkinGlow Editorial Team"
   },
   {
     "id": "skin-type",
-    "title": "Understanding Your Skin Type: The First Step to Better Skincare",
-    "tags": ["combination", "dry", "oily"],
-    "content": "Knowing your skin type is essential for choosing the right products and building an effective routine. The five main types are normal, dry, oily, combination, and sensitive.",
-    "sections": [
-      {
-        "heading": "Identifying Your Skin Type",
-        "text": "Wash your face with a gentle cleanser and wait one hour without applying any products. If your skin feels tight, it is dry. If it is shiny all over, it is oily. Shiny T-zone with dry cheeks means combination."
-      },
-      {
-        "heading": "Products by Skin Type",
-        "text": "Dry skin benefits from cream cleansers and rich moisturizers. Oily skin does well with gel cleansers and lightweight lotions. Combination skin needs a balanced approach."
-      },
-      {
-        "heading": "Skin Type Can Change",
-        "text": "Your skin type is not permanent. Hormones, climate, age, and medications can all shift it. Re-evaluate your skin every season and adjust your routine accordingly."
-      }
+    "tags": [
+      "combination",
+      "dry",
+      "oily",
+      "sensitive"
     ],
-    "tips": [
-      "Do the bare-face test to identify your type",
-      "Oily skin still needs moisturizer",
-      "Sensitive skin should avoid fragrance",
-      "Reassess your skin type every season"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "Understanding Your Skin Type: The First Step to Better Skincare",
+    "Simple-desc": "Knowing your skin type is essential. The five main types are normal, dry, oily, combination, and sensitive.",
+    "Description": "Wash your face with a gentle cleanser and wait one hour without applying any products. If your skin feels tight it is dry. If it is shiny all over it is oily. Shiny T-zone with dry cheeks means combination. Dry skin benefits from cream cleansers and rich moisturizers. Oily skin does well with gel cleansers and lightweight lotions. Combination skin needs a balanced approach. Your skin type is not permanent. Hormones, climate, age, and medications can all shift it. Re-evaluate your skin every season and adjust your routine accordingly. Do the bare-face test to identify your type, oily skin still needs moisturizer, sensitive skin should avoid fragrance, and reassess your skin type every season.",
+    "Link-Image": "/assets/images/SkincareBottleMockup2.png",
+    "Source": "SkinGlow Editorial Team"
   },
   {
     "id": "dry-skin-relief",
-    "title": "The Best Ingredients for Dry Skin Relief",
-    "tags": ["dry"],
-    "content": "Dry skin needs ingredients that restore the skin barrier and lock in moisture. Using the right humectants, emollients, and occlusives can transform dehydrated skin into a healthy, glowing complexion.",
-    "sections": [
-      {
-        "heading": "Key Hydrating Ingredients",
-        "text": "Hyaluronic Acid holds 1000x its weight in water, drawing moisture into the skin. Glycerin is a gentle humectant suitable for all skin types. Ceramides restore and strengthen the skin barrier. Squalane provides lightweight, non-greasy hydration."
-      },
-      {
-        "heading": "Building a Dry Skin Routine",
-        "text": "Start with a cream or milk cleanser, follow with a hydrating toner, apply hyaluronic acid serum on damp skin, seal with a rich moisturizer containing ceramides, and finish with SPF in the morning. At night, consider adding a facial oil."
-      },
-      {
-        "heading": "Ingredients to Avoid",
-        "text": "Stay away from alcohol-based toners, sulfates in cleansers, and high concentrations of AHAs. These ingredients strip the skin barrier and worsen dryness."
-      }
+    "tags": [
+      "dry",
+      "sensitive"
     ],
-    "tips": [
-      "Use lukewarm water — hot water strips natural oils",
-      "Apply moisturizer while skin is still damp",
-      "Use a humidifier in dry environments, especially at night",
-      "Exfoliate gently once a week maximum",
-      "Layer products from thinnest to thickest consistency"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "The Best Ingredients for Dry Skin Relief",
+    "Simple-desc": "Dry skin needs ingredients that restore the skin barrier and lock in moisture. Learn about hyaluronic acid, ceramides, and squalane.",
+    "Description": "Hyaluronic Acid holds 1000x its weight in water, drawing moisture into the skin. Glycerin is a gentle humectant suitable for all skin types. Ceramides restore and strengthen the skin barrier. Squalane provides lightweight non-greasy hydration. Start with a cream or milk cleanser, follow with a hydrating toner, apply hyaluronic acid serum on damp skin, seal with a rich moisturizer containing ceramides, and finish with SPF in the morning. Stay away from alcohol-based toners, sulfates in cleansers, and high concentrations of AHAs. These ingredients strip the skin barrier and worsen dryness. Use lukewarm water, apply moisturizer while skin is still damp, use a humidifier in dry environments, and exfoliate gently once a week maximum.",
+    "Link-Image": "/assets/images/SkincareBottleMockup2.png",
+    "Source": "SkinGlow Editorial Team"
   },
   {
     "id": "oily-skin-care",
-    "title": "Oily Skin Care: How to Control Shine Naturally",
-    "tags": ["oily"],
-    "content": "Oily skin can be frustrating, but with the right approach, you can balance sebum production without stripping your skin. The key is to manage oil production while maintaining a healthy skin barrier.",
-    "sections": [
-      {
-        "heading": "Understanding Sebum Production",
-        "text": "Genetics, hormones, and climate all influence how much oil your skin produces. Over-cleansing can actually trigger more oil production as the skin tries to compensate for lost moisture."
-      },
-      {
-        "heading": "Best Ingredients for Oily Skin",
-        "text": "Niacinamide (Vitamin B3) regulates oil production and minimizes pores. Salicylic acid (BHA) exfoliates inside pores. Clay masks absorb excess sebum. Lightweight gel moisturizers provide hydration without clogging pores."
-      },
-      {
-        "heading": "Daily Routine for Oily Skin",
-        "text": "Use a foaming gel cleanser morning and night. Apply a niacinamide serum after cleansing. Moisturize with an oil-free gel moisturizer. In the morning, finish with a matte SPF. At night, consider a gentle BHA exfoliant 2-3 times per week."
-      }
+    "tags": [
+      "oily"
     ],
-    "tips": [
-      "Don't skip moisturizer — use oil-free gel formulas",
-      "Blotting papers are better than washing mid-day",
-      "Look for 'non-comedogenic' on all product labels",
-      "Clay masks 1-2 times per week help control shine",
-      "Avoid heavy creams and oil-based products"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
-  },
-  {
-    "id": "sensitive-skin-guide",
-    "title": "Sensitive Skin Guide: Soothing Products and Routine Tips",
-    "tags": ["sensitive"],
-    "content": "Sensitive skin requires extra care and attention. Choosing the wrong products can trigger redness, itching, burning, or stinging sensations. A minimalist routine with soothing ingredients is the best approach.",
-    "sections": [
-      {
-        "heading": "Common Irritants to Avoid",
-        "text": "Fragrance (both natural and synthetic), essential oils, denatured alcohol, sulfates, and harsh physical exfoliants are common triggers for sensitive skin. Always read ingredient labels and avoid products with long lists of botanical extracts."
-      },
-      {
-        "heading": "Soothing Ingredients to Look For",
-        "text": "Centella Asiatica (Cica) calms inflammation and supports healing. Aloe Vera provides hydration and soothes irritation. Oat extract protects the skin barrier with beta-glucans. Panthenol (Vitamin B5) promotes wound healing and reduces redness."
-      },
-      {
-        "heading": "Building a Sensitive Skin Routine",
-        "text": "Keep it minimal: gentle cream cleanser, hydrating toner with soothing ingredients, a simple moisturizer with ceramides, and a mineral (physical) sunscreen. Introduce new products one at a time with two weeks between each."
-      }
-    ],
-    "tips": [
-      "Stick to fragrance-free and hypoallergenic products",
-      "Patch test on your inner arm before applying to face",
-      "Avoid hot water and extreme temperature changes",
-      "Use a mineral (zinc oxide) sunscreen instead of chemical",
-      "Less is more — a 3-step routine is often enough"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
-  },
-  {
-    "id": "nighttime-skincare",
-    "title": "Nighttime Skincare: Why Your PM Routine Matters",
-    "tags": ["combination"],
-    "content": "Your skin works hard while you sleep — cell turnover accelerates and your skin becomes more receptive to active ingredients. A proper nighttime routine can dramatically improve your skin's health and appearance.",
-    "sections": [
-      {
-        "heading": "The Science of Night Repair",
-        "text": "During sleep, skin blood flow increases by 40-50%, cell regeneration accelerates, and the skin barrier repairs itself. This biological shift makes nighttime the perfect opportunity to apply reparative ingredients like retinoids, peptides, and growth factors."
-      },
-      {
-        "heading": "The Ideal PM Routine",
-        "text": "Step 1: Double cleanse (oil-based cleanser followed by water-based). Step 2: Apply treatment serums (retinol, niacinamide, or peptides). Step 3: Apply a nourishing night cream. Step 4: Use an eye cream for the delicate under-eye area."
-      },
-      {
-        "heading": "Ingredients That Work Best at Night",
-        "text": "Retinoids (retinol, tretinoin) increase cell turnover but degrade in sunlight — use only at night. Peptides stimulate collagen production. AHAs exfoliate while you sleep. Bakuchiol is a gentle, plant-based alternative to retinol."
-      }
-    ],
-    "tips": [
-      "Always remove makeup before bed — never sleep with it on",
-      "Apply retinol only at night — it degrades in sunlight",
-      "Use a silk or satin pillowcase to reduce friction",
-      "Keep water by your bedside to stay hydrated overnight",
-      "Consistency matters more than intensity — start simple and build up"
-    ],
-    "image": "/assets/images/SkincareBottleMockup2.png"
+    "Title": "Oily Skin Care: How to Control Shine Naturally",
+    "Simple-desc": "Manage oily skin without stripping. Balance sebum production with niacinamide, salicylic acid, and lightweight gel moisturizers.",
+    "Description": "Genetics, hormones, and climate all influence how much oil your skin produces. Over-cleansing can actually trigger more oil production as the skin tries to compensate for lost moisture. Niacinamide (Vitamin B3) regulates oil production and minimizes pores. Salicylic acid (BHA) exfoliates inside pores. Clay masks absorb excess sebum. Lightweight gel moisturizers provide hydration without clogging pores. Use a foaming gel cleanser morning and night. Apply a niacinamide serum after cleansing. Moisturize with an oil-free gel moisturizer. In the morning finish with a matte SPF. At night consider a gentle BHA exfoliant 2-3 times per week. Dont skip moisturizer use oil-free gel formulas, blotting papers are better than washing mid-day, and look for non-comedogenic on all product labels.",
+    "Link-Image": "/assets/images/SkincareBottleMockup2.png",
+    "Source": "SkinGlow Editorial Team"
   }
 ]

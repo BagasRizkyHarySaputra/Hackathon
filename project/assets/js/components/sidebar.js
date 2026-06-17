@@ -7,7 +7,7 @@
   var navItems = [
     { id: 'home', label: 'Home', icon: 'home.svg', href: '/pages/home/index.html' },
     { id: 'community', label: 'Community', icon: 'Message.svg', href: '/pages/community/index.html' },
-    { id: 'scan', label: 'Scan', icon: 'camera.svg', href: '/pages/scan/index.html' },
+    { id: 'scan', label: 'Scan', icon: 'camera.svg', href: '/pages/scan-page/index.html' },
     { id: 'diary', label: 'Diary', icon: 'document.svg', href: '/pages/artikel/index.html' },
     { id: 'profile', label: 'Profile', icon: 'user.svg', href: '/pages/profile/index.html' }
   ];

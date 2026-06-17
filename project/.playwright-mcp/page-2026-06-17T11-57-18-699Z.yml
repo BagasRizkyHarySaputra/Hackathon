@@ -1,0 +1,77 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - img [ref=e21]
+        - generic [ref=e24]:
+          - heading "Username" [level=1] [ref=e25]
+          - generic [ref=e26]:
+            - generic [ref=e27]: Combination
+            - button "Edit" [ref=e28] [cursor=pointer]:
+              - img "Edit" [ref=e29]
+          - generic [ref=e31]: Member since Juni 2026
+        - img [ref=e34] [cursor=pointer]
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]: Skin Type
+            - generic [ref=e42]:
+              - img "Skin Type" [ref=e44]
+              - generic [ref=e45]:
+                - generic [ref=e46]: Combination
+                - paragraph [ref=e47]: Balance but can be oily on T-Zone and dry on cheeks.
+          - generic [ref=e48]:
+            - generic [ref=e49]: Skin Score
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - generic [ref=e55]:
+                - generic [ref=e56]: "80"
+                - generic [ref=e57]: Good
+        - generic [ref=e59]:
+          - generic [ref=e60]: Skincare Routine
+          - generic [ref=e61]:
+            - button "Morning Routine" [ref=e62] [cursor=pointer]
+            - button "Night Routine" [ref=e63] [cursor=pointer]
+          - generic [ref=e64]:
+            - generic [ref=e67]:
+              - generic [ref=e68]: Facial Treatment Gentle Cleanser
+              - paragraph [ref=e69]: Gentle foaming cleanser with low pH formula for daily face wash
+            - generic [ref=e72]:
+              - generic [ref=e73]: CERAMIC SKIN Saviour Moisturizer Gel
+              - paragraph [ref=e74]: Ceramide-infused gel moisturizer to restore skin barrier
+            - generic [ref=e77]:
+              - generic [ref=e78]: Holyshield! Sunscreen Shake Mist SPF46 PA+++
+              - paragraph [ref=e79]: Lightweight sun protection mist with PA+++ rating
+      - generic [ref=e80]:
+        - generic [ref=e81]: Settings & Account
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - img [ref=e85]
+            - generic [ref=e88]: Account
+          - generic [ref=e89] [cursor=pointer]:
+            - img [ref=e91]
+            - generic [ref=e94]: Notification
+          - generic [ref=e95] [cursor=pointer]:
+            - img "Privacy" [ref=e97]
+            - generic [ref=e98]: Privacy
+          - generic [ref=e99] [cursor=pointer]:
+            - img "Help" [ref=e101]
+            - generic [ref=e102]: Help Center
+          - generic [ref=e103]:
+            - img "Sign Out" [ref=e105]
+            - generic [ref=e106]: Sign Out

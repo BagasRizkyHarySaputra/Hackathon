@@ -193,7 +193,7 @@ function createLoginComponent() {
           await new Promise(resolve => setTimeout(resolve, 1200));
 
           if (this.activeTab === 'signin') {
-            if (this.email !== 'contoh@gmail.com' || this.password !== 'contoh') {
+            if (this.email !== 'contoh@gmail.com' || this.password !== 'contoh123') {
               this.errorMessage = 'Email atau password salah.';
               this.isSubmitting = false;
               return;
@@ -208,8 +208,7 @@ function createLoginComponent() {
           };
 
           /** Update auth store */
-          Alpine.store('auth').setToken(mockToken);
-          Alpine.store('auth').setUser(mockUser);
+          Alpine.store('auth').login(mockToken, mockUser);
 
           console.log('[INFO] [Login] Mock login successful.', { user: mockUser });
 
@@ -223,8 +222,8 @@ function createLoginComponent() {
           );
 
           setTimeout(() => {
-            window.location.href = '/pages/home/index.html';
-          }, 1500);
+            window.location.href = '/pages/scan/index.html';
+          }, 800);
         } else {
           /**
            * Phase 2: Real API call via HTMX

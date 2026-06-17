@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;overflow:hidden;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — Scan your skin" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>SkinGlow — Scan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
+  <link rel="stylesheet" href="/assets/css/components/scan-page.css" />
+</head>
+<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+  <div class="scan-page-viewport">
+    <!-- Blurred gradient background (matching the app pattern) -->
+    <div class="loading-bg-blur" aria-hidden="true">
+      <div class="loading-bg-blur__blob--pink-tl"></div>
+      <div class="loading-bg-blur__blob--blue-tr"></div>
+      <div class="loading-bg-blur__blob--dusty-center"></div>
+      <div class="loading-bg-blur__blob--blue-bl"></div>
+      <div class="loading-bg-blur__blob--pink-br"></div>
+      <div class="loading-bg-blur__blob--slate"></div>
+    </div>
+
+    <div class="home-app app-layout">
+      <!-- Sidebar: data-active="scan" highlights the camera icon -->
+      <div id="sidebar-root" data-active="scan"></div>
+
+      <main class="scan-main">
+        <header id="header-root" class="home-header" data-show-greeting="false"></header>
+
+        <div class="scan-card-wrap">
+          <!-- Card Header Row: back / title / help -->
+          <div class="scan-card-header">
+            <button class="scan-card-header__back" aria-label="Back" onclick="history.back()">
+              <img src="/assets/images/scan-page/kurang-dari.svg" alt="<" class="scan-icon-back" />
+            </button>
+            <h1 class="scan-card-header__title">Ready to scan your skin?</h1>
+            <button class="scan-card-header__help" aria-label="Help">
+              <img src="/assets/images/scan-page/tanda-tanya.svg" alt="?" class="scan-icon-help" />
+            </button>
+          </div>
+
+          <!-- Camera / Scan Area -->
+          <div class="scan-camera-area" x-data="createScanPageComponent()">
+            <video
+              class="scan-camera-area__video"
+              x-ref="video"
+              autoplay
+              playsinline
+              muted
+              aria-label="Camera preview"
+            ></video>
+
+            <canvas
+              class="scan-camera-area__canvas"
+              x-ref="canvas"
+              aria-hidden="true"
+            ></canvas>
+
+            <img
+              x-show="capturedImage"
+              :src="capturedImage"
+              class="scan-camera-area__preview"
+              alt="Captured skin photo"
+            />
+
+            <div class="scan-frame" aria-hidden="true">
+              <div class="scan-frame__corner scan-frame__corner--tl"></div>
+              <div class="scan-frame__corner scan-frame__corner--tr"></div>
+              <div class="scan-frame__corner scan-frame__corner--bl"></div>
+              <div class="scan-frame__corner scan-frame__corner--br"></div>
+            </div>
+
+            <div class="scan-camera-error" x-show="cameraError" x-text="cameraError" aria-live="polite"></div>
+
+            <button
+              class="scan-camera-btn"
+              aria-label="Capture photo"
+              @click="capturePhoto()"
+              :disabled="!cameraReady"
+            >
+              <img src="/assets/images/scan-page/Camera.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ═══════════ Results Bottom Sheet ═══════════ -->
+    <div
+      class="scan-results-overlay"
+      x-show="showPopup"
+      x-transition:enter="overlay-enter"
+      x-transition:enter-start="overlay-enter-start"
+      x-transition:enter-end="overlay-enter-end"
+      x-transition:leave="overlay-leave"
+      x-transition:leave-start="overlay-leave-start"
+      x-transition:leave-end="overlay-leave-end"
+      @click.self="closePopup()"
+      style="display: none;"
+    >
+      <div
+        class="scan-results-sheet"
+        x-show="showPopup"
+        x-transition:enter="sheet-enter"
+        x-transition:enter-start="sheet-enter-start"
+        x-transition:enter-end="sheet-enter-end"
+        x-transition:leave="sheet-leave"
+        x-transition:leave-start="sheet-leave-start"
+        x-transition:leave-end="sheet-leave-end"
+      >
+        <!-- Drag handle -->
+        <div class="scan-results-sheet__handle"></div>
+
+        <!-- Captured photo with analysis overlay -->
+        <div class="scan-results-photo">
+          <img :src="capturedImage" alt="Captured skin" class="scan-results-photo__img" />
+
+          <!-- Analysis markers -->
+          <template x-if="analysis">
+            <div class="scan-results-markers">
+              <template x-for="marker in analysis.markers" :key="marker.id">
+                <div
+                  class="scan-results-marker"
+                  :style="`left: ${marker.x}%; top: ${marker.y}%`"
+                >
+                  <div class="scan-results-marker__dot"></div>
+                  <div class="scan-results-marker__ring"></div>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+
+        <!-- Analysis stats -->
+        <div class="scan-results-stats" x-show="analysis">
+          <template x-if="analysis">
+            <div class="scan-results-stats__list">
+              <template x-for="stat in analysis.stats" :key="stat.label">
+                <div class="scan-results-stat">
+                  <span class="scan-results-stat__label" x-text="stat.label"></span>
+                  <span class="scan-results-stat__value" x-text="stat.value"></span>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+
+        <!-- Product recommendation -->
+        <div class="scan-results-product" x-show="product">
+          <div class="scan-results-product__image-wrap">
+            <img src="/assets/images/scan-page/product-cleanser.png" alt="Product" class="scan-results-product__image" onerror="this.style.display='none'" />
+          </div>
+          <div class="scan-results-product__info">
+            <h3 class="scan-results-product__name" x-text="product?.name"></h3>
+            <p class="scan-results-product__desc" x-text="product?.description"></p>
+
+            <!-- Routine toggles -->
+            <div class="scan-results-product__routine">
+              <button
+                class="scan-results-routine-btn"
+                :class="{ 'active': routineType === 'morning' }"
+                @click="routineType = 'morning'"
+              >
+                <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
+                <span>Morning</span>
+              </button>
+              <button
+                class="scan-results-routine-btn"
+                :class="{ 'active': routineType === 'night' }"
+                @click="routineType = 'night'"
+              >
+                <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
+                <span>Night</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save routine button -->
+        <div class="scan-results-actions">
+          <button class="scan-results-save-btn" @click="saveRoutine()">
+            <span>Save Routine</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Swipe dots -->
+        <div class="scan-results-dots">
+          <span class="scan-results-dot scan-results-dot--active"></span>
+          <span class="scan-results-dot"></span>
+          <span class="scan-results-dot"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/config/app.config.js"></script>
+  <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+  <script src="/assets/js/alpine/components/scan.js"></script>
+  <script src="/assets/js/router.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>

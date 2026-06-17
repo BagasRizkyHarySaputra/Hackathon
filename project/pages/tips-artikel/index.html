@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
   <link rel="stylesheet" href="/assets/css/components/home.css" />
   <link rel="stylesheet" href="/assets/css/components/tips-artikel.css" />
 </head>
@@ -25,30 +27,11 @@
       <div class="article-bg__blob article-bg__blob--slate-tr"></div>
     </div>
 
-    <div class="article-app">
+    <div class="article-app app-layout">
       <div id="sidebar-root" data-active="diary"></div>
 
-      <main class="article-main">
-        <!-- Header -->
-        <header class="article-header">
-          <span class="article-header__brand">L I C I N</span>
-          <div class="article-header__actions">
-            <button class="article-header__back" aria-label="Back">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"/>
-                <polyline points="12 19 5 12 12 5"/>
-              </svg>
-            </button>
-            <span class="article-header__notif-dot"></span>
-            <button class="article-header__profile" aria-label="Profile">
-              <svg viewBox="0 0 55 59.71" fill="none" width="32" height="35">
-                <ellipse cx="27.5" cy="15" rx="15.7" ry="13.7" fill="#95B4C6" opacity="0.8"/>
-                <path d="M0 45.71 C0 34 12 25 27.5 25 C43 25 55 34 55 45.71 L55 59.71 L0 59.71 Z" fill="#95B4C6" opacity="0.8"/>
-              </svg>
-            </button>
-          </div>
-        </header>
-
+      <main class="article-main app-main app-main--scroll">
+        <header id="header-root" class="home-header"></header>
         <!-- Toolbar: Tags + Search -->
         <div class="article-toolbar">
           <div class="article-tags">
@@ -123,6 +106,7 @@
     </div>
   </div>
   <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
 <script src="/assets/js/router.js"></script>
 </body>
 </html>

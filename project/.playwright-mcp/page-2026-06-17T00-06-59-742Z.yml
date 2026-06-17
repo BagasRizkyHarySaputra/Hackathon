@@ -1,0 +1,55 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - button "Notifications" [ref=e21] [cursor=pointer]
+        - button "Profile" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]: Acne
+          - generic [ref=e26] [cursor=pointer]: Dry Skin
+          - generic [ref=e27] [cursor=pointer]: Oily Skin
+          - generic [ref=e28] [cursor=pointer]: Sensitive
+          - generic [ref=e29] [cursor=pointer]: Combination
+        - generic [ref=e30]:
+          - textbox "Search..." [ref=e31]
+          - img [ref=e32]
+      - generic [ref=e35]:
+        - article [ref=e36]:
+          - heading "Common Skincare Mistakes That May Be Harming Your Skin" [level=3] [ref=e39]
+          - button "Read article" [ref=e42] [cursor=pointer]
+        - article [ref=e43]:
+          - generic [ref=e44]:
+            - heading "How to Build a Simple Skincare Routine That Actually Works" [level=3] [ref=e45]
+            - button "Read article" [ref=e46] [cursor=pointer]
+        - article [ref=e48]:
+          - generic [ref=e49]:
+            - heading "How Lifestyle Habits Affect Your Skin Health" [level=3] [ref=e50]
+            - button "Read article" [ref=e51] [cursor=pointer]
+        - article [ref=e52]:
+          - generic [ref=e53]:
+            - 'heading "Acne Basics: Understanding Causes and Prevention" [level=3] [ref=e54]'
+            - button "Read article" [ref=e55] [cursor=pointer]
+        - article [ref=e56]:
+          - generic [ref=e57]:
+            - heading "The Importance of Sunscreen for Healthy Skin" [level=3] [ref=e58]
+            - button "Read article" [ref=e59] [cursor=pointer]
+        - article [ref=e60]:
+          - generic [ref=e61]:
+            - 'heading "Understanding Your Skin Type: The First Step to Better Skincare" [level=3] [ref=e62]'
+            - button "Read article" [ref=e63] [cursor=pointer]

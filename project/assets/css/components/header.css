@@ -1,0 +1,104 @@
+/* ──────────────────────────────────────────────
+ * Header Component — Extracted from global.css
+ * ────────────────────────────────────────────── */
+
+/* ─── Header ─── */
+.home-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.67vw;
+  margin-bottom: 1.37vh;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  padding-top: 8vh;
+}
+
+.home-header__greeting {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(1.4rem, 2.78vw, 2.5rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  line-height: 1.2;
+}
+
+.home-header__sub {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.75rem, 1.11vw, 1rem);
+  color: rgba(43, 43, 43, 0.8);
+  margin-top: 0.39vh;
+  font-weight: 500;
+}
+
+.home-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* ─── Avatar / Profile Button ─── */
+.avatar-btn {
+  width: 4vw;
+  max-width: 80px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6E7F99;
+  background: #E8EDF5;
+  box-shadow: 
+    -4px -4px 10px rgba(255, 255, 255, 0.8),
+    4px 4px 10px rgba(110, 127, 153, 0.2),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+    inset -2px -2px 5px rgba(110, 127, 153, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: box-shadow 0.2s;
+}
+
+.avatar-btn:hover {
+  box-shadow: 
+    -2px -2px 5px rgba(255, 255, 255, 0.8),
+    2px 2px 5px rgba(110, 127, 153, 0.2);
+}
+
+.avatar-btn__icon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+/* ─── Notification Button ─── */
+.header-action-btn {
+  width: 3.5vw;
+  max-width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E8EDF5;
+  box-shadow: 
+    -4px -4px 10px rgba(255, 255, 255, 0.8),
+    4px 4px 10px rgba(110, 127, 153, 0.2),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+    inset -2px -2px 5px rgba(110, 127, 153, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.header-action-btn:hover {
+  box-shadow: 
+    -2px -2px 5px rgba(255, 255, 255, 0.8),
+    2px 2px 5px rgba(110, 127, 153, 0.2);
+}
+
+.header-action-icon {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
