@@ -15,7 +15,7 @@
   '</div>';
 
   if (showGreeting) {
-    html = '<div>' +
+    html = '<div class="home-header__greeting-wrap">' +
       '<h1 class="home-header__greeting">Hello, ' + greetingName + '!</h1>' +
       '<p class="home-header__sub">Ready to check your skin today?</p>' +
     '</div>' + html;

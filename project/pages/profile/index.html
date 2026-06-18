@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/assets/css/components/global.css" />
   <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/header.css" />
+  <link rel="stylesheet" href="/assets/css/components/account.css" />
   <link rel="stylesheet" href="/assets/css/components/profile.css" />
 </head>
 <body style="height:100%;overflow:hidden;">
@@ -20,7 +21,7 @@
     <div class="profile-app">
       <div id="sidebar-root" data-active="profile"></div>
 
-      <main class="profile-main app-main app-main--scroll">
+      <main class="app-main app-main--scroll">
         <!-- Blurred gradient background -->
         <div class="loading-bg-blur" aria-hidden="true">
           <div class="loading-bg-blur__blob--pink-tl"></div>
@@ -35,27 +36,24 @@
 
           <header id="header-root" class="home-header"></header>
 
-          <!-- ═══ Profile Info ═══ -->
-          <div class="profile-header">
-            <div class="profile-avatar-wrap">
-              <svg viewBox="0 0 100 100" fill="none">
-                <ellipse cx="50" cy="36" rx="28" ry="26" fill="#FFFFFF" opacity="0.9"/>
-                <path d="M10 85 C10 58 28 46 50 46 C72 46 90 58 90 85 L90 100 L10 100 Z" fill="#FFFFFF" opacity="0.9"/>
-              </svg>
+          <!-- ═══ Profile Header (sama persis dengan account page) ═══ -->
+          <div class="account-profile-header">
+            <div class="account-avatar-wrap">
+              <img class="account-avatar-img" src="/assets/images/profile/avatar-default.png" alt="Avatar" id="profile-avatar-img" />
+              <input type="file" id="profile-avatar-upload" accept="image/*" hidden />
+              <button class="account-avatar-edit" type="button" id="profile-avatar-edit-btn">
+                <img class="account-edit" src="/assets/icons/profile/edit.svg" alt="Edit" />
+              </button>
             </div>
-            <div class="profile-header__info">
-              <h1 class="profile-header__name">Username</h1>
-              <div class="profile-header__row">
-                <span class="profile-header__skin-type">Combination</span>
-                <button class="profile-header__edit-badge">
-                  <img src="/assets/icons/profile/edit.svg" alt="Edit" width="28" height="28" />
-                </button>
-              </div>
-              <div class="profile-header__member">
+            <div class="account-profile-header__info">
+              <h1 class="account-profile-header__name">Username</h1>
+              <div class="account-profile-header__type">Combination</div>
+              <div class="account-profile-header__member">
                 <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
                 <span>Member since Juni 2026</span>
               </div>
             </div>
+            <button class="account-edit-btn" onclick="location.href='/pages/profile/edit-profile.html'">Edit Profile</button>
           </div>
 
           <!-- ═══ Content Grid ═══ -->
@@ -115,7 +113,7 @@
                 <div class="routine-items" id="routine-morning">
                   <div class="routine-item">
                     <div class="routine-item__img">
-                      <img src="/assets/images/profile/product-1.png" alt="" width="40" height="40" />
+                      <img src="/assets/images/profile/product-1.png" alt="" />
                     </div>
                     <div class="routine-item__info">
                       <div class="routine-item__name">Facial Treatment Gentle Cleanser</div>
@@ -124,7 +122,7 @@
                   </div>
                   <div class="routine-item">
                     <div class="routine-item__img">
-                      <img src="/assets/images/profile/product-2.png" alt="" width="40" height="40" />
+                      <img src="/assets/images/profile/product-2.png" alt="" />
                     </div>
                     <div class="routine-item__info">
                       <div class="routine-item__name">CERAMIC SKIN Saviour Moisturizer Gel</div>
@@ -133,7 +131,7 @@
                   </div>
                   <div class="routine-item">
                     <div class="routine-item__img">
-                      <img src="/assets/images/profile/product-3.png" alt="" width="40" height="40" />
+                      <img src="/assets/images/profile/product-3.png" alt="" />
                     </div>
                     <div class="routine-item__info">
                       <div class="routine-item__name">Holyshield! Sunscreen Shake Mist SPF46 PA+++</div>
@@ -394,6 +392,97 @@
           document.body.style.overflow = '';
         }
       });
+
+      // ── Avatar Upload & Compress (sama persis dengan account page) ──
+      var avatarImg = document.getElementById('profile-avatar-img');
+      var avatarUpload = document.getElementById('profile-avatar-upload');
+      var avatarEditBtn = document.getElementById('profile-avatar-edit-btn');
+
+      if (avatarEditBtn && avatarUpload) {
+        avatarEditBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          avatarUpload.click();
+        });
+      }
+
+      if (avatarUpload && avatarImg) {
+        avatarUpload.addEventListener('change', function(e) {
+          var file = e.target.files && e.target.files[0];
+          if (!file) return;
+
+          var MAX_BYTES = 1048576;
+          var MIN_BYTES = 512000;
+
+          var reader = new FileReader();
+          reader.onload = function(ev) {
+            var img = new Image();
+            img.onload = function() {
+              var MAX_DIM = 800;
+              var w = img.width;
+              var h = img.height;
+              if (w > MAX_DIM || h > MAX_DIM) {
+                if (w > h) {
+                  h = Math.round(h * MAX_DIM / w);
+                  w = MAX_DIM;
+                } else {
+                  w = Math.round(w * MAX_DIM / h);
+                  h = MAX_DIM;
+                }
+              }
+
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+              canvas.width = w;
+              canvas.height = h;
+
+              function tryQuality(quality, callback) {
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(img, 0, 0, w, h);
+                canvas.toBlob(function(blob) {
+                  callback(blob);
+                }, 'image/jpeg', quality);
+              }
+
+              function compress(lo, hi, done) {
+                var mid = (lo + hi) / 2;
+                tryQuality(mid, function(blob) {
+                  if (blob.size > MAX_BYTES) {
+                    if (hi - lo < 0.02 || mid <= 0.1) {
+                      done(blob);
+                    } else {
+                      compress(lo, mid, done);
+                    }
+                  } else if (blob.size < MIN_BYTES && mid < hi) {
+                    var next = Math.min(mid + 0.08, 0.95);
+                    if (next > hi) {
+                      done(blob);
+                    } else {
+                      tryQuality(next, function(bigger) {
+                        if (bigger.size > MAX_BYTES) {
+                          done(blob);
+                        } else {
+                          compress(next, hi, done);
+                        }
+                      });
+                    }
+                  } else {
+                    done(blob);
+                  }
+                });
+              }
+
+              compress(0.5, 0.95, function(blob) {
+                var url = URL.createObjectURL(blob);
+                avatarImg.src = url;
+                console.log('Avatar compressed: ' + (blob.size / 1024).toFixed(1) + 'KB');
+              });
+            };
+            img.src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+          avatarUpload.value = '';
+        });
+      }
 
       // ── Routine Tab Switching ──
       window.switchRoutine = function(routine) {

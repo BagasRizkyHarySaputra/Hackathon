@@ -20,7 +20,7 @@
     <div class="account-app">
       <div id="sidebar-root" data-active="profile"></div>
 
-      <main class="account-main app-main app-main--scroll">
+      <main class="app-main app-main--scroll">
         <!-- Blurred gradient background -->
         <div class="loading-bg-blur" aria-hidden="true">
           <div class="loading-bg-blur__blob--pink-tl"></div>
@@ -38,18 +38,10 @@
           <!-- ═══ Profile Header ═══ -->
           <div class="account-profile-header">
             <div class="account-avatar-wrap">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="32" rx="22" ry="20" fill="#2B2B2B"/>
-                <ellipse cx="50" cy="22" rx="10" ry="8" fill="#2B2B2B"/>
-                <ellipse cx="50" cy="40" rx="16" ry="15" fill="#F5D5C8"/>
-                <ellipse cx="44" cy="40" rx="2" ry="2.5" fill="#2B2B2B"/>
-                <ellipse cx="56" cy="40" rx="2" ry="2.5" fill="#2B2B2B"/>
-                <path d="M46 46 Q50 49 54 46" stroke="#C4847A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                <path d="M30 85 C30 65 38 55 50 55 C62 55 70 65 70 85 L70 100 L30 100 Z" fill="#FFFFFF" opacity="0.95"/>
-                <path d="M42 58 L50 65 L58 58" stroke="#E4D8DC" stroke-width="2" fill="none"/>
-              </svg>
-              <button class="account-avatar-edit">
-                <img src="/assets/icons/profile/edit.svg" alt="Edit" width="8" height="8" />
+              <img class="account-avatar-img" src="/assets/images/profile/avatar-default.png" alt="Avatar" id="avatar-img" />
+              <input type="file" id="avatar-upload" accept="image/*" hidden />
+              <button class="account-avatar-edit" type="button" id="avatar-edit-btn">
+                <img class="account-edit" src="/assets/icons/profile/edit.svg" alt="Edit" />
               </button>
             </div>
             <div class="account-profile-header__info">
@@ -326,6 +318,104 @@
           document.body.style.overflow = '';
         }
       });
+
+      // ── Avatar Upload & Compress ──
+      var avatarImg = document.getElementById('avatar-img');
+      var avatarUpload = document.getElementById('avatar-upload');
+      var avatarEditBtn = document.getElementById('avatar-edit-btn');
+
+      if (avatarEditBtn && avatarUpload) {
+        avatarEditBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          avatarUpload.click();
+        });
+      }
+
+      if (avatarUpload && avatarImg) {
+        avatarUpload.addEventListener('change', function(e) {
+          var file = e.target.files && e.target.files[0];
+          if (!file) return;
+
+          // Target size: 500KB - 1MB
+          var MAX_BYTES = 1048576; // 1MB
+          var MIN_BYTES = 512000;  // 500KB
+
+          var reader = new FileReader();
+          reader.onload = function(ev) {
+            var img = new Image();
+            img.onload = function() {
+              // Resize: max 800px on longest side
+              var MAX_DIM = 800;
+              var w = img.width;
+              var h = img.height;
+              if (w > MAX_DIM || h > MAX_DIM) {
+                if (w > h) {
+                  h = Math.round(h * MAX_DIM / w);
+                  w = MAX_DIM;
+                } else {
+                  w = Math.round(w * MAX_DIM / h);
+                  h = MAX_DIM;
+                }
+              }
+
+              // Binary search quality
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+              canvas.width = w;
+              canvas.height = h;
+
+              function tryQuality(quality, callback) {
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(img, 0, 0, w, h);
+                canvas.toBlob(function(blob) {
+                  callback(blob);
+                }, 'image/jpeg', quality);
+              }
+
+              function compress(lo, hi, done) {
+                var mid = (lo + hi) / 2;
+                tryQuality(mid, function(blob) {
+                  if (blob.size > MAX_BYTES) {
+                    // Too large → lower quality
+                    if (hi - lo < 0.02 || mid <= 0.1) {
+                      done(blob);
+                    } else {
+                      compress(lo, mid, done);
+                    }
+                  } else if (blob.size < MIN_BYTES && mid < hi) {
+                    // Too small → try higher quality (allow up to 0.95)
+                    var next = Math.min(mid + 0.08, 0.95);
+                    if (next > hi) {
+                      done(blob);
+                    } else {
+                      tryQuality(next, function(bigger) {
+                        if (bigger.size > MAX_BYTES) {
+                          done(blob);
+                        } else {
+                          compress(next, hi, done);
+                        }
+                      });
+                    }
+                  } else {
+                    done(blob);
+                  }
+                });
+              }
+
+              compress(0.5, 0.95, function(blob) {
+                var url = URL.createObjectURL(blob);
+                avatarImg.src = url;
+                console.log('Avatar compressed: ' + (blob.size / 1024).toFixed(1) + 'KB');
+              });
+            };
+            img.src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+
+          // Reset so same file can be re-selected
+          avatarUpload.value = '';
+        });
+      }
 
       // ── Skin Type Selection ──
       var skinOptions = document.querySelectorAll('.account-skin-option');

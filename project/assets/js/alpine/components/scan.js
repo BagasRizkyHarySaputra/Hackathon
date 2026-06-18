@@ -105,29 +105,25 @@ function createScanPageComponent() {
       this.showPopup = true;
     },
 
-    loadMockResults() {
-      this.analysis = {
-        stats: [
-          { label: 'Dark Spot', value: '10%' },
-          { label: 'Pustules', value: '7%' },
-          { label: 'Papules', value: '18%' },
-        ],
-        markers: [
-          { id: 1, x: 35, y: 38 },
-          { id: 2, x: 62, y: 55 },
-          { id: 3, x: 45, y: 68 },
-        ],
-      };
+  loadMockResults() {
+    this.analysis = {
+      stats: [
+        { label: 'Dark Spot', value: '10%' },
+        { label: 'Pustules', value: '7%' },
+        { label: 'Papules', value: '18%' },
+      ],
+      markers: [
+        { id: 1, x: 35, y: 38, label: 'Dark Spot 10%' },
+        { id: 2, x: 62, y: 55, label: 'Pustules 7%' },
+        { id: 3, x: 45, y: 68, label: 'Papules 18%' },
+      ],
+    };
 
-      this.product = {
-        name: 'Facial Treatment Gentle Cleanser',
-        description: 'A nourishing facial cleanser that gently cleanses while maintaining the skin\'s natural moisture balance.',
-      };
-    },
-
-    closePopup() {
-      this.showPopup = false;
-    },
+    this.product = {
+      name: 'Facial Treatment Gentle Cleanser',
+      description: 'A nourishing facial cleanser that gently cleanses while maintaining the skin\'s natural moisture balance.',
+    };
+  },
 
     retakePhoto() {
       this.capturedImage = null;

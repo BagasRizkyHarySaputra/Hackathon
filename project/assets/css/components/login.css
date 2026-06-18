@@ -2,7 +2,7 @@
  * ============================================================
  * FILE: assets/css/components/login.css
  * ============================================================
- * Login Page — SVG Shape Cards
+ * Login Page — CSS Card Boxes
  *
  * Two-column layout: mascot left, card right.
  * White/blue ethereal bokeh background.
@@ -22,7 +22,7 @@
 }
 
 /* ── Page ── */
-.login-page {
+.app-main--login-page {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -31,6 +31,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-left: 0;
 }
 
 /* ── Blurred Bokeh Background — White/Blue Ethereal ── */
@@ -42,10 +43,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 4.17vw;
   width: 100%;
   max-width: 1100px;
-  padding: 40px;
+  padding: 3.91vh 2.78vw;
 }
 
 /* ── Mascot ── */
@@ -86,39 +87,51 @@
   position: relative;
   width: var(--login-element-size);
   aspect-ratio: 593 / 639;
+  filter: drop-shadow(0 4px 24px rgba(160, 130, 145, 0.15))
+          drop-shadow(0 2px 8px rgba(160, 130, 145, 0.08));
 }
 
-/* ── SVG Card (stacked) ── */
-.login-card-svg {
+/* ── Card Box (stacked) ── */
+.login-card-box {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  border-radius: 3.47vw;
+  background: linear-gradient(145deg, #FFFFFF 0%, #F9F5F6 35%, #F2EAEE 100%);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.login-card-svg--signin {
+.login-card-box--signin {
   z-index: 2;
   opacity: 1;
   transform: translateX(0);
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 85%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 85%);
 }
 
-.login-card-svg--signup {
+.login-card-box--signup {
   z-index: 1;
   opacity: 0;
   transform: translateX(12px);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 85%,
+    70% 100%,
+    0% 100%
+  );
 }
 
 /* Active states */
-.login-card-container[data-tab="signup"] .login-card-svg--signin {
+.login-card-container[data-tab="signup"] .login-card-box--signin {
   opacity: 0;
   transform: translateX(-12px);
   z-index: 1;
 }
 
-.login-card-container[data-tab="signup"] .login-card-svg--signup {
+.login-card-container[data-tab="signup"] .login-card-box--signup {
   opacity: 1;
   transform: translateX(0);
   z-index: 2;
@@ -135,8 +148,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 90px 90px 140px 90px;
+  padding: 8.79vh 6.25vw 13.67vh 6.25vw;
   pointer-events: none;
+  background: transparent;
 }
 
 .login-card-content > * {
@@ -147,18 +161,18 @@
 .login-tabs {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 1.95vh;
   width: 100%;
 }
 
 .login-tab {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.39vw;
   font-weight: 600;
   color: var(--login-text-primary);
   cursor: pointer;
-  padding: 0 0 6px;
+  padding: 0 0 0.59vh;
   position: relative;
   transition: color 0.2s ease;
   font-family: inherit;
@@ -176,22 +190,22 @@
 }
 
 .login-tab--active::after {
-  width: 70px;
+  width: 4.86vw;
 }
 
 /* ── Social Buttons ── */
 .login-social {
   display: flex;
-  gap: 50px;
-  margin-bottom: 14px;
+  gap: 3.47vw;
+  margin-bottom: 1.37vh;
 }
 
 .login-social__btn {
-  width: 62px;
-  height: 62px;
+  width: 4.31vw;
+  height: 4.31vw;
   background: var(--login-input-bg);
   border: none;
-  border-radius: 14px;
+  border-radius: 0.97vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -210,19 +224,20 @@
     -3px -3px 6px rgba(255, 255, 255, 0.7);
 }
 
-.login-social__btn svg {
-  width: 40px;
-  height: 40px;
+.login-social__btn svg,
+.login-social__btn img {
+  width: 2.78vw;
+  height: 2.78vw;
 }
 
 /* ── Divider ── */
 .login-divider {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 0.97vw;
   width: 100%;
-  max-width: 320px;
-  margin-bottom: 18px;
+  max-width: 22.22vw;
+  margin-bottom: 1.76vh;
 }
 
 .login-divider__line {
@@ -233,7 +248,7 @@
 }
 
 .login-divider__text {
-  font-size: 13px;
+  font-size: 0.90vw;
   font-weight: 500;
   color: var(--login-text-primary);
   opacity: 0.6;
@@ -243,7 +258,7 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0.97vw;
   width: 100%;
 }
 
@@ -251,16 +266,16 @@
 .login-input-group {
   position: relative;
   width: 100%;
-  height: 52px;
+  height: 5.08vh;
 }
 
 .login-input-group__icon {
   position: absolute;
-  left: 18px;
+  left: 1.25vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
+  width: 1.67vw;
+  height: 1.67vw;
   color: var(--login-icon);
   pointer-events: none;
   display: flex;
@@ -268,9 +283,10 @@
   justify-content: center;
 }
 
-.login-input-group__icon svg {
-  width: 24px;
-  height: 24px;
+.login-input-group__icon svg,
+.login-input-group__icon img {
+  width: 1.67vw;
+  height: 1.67vw;
   fill: var(--login-icon);
   display: block;
 }
@@ -280,9 +296,9 @@
   height: 100%;
   background: var(--login-input-bg);
   border: 1px solid var(--login-input-border);
-  border-radius: 12px;
-  padding: 0 48px 0 52px;
-  font-size: 14px;
+  border-radius: 0.83vw;
+  padding: 0 3.33vw 0 3.61vw;
+  font-size: 0.97vw;
   color: var(--login-text-body);
   font-family: inherit;
   outline: none;
@@ -302,38 +318,39 @@
 /* ── Password Toggle ── */
 .login-input-group__toggle {
   position: absolute;
-  right: 14px;
+  right: 0.97vw;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 0.39vh;
   color: var(--login-icon);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login-input-group__toggle svg {
-  width: 22px;
-  height: 22px;
+.login-input-group__toggle svg,
+.login-input-group__toggle img {
+  width: 1.53vw;
+  height: 1.53vw;
   fill: var(--login-icon);
 }
 
 /* ── Account Link ── */
 .login-account-link {
-  font-size: 13px;
+  font-size: 0.90vw;
   color: var(--login-text-body);
   text-align: center;
-  margin-top: 4px;
+  margin-top: 0.39vh;
 }
 
 .login-account-link a {
   color: var(--login-btn-gradient-end);
   text-decoration: none;
   font-weight: 600;
-  margin-left: 2px;
+  margin-left: 0.20vh;
   transition: color 0.2s ease;
 }
 
@@ -343,11 +360,11 @@
 
 /* ── Error ── */
 .login-error {
-  font-size: 13px;
+  font-size: 0.90vw;
   color: #D32F2F;
   text-align: center;
-  margin-top: 2px;
-  min-height: 18px;
+  margin-top: 0.20vh;
+  min-height: 1.76vh;
 }
 
 /* ── Sign In / Sign Up Button — Pill Capsule (BIG) ── */
@@ -357,16 +374,16 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -40px;
+  margin-top: -3.91vh;
 }
 
 .login-btn {
-  width: 400px;
-  height: 80px;
+  width: 27.78vw;
+  height: 7.81vh;
   background: linear-gradient(to right, #F9F7F7 43%, #E4D8DC 88%);
   border: none;
-  border-radius: 25px; /* Dibuat lebih membulat agar sesuai dengan proporsi kapsul */
-  font-size: 22px;
+  border-radius: 1.74vw; /* Dibuat lebih membulat agar sesuai dengan proporsi kapsul */
+  font-size: 1.53vw;
   font-weight: 600;
   color: var(--login-text-body);
   cursor: pointer;
@@ -399,6 +416,80 @@ box-shadow:
   opacity: 0.7;
   pointer-events: none;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   TAB SWITCHING — Transform Animations
+   sign-in → sign-up:  card goes UP → rotate 90° around
+                       bottom-left → rotate -90° → DOWN + fade
+   sign-up → sign-in:  mirror (bottom-right pivot, -90°)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Pivot points for card flips */
+.login-card-box--signin {
+  transform-origin: bottom left;
+}
+.login-card-box--signup {
+  transform-origin: bottom right;
+}
+
+/* ── sign-in exits (up → rotate 90° → -90° → down behind sign-up) ── */
+@keyframes signinFlipOut {
+  0%   { transform: translateX(0)    rotate(0deg)   translateY(0);    opacity: 1; z-index: 2; }
+  20%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 1; z-index: 2; }
+  45%  { transform: translateX(0)    rotate(90deg)  translateY(-40%); opacity: 1; z-index: 2; }
+  70%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 0.6; z-index: 1; }
+  100% { transform: translateX(0)    rotate(0deg)   translateY(0);    opacity: 0; z-index: 1; }
+}
+
+/* ── sign-up enters (slides in from below while sign-in flips out) ── */
+@keyframes signupFlipIn {
+  0%   { transform: translateX(12px) translateY(30%); opacity: 0; z-index: 1; }
+  40%  { opacity: 0.3; z-index: 1; }
+  70%  { opacity: 0.7; z-index: 2; }
+  100% { transform: translateX(0)    translateY(0);   opacity: 1; z-index: 2; }
+}
+
+/* ── sign-up exits (up → rotate -90° → 90° → down behind sign-in) ── */
+@keyframes signupFlipOut {
+  0%   { transform: translateX(0)    rotate(0deg)    translateY(0);   opacity: 1; z-index: 2; }
+  20%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 1; z-index: 2; }
+  45%  { transform: translateX(0)    rotate(-90deg)  translateY(-40%); opacity: 1; z-index: 2; }
+  70%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 0.6; z-index: 1; }
+  100% { transform: translateX(0)    rotate(0deg)    translateY(0);   opacity: 0; z-index: 1; }
+}
+
+/* ── sign-in enters (slides in from below while sign-up flips out) ── */
+@keyframes signinFlipIn {
+  0%   { transform: translateX(-12px) translateY(30%); opacity: 0; z-index: 1; }
+  40%  { opacity: 0.3; z-index: 1; }
+  70%  { opacity: 0.7; z-index: 2; }
+  100% { transform: translateX(0)      translateY(0);  opacity: 1; z-index: 2; }
+}
+
+/* ── Trigger classes (higher specificity overrides data-tab rules) ── */
+.login-card-container[anim-direction="to-signup"] .login-card-box--signin {
+  animation: signinFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.login-card-container[anim-direction="to-signup"] .login-card-box--signup {
+  animation: signupFlipIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.login-card-container[anim-direction="to-signin"] .login-card-box--signup {
+  animation: signupFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.login-card-container[anim-direction="to-signin"] .login-card-box--signin {
+  animation: signinFlipIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Lock interaction on content during animation ── */
+.login-card-container[anim-direction] .login-card-content {
+  pointer-events: none;
+}
+
+/* ── Suppress default CSS transition during animation ── */
+.login-card-container[anim-direction] .login-card-box {
+  transition: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1000px) {
   :root {
@@ -439,21 +530,139 @@ box-shadow:
 
 @media (max-width: 480px) {
   :root {
-    --login-element-size: clamp(150px, 60vw, 300px);
+    --login-element-size: 315px;
   }
+
+  .login-layout {
+    gap: 16px;
+    padding: 40px 16px 24px;
+  }
+
+  .login-mascot {
+    width: 180px;
+    height: 180px;
+  }
+
+  .login-card-area {
+    width: 100%;
+    max-width: var(--login-element-size);
+  }
+
+  .login-card-container {
+    width: 100%;
+  }
+
+  .login-card-content {
+    padding: 52px 28px 12px;
+  }
+
   .login-tabs {
-    gap: 24px;
+    margin-bottom: 10px;
   }
+
   .login-tab {
-    font-size: 17px;
+    font-size: 14px;
+    padding: 0 0 4px;
   }
+
+  .login-tab--active::after {
+    width: 40px;
+  }
+
+  .login-social {
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
   .login-social__btn {
-    width: 52px;
-    height: 52px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
   }
-  .login-social__btn svg {
-    width: 34px;
-    height: 34px;
+
+  .login-social__btn svg,
+  .login-social__btn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .login-divider {
+    max-width: 144px;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+
+  .login-divider__text {
+    font-size: 12px;
+  }
+
+  .login-form {
+    gap: 6px;
+  }
+
+  .login-input-group {
+    height: 30px;
+  }
+
+  .login-input-group__icon {
+    left: 8px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .login-input-group__icon svg,
+  .login-input-group__icon img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .login-input {
+    padding: 0 28px 0 26px;
+    font-size: 11px;
+    border-radius: 4px;
+  }
+
+  .login-input-group__toggle {
+    right: 6px;
+  }
+
+  .login-input-group__toggle svg,
+  .login-input-group__toggle img {
+    width: 12px;
+    height: 12px;
+  }
+
+  .login-account-link {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .login-error {
+    font-size: 11px;
+    min-height: 14px;
+  }
+
+  .login-btn-wrap {
+    margin-top: -28px;
+  }
+
+  .login-btn {
+    width: 231px;
+    height: 48px;
+    font-size: 15px;
+    border-radius: 24px;
+    box-shadow:
+      0 -2px 4px rgba(255, 255, 255, 0.9),
+      0 6px 14px rgba(0, 0, 0, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 1),
+      inset -3px -3px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 24px rgba(149, 180, 198, 0.4),
+      inset 0 2px 3px rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -462,8 +671,10 @@ box-shadow:
   .login-social__btn,
   .login-btn,
   .login-tab::after,
-  .login-card-svg {
-    animation: none;
-    transition: none;
+  .login-card-box,
+  .login-card-container[anim-direction] .login-card-box--signin,
+  .login-card-container[anim-direction] .login-card-box--signup {
+    animation: none !important;
+    transition: none !important;
   }
 }

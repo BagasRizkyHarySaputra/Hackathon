@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;overflow:hidden;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LICIN — Edit Profile" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>LICIN — Edit Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
+  <link rel="stylesheet" href="/assets/css/components/account.css" />
+  <link rel="stylesheet" href="/assets/css/components/profile.css" />
+</head>
+<body style="height:100%;overflow:hidden;">
+  <div class="profile-viewport">
+    <div class="profile-app">
+      <div id="sidebar-root" data-active="profile"></div>
+
+      <main class="app-main app-main--scroll">
+        <!-- Blurred gradient background -->
+        <div class="loading-bg-blur" aria-hidden="true">
+          <div class="loading-bg-blur__blob--pink-tl"></div>
+          <div class="loading-bg-blur__blob--blue-tr"></div>
+          <div class="loading-bg-blur__blob--dusty-center"></div>
+          <div class="loading-bg-blur__blob--blue-bl"></div>
+          <div class="loading-bg-blur__blob--pink-br"></div>
+          <div class="loading-bg-blur__blob--slate"></div>
+        </div>
+
+        <div class="profile-content">
+
+          <header id="header-root" class="home-header"></header>
+
+          <!-- ═══ Profile Header ═══ -->
+          <div class="account-profile-header">
+            <div class="account-avatar-wrap">
+              <img class="account-avatar-img" src="/assets/images/profile/avatar-default.png" alt="Avatar" id="edit-avatar-img" />
+              <input type="file" id="edit-avatar-upload" accept="image/*" hidden />
+              <button class="account-avatar-edit" type="button" id="edit-avatar-edit-btn">
+                <img class="account-edit" src="/assets/icons/profile/edit.svg" alt="Edit" />
+              </button>
+            </div>
+            <div class="account-profile-header__info">
+              <h1 class="account-profile-header__name">Username</h1>
+              <div class="account-profile-header__type">Combination</div>
+              <div class="account-profile-header__member">
+                <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
+                <span>Member since Juni 2026</span>
+              </div>
+            </div>
+            <button class="account-edit-btn" id="edit-profile-btn" onclick="location.href='/pages/profile/index.html'">Batal</button>
+          </div>
+
+          <!-- ═══ Content Grid ═══ -->
+          <div class="account-grid">
+
+            <!-- Left Column — Data Personal -->
+            <div class="account-grid__left">
+              <div class="account-card account-card--data">
+                <div class="account-data__header">
+                  <div class="account-data__icon">
+                    <svg viewBox="0 0 35 35" fill="none">
+                      <ellipse cx="17.5" cy="12.5" rx="8" ry="7.5" stroke="#6E7F99" stroke-width="2"/>
+                      <path d="M6 30 C6 23 11 18 17.5 18 C24 18 29 23 29 30" stroke="#6E7F99" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="account-data__title">Data Personal</div>
+                </div>
+
+                <div class="account-form-grid">
+                  <!-- Nama Lengkap -->
+                  <div class="account-field">
+                    <label class="account-field__label">Nama Lengkap*</label>
+                    <input type="text" class="account-field__input" placeholder="" />
+                  </div>
+                  <!-- Email Pengguna -->
+                  <div class="account-field">
+                    <label class="account-field__label">Email Pengguna*</label>
+                    <input type="email" class="account-field__input" placeholder="" />
+                  </div>
+                  <!-- Jenis Kelamin -->
+                  <div class="account-field">
+                    <label class="account-field__label">Jenis Kelamin*</label>
+                    <input type="text" class="account-field__input" placeholder="" />
+                  </div>
+                  <!-- Tanggal Lahir -->
+                  <div class="account-field">
+                    <label class="account-field__label">Tanggal Lahir</label>
+                    <input type="text" class="account-field__input" placeholder="" />
+                  </div>
+                </div>
+
+                <div class="account-save-wrap">
+                  <button class="account-save-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column — Skin Type -->
+            <div class="account-grid__right">
+              <div class="account-card account-card--skin">
+                <div class="account-skin__title">Skin Type</div>
+                <div class="account-skin__options">
+                  <button class="account-skin-option account-skin-option--selected" data-skin="oily">Oily Skin</button>
+                  <button class="account-skin-option" data-skin="dry">Dry Skin</button>
+                  <button class="account-skin-option" data-skin="combination">Combination Skin</button>
+                  <button class="account-skin-option" data-skin="sensitive">Sensitive Skin</button>
+                  <button class="account-skin-option" data-skin="unsure">Not Sure :(</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ Speech Bubble ═══ -->
+          <div class="account-speech-bubble">
+            <div class="account-speech-mascot">
+              <img src="/assets/icons/water-drop-mascot.svg" alt="Mascot" width="150" height="150" />
+            </div>
+            <div class="account-speech-content">
+              <span>Let's complete your profile</span>
+            </div>
+          </div>
+
+          <!-- ═══ Settings & Account Bottom Bar ═══ -->
+          <div class="profile-settings-bar">
+            <div class="settings-bar__title">Settings &amp; Account</div>
+            <div class="settings-bar__items">
+              <!-- Account -->
+              <div class="settings-bar__item settings-bar__item--disabled">
+                <div class="settings-bar__icon">
+                  <svg viewBox="0 0 45 45" fill="none">
+                    <ellipse cx="22.5" cy="15.5" rx="10" ry="9" stroke="#6E7F99" stroke-width="2"/>
+                    <path d="M8 38 C8 28 14.5 22 22.5 22 C30.5 22 37 28 37 38" stroke="#6E7F99" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="settings-bar__label">Account</span>
+              </div>
+
+              <!-- Notification -->
+              <div class="settings-bar__item" onclick="openModal('notif-modal')">
+                <div class="settings-bar__icon">
+                  <svg viewBox="0 0 45 45" fill="none">
+                    <path d="M33 15A10.5 10.5 0 0 0 12 15c0 12.3-5.3 15.8-5.3 15.8h31.6S33 27.3 33 15Z" stroke="#6E7F99" stroke-width="2"/>
+                    <path d="M25.5 36a3 3 0 0 1-6 0" stroke="#6E7F99" stroke-width="2"/>
+                  </svg>
+                </div>
+                <span class="settings-bar__label">Notification</span>
+              </div>
+
+              <!-- Privacy -->
+              <div class="settings-bar__item" onclick="openModal('privacy-modal')">
+                <div class="settings-bar__icon">
+                  <img src="/assets/icons/profile/shield-check.svg" alt="Privacy" width="45" height="45" />
+                </div>
+                <span class="settings-bar__label">Privacy</span>
+              </div>
+
+              <!-- Help Center -->
+              <div class="settings-bar__item" onclick="openModal('help-modal')">
+                <div class="settings-bar__icon">
+                  <img src="/assets/icons/profile/question.svg" alt="Help" width="45" height="45" />
+                </div>
+                <span class="settings-bar__label">Help Center</span>
+              </div>
+
+              <!-- Sign Out -->
+              <div class="settings-bar__item settings-bar__item--disabled">
+                <div class="settings-bar__icon">
+                  <img src="/assets/icons/profile/sign-out.svg" alt="Sign Out" width="45" height="45" />
+                </div>
+                <span class="settings-bar__label">Sign Out</span>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- /profile-content -->
+      </main>
+    </div> <!-- /profile-app -->
+
+    <!-- ═══ Modal: Notification ═══ -->
+    <div class="modal-overlay" id="notif-modal" onclick="closeOnOverlay(event, 'notif-modal')">
+      <div class="modal modal--notif">
+        <div class="notif-icon">
+          <img src="/assets/icons/profile/notification.svg" alt="Notification" width="80" height="80" />
+        </div>
+        <h2 class="modal__title modal__title--center">Get notified</h2>
+        <div class="notif-buttons">
+          <button class="notif-btn notif-btn--primary" onclick="closeModal('notif-modal')">Turn On</button>
+          <button class="notif-btn notif-btn--secondary" onclick="closeModal('notif-modal')">Not Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Modal: Privacy ═══ -->
+    <div class="modal-overlay" id="privacy-modal" onclick="closeOnOverlay(event, 'privacy-modal')">
+      <div class="modal modal--privacy">
+        <h2 class="modal__title">Privacy & Security</h2>
+
+        <div class="privacy-list">
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Allow AI Analysis History</div>
+              <div class="privacy-item__desc">Save scan results for progress tracking</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Store Skin Diary Data</div>
+              <div class="privacy-item__desc">Keep your skin diary entries securely</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Share Anonymous Data</div>
+              <div class="privacy-item__desc">Help improve AI recommendations</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Email Notifications</div>
+              <div class="privacy-item__desc">Receive important account updates</div>
+            </div>
+          </div>
+
+          <div class="privacy-item">
+            <div class="privacy-item__check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="privacy-item__info">
+              <div class="privacy-item__label">Community Privacy</div>
+              <div class="privacy-item__desc">Hide your real name</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-confirm">
+          <button class="privacy-confirm__btn" onclick="closeModal('privacy-modal')">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Modal: Help Center ═══ -->
+    <div class="modal-overlay" id="help-modal" onclick="closeOnOverlay(event, 'help-modal')">
+      <div class="modal modal--help">
+        <h2 class="modal__title">Need help?</h2>
+
+        <div class="help-contact-list">
+          <div class="help-contact-item">
+            <div class="help-contact-item__icon">
+              <img src="/assets/icons/profile/email.svg" alt="Email" width="24" height="24" />
+            </div>
+            <div class="help-contact-item__info">
+              <span class="help-contact-item__text">kekejardeadline1@gmail.com</span>
+            </div>
+          </div>
+
+          <div class="help-contact-item">
+            <div class="help-contact-item__icon">
+              <img src="/assets/icons/profile/msg.svg" alt="Phone" width="24" height="24" />
+            </div>
+            <div class="help-contact-item__info">
+              <span class="help-contact-item__text">Phone Number?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- /profile-viewport -->
+
+  <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+  <script>
+    (function() {
+      // ── Wire up global header notification bell ──
+      var notifBtn = document.querySelector('.header-action-btn');
+      if (notifBtn) notifBtn.addEventListener('click', function() { openModal('notif-modal'); });
+
+      // ── Modal Functions ──
+      window.openModal = function(id) {
+        document.getElementById(id).classList.add('modal-overlay--open');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeModal = function(id) {
+        document.getElementById(id).classList.remove('modal-overlay--open');
+        document.body.style.overflow = '';
+      };
+
+      window.closeOnOverlay = function(event, id) {
+        if (event.target === event.currentTarget) {
+          closeModal(id);
+        }
+      };
+
+      // Close modals on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal-overlay--open').forEach(function(el) {
+            el.classList.remove('modal-overlay--open');
+          });
+          document.body.style.overflow = '';
+        }
+      });
+
+      // ── Avatar Upload & Compress ──
+      var avatarImg = document.getElementById('edit-avatar-img');
+      var avatarUpload = document.getElementById('edit-avatar-upload');
+      var avatarEditBtn = document.getElementById('edit-avatar-edit-btn');
+
+      if (avatarEditBtn && avatarUpload) {
+        avatarEditBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          avatarUpload.click();
+        });
+      }
+
+      if (avatarUpload && avatarImg) {
+        avatarUpload.addEventListener('change', function(e) {
+          var file = e.target.files && e.target.files[0];
+          if (!file) return;
+
+          var MAX_BYTES = 1048576;
+          var MIN_BYTES = 512000;
+
+          var reader = new FileReader();
+          reader.onload = function(ev) {
+            var img = new Image();
+            img.onload = function() {
+              var MAX_DIM = 800;
+              var w = img.width;
+              var h = img.height;
+              if (w > MAX_DIM || h > MAX_DIM) {
+                if (w > h) {
+                  h = Math.round(h * MAX_DIM / w);
+                  w = MAX_DIM;
+                } else {
+                  w = Math.round(w * MAX_DIM / h);
+                  h = MAX_DIM;
+                }
+              }
+
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+              canvas.width = w;
+              canvas.height = h;
+
+              function tryQuality(quality, callback) {
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(img, 0, 0, w, h);
+                canvas.toBlob(function(blob) {
+                  callback(blob);
+                }, 'image/jpeg', quality);
+              }
+
+              function compress(lo, hi, done) {
+                var mid = (lo + hi) / 2;
+                tryQuality(mid, function(blob) {
+                  if (blob.size > MAX_BYTES) {
+                    if (hi - lo < 0.02 || mid <= 0.1) {
+                      done(blob);
+                    } else {
+                      compress(lo, mid, done);
+                    }
+                  } else if (blob.size < MIN_BYTES && mid < hi) {
+                    var next = Math.min(mid + 0.08, 0.95);
+                    if (next > hi) {
+                      done(blob);
+                    } else {
+                      tryQuality(next, function(bigger) {
+                        if (bigger.size > MAX_BYTES) {
+                          done(blob);
+                        } else {
+                          compress(next, hi, done);
+                        }
+                      });
+                    }
+                  } else {
+                    done(blob);
+                  }
+                });
+              }
+
+              compress(0.5, 0.95, function(blob) {
+                var url = URL.createObjectURL(blob);
+                avatarImg.src = url;
+                console.log('Avatar compressed: ' + (blob.size / 1024).toFixed(1) + 'KB');
+              });
+            };
+            img.src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+          avatarUpload.value = '';
+        });
+      }
+
+      // ── Skin Type Selection ──
+      var skinOptions = document.querySelectorAll('.account-skin-option');
+      skinOptions.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          skinOptions.forEach(function(b) {
+            b.classList.remove('account-skin-option--selected');
+          });
+          btn.classList.add('account-skin-option--selected');
+        });
+      });
+
+      // ── Save Button ──
+      var saveBtn = document.querySelector('.account-save-btn');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
+          var fields = document.querySelectorAll('.account-field__input');
+          var data = {};
+          fields.forEach(function(f) {
+            var label = f.previousElementSibling ? f.previousElementSibling.textContent : '';
+            data[label] = f.value;
+          });
+          console.log('Profile saved:', data);
+          saveBtn.textContent = 'Saved!';
+          setTimeout(function() {
+            saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Save';
+          }, 1500);
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/router.js"></script>
+</body>
+</html>

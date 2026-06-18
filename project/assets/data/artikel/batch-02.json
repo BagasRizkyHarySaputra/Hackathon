@@ -1,0 +1,47 @@
+[
+  {
+    "id": "glycolic-acid",
+    "tags": ["acne", "dry"],
+    "Title": "Ini Khasiat Glycolic Acid pada Kulit yang Perlu Diketahui",
+    "Simple-desc": "Glycolic acid adalah AHA yang efektif untuk eksfoliasi, mencerahkan kulit, menyamarkan noda, mengecilkan pori-pori, dan anti-aging.",
+    "Description": "Glycolic acid adalah jenis asam alfa-hidroksi (AHA) yang banyak digunakan dalam industri kosmetik dan dermatologi. Berasal dari tebu, zat ini merupakan asam karboksilat dengan struktur molekul terkecil di antara AHA lainnya. Hal ini menjadikannya sangat efektif dalam menembus lapisan terluar kulit. Glycolic acid bekerja dengan cara memecah perekat atau desmosom yang mengikat sel-sel kulit mati di lapisan epidermis. Proses eksfoliasi ini merangsang sel kulit untuk beregenerasi lebih cepat. Manfaat glycolic acid: memudarkan bekas jerawat dengan meningkatkan pergantian sel; anti penuaan dengan menghasilkan kolagen dan elastin; mencerahkan kulit dengan mengangkat sel kulit mati; menghaluskan kulit dan membuatnya lebih lembap; mengecilkan pori-pori dan mencegah sumbatan. Tips aman: mulai dengan konsentrasi rendah di bawah 10%, lakukan patch test, gunakan di malam hari, wajib gunakan tabir surya di pagi hari.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/11/03040642/Ini-Khasiat-Glycolic-Acid-pada-Kulit-yang-Perlu-Diketahui.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "sunscreen-moisturizer",
+    "tags": ["acne", "oily"],
+    "Title": "Sunscreen Sekaligus Moisturizer: Lembap dan Terlindungi",
+    "Simple-desc": "Tips memilih sunscreen yang juga berfungsi sebagai moisturizer untuk kulit berjerawat. Rekomendasi produk Wardah Acne Calming Sunscreen.",
+    "Description": "Memiliki kulit wajah yang rentan berjerawat sering kali membuat kita merasa dilema dalam memilih produk perawatan kulit, terutama tabir surya atau sunscreen. Banyak anggapan keliru bahwa penggunaan sunscreen justru akan menyumbat pori-pori dan memperparah jerawat. Padahal, paparan sinar ultraviolet (UV) tanpa perlindungan dapat memicu inflamasi yang lebih hebat pada jerawat. Penting untuk memilih formulasi yang tepat, yaitu yang bersifat non-comedogenic dan mengandung bahan aktif yang mampu menenangkan kemerahan. Rekomendasi produk: Wardah UV Shield Acne Calming Sunscreen SPF 50 PA++++ dengan Sebum Absorber untuk mengontrol minyak serta Panthenol dan Allantoin untuk menenangkan kulit; Wardah Acnederm Pure Foaming Cleanser dengan Salicylic Acid; Wardah Acnederm Day Moisturizer dengan formula gel ringan. Tips: gunakan 15-30 menit sebelum terpapar sinar matahari, re-apply setiap 2-3 jam.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/05/04054745/Skincare-dan-Kecantikan-100.jpg.webp",
+    "Source": "Parapuan.co"
+  },
+  {
+    "id": "skincare-mistakes",
+    "tags": ["acne", "dry", "oily"],
+    "Title": "Common Skincare Mistakes That May Be Harming Your Skin",
+    "Simple-desc": "Avoid these common skincare mistakes: over-cleansing, skipping sunscreen, and using too many active ingredients at once.",
+    "Description": "Washing your face too often or using the wrong cleanser can strip your skin of its natural oils. Your skin compensates by producing even more sebum, leading to breakouts and irritation. UV exposure is the number one cause of premature aging. Even on cloudy days, UVA rays penetrate through clouds and windows. Always apply SPF 30+ every morning. Layering retinol, AHA, BHA, and vitamin C all at once overwhelms your skin barrier. Introduce one active at a time and wait 2-4 weeks before adding another. Use lukewarm water instead of hot water, pat dry with a clean towel never rub, apply products from thinnest to thickest consistency, and always patch-test new products on your jawline first.",
+    "Link-Image": "/assets/images/article-mistakes.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "simple-routine",
+    "tags": ["combination"],
+    "Title": "How to Build a Simple Skincare Routine That Actually Works",
+    "Simple-desc": "A basic three-step routine: cleanse, moisturize, and protect with sunscreen. Keep it simple and consistent for the best results.",
+    "Description": "A basic routine involves three steps: cleansing, moisturizing, and applying sunscreen. Cleanser removes dirt, oil, and impurities. Moisturizer keeps the skin hydrated and supports the skin barrier. Sunscreen protects against UV damage and premature aging. A minimal routine maintains healthy skin, prevents dehydration and irritation, supports long-term skin health, and is suitable for most skin types. Choose products that match your skin type. Introduce new products gradually. Avoid using too many active ingredients at once. Be patient and consistent with your routine. Cleanse morning and night, apply moisturizer to damp skin for better absorption, sunscreen is non-negotiable rain or shine, and consistency beats complexity every time.",
+    "Link-Image": "/assets/images/article-routine.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "lifestyle-habits",
+    "tags": ["acne", "dry", "oily"],
+    "Title": "How Lifestyle Habits Affect Your Skin Health",
+    "Simple-desc": "Your skin reflects your overall health. Sleep, diet, stress levels, and hydration all play crucial roles in skin appearance.",
+    "Description": "During deep sleep, your body increases blood flow to the skin, rebuilding collagen and repairing UV damage. Aim for 7-9 hours of quality sleep each night to support natural cell turnover. High-glycemic foods and dairy have been linked to increased acne in some individuals. Incorporate omega-3 fatty acids, antioxidants from fruits and vegetables, and plenty of water. Cortisol spikes from chronic stress trigger excess oil production and inflammation. Practice mindfulness, exercise regularly, and set boundaries to keep stress in check. Drink at least 8 glasses of water daily, change pillowcases weekly to reduce bacteria, avoid touching your face throughout the day, and exercise boosts circulation for a natural glow.",
+    "Link-Image": "/assets/images/article-lifestyle.png",
+    "Source": "SkinGlow Editorial Team"
+  }
+]

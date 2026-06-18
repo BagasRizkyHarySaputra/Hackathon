@@ -1,0 +1,2540 @@
+[
+  {
+    "name": "Home - Mobile",
+    "type": "FRAME",
+    "size": {
+      "width": 430,
+      "height": 1300
+    },
+    "position": {
+      "x": -4739,
+      "y": 14461
+    },
+    "colors": [
+      "#FFFFFF"
+    ],
+    "layers": [
+      {
+        "name": "background",
+        "type": "GROUP",
+        "size": {
+          "width": 2183.84,
+          "height": 2068.75
+        },
+        "position": {
+          "x": -5616,
+          "y": 13893.0
+        },
+        "layers": [
+          {
+            "name": "Rectangle 91",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": -4562,
+              "y": 14898
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 96",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": -5246,
+              "y": 15272
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 92",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 991.71,
+              "height": 988.02
+            },
+            "position": {
+              "x": -4647.72,
+              "y": 14973.72
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 93",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 800,
+              "height": 800
+            },
+            "position": {
+              "x": -5496,
+              "y": 14206
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 90",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 492.02,
+              "height": 383.58
+            },
+            "position": {
+              "x": -5054,
+              "y": 14808.0
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 89",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 600,
+              "height": 600
+            },
+            "position": {
+              "x": -5616,
+              "y": 15218
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 94",
+            "type": "VECTOR",
+            "size": {
+              "width": 897.84,
+              "height": 985.22
+            },
+            "position": {
+              "x": -4330.0,
+              "y": 13893.0
+            },
+            "colors": [
+              "#6E7F99"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "L I C I N",
+        "type": "TEXT",
+        "size": {
+          "width": 59,
+          "height": 20
+        },
+        "position": {
+          "x": -4709,
+          "y": 14501
+        },
+        "colors": [
+          "#6E7F99"
+        ],
+        "text_content": "L I C I N"
+      },
+      {
+        "name": "Hello, Username!",
+        "type": "TEXT",
+        "size": {
+          "width": 190,
+          "height": 31
+        },
+        "position": {
+          "x": -4709,
+          "y": 14551
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Hello, Username!"
+      },
+      {
+        "name": "Ready to check your skin today?",
+        "type": "TEXT",
+        "size": {
+          "width": 187,
+          "height": 15
+        },
+        "position": {
+          "x": -4709,
+          "y": 14586
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Ready to check your skin today?"
+      },
+      {
+        "name": "Rectangle 103",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 390,
+          "height": 447
+        },
+        "position": {
+          "x": -4719,
+          "y": 14613
+        },
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      {
+        "name": "Icon Profile",
+        "type": "VECTOR",
+        "size": {
+          "width": 40,
+          "height": 40
+        },
+        "position": {
+          "x": -4369,
+          "y": 14496
+        },
+        "colors": [
+          "#6E7F99"
+        ]
+      },
+      {
+        "name": "Notification",
+        "type": "GROUP",
+        "size": {
+          "width": 22,
+          "height": 30
+        },
+        "position": {
+          "x": -4406,
+          "y": 14501
+        },
+        "layers": [
+          {
+            "name": "Vector",
+            "type": "VECTOR",
+            "size": {
+              "width": 22,
+              "height": 27.86
+            },
+            "position": {
+              "x": -4406,
+              "y": 14503.14
+            }
+          },
+          {
+            "name": "Ellipse 45",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 8,
+              "height": 8
+            },
+            "position": {
+              "x": -4392,
+              "y": 14501
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Rectangle 104",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 390,
+          "height": 233
+        },
+        "position": {
+          "x": -4719,
+          "y": 15078
+        },
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      {
+        "name": "Rectangle 105",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 389,
+          "height": 306
+        },
+        "position": {
+          "x": -4718,
+          "y": 15329
+        },
+        "colors": [
+          "#FFFFFF"
+        ]
+      },
+      {
+        "name": "Rectangle 118",
+        "type": "VECTOR",
+        "size": {
+          "width": 28,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15390
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Rectangle 119",
+        "type": "VECTOR",
+        "size": {
+          "width": 28,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15390
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Rectangle 120",
+        "type": "VECTOR",
+        "size": {
+          "width": 6,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15430
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Rectangle 121",
+        "type": "VECTOR",
+        "size": {
+          "width": 6,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15470
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Rectangle 122",
+        "type": "VECTOR",
+        "size": {
+          "width": 128,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15510
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Rectangle 123",
+        "type": "VECTOR",
+        "size": {
+          "width": 28,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15550
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Rectangle 124",
+        "type": "VECTOR",
+        "size": {
+          "width": 46,
+          "height": 30
+        },
+        "position": {
+          "x": -4705,
+          "y": 15590
+        },
+        "colors": [
+          "#DEE5E9"
+        ]
+      },
+      {
+        "name": "Progress",
+        "type": "TEXT",
+        "size": {
+          "width": 67,
+          "height": 20
+        },
+        "position": {
+          "x": -4699,
+          "y": 15353
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Progress"
+      },
+      {
+        "name": "Before",
+        "type": "TEXT",
+        "size": {
+          "width": 55,
+          "height": 20
+        },
+        "position": {
+          "x": -4634,
+          "y": 15031
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": " Before"
+      },
+      {
+        "name": "After",
+        "type": "TEXT",
+        "size": {
+          "width": 39,
+          "height": 20
+        },
+        "position": {
+          "x": -4458,
+          "y": 15031
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "After"
+      },
+      {
+        "name": "Blackheads",
+        "type": "GROUP",
+        "size": {
+          "width": 348,
+          "height": 18
+        },
+        "position": {
+          "x": -4697,
+          "y": 15396
+        },
+        "layers": [
+          {
+            "name": "Blackheads",
+            "type": "TEXT",
+            "size": {
+              "width": 76.44,
+              "height": 18
+            },
+            "position": {
+              "x": -4697,
+              "y": 15396
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Blackheads"
+          },
+          {
+            "name": "2.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 33.19,
+              "height": 18
+            },
+            "position": {
+              "x": -4520.56,
+              "y": 15396
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "2.0%"
+          },
+          {
+            "name": "1.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 30.17,
+              "height": 18
+            },
+            "position": {
+              "x": -4467.37,
+              "y": 15396
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "1.0%"
+          },
+          {
+            "name": "1.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 30.17,
+              "height": 18
+            },
+            "position": {
+              "x": -4379.17,
+              "y": 15396
+            },
+            "colors": [
+              "#71B977"
+            ],
+            "text_content": "1.0%"
+          },
+          {
+            "name": "union-1",
+            "type": "VECTOR",
+            "size": {
+              "width": 10.06,
+              "height": 12
+            },
+            "position": {
+              "x": -4397.28,
+              "y": 15400
+            },
+            "colors": [
+              "#71B977"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Before After",
+        "type": "GROUP",
+        "size": {
+          "width": 300,
+          "height": 140
+        },
+        "position": {
+          "x": -4674,
+          "y": 14879
+        },
+        "layers": [
+          {
+            "name": "Group 15",
+            "type": "GROUP",
+            "size": {
+              "width": 300,
+              "height": 140
+            },
+            "position": {
+              "x": -4674,
+              "y": 14879
+            },
+            "layers": [
+              {
+                "name": "Rectangle 112",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 300,
+                  "height": 140
+                },
+                "position": {
+                  "x": -4674,
+                  "y": 14879
+                },
+                "colors": [
+                  "#95B4C6"
+                ]
+              },
+              {
+                "name": "Camera",
+                "type": "GROUP",
+                "size": {
+                  "width": 45.45,
+                  "height": 41.22
+                },
+                "position": {
+                  "x": -4628.55,
+                  "y": 14928
+                },
+                "layers": [
+                  {
+                    "name": "Rectangle 74",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 45.45,
+                      "height": 41.22
+                    },
+                    "position": {
+                      "x": -4628.55,
+                      "y": 14928
+                    }
+                  },
+                  {
+                    "name": "Ellipse 33",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 13.64,
+                      "height": 14.13
+                    },
+                    "position": {
+                      "x": -4612.64,
+                      "y": 14943.31
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Camera",
+                "type": "GROUP",
+                "size": {
+                  "width": 45.45,
+                  "height": 41.22
+                },
+                "position": {
+                  "x": -4460.36,
+                  "y": 14928
+                },
+                "layers": [
+                  {
+                    "name": "Rectangle 74",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 45.45,
+                      "height": 41.22
+                    },
+                    "position": {
+                      "x": -4460.36,
+                      "y": 14928
+                    }
+                  },
+                  {
+                    "name": "Ellipse 33",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 13.64,
+                      "height": 14.13
+                    },
+                    "position": {
+                      "x": -4444.45,
+                      "y": 14943.31
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Slide",
+            "type": "GROUP",
+            "size": {
+              "width": 22.73,
+              "height": 140
+            },
+            "position": {
+              "x": -4533.09,
+              "y": 14879
+            },
+            "layers": [
+              {
+                "name": "Line 11",
+                "type": "LINE",
+                "size": {
+                  "width": 0.0,
+                  "height": 140
+                },
+                "position": {
+                  "x": -4524.0,
+                  "y": 14879
+                }
+              },
+              {
+                "name": "Ellipse 40",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 22.73,
+                  "height": 23.33
+                },
+                "position": {
+                  "x": -4533.09,
+                  "y": 14936.56
+                },
+                "colors": [
+                  "#6E7F99"
+                ]
+              },
+              {
+                "name": "union-1",
+                "type": "VECTOR",
+                "size": {
+                  "width": 4.55,
+                  "height": 9.81
+                },
+                "position": {
+                  "x": -4531,
+                  "y": 14943.62
+                },
+                "colors": [
+                  "#CACDD6"
+                ]
+              },
+              {
+                "name": "union-1",
+                "type": "VECTOR",
+                "size": {
+                  "width": 4.55,
+                  "height": 9.81
+                },
+                "position": {
+                  "x": -4517.36,
+                  "y": 14943.62
+                },
+                "colors": [
+                  "#CACDD6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 12",
+        "type": "GROUP",
+        "size": {
+          "width": 100,
+          "height": 100
+        },
+        "position": {
+          "x": -4699,
+          "y": 14730
+        },
+        "layers": [
+          {
+            "name": "Rectangle 109",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "position": {
+              "x": -4699,
+              "y": 14730
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Camera",
+            "type": "GROUP",
+            "size": {
+              "width": 33.33,
+              "height": 29.44
+            },
+            "position": {
+              "x": -4665.67,
+              "y": 14765
+            },
+            "layers": [
+              {
+                "name": "Rectangle 74",
+                "type": "VECTOR",
+                "size": {
+                  "width": 33.33,
+                  "height": 29.44
+                },
+                "position": {
+                  "x": -4665.67,
+                  "y": 14765
+                }
+              },
+              {
+                "name": "Ellipse 33",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 10,
+                  "height": 10.1
+                },
+                "position": {
+                  "x": -4654,
+                  "y": 14775.94
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 13",
+        "type": "GROUP",
+        "size": {
+          "width": 100,
+          "height": 100
+        },
+        "position": {
+          "x": -4574,
+          "y": 14730
+        },
+        "layers": [
+          {
+            "name": "Rectangle 109",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "position": {
+              "x": -4574,
+              "y": 14730
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Camera",
+            "type": "GROUP",
+            "size": {
+              "width": 33.33,
+              "height": 29.44
+            },
+            "position": {
+              "x": -4540.67,
+              "y": 14765
+            },
+            "layers": [
+              {
+                "name": "Rectangle 74",
+                "type": "VECTOR",
+                "size": {
+                  "width": 33.33,
+                  "height": 29.44
+                },
+                "position": {
+                  "x": -4540.67,
+                  "y": 14765
+                }
+              },
+              {
+                "name": "Ellipse 33",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 10,
+                  "height": 10.1
+                },
+                "position": {
+                  "x": -4529,
+                  "y": 14775.94
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 14",
+        "type": "GROUP",
+        "size": {
+          "width": 100,
+          "height": 100
+        },
+        "position": {
+          "x": -4449,
+          "y": 14730
+        },
+        "layers": [
+          {
+            "name": "Rectangle 109",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "position": {
+              "x": -4449,
+              "y": 14730
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Camera",
+            "type": "GROUP",
+            "size": {
+              "width": 33.33,
+              "height": 29.44
+            },
+            "position": {
+              "x": -4415.67,
+              "y": 14765
+            },
+            "layers": [
+              {
+                "name": "Rectangle 74",
+                "type": "VECTOR",
+                "size": {
+                  "width": 33.33,
+                  "height": 29.44
+                },
+                "position": {
+                  "x": -4415.67,
+                  "y": 14765
+                }
+              },
+              {
+                "name": "Ellipse 33",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 10,
+                  "height": 10.1
+                },
+                "position": {
+                  "x": -4404,
+                  "y": 14775.94
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Line 12",
+        "type": "LINE",
+        "size": {
+          "width": 81,
+          "height": 0
+        },
+        "position": {
+          "x": -4630,
+          "y": 14703
+        }
+      },
+      {
+        "name": "Line 13",
+        "type": "LINE",
+        "size": {
+          "width": 81,
+          "height": 0
+        },
+        "position": {
+          "x": -4499,
+          "y": 14703
+        }
+      },
+      {
+        "name": "Week 1",
+        "type": "GROUP",
+        "size": {
+          "width": 50,
+          "height": 20
+        },
+        "position": {
+          "x": -4679,
+          "y": 14692
+        },
+        "layers": [
+          {
+            "name": "Rectangle 107",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 50,
+              "height": 20
+            },
+            "position": {
+              "x": -4679,
+              "y": 14692
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Week 1",
+            "type": "TEXT",
+            "size": {
+              "width": 36,
+              "height": 13
+            },
+            "position": {
+              "x": -4672,
+              "y": 14696
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Week 1"
+          }
+        ]
+      },
+      {
+        "name": "Week 2",
+        "type": "GROUP",
+        "size": {
+          "width": 50,
+          "height": 20
+        },
+        "position": {
+          "x": -4549,
+          "y": 14692
+        },
+        "layers": [
+          {
+            "name": "Rectangle 107",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 50,
+              "height": 20
+            },
+            "position": {
+              "x": -4549,
+              "y": 14692
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Week 2",
+            "type": "TEXT",
+            "size": {
+              "width": 36,
+              "height": 13
+            },
+            "position": {
+              "x": -4542,
+              "y": 14696
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Week 2"
+          }
+        ]
+      },
+      {
+        "name": "Week 3",
+        "type": "GROUP",
+        "size": {
+          "width": 50,
+          "height": 20
+        },
+        "position": {
+          "x": -4419,
+          "y": 14692
+        },
+        "layers": [
+          {
+            "name": "Rectangle 107",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 50,
+              "height": 20
+            },
+            "position": {
+              "x": -4419,
+              "y": 14692
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Week 3",
+            "type": "TEXT",
+            "size": {
+              "width": 36,
+              "height": 13
+            },
+            "position": {
+              "x": -4412,
+              "y": 14696
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Week 3"
+          }
+        ]
+      },
+      {
+        "name": "Track your skin journey!",
+        "type": "TEXT",
+        "size": {
+          "width": 114,
+          "height": 13
+        },
+        "position": {
+          "x": -4696,
+          "y": 14654
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Track your skin journey!"
+      },
+      {
+        "name": "Skin Diary",
+        "type": "TEXT",
+        "size": {
+          "width": 96,
+          "height": 26
+        },
+        "position": {
+          "x": -4696,
+          "y": 14628
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Skin Diary"
+      },
+      {
+        "name": "Skin Diary Summary",
+        "type": "TEXT",
+        "size": {
+          "width": 190,
+          "height": 26
+        },
+        "position": {
+          "x": -4694,
+          "y": 15100
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Skin Diary Summary"
+      },
+      {
+        "name": "Overall Improvement",
+        "type": "TEXT",
+        "size": {
+          "width": 117,
+          "height": 15
+        },
+        "position": {
+          "x": -4693,
+          "y": 15128
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Overall Improvement"
+      },
+      {
+        "name": "Progress",
+        "type": "TEXT",
+        "size": {
+          "width": 84,
+          "height": 26
+        },
+        "position": {
+          "x": -4696,
+          "y": 14848
+        },
+        "colors": [
+          "#2B2B2B"
+        ],
+        "text_content": "Progress"
+      },
+      {
+        "name": "Group 10",
+        "type": "GROUP",
+        "size": {
+          "width": 170,
+          "height": 170.0
+        },
+        "position": {
+          "x": -4517,
+          "y": 15116
+        },
+        "layers": [
+          {
+            "name": "Ellipse 44",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 167.81,
+              "height": 167.81
+            },
+            "position": {
+              "x": -4517,
+              "y": 15116
+            }
+          },
+          {
+            "name": "Ellipse 43",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 167.81,
+              "height": 167.81
+            },
+            "position": {
+              "x": -4514.81,
+              "y": 15118.19
+            }
+          },
+          {
+            "name": "Ellipse 42",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 145.92,
+              "height": 145.92
+            },
+            "position": {
+              "x": -4503.87,
+              "y": 15129.13
+            },
+            "colors": [
+              "#F6F5F6"
+            ]
+          },
+          {
+            "name": "Improvement",
+            "type": "TEXT",
+            "size": {
+              "width": 75,
+              "height": 15
+            },
+            "position": {
+              "x": -4469,
+              "y": 15215
+            },
+            "colors": [
+              "#435571"
+            ],
+            "text_content": "Improvement"
+          },
+          {
+            "name": "+80%",
+            "type": "TEXT",
+            "size": {
+              "width": 92,
+              "height": 26
+            },
+            "position": {
+              "x": -4479,
+              "y": 15178
+            },
+            "colors": [
+              "#435571"
+            ],
+            "text_content": "+80%"
+          }
+        ]
+      },
+      {
+        "name": "Maskot",
+        "type": "GROUP",
+        "size": {
+          "width": 130,
+          "height": 130.0
+        },
+        "position": {
+          "x": -4671,
+          "y": 15171
+        },
+        "layers": [
+          {
+            "name": "water drop",
+            "type": "GROUP",
+            "size": {
+              "width": 130,
+              "height": 130.0
+            },
+            "position": {
+              "x": -4671,
+              "y": 15171
+            },
+            "layers": [
+              {
+                "name": "Ellipse 7",
+                "type": "VECTOR",
+                "size": {
+                  "width": 98.11,
+                  "height": 113.58
+                },
+                "position": {
+                  "x": -4652.85,
+                  "y": 15171
+                }
+              },
+              {
+                "name": "Ellipse 6",
+                "type": "VECTOR",
+                "size": {
+                  "width": 85.85,
+                  "height": 99.44
+                },
+                "position": {
+                  "x": -4645.26,
+                  "y": 15185.5
+                }
+              },
+              {
+                "name": "Subtract",
+                "type": "BOOLEAN_OPERATION",
+                "size": {
+                  "width": 95.45,
+                  "height": 74.63
+                },
+                "position": {
+                  "x": -4652.85,
+                  "y": 15209.77
+                },
+                "layers": [
+                  {
+                    "name": "Ellipse 1",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 98.11,
+                      "height": 113.58
+                    },
+                    "position": {
+                      "x": -4652.85,
+                      "y": 15170.82
+                    }
+                  },
+                  {
+                    "name": "Ellipse 3",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 98.11,
+                      "height": 113.58
+                    },
+                    "position": {
+                      "x": -4645.49,
+                      "y": 15158.05
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Ellipse 4",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 93.21,
+                  "height": 86.67
+                },
+                "position": {
+                  "x": -4634.21,
+                  "y": 15171
+                }
+              },
+              {
+                "name": "Ellipse 5",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 93.21,
+                  "height": 86.67
+                },
+                "position": {
+                  "x": -4671,
+                  "y": 15214.33
+                }
+              },
+              {
+                "name": "Ellipse 2",
+                "type": "VECTOR",
+                "size": {
+                  "width": 29.47,
+                  "height": 54.52
+                },
+                "position": {
+                  "x": -4638.5,
+                  "y": 15188.06
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ellipse 51",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 15.6,
+              "height": 9.05
+            },
+            "position": {
+              "x": -4632,
+              "y": 15254.1
+            },
+            "colors": [
+              "#D3ADC3"
+            ]
+          },
+          {
+            "name": "Ellipse 52",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 15.6,
+              "height": 9.05
+            },
+            "position": {
+              "x": -4592.13,
+              "y": 15254.1
+            },
+            "colors": [
+              "#D3ADC3"
+            ]
+          },
+          {
+            "name": "Ellipse 47",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 12.13,
+              "height": 16.46
+            },
+            "position": {
+              "x": -4626.8,
+              "y": 15239.29
+            },
+            "colors": [
+              "#0B1939"
+            ]
+          },
+          {
+            "name": "Ellipse 48",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 3.47,
+              "height": 4.11
+            },
+            "position": {
+              "x": -4624.2,
+              "y": 15242.58
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Ellipse 49",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 12.13,
+              "height": 16.46
+            },
+            "position": {
+              "x": -4593.87,
+              "y": 15239.29
+            },
+            "colors": [
+              "#0B1939"
+            ]
+          },
+          {
+            "name": "Ellipse 50",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 3.47,
+              "height": 4.11
+            },
+            "position": {
+              "x": -4590.4,
+              "y": 15241.76
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Ellipse 53",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 10.4,
+              "height": 9.87
+            },
+            "position": {
+              "x": -4608.6,
+              "y": 15255.75
+            },
+            "colors": [
+              "#0A1939"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Bubble right",
+        "type": "FRAME",
+        "size": {
+          "width": 97,
+          "height": 25
+        },
+        "position": {
+          "x": -4723,
+          "y": 15172
+        },
+        "auto_layout": {
+          "direction": "HORIZONTAL",
+          "spacing": 0,
+          "padding_left": 0,
+          "padding_top": 0
+        },
+        "layers": [
+          {
+            "name": "Frame 3",
+            "type": "FRAME",
+            "size": {
+              "width": 20,
+              "height": 28.0
+            },
+            "position": {
+              "x": -4646,
+              "y": 15172
+            },
+            "auto_layout": {
+              "direction": "VERTICAL",
+              "spacing": 0,
+              "padding_left": 0,
+              "padding_top": 0
+            },
+            "layers": [
+              {
+                "name": "Rectangle 2",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 20,
+                  "height": 11
+                },
+                "position": {
+                  "x": -4646,
+                  "y": 15172
+                },
+                "colors": [
+                  "#6E7F99"
+                ]
+              },
+              {
+                "name": "Rectangle 1",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 20,
+                  "height": 0.0
+                },
+                "position": {
+                  "x": -4646,
+                  "y": 15183
+                },
+                "colors": [
+                  "#6E7F99"
+                ]
+              },
+              {
+                "name": "Union",
+                "type": "BOOLEAN_OPERATION",
+                "size": {
+                  "width": 20,
+                  "height": 17.0
+                },
+                "position": {
+                  "x": -4646,
+                  "y": 15183
+                },
+                "colors": [
+                  "#6E7F99"
+                ],
+                "layers": [
+                  {
+                    "name": "Rectangle 3",
+                    "type": "RECTANGLE",
+                    "size": {
+                      "width": 20,
+                      "height": 12
+                    },
+                    "position": {
+                      "x": -4646.0,
+                      "y": 15183
+                    },
+                    "colors": [
+                      "#278EFF"
+                    ]
+                  },
+                  {
+                    "name": "Vector 1",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 16,
+                      "height": 12
+                    },
+                    "position": {
+                      "x": -4644.36,
+                      "y": 15188
+                    },
+                    "colors": [
+                      "#1888FE"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Frame 1",
+            "type": "FRAME",
+            "size": {
+              "width": 57,
+              "height": 23
+            },
+            "position": {
+              "x": -4703,
+              "y": 15172
+            },
+            "auto_layout": {
+              "direction": "HORIZONTAL",
+              "spacing": 5.1717448234558105,
+              "padding_left": 0,
+              "padding_top": 5
+            },
+            "colors": [
+              "#6E7F99"
+            ],
+            "layers": [
+              {
+                "name": "Text",
+                "type": "TEXT",
+                "size": {
+                  "width": 60,
+                  "height": 11
+                },
+                "position": {
+                  "x": -4703,
+                  "y": 15177
+                },
+                "colors": [
+                  "#FFFFFF"
+                ],
+                "text_content": "Keep it up"
+              }
+            ]
+          },
+          {
+            "name": "Frame 2",
+            "type": "FRAME",
+            "size": {
+              "width": 19,
+              "height": 33
+            },
+            "position": {
+              "x": -4722,
+              "y": 15172
+            },
+            "auto_layout": {
+              "direction": "VERTICAL",
+              "spacing": 0,
+              "padding_left": 0,
+              "padding_top": 0
+            },
+            "layers": [
+              {
+                "name": "Rectangle 2",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 20,
+                  "height": 12
+                },
+                "position": {
+                  "x": -4722,
+                  "y": 15172
+                },
+                "colors": [
+                  "#6E7F99"
+                ]
+              },
+              {
+                "name": "Rectangle 1",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 20,
+                  "height": 0.0
+                },
+                "position": {
+                  "x": -4722,
+                  "y": 15184.0
+                },
+                "colors": [
+                  "#6E7F99"
+                ]
+              },
+              {
+                "name": "Rectangle 3",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 20,
+                  "height": 11
+                },
+                "position": {
+                  "x": -4722,
+                  "y": 15184
+                },
+                "colors": [
+                  "#6E7F99"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Popules",
+        "type": "GROUP",
+        "size": {
+          "width": 356,
+          "height": 18
+        },
+        "position": {
+          "x": -4696,
+          "y": 15516
+        },
+        "layers": [
+          {
+            "name": "5.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4467,
+              "y": 15516
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "5.0%"
+          },
+          {
+            "name": "15.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 39,
+              "height": 18
+            },
+            "position": {
+              "x": -4521,
+              "y": 15516
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "15.0%"
+          },
+          {
+            "name": "Popules",
+            "type": "TEXT",
+            "size": {
+              "width": 53,
+              "height": 18
+            },
+            "position": {
+              "x": -4696,
+              "y": 15516
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Popules"
+          },
+          {
+            "name": "10.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 39,
+              "height": 18
+            },
+            "position": {
+              "x": -4379,
+              "y": 15516
+            },
+            "colors": [
+              "#71B977"
+            ],
+            "text_content": "10.0%"
+          },
+          {
+            "name": "union-1",
+            "type": "VECTOR",
+            "size": {
+              "width": 10,
+              "height": 12
+            },
+            "position": {
+              "x": -4397,
+              "y": 15520
+            },
+            "colors": [
+              "#71B977"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Whiteheads",
+        "type": "GROUP",
+        "size": {
+          "width": 351,
+          "height": 18
+        },
+        "position": {
+          "x": -4696,
+          "y": 15598
+        },
+        "layers": [
+          {
+            "name": "8.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4467,
+              "y": 15598
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "8.0%"
+          },
+          {
+            "name": "10.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 39,
+              "height": 18
+            },
+            "position": {
+              "x": -4521,
+              "y": 15598
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "10.0%"
+          },
+          {
+            "name": "Whiteheads",
+            "type": "TEXT",
+            "size": {
+              "width": 80,
+              "height": 18
+            },
+            "position": {
+              "x": -4696,
+              "y": 15598
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Whiteheads"
+          },
+          {
+            "name": "2.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 33,
+              "height": 18
+            },
+            "position": {
+              "x": -4378,
+              "y": 15598
+            },
+            "colors": [
+              "#71B977"
+            ],
+            "text_content": "2.0%"
+          },
+          {
+            "name": "union-1",
+            "type": "VECTOR",
+            "size": {
+              "width": 10,
+              "height": 12
+            },
+            "position": {
+              "x": -4397,
+              "y": 15602
+            },
+            "colors": [
+              "#71B977"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Pustules",
+        "type": "GROUP",
+        "size": {
+          "width": 349,
+          "height": 20
+        },
+        "position": {
+          "x": -4696,
+          "y": 15556
+        },
+        "layers": [
+          {
+            "name": "8.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4467,
+              "y": 15556
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "8.0%"
+          },
+          {
+            "name": "7.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 35,
+              "height": 20
+            },
+            "position": {
+              "x": -4521,
+              "y": 15556
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "7.0%"
+          },
+          {
+            "name": "Pustules",
+            "type": "TEXT",
+            "size": {
+              "width": 58,
+              "height": 20
+            },
+            "position": {
+              "x": -4696,
+              "y": 15556
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Pustules"
+          },
+          {
+            "name": "1.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 20
+            },
+            "position": {
+              "x": -4381,
+              "y": 15556
+            },
+            "colors": [
+              "#CC5D5D"
+            ],
+            "text_content": "1.0%"
+          },
+          {
+            "name": "union-1",
+            "type": "VECTOR",
+            "size": {
+              "width": 10,
+              "height": 12
+            },
+            "position": {
+              "x": -4397,
+              "y": 15560
+            },
+            "colors": [
+              "#CC5D5D"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Dark Spot",
+        "type": "GROUP",
+        "size": {
+          "width": 352,
+          "height": 18
+        },
+        "position": {
+          "x": -4697,
+          "y": 15436
+        },
+        "layers": [
+          {
+            "name": "0.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4521,
+              "y": 15436
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "0.0%"
+          },
+          {
+            "name": "0.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4467,
+              "y": 15436
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "0.0%"
+          },
+          {
+            "name": "0.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4379,
+              "y": 15436
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "0.0%"
+          },
+          {
+            "name": "Dark Spot",
+            "type": "TEXT",
+            "size": {
+              "width": 66,
+              "height": 18
+            },
+            "position": {
+              "x": -4697,
+              "y": 15436
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Dark Spot"
+          },
+          {
+            "name": "Line 17",
+            "type": "VECTOR",
+            "size": {
+              "width": 10,
+              "height": 0
+            },
+            "position": {
+              "x": -4397,
+              "y": 15445.5
+            }
+          }
+        ]
+      },
+      {
+        "name": "Nodules",
+        "type": "GROUP",
+        "size": {
+          "width": 351,
+          "height": 18
+        },
+        "position": {
+          "x": -4696,
+          "y": 15476
+        },
+        "layers": [
+          {
+            "name": "0.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4467,
+              "y": 15476
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "0.0%"
+          },
+          {
+            "name": "0.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4521,
+              "y": 15476
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "0.0%"
+          },
+          {
+            "name": "Nodules",
+            "type": "TEXT",
+            "size": {
+              "width": 54,
+              "height": 18
+            },
+            "position": {
+              "x": -4696,
+              "y": 15476
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "Nodules"
+          },
+          {
+            "name": "0.0%",
+            "type": "TEXT",
+            "size": {
+              "width": 34,
+              "height": 18
+            },
+            "position": {
+              "x": -4379,
+              "y": 15476
+            },
+            "colors": [
+              "#2B2B2B"
+            ],
+            "text_content": "0.0%"
+          },
+          {
+            "name": "Line 18",
+            "type": "VECTOR",
+            "size": {
+              "width": 10,
+              "height": 0
+            },
+            "position": {
+              "x": -4397,
+              "y": 15485.5
+            }
+          }
+        ]
+      },
+      {
+        "name": "Side Bar",
+        "type": "GROUP",
+        "size": {
+          "width": 342,
+          "height": 60
+        },
+        "position": {
+          "x": -4695,
+          "y": 15666
+        },
+        "layers": [
+          {
+            "name": "Rectangle 105",
+            "type": "VECTOR",
+            "size": {
+              "width": 342,
+              "height": 60
+            },
+            "position": {
+              "x": -4695,
+              "y": 15666
+            }
+          },
+          {
+            "name": "Selection",
+            "type": "VECTOR",
+            "size": {
+              "width": 42.62,
+              "height": 40
+            },
+            "position": {
+              "x": -4674.84,
+              "y": 15676
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Icon Profile",
+            "type": "GROUP",
+            "size": {
+              "width": 27,
+              "height": 29.86
+            },
+            "position": {
+              "x": -4404.67,
+              "y": 15681
+            },
+            "layers": [
+              {
+                "name": "Ellipse 33",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 15.43,
+                  "height": 13.71
+                },
+                "position": {
+                  "x": -4399.38,
+                  "y": 15681
+                },
+                "colors": [
+                  "#95B4C6"
+                ]
+              },
+              {
+                "name": "Rectangle 2",
+                "type": "VECTOR",
+                "size": {
+                  "width": 27,
+                  "height": 12.86
+                },
+                "position": {
+                  "x": -4404.67,
+                  "y": 15698
+                },
+                "colors": [
+                  "#95B4C6"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Icon Article",
+            "type": "GROUP",
+            "size": {
+              "width": 29.3,
+              "height": 30
+            },
+            "position": {
+              "x": -4471.79,
+              "y": 15681
+            },
+            "layers": [
+              {
+                "name": "Subtract",
+                "type": "VECTOR",
+                "size": {
+                  "width": 29.3,
+                  "height": 30
+                },
+                "position": {
+                  "x": -4471.79,
+                  "y": 15681
+                },
+                "colors": [
+                  "#95B4C6"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Camera",
+            "type": "GROUP",
+            "size": {
+              "width": 29.3,
+              "height": 25
+            },
+            "position": {
+              "x": -4539.45,
+              "y": 15683.5
+            },
+            "layers": [
+              {
+                "name": "Subtract",
+                "type": "BOOLEAN_OPERATION",
+                "size": {
+                  "width": 29.3,
+                  "height": 25
+                },
+                "position": {
+                  "x": -4539.45,
+                  "y": 15683.5
+                },
+                "colors": [
+                  "#95B4C6"
+                ],
+                "layers": [
+                  {
+                    "name": "Rectangle 75",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 29.3,
+                      "height": 25
+                    },
+                    "position": {
+                      "x": -4539.45,
+                      "y": 15683.5
+                    },
+                    "colors": [
+                      "#2B3F6C"
+                    ]
+                  },
+                  {
+                    "name": "Ellipse 33",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 8.79,
+                      "height": 8.57
+                    },
+                    "position": {
+                      "x": -4529.19,
+                      "y": 15692.79
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Icon Comunity",
+            "type": "GROUP",
+            "size": {
+              "width": 29.3,
+              "height": 27.5
+            },
+            "position": {
+              "x": -4601.78,
+              "y": 15682
+            },
+            "layers": [
+              {
+                "name": "Subtract",
+                "type": "BOOLEAN_OPERATION",
+                "size": {
+                  "width": 29.3,
+                  "height": 27.5
+                },
+                "position": {
+                  "x": -4601.78,
+                  "y": 15682
+                },
+                "colors": [
+                  "#95B4C6"
+                ],
+                "layers": [
+                  {
+                    "name": "Union",
+                    "type": "BOOLEAN_OPERATION",
+                    "size": {
+                      "width": 29.3,
+                      "height": 27.5
+                    },
+                    "position": {
+                      "x": -4601.78,
+                      "y": 15682
+                    },
+                    "colors": [
+                      "#2B3F6C"
+                    ],
+                    "layers": [
+                      {
+                        "name": "Union",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 27.25,
+                          "height": 25.58
+                        },
+                        "position": {
+                          "x": -4600.75,
+                          "y": 15682.96
+                        },
+                        "colors": [
+                          "#C4C4C4"
+                        ]
+                      },
+                      {
+                        "name": "Union (Stroke)",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 29.3,
+                          "height": 27.5
+                        },
+                        "position": {
+                          "x": -4601.78,
+                          "y": 15682
+                        },
+                        "colors": [
+                          "#2B3F6C"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Dots",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 17.03,
+                      "height": 3.2
+                    },
+                    "position": {
+                      "x": -4595.58,
+                      "y": 15694.21
+                    },
+                    "layers": [
+                      {
+                        "name": "Ellipse 37",
+                        "type": "ELLIPSE",
+                        "size": {
+                          "width": 3.41,
+                          "height": 3.2
+                        },
+                        "position": {
+                          "x": -4595.58,
+                          "y": 15694.21
+                        },
+                        "colors": [
+                          "#2B3F6C"
+                        ]
+                      },
+                      {
+                        "name": "Ellipse 38",
+                        "type": "ELLIPSE",
+                        "size": {
+                          "width": 3.41,
+                          "height": 3.2
+                        },
+                        "position": {
+                          "x": -4588.76,
+                          "y": 15694.21
+                        },
+                        "colors": [
+                          "#2B3F6C"
+                        ]
+                      },
+                      {
+                        "name": "Ellipse 39",
+                        "type": "ELLIPSE",
+                        "size": {
+                          "width": 3.41,
+                          "height": 3.2
+                        },
+                        "position": {
+                          "x": -4581.95,
+                          "y": 15694.21
+                        },
+                        "colors": [
+                          "#2B3F6C"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "home",
+            "type": "INSTANCE",
+            "size": {
+              "width": 35,
+              "height": 33
+            },
+            "position": {
+              "x": -4671,
+              "y": 15679
+            },
+            "layers": [
+              {
+                "name": "vuesax/bold/home-2",
+                "type": "GROUP",
+                "size": {
+                  "width": 35,
+                  "height": 33
+                },
+                "position": {
+                  "x": -4671,
+                  "y": 15679
+                },
+                "layers": [
+                  {
+                    "name": "home-2",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 35,
+                      "height": 33
+                    },
+                    "position": {
+                      "x": -4671,
+                      "y": 15679
+                    },
+                    "layers": [
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 29.2,
+                          "height": 27.5
+                        },
+                        "position": {
+                          "x": -4668.1,
+                          "y": 15681.75
+                        },
+                        "colors": [
+                          "#6E7F99"
+                        ]
+                      },
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 35,
+                          "height": 33
+                        },
+                        "position": {
+                          "x": -4671,
+                          "y": 15679
+                        },
+                        "colors": [
+                          "#6E7F99"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

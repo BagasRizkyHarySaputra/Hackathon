@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height:100%;overflow:hidden;">
+<html lang="en" style="height:100%;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/assets/css/components/header.css" />
   <link rel="stylesheet" href="/assets/css/components/scan-page.css" />
 </head>
-<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+<body style="height:100%;background:#FFFFFF;">
   <div class="scan-page-viewport">
     <!-- Blurred gradient background (matching the app pattern) -->
     <div class="loading-bg-blur" aria-hidden="true">
@@ -31,10 +31,10 @@
       <!-- Sidebar: data-active="scan" highlights the camera icon -->
       <div id="sidebar-root" data-active="scan"></div>
 
-      <main class="scan-main">
+      <main class="app-main app-main--scroll">
         <header id="header-root" class="home-header" data-show-greeting="false"></header>
 
-        <div class="scan-card-wrap">
+        <div class="scan-card-wrap" x-data="createScanPageComponent()">
           <!-- Card Header Row: back / title / help -->
           <div class="scan-card-header">
             <button class="scan-card-header__back" aria-label="Back" onclick="history.back()">
@@ -47,7 +47,7 @@
           </div>
 
           <!-- Camera / Scan Area -->
-          <div class="scan-camera-area" x-data="createScanPageComponent()">
+          <div class="scan-camera-area">
             <video
               class="scan-camera-area__video"
               x-ref="video"
@@ -77,127 +77,88 @@
               <div class="scan-frame__corner scan-frame__corner--br"></div>
             </div>
 
-            <div class="scan-camera-error" x-show="cameraError" x-text="cameraError" aria-live="polite"></div>
+  <div class="scan-camera-error" x-show="cameraError" x-text="cameraError" aria-live="polite"></div>
 
+  <button
+    class="scan-camera-btn"
+    :class="{ 'scan-camera-btn--hidden': showPopup }"
+    aria-label="Capture photo"
+    @click="capturePhoto()"
+    :disabled="!cameraReady"
+  >
+    <img src="/assets/images/scan-page/Camera.svg" alt="" />
+  </button>
+
+  <div
+    class="scan-overlay"
+    x-show="showPopup"
+    x-transition:enter="results-enter"
+    x-transition:enter-start="results-enter-start"
+    x-transition:enter-end="results-enter-end"
+    x-transition:leave="results-leave"
+    x-transition:leave-start="results-leave-start"
+    x-transition:leave-end="results-leave-end"
+    style="display: none;"
+  >
+    <template x-if="analysis">
+      <div class="scan-overlay__markers">
+        <template x-for="marker in analysis.markers" :key="marker.id">
+          <div
+            class="scan-overlay-marker"
+            :style="`left: ${marker.x}%; top: ${marker.y}%`"
+          >
+            <span class="scan-overlay-marker__label" x-text="marker.label"></span>
+            <div class="scan-overlay-marker__dot"></div>
+            <div class="scan-overlay-marker__ring"></div>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <template x-if="product">
+      <div class="scan-overlay-card">
+        <div class="scan-overlay-card__image-wrap">
+          <img src="/assets/images/scan-page/product-cleanser.png" alt="Product" class="scan-overlay-card__image" onerror="this.style.display='none'" />
+        </div>
+        <div class="scan-overlay-card__info">
+          <h3 class="scan-overlay-card__name" x-text="product?.name"></h3>
+          <p class="scan-overlay-card__desc" x-text="product?.description"></p>
+          <div class="scan-overlay-card__routine">
             <button
-              class="scan-camera-btn"
-              aria-label="Capture photo"
-              @click="capturePhoto()"
-              :disabled="!cameraReady"
+              class="scan-results-routine-btn"
+              :class="{ 'active': routineType === 'morning' }"
+              @click="routineType = 'morning'"
             >
-              <img src="/assets/images/scan-page/Camera.svg" alt="" />
+              <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
+              <span>Morning</span>
+            </button>
+            <button
+              class="scan-results-routine-btn"
+              :class="{ 'active': routineType === 'night' }"
+              @click="routineType = 'night'"
+            >
+              <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
+              <span>Night</span>
             </button>
           </div>
         </div>
-      </main>
-    </div>
-
-    <!-- ═══════════ Results Bottom Sheet ═══════════ -->
-    <div
-      class="scan-results-overlay"
-      x-show="showPopup"
-      x-transition:enter="overlay-enter"
-      x-transition:enter-start="overlay-enter-start"
-      x-transition:enter-end="overlay-enter-end"
-      x-transition:leave="overlay-leave"
-      x-transition:leave-start="overlay-leave-start"
-      x-transition:leave-end="overlay-leave-end"
-      @click.self="closePopup()"
-      style="display: none;"
-    >
-      <div
-        class="scan-results-sheet"
-        x-show="showPopup"
-        x-transition:enter="sheet-enter"
-        x-transition:enter-start="sheet-enter-start"
-        x-transition:enter-end="sheet-enter-end"
-        x-transition:leave="sheet-leave"
-        x-transition:leave-start="sheet-leave-start"
-        x-transition:leave-end="sheet-leave-end"
-      >
-        <!-- Drag handle -->
-        <div class="scan-results-sheet__handle"></div>
-
-        <!-- Captured photo with analysis overlay -->
-        <div class="scan-results-photo">
-          <img :src="capturedImage" alt="Captured skin" class="scan-results-photo__img" />
-
-          <!-- Analysis markers -->
-          <template x-if="analysis">
-            <div class="scan-results-markers">
-              <template x-for="marker in analysis.markers" :key="marker.id">
-                <div
-                  class="scan-results-marker"
-                  :style="`left: ${marker.x}%; top: ${marker.y}%`"
-                >
-                  <div class="scan-results-marker__dot"></div>
-                  <div class="scan-results-marker__ring"></div>
-                </div>
-              </template>
-            </div>
-          </template>
-        </div>
-
-        <!-- Analysis stats -->
-        <div class="scan-results-stats" x-show="analysis">
-          <template x-if="analysis">
-            <div class="scan-results-stats__list">
-              <template x-for="stat in analysis.stats" :key="stat.label">
-                <div class="scan-results-stat">
-                  <span class="scan-results-stat__label" x-text="stat.label"></span>
-                  <span class="scan-results-stat__value" x-text="stat.value"></span>
-                </div>
-              </template>
-            </div>
-          </template>
-        </div>
-
-        <!-- Product recommendation -->
-        <div class="scan-results-product" x-show="product">
-          <div class="scan-results-product__image-wrap">
-            <img src="/assets/images/scan-page/product-cleanser.png" alt="Product" class="scan-results-product__image" onerror="this.style.display='none'" />
-          </div>
-          <div class="scan-results-product__info">
-            <h3 class="scan-results-product__name" x-text="product?.name"></h3>
-            <p class="scan-results-product__desc" x-text="product?.description"></p>
-
-            <!-- Routine toggles -->
-            <div class="scan-results-product__routine">
-              <button
-                class="scan-results-routine-btn"
-                :class="{ 'active': routineType === 'morning' }"
-                @click="routineType = 'morning'"
-              >
-                <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
-                <span>Morning</span>
-              </button>
-              <button
-                class="scan-results-routine-btn"
-                :class="{ 'active': routineType === 'night' }"
-                @click="routineType = 'night'"
-              >
-                <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
-                <span>Night</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Save routine button -->
-        <div class="scan-results-actions">
-          <button class="scan-results-save-btn" @click="saveRoutine()">
-            <span>Save Routine</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-        </div>
-
-        <!-- Swipe dots -->
-        <div class="scan-results-dots">
-          <span class="scan-results-dot scan-results-dot--active"></span>
-          <span class="scan-results-dot"></span>
-          <span class="scan-results-dot"></span>
-        </div>
+        <button class="scan-overlay-card__save" @click="saveRoutine()" aria-label="Save routine">
+          <span>Save Routine</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
+    </template>
+
+    <div class="scan-overlay-dots">
+      <span class="scan-overlay-dot scan-overlay-dot--active"></span>
+      <span class="scan-overlay-dot"></span>
+      <span class="scan-overlay-dot"></span>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </main>
     </div>
   </div>
 

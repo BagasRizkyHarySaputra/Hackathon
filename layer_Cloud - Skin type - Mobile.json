@@ -1,0 +1,823 @@
+[
+  {
+    "name": "Cloud - Skin type - Mobile",
+    "type": "FRAME",
+    "size": {
+      "width": 430,
+      "height": 932
+    },
+    "position": {
+      "x": -4739,
+      "y": 13448
+    },
+    "colors": ["#FFFFFF"],
+    "layers": [
+      {
+        "name": "background",
+        "type": "GROUP",
+        "size": {
+          "width": 2183.84,
+          "height": 2068.75
+        },
+        "position": {
+          "x": -5616,
+          "y": 12880
+        },
+        "layers": [
+          {
+            "name": "Rectangle 91",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": -4562,
+              "y": 13885
+            },
+            "colors": ["#E4D8DC"]
+          },
+          {
+            "name": "Rectangle 96",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": -5246,
+              "y": 14259
+            },
+            "colors": ["#E4D8DC"]
+          },
+          {
+            "name": "Rectangle 92",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 991.71,
+              "height": 988.02
+            },
+            "position": {
+              "x": -4647.72,
+              "y": 13960.72
+            },
+            "colors": ["#FFE3E2"]
+          },
+          {
+            "name": "Rectangle 93",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 800,
+              "height": 800
+            },
+            "position": {
+              "x": -5496,
+              "y": 13193
+            },
+            "colors": ["#FFE3E2"]
+          },
+          {
+            "name": "Rectangle 90",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 492.02,
+              "height": 383.58
+            },
+            "position": {
+              "x": -5054,
+              "y": 13795.0
+            },
+            "colors": ["#95B4C6"]
+          },
+          {
+            "name": "Rectangle 89",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 600,
+              "height": 600
+            },
+            "position": {
+              "x": -5616,
+              "y": 14205
+            },
+            "colors": ["#95B4C6"]
+          },
+          {
+            "name": "Rectangle 94",
+            "type": "VECTOR",
+            "size": {
+              "width": 897.84,
+              "height": 985.22
+            },
+            "position": {
+              "x": -4330.0,
+              "y": 12880.0
+            },
+            "colors": ["#6E7F99"]
+          }
+        ]
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4621,
+          "y": 14185
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4869,
+          "y": 14240
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4621,
+          "y": 13373
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4518,
+          "y": 13510
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4780,
+          "y": 13572
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4648,
+          "y": 13681
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4704,
+          "y": 13795
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4592,
+          "y": 13873
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4592,
+          "y": 14013
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4808,
+          "y": 13934
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4787,
+          "y": 14087
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 306
+        },
+        "position": {
+          "x": -4857,
+          "y": 13707
+        }
+      },
+      {
+        "name": "C1",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 359,
+          "height": 294
+        },
+        "position": {
+          "x": -4792,
+          "y": 13446
+        }
+      },
+      {
+        "name": "SKIN TYPE OPSION",
+        "type": "GROUP",
+        "size": {
+          "width": 390,
+          "height": 145
+        },
+        "position": {
+          "x": -4713,
+          "y": 13846
+        },
+        "layers": [
+          {
+            "name": "Rectangle 121",
+            "type": "VECTOR",
+            "size": {
+              "width": 370,
+              "height": 145
+            },
+            "position": {
+              "x": -4713,
+              "y": 13846
+            },
+            "colors": ["#FCEFEF"]
+          },
+          {
+            "name": "What's Your Skin Type?",
+            "type": "TEXT",
+            "size": {
+              "width": 225.49,
+              "height": 19.6
+            },
+            "position": {
+              "x": -4639,
+              "y": 13859
+            },
+            "colors": ["#000000"],
+            "text_content": "What's Your Skin Type?"
+          },
+          {
+            "name": "Normal Skin",
+            "type": "GROUP",
+            "size": {
+              "width": 56,
+              "height": 14
+            },
+            "position": {
+              "x": -4624,
+              "y": 13909
+            },
+            "layers": [
+              {
+                "name": "Rectangle 128",
+                "type": "VECTOR",
+                "size": {
+                  "width": 56,
+                  "height": 14
+                },
+                "position": {
+                  "x": -4624,
+                  "y": 13909
+                },
+                "colors": ["#CACDD6"]
+              },
+              {
+                "name": "Normal Skin",
+                "type": "TEXT",
+                "size": {
+                  "width": 44.27,
+                  "height": 11.37
+                },
+                "position": {
+                  "x": -4618,
+                  "y": 13910
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "Normal Skin"
+              }
+            ]
+          },
+          {
+            "name": "Sensitive Skin",
+            "type": "GROUP",
+            "size": {
+              "width": 62,
+              "height": 14
+            },
+            "position": {
+              "x": -4562,
+              "y": 13909
+            },
+            "layers": [
+              {
+                "name": "Rectangle 128",
+                "type": "VECTOR",
+                "size": {
+                  "width": 62,
+                  "height": 14
+                },
+                "position": {
+                  "x": -4562,
+                  "y": 13909
+                },
+                "colors": ["#CACDD6"]
+              },
+              {
+                "name": "Sensitive Skin",
+                "type": "TEXT",
+                "size": {
+                  "width": 51.56,
+                  "height": 11.37
+                },
+                "position": {
+                  "x": -4557,
+                  "y": 13910
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "Sensitive Skin"
+              }
+            ]
+          },
+          {
+            "name": "Not Sure",
+            "type": "GROUP",
+            "size": {
+              "width": 61.97,
+              "height": 14
+            },
+            "position": {
+              "x": -4492,
+              "y": 13909
+            },
+            "layers": [
+              {
+                "name": "Rectangle 128",
+                "type": "VECTOR",
+                "size": {
+                  "width": 61.97,
+                  "height": 14
+                },
+                "position": {
+                  "x": -4492,
+                  "y": 13909
+                },
+                "colors": ["#CACDD6"]
+              },
+              {
+                "name": "Not Sure :(",
+                "type": "TEXT",
+                "size": {
+                  "width": 51.56,
+                  "height": 9.9
+                },
+                "position": {
+                  "x": -4486.27,
+                  "y": 13911.39
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "Not Sure :("
+              }
+            ]
+          },
+          {
+            "name": "Combination Skin",
+            "type": "GROUP",
+            "size": {
+              "width": 65,
+              "height": 14.0
+            },
+            "position": {
+              "x": -4495,
+              "y": 13887
+            },
+            "layers": [
+              {
+                "name": "Rectangle 128",
+                "type": "VECTOR",
+                "size": {
+                  "width": 65,
+                  "height": 13.99
+                },
+                "position": {
+                  "x": -4495,
+                  "y": 13887.01
+                },
+                "colors": ["#CACDD6"]
+              },
+              {
+                "name": "\u2028 Combination Skin",
+                "type": "TEXT",
+                "size": {
+                  "width": 54,
+                  "height": 7
+                },
+                "position": {
+                  "x": -4488,
+                  "y": 13887
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "\u2028 Combination Skin"
+              }
+            ]
+          },
+          {
+            "name": "Dry Skin",
+            "type": "GROUP",
+            "size": {
+              "width": 45.31,
+              "height": 14
+            },
+            "position": {
+              "x": -4557,
+              "y": 13887
+            },
+            "layers": [
+              {
+                "name": "Rectangle 128",
+                "type": "VECTOR",
+                "size": {
+                  "width": 45.31,
+                  "height": 14
+                },
+                "position": {
+                  "x": -4557,
+                  "y": 13887
+                },
+                "colors": ["#CACDD6"]
+              },
+              {
+                "name": "Dry Skin",
+                "type": "TEXT",
+                "size": {
+                  "width": 36.45,
+                  "height": 9.9
+                },
+                "position": {
+                  "x": -4552.31,
+                  "y": 13889.05
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "Dry Skin"
+              }
+            ]
+          },
+          {
+            "name": "Oily Skin",
+            "type": "GROUP",
+            "size": {
+              "width": 45,
+              "height": 14
+            },
+            "position": {
+              "x": -4619,
+              "y": 13887
+            },
+            "layers": [
+              {
+                "name": "Rectangle 128",
+                "type": "VECTOR",
+                "size": {
+                  "width": 45,
+                  "height": 14
+                },
+                "position": {
+                  "x": -4619,
+                  "y": 13887
+                },
+                "colors": ["#FFE3E2"]
+              },
+              {
+                "name": "Oily Skin",
+                "type": "TEXT",
+                "size": {
+                  "width": 36.45,
+                  "height": 11.37
+                },
+                "position": {
+                  "x": -4614,
+                  "y": 13888
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "Oily Skin"
+              }
+            ]
+          },
+          {
+            "name": "Confirm",
+            "type": "GROUP",
+            "size": {
+              "width": 46.87,
+              "height": 14.51
+            },
+            "position": {
+              "x": -4551.77,
+              "y": 13938.54
+            },
+            "layers": [
+              {
+                "name": "Rectangle 107",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 46.87,
+                  "height": 14.51
+                },
+                "position": {
+                  "x": -4551.77,
+                  "y": 13938.54
+                },
+                "colors": ["#95B4C6"]
+              },
+              {
+                "name": "Confirm",
+                "type": "TEXT",
+                "size": {
+                  "width": 39,
+                  "height": 8
+                },
+                "position": {
+                  "x": -4548,
+                  "y": 13942
+                },
+                "colors": ["#2B2B2B"],
+                "text_content": "Confirm"
+              }
+            ]
+          },
+          {
+            "name": "Masskot",
+            "type": "GROUP",
+            "size": {
+              "width": 50.0,
+              "height": 50.0
+            },
+            "position": {
+              "x": -4414.28,
+              "y": 13931.87
+            },
+            "layers": [
+              {
+                "name": "water drop",
+                "type": "GROUP",
+                "size": {
+                  "width": 50.0,
+                  "height": 50.0
+                },
+                "position": {
+                  "x": -4414.28,
+                  "y": 13931.87
+                },
+                "layers": [
+                  {
+                    "name": "Ellipse 7",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 37.74,
+                      "height": 43.68
+                    },
+                    "position": {
+                      "x": -4407.3,
+                      "y": 13931.87
+                    }
+                  },
+                  {
+                    "name": "Ellipse 6",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 33.02,
+                      "height": 38.25
+                    },
+                    "position": {
+                      "x": -4404.38,
+                      "y": 13937.45
+                    }
+                  },
+                  {
+                    "name": "Subtract",
+                    "type": "BOOLEAN_OPERATION",
+                    "size": {
+                      "width": 36.71,
+                      "height": 28.7
+                    },
+                    "position": {
+                      "x": -4407.3,
+                      "y": 13946.78
+                    },
+                    "layers": [
+                      {
+                        "name": "Ellipse 1",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 37.74,
+                          "height": 43.68
+                        },
+                        "position": {
+                          "x": -4407.3,
+                          "y": 13931.8
+                        }
+                      },
+                      {
+                        "name": "Ellipse 3",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 37.74,
+                          "height": 43.68
+                        },
+                        "position": {
+                          "x": -4404.47,
+                          "y": 13926.89
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Ellipse 4",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 35.85,
+                      "height": 33.33
+                    },
+                    "position": {
+                      "x": -4400.13,
+                      "y": 13931.87
+                    }
+                  },
+                  {
+                    "name": "Ellipse 5",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 35.85,
+                      "height": 33.33
+                    },
+                    "position": {
+                      "x": -4414.28,
+                      "y": 13948.54
+                    }
+                  },
+                  {
+                    "name": "Ellipse 2",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 11.33,
+                      "height": 20.97
+                    },
+                    "position": {
+                      "x": -4401.78,
+                      "y": 13938.43
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Ellipse 51",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 6.0,
+                  "height": 3.48
+                },
+                "position": {
+                  "x": -4399.28,
+                  "y": 13963.83
+                },
+                "colors": ["#D3ADC3"]
+              },
+              {
+                "name": "Ellipse 52",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 6.0,
+                  "height": 3.48
+                },
+                "position": {
+                  "x": -4383.95,
+                  "y": 13963.83
+                },
+                "colors": ["#D3ADC3"]
+              },
+              {
+                "name": "Ellipse 47",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 4.67,
+                  "height": 6.33
+                },
+                "position": {
+                  "x": -4397.28,
+                  "y": 13958.13
+                },
+                "colors": ["#0B1939"]
+              },
+              {
+                "name": "Ellipse 48",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 1.33,
+                  "height": 1.58
+                },
+                "position": {
+                  "x": -4396.28,
+                  "y": 13959.4
+                },
+                "colors": ["#FFFFFF"]
+              },
+              {
+                "name": "Ellipse 49",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 4.67,
+                  "height": 6.33
+                },
+                "position": {
+                  "x": -4384.62,
+                  "y": 13958.13
+                },
+                "colors": ["#0B1939"]
+              },
+              {
+                "name": "Ellipse 50",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 1.33,
+                  "height": 1.58
+                },
+                "position": {
+                  "x": -4383.28,
+                  "y": 13959.08
+                },
+                "colors": ["#FFFFFF"]
+              },
+              {
+                "name": "Ellipse 53",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 4.0,
+                  "height": 3.8
+                },
+                "position": {
+                  "x": -4390.28,
+                  "y": 13964.46
+                },
+                "colors": ["#0A1939"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

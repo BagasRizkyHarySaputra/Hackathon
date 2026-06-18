@@ -1,0 +1,74 @@
+[
+  {
+    "id": "double-cleansing",
+    "tags": ["acne", "oily"],
+    "Title": "Double Cleansing: Rahasia Wajah Bersih Maksimal Tanpa Iritasi",
+    "Simple-desc": "Metode double cleansing membersihkan makeup, sunscreen, dan kotoran secara menyeluruh. Cocok untuk pemilik kulit berminyak dan berjerawat.",
+    "Description": "Double cleansing adalah metode membersihkan wajah dalam dua tahap: pertama menggunakan oil-based cleanser untuk mengangkat makeup, sunscreen, dan sebum berlebih, lalu dilanjutkan dengan water-based cleanser untuk membersihkan sisa kotoran dan keringat. Metode ini berasal dari Korea dan Jepang, dan telah menjadi standar dalam rutinitas skincare Asia. Manfaat double cleansing: membersihkan pori-pori secara mendalam, mencegah jerawat akibat pori tersumbat, membantu produk skincare selanjutnya menyerap lebih baik, dan mengurangi komedo. Namun, tidak semua jenis kulit membutuhkan double cleansing setiap hari. Kulit kering dan sensitif cukup melakukannya 2-3 kali seminggu. Pilih cleansing oil dengan bahan ringan seperti jojoba oil atau squalane, dan hindari yang mengandung fragrance untuk kulit sensitif.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/04/24075932/Skincare-dan-Kecantikan-1138.jpg.webp",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "exfoliation-guide",
+    "tags": ["acne", "combination"],
+    "Title": "Exfoliation Guide: Kapan dan Bagaimana Eksfoliasi yang Benar",
+    "Simple-desc": "Eksfoliasi membantu mengangkat sel kulit mati, mencerahkan, dan menghaluskan tekstur kulit. Tapi jangan berlebihan!",
+    "Description": "Eksfoliasi adalah proses mengangkat sel-sel kulit mati dari permukaan kulit. Ada dua jenis eksfoliasi: physical exfoliation menggunakan scrub atau butiran halus, dan chemical exfoliation menggunakan AHA, BHA, atau PHA. BHA (Salicylic Acid) sangat efektif untuk kulit berminyak karena dapat menembus minyak dan membersihkan pori-pori dari dalam. AHA (Glycolic Acid, Lactic Acid) bekerja di permukaan kulit untuk mencerahkan dan menghaluskan. PHA adalah pilihan paling lembut, cocok untuk kulit sensitif. Frekuensi ideal: kulit berminyak 2-3 kali seminggu, kulit normal 1-2 kali seminggu, kulit kering dan sensitif 1 kali seminggu. Tanda over-exfoliation: kulit merah, perih, terasa kencang, dan muncul jerawat kecil. Jika mengalami over-exfoliation, hentikan semua produk aktif dan fokus pada hidrasi dan skin barrier repair.",
+    "Link-Image": "/assets/images/article-routine.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "toner-benefits",
+    "tags": ["combination", "dry"],
+    "Title": "Manfaat Toner dalam Rutinitas Skincare: Lebih dari Sekadar Penyegar",
+    "Simple-desc": "Toner modern bukan lagi astringent keras. Kini toner berfungsi menghidrasi, menyeimbangkan pH, dan mempersiapkan kulit untuk produk selanjutnya.",
+    "Description": "Banyak yang masih mengira toner adalah produk yang membuat kulit terasa kencang dan kering. Faktanya, toner modern telah berevolusi menjadi produk multifungsi. Toner saat ini diformulasikan untuk menghidrasi, menyeimbangkan pH kulit setelah mencuci muka, dan mempersiapkan kulit agar dapat menyerap serum dan moisturizer dengan lebih baik. Pilih toner sesuai jenis kulit: untuk kulit kering pilih toner dengan hyaluronic acid atau glycerin; untuk kulit berminyak pilih toner dengan niacinamide atau tea tree; untuk kulit sensitif pilih toner tanpa alkohol dengan centella asiatica atau chamomile. Cara pakai: tuangkan toner ke telapak tangan atau kapas, tepuk-tepuk lembut ke wajah — jangan digosok. Gunakan pagi dan malam setelah mencuci muka, sebelum serum.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/02/24084301/pakai-sunscreen-dulu-atau-moisturizer-dulu.jpg.webp",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "eye-cream",
+    "tags": ["dry", "sensitive"],
+    "Title": "Apakah Eye Cream Benar-Benar Diperlukan? Ini Faktanya",
+    "Simple-desc": "Kulit di sekitar mata 10 kali lebih tipis dari kulit wajah. Eye cream diformulasikan khusus untuk area sensitif ini.",
+    "Description": "Kulit di sekitar mata adalah area paling tipis dan paling sensitif di wajah. Area ini tidak memiliki kelenjar minyak, sehingga lebih mudah kering dan menunjukkan tanda penuaan seperti garis halus, kerutan, dan lingkaran hitam lebih cepat. Eye cream diformulasikan dengan konsentrasi bahan aktif yang lebih rendah dan tekstur yang lebih ringan untuk mencegah iritasi. Bahan yang dicari dalam eye cream: kafein untuk mengurangi puffiness dan lingkaran hitam, peptide untuk merangsang kolagen, hyaluronic acid untuk hidrasi, dan vitamin K untuk mengurangi dark circles. Kapan mulai menggunakan eye cream? Para ahli menyarankan mulai dari pertengahan usia 20-an sebagai langkah pencegahan. Cara aplikasi: gunakan jari manis (tekanan paling ringan), tepuk-tepuk lembut dari sudut dalam ke sudut luar — jangan digosok. Gunakan pagi dan malam setelah serum, sebelum moisturizer.",
+    "Link-Image": "/assets/images/article-lifestyle.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "collagen-boost",
+    "tags": ["acne", "dry"],
+    "Title": "Cara Alami Meningkatkan Produksi Kolagen untuk Kulit Awet Muda",
+    "Simple-desc": "Kolagen menurun seiring bertambahnya usia. Tingkatkan produksinya dengan skincare, makanan, dan kebiasaan sehat.",
+    "Description": "Kolagen adalah protein struktural utama yang menjaga kulit tetap kencang, elastis, dan halus. Setelah usia 25 tahun, produksi kolagen alami tubuh mulai menurun sekitar 1% per tahun, menyebabkan munculnya garis halus, kerutan, dan kulit kendur. Untuk meningkatkan produksi kolagen secara alami, Anda dapat melakukan beberapa hal. Dari sisi skincare: gunakan retinol yang merangsang pergantian sel dan produksi kolagen, vitamin C yang esensial dalam sintesis kolagen, dan peptide yang memberi sinyal pada kulit untuk memproduksi lebih banyak kolagen. Dari sisi nutrisi: konsumsi makanan kaya vitamin C (jeruk, kiwi, paprika), protein (telur, ikan, ayam), zinc (kacang-kacangan, biji-bijian), dan antioksidan (blueberry, teh hijau). Hindari pemicu kerusakan kolagen: merokok, konsumsi gula berlebih (glycation merusak kolagen), paparan UV tanpa perlindungan, dan kurang tidur.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/04/22100212/Skincare-dan-Kecantikan-748.jpg.webp",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "night-routine",
+    "tags": ["acne", "combination"],
+    "Title": "Night Skincare Routine: Langkah Malam Hari untuk Kulit Sehat",
+    "Simple-desc": "Malam hari adalah waktu regenerasi kulit. Manfaatkan dengan rutinitas skincare malam yang tepat dan efektif.",
+    "Description": "Saat tidur, kulit bekerja keras memperbaiki dirinya sendiri melalui regenerasi sel dan produksi kolagen. Inilah mengapa rutinitas skincare malam sangat penting. Langkah-langkah night routine yang ideal: Double cleansing untuk membersihkan makeup, sunscreen, dan kotoran seharian. Eksfoliasi (2-3 kali seminggu) untuk mengangkat sel kulit mati. Toner untuk menyeimbangkan pH dan menghidrasi. Serum aktif seperti retinol (anti-aging, jerawat), niacinamide (mengecilkan pori, mencerahkan), atau peptide (kolagen). Eye cream untuk area mata yang sensitif. Moisturizer yang lebih kaya dibandingkan versi pagi untuk mengunci hidrasi semalaman. Face oil atau sleeping mask opsional untuk hidrasi ekstra. Tips: aplikasikan produk dengan jeda 1-2 menit antar layer, ganti sarung bantal seminggu sekali, dan pastikan tidur cukup 7-9 jam untuk hasil maksimal.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2025/04/15091427/Skincare_Bagus_article_702x465.jpg.webp",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "morning-routine",
+    "tags": ["oily", "combination"],
+    "Title": "Morning Skincare Routine: Langkah Singkat untuk Perlindungan Seharian",
+    "Simple-desc": "Rutinitas pagi tidak perlu rumit. Fokus pada perlindungan: antioksidan, hidrasi, dan sunscreen.",
+    "Description": "Jika night routine fokus pada perbaikan dan regenerasi, morning routine fokus pada perlindungan dari radikal bebas, polusi, dan sinar UV. Langkah morning routine yang efisien: Gentle cleanser — cukup cuci muka dengan air atau cleanser ringan untuk menghilangkan minyak dan produk malam. Vitamin C serum — antioksidan kuat yang melindungi kulit dari radikal bebas dan polusi, sekaligus mencerahkan. Moisturizer ringan — pilih formula gel atau lotion yang tidak berat. Sunscreen SPF minimal 30 — ini adalah langkah paling penting. Tanpa sunscreen, semua perawatan lain menjadi sia-sia karena UV merusak kolagen dan menyebabkan penuaan dini. Tips: beri jeda 2-3 menit antara moisturizer dan sunscreen agar produk menyerap sempurna, aplikasikan ulang sunscreen setiap 2-3 jam jika beraktivitas di luar, dan jangan lupakan sunscreen di leher dan tangan.",
+    "Link-Image": "/assets/images/article-mistakes.png",
+    "Source": "SkinGlow Editorial Team"
+  },
+  {
+    "id": "skincare-myths",
+    "tags": ["acne", "dry", "oily", "sensitive", "combination"],
+    "Title": "5 Mitos Skincare yang Masih Banyak Dipercaya — Jangan Salah Lagi!",
+    "Simple-desc": "Sunscreen hanya untuk cuaca panas? Kulit berminyak tidak butuh moisturizer? Ini fakta di balik mitos skincare populer.",
+    "Description": "Mitos 1: Kulit berminyak tidak butuh moisturizer. Fakta: Kulit berminyak tetap butuh hidrasi. Melewatkan moisturizer justru membuat kulit memproduksi lebih banyak minyak untuk mengompensasi kekeringan. Pilih moisturizer gel ringan dan oil-free. Mitos 2: Sunscreen hanya untuk saat panas dan cerah. Fakta: UVA rays menembus awan dan kaca jendela sepanjang tahun. Kerusakan akibat UVA bersifat kumulatif dan menjadi penyebab utama penuaan dini. Mitos 3: Semakin mahal produk semakin bagus. Fakta: Harga tidak menjamin efektivitas. Yang penting adalah formula, konsentrasi bahan aktif, dan kesesuaian dengan jenis kulit. Mitos 4: Natural ingredients selalu lebih aman. Fakta: Bahan alami bisa menyebabkan iritasi dan alergi. Contohnya, lemon mentah sangat asam dan bisa merusak skin barrier. Mitos 5: Hasil skincare harus terlihat instan. Fakta: Kulit membutuhkan waktu 28 hari untuk regenerasi sel. Konsistensi selama minimal 4-8 minggu diperlukan untuk melihat hasil nyata.",
+    "Link-Image": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2026/03/05062613/retinol-yang-bagus-merk-apa.jpg.webp",
+    "Source": "SkinGlow Editorial Team"
+  }
+]

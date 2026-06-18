@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: hlgik-mnvgd
+created: 2026-06-18T07:26:14-04:00

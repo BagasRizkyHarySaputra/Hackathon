@@ -22,9 +22,7 @@
 }
 
 /* ─── Main Content Area ─── */
-.profile-main {
-  flex: 1;
-  position: relative;
+.app-main {
   overflow-y: auto;
   overflow-x: hidden;
   background: transparent;
@@ -35,171 +33,79 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;              /* ← CENTERS the content, fixes left-shrink */
-  padding: 0 4vw 40px 4vw;    /* responsive vw padding like other pages */
+  padding: 0 4vw 3.91vh 4vw;    /* responsive vw padding like other pages */
   position: relative;
   z-index: 1;
 }
 
 /* ─── Profile Header ─── */
-.profile-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 38px;
-  padding: 24px 32px;
-  position: relative;
-  z-index: 2;
-  background: rgba(228, 216, 220, 0.25);
-  border-radius: 16px;
-  box-shadow: 
-    0px 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Avatar - 100×100 circle */
-.profile-avatar-wrap {
-  width: 100px;
-  height: 100px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: #95B4C6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-left: 36px; /* offset from left sidebar */
-}
-
-.profile-avatar-wrap svg {
-  width: 56px;
-  height: 56px;
-  fill: #FFFFFF;
-  opacity: 0.9;
-}
-
-.profile-header__info {
-  flex: 1;
-  padding-top: 2px;
-}
-
-.profile-header__name {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2B2B2B;
-  margin: 0 0 8px;
-  letter-spacing: 0.01em;
-}
-
-.profile-header__row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-
-.profile-header__skin-type {
-  font-size: 13px;
-  color: #2B2B2B;
-  font-weight: 500;
-  opacity: 0.75;
-}
-
-.profile-header__edit-badge {
-  font-size: 11px;
-  color: #2B2B2B;
-  background: #E4D8DC;
-  border: none;
-  border-radius: 6px;
-  padding: 3px 10px;
-  cursor: pointer;
-  font-family: 'Onest', sans-serif;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.profile-header__edit-badge:hover {
-  background: #d4c6cb;
-}
-
-.profile-header__member {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: #2B2B2B;
-  opacity: 0.55;
-  font-weight: 500;
-}
-
-.profile-header__member svg {
-  width: 14px;
-  height: 14px;
-  stroke: #2B2B2B;
-  stroke-width: 1.5;
-  fill: none;
-  flex-shrink: 0;
-}
+/* Header sekarang menggunakan .account-profile-header dari account.css */
 
 
 
 /* ─── Content Grid (2-column cards) ─── */
 .profile-grid {
   display: flex;
-  gap: 38px;
-  margin-top: 71px;
+  gap: 2.64vw;
+  margin-top: 2.5vh;
   align-items: flex-start;
 }
 
 .profile-grid__left {
-  width: 313px;
+  width: 21.74vw;
   flex-shrink: 0;
 }
 
 .profile-grid__right {
   flex: 1;
   min-width: 0;
-  padding-top: 22px;
+  padding-top: 0vh;
 }
 
 /* ─── Shared Card Style ─── */
 .profile-card {
   background: rgba(255, 255, 255, 0.30);
-  border-radius: 16px;
+  border-radius: 1.11vw;
   box-shadow: 
     0px 6px 8px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
 .profile-card--skin-type {
-  padding: 24px 20px 20px;
-  height: 214px;
+  padding: 2.34vh 1.39vw 1.95vh;
+  height: 20.90vh;
 }
 
 .profile-card--skin-score {
-  padding: 16px 20px 20px;
-  margin-top: 16px;
-  height: 214px;
+  padding: 1.56vh 1.39vw 1.95vh;
+  margin-top: 1.56vh;
+  height: 32vh;
 }
 
 .profile-card--routine {
-  padding: 18px 0 0;
+  padding: 1.76vh 0 0;
+  height: 54.5vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ─── Skin Type Card ─── */
 .skin-type__title {
-  font-size: 14px;
+  font-size: 0.97vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 0 0 14px;
+  margin: 0 0 1.37vh;
 }
 
 .skin-type__body {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 0.97vw;
 }
 
 .skin-type__icon {
-  width: 60px;
-  height: 66px;
+  width: 4.17vw;
+  height: 6.45vh;
   flex-shrink: 0;
   color: #95B4C6;
 }
@@ -210,14 +116,14 @@
 }
 
 .skin-type__label {
-  font-size: 15px;
+  font-size: 1.04vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 4px 0 4px;
+  margin: 0.39vh 0 0.39vh;
 }
 
 .skin-type__desc {
-  font-size: 12px;
+  font-size: 0.83vw;
   color: #2B2B2B;
   opacity: 0.65;
   line-height: 1.4;
@@ -226,21 +132,21 @@
 
 /* ─── Skin Score Card ─── */
 .skin-score__title {
-  font-size: 14px;
+  font-size: 0.97vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 0 0 8px;
+  margin: 0 0 0.78vh;
 }
 
 .skin-score__circle-wrap {
   display: flex;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: 0.39vh;
 }
 
 .skin-score__circle {
-  width: 150px;
-  height: 150px;
+  width: 10.42vw;
+  height: 10.42vw;
   position: relative;
 }
 
@@ -251,7 +157,7 @@
 
 .skin-score__circle-inner {
   position: absolute;
-  inset: 12px;
+  inset: 0.83vw;
   border-radius: 50%;
   background: #F6F5F6;
   display: flex;
@@ -261,15 +167,15 @@
 }
 
 .skin-score__value {
-  font-size: 40px;
+  font-size: 2.78vw;
   font-weight: 700;
   color: #435571;
   line-height: 1;
-  margin-bottom: 2px;
+  margin-bottom: 0.20vh;
 }
 
 .skin-score__label {
-  font-size: 11px;
+  font-size: 0.76vw;
   color: #435571;
   font-weight: 500;
   opacity: 0.8;
@@ -277,11 +183,11 @@
 
 /* ─── Skincare Routine Card ─── */
 .routine__title {
-  font-size: 14px;
+  font-size: 0.97vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 0 0 14px;
-  padding: 0 20px;
+  margin: 0 0 1.37vh;
+  padding: 0 1.39vw;
 }
 
 /* Tab bar */
@@ -292,11 +198,11 @@
 
 .routine-tab {
   flex: 1;
-  height: 42px;
+  height: 4.10vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 0.90vw;
   font-weight: 600;
   color: #2B2B2B;
   cursor: pointer;
@@ -325,75 +231,110 @@
 
 /* Product Items */
 .routine-items {
-  padding: 10px 0;
+  padding: 3vh 0 0 0.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* PENTING: Membuat item di dalamnya tidak melar penuh (width otomatis menyusut) */
+  gap: 3vh; /* Beri jarak vertikal antar-kapsul agar tidak menempel */
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling untuk routine-items */
+.routine-items::-webkit-scrollbar {
+  width: 0.28vw;
+}
+.routine-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+.routine-items::-webkit-scrollbar-thumb {
+  background: #E4D8DC;
+  border-radius: 0.14vw;
 }
 
 .routine-item {
+  background: #f5f0f1; /* Warna dasar kapsul (sesuaikan tingkat abu-abu/putihnya) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Bayangan lembut di bawah kapsul */
+  
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 20px;
-  min-height: 80px;
-  border-bottom: 1px solid #f5f0f1;
-}
-
-.routine-item:last-child {
-  border-bottom: none;
+  gap: 1.5vw;
+  
+  /* Atur padding kanan-kiri dan atas-bawah agar proporsional */
+  padding: 1vh 2.5vw 1vh 1.5vw; 
+  min-height: 6vh;
+  
+  /* Membuat bentuk ujung kapsul yang sangat melengkung */
+  border-radius: 50px; 
+  
+  /* Memungkinkan posisi gambar diatur secara bebas relatif terhadap kapsul */
+  position: relative; 
+  
+  /* Beri jarak kiri ekstra agar kapsul tidak terlalu mepet ke ujung kontainer luar karena gambarnya digeser */
+  margin-left: 2vw; 
 }
 
 .routine-item__img {
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
-  background: #E4D8DC;
+  width: 5.56vw;
+  height: 5.56vw;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6E7F99;
+  
+  /* TRIX UTAMA: Menggeser gambar ke kiri agar keluar/overflow dari kapsul putih */
+  position: absolute;
+  left: -2vw; /* Geser ke kiri melewati border kapsul */
+  z-index: 2;
 }
 
 .routine-item__img svg,
 .routine-item__img img {
-  width: 40px;
-  height: 40px;
+  width: 6vw; /* Sesuaikan ukuran gambar produk agar proporsional */
+  height: 6vw;
   object-fit: contain;
-  border-radius: 6px;
+  rotate: -15deg;
+  
+  /* Tambahkan drop-shadow langsung ke gambar produk agar bayangan botolnya realistis */
+  filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.15));
 }
 
 .routine-item__info {
-  flex: 1;
+  /* Hapus flex: 1 agar tidak memaksa box melebar penuh */
+  display: flex;
+  flex-direction: column;
+  /* Beri padding-left agar teks tidak tertabrak oleh gambar produk yang di-absolute */
+  padding-left: 3.5vw; 
 }
 
 .routine-item__name {
-  font-size: 14px;
+  font-size: 0.97vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 0 0 4px;
+  white-space: nowrap; /* Mencegah teks turun ke bawah secara paksa sebelum waktunya */
 }
 
+/* Sembunyikan atau hapus deskripsi jika di gambar target memang hanya nama produk saja */
 .routine-item__desc {
-  font-size: 12px;
-  color: #6E7F99;
-  margin: 0;
-  line-height: 1.4;
+  display: none; 
 }
 
 /* ─── Settings & Account Bottom Bar ─── */
 .profile-settings-bar {
-  margin-top: 20px;
+  margin-top: 1.95vh;
   background: rgba(255, 255, 255, 0.30);
-  border-radius: 16px;
+  border-radius: 1.11vw;
   box-shadow: 
     0px 6px 8px rgba(0, 0, 0, 0.15);
-  padding: 18px 28px 14px;
+  padding: 1.76vh 1.94vw 1.37vh;
 }
 
 .settings-bar__title {
-  font-size: 14px;
+  font-size: 0.97vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 0 0 14px;
+  margin: 0 0 1.37vh;
 }
 
 .settings-bar__items {
@@ -406,10 +347,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
-  min-width: 120px;
+  gap: 0.56vw;
+  min-width: 8.33vw;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 0.59vh 0.83vw;
   border: none;
   background: none;
   font-family: 'Onest', sans-serif;
@@ -429,8 +370,8 @@
 }
 
 .settings-bar__icon {
-  width: 40px;
-  height: 40px;
+  width: 2.78vw;
+  height: 2.78vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,7 +384,7 @@
 }
 
 .settings-bar__label {
-  font-size: 12px;
+  font-size: 0.83vw;
   color: #6E7F99;
   font-weight: 500;
   text-align: center;
@@ -468,9 +409,9 @@
 
 .modal {
   background: #E7E7E7;
-  border-radius: 24px;
-  padding: 32px 36px;
-  width: 480px;
+  border-radius: 1.67vw;
+  padding: 3.13vh 2.50vw;
+  width: 33.33vw;
   max-width: 90vw;
   max-height: 80vh;
   overflow-y: auto;
@@ -480,16 +421,16 @@
 }
 
 @keyframes modalIn {
-  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  from { opacity: 0; transform: translateY(1.56vh) scale(0.97); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .modal__close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
+  top: 1.56vh;
+  right: 1.11vw;
+  width: 2.22vw;
+  height: 2.22vw;
   border-radius: 50%;
   background: #f0eaec;
   border: none;
@@ -506,21 +447,21 @@
 }
 
 .modal__close svg {
-  width: 16px;
-  height: 16px;
+  width: 1.11vw;
+  height: 1.11vw;
 }
 
 .modal__title {
-  font-size: 20px;
+  font-size: 1.39vw;
   font-weight: 700;
   color: #2B2B2B;
-  margin: 0 0 8px;
+  margin: 0 0 0.78vh;
 }
 
 .modal__subtitle {
-  font-size: 13px;
+  font-size: 0.90vw;
   color: #6E7F99;
-  margin: 0 0 24px;
+  margin: 0 0 2.34vh;
   line-height: 1.5;
 }
 
@@ -528,7 +469,7 @@
 
 /* ─── Scrollbar ─── */
 .profile-main::-webkit-scrollbar {
-  width: 4px;
+  width: 0.28vw;
 }
 
 .profile-main::-webkit-scrollbar-track {
@@ -537,7 +478,7 @@
 
 .profile-main::-webkit-scrollbar-thumb {
   background: #E4D8DC;
-  border-radius: 2px;
+  border-radius: 0.14vw;
 }
 
 /* ─── Modal Variants ─── */
@@ -545,36 +486,36 @@
 /* Notification Modal */
 .modal--notif {
   text-align: center;
-  padding: 40px 36px 36px;
+  padding: 3.91vh 2.50vw 3.52vh;
 }
 
 .modal--notif .notif-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.95vh;
 }
 
 .modal--notif .notif-icon img {
-  width: 80px;
-  height: 80px;
+  width: 5.56vw;
+  height: 5.56vw;
 }
 
 .modal--notif .modal__title--center {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 2.73vh;
 }
 
 .notif-buttons {
   display: flex;
-  gap: 16px;
+  gap: 1.11vw;
   justify-content: center;
 }
 
 .notif-btn {
-  padding: 12px 32px;
-  border-radius: 12px;
-  font-size: 14px;
+  padding: 1.17vh 2.22vw;
+  border-radius: 0.83vw;
+  font-size: 0.97vw;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -603,23 +544,23 @@
 
 /* Privacy Modal */
 .modal--privacy {
-  padding: 32px 36px;
+  padding: 3.13vh 2.50vw;
 }
 
 .privacy-list {
-  margin-top: 24px;
+  margin-top: 2.34vh;
 }
 
 .privacy-item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 12px 0;
+  gap: 0.97vw;
+  padding: 1.17vh 0;
 }
 
 .privacy-item__check {
-  width: 24px;
-  height: 24px;
+  width: 1.67vw;
+  height: 1.67vw;
   flex-shrink: 0;
   color: #6E7F99;
 }
@@ -634,27 +575,27 @@
 }
 
 .privacy-item__label {
-  font-size: 15px;
+  font-size: 1.04vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin-bottom: 2px;
+  margin-bottom: 0.20vh;
 }
 
 .privacy-item__desc {
-  font-size: 12px;
+  font-size: 0.83vw;
   color: #6E7F99;
 }
 
 .privacy-confirm {
   display: flex;
   justify-content: flex-end;
-  margin-top: 24px;
+  margin-top: 2.34vh;
 }
 
 .privacy-confirm__btn {
-  padding: 10px 28px;
-  border-radius: 10px;
-  font-size: 14px;
+  padding: 0.98vh 1.94vw;
+  border-radius: 0.69vw;
+  font-size: 0.97vw;
   font-weight: 600;
   cursor: pointer;
   background: #CACDD6;
@@ -670,23 +611,23 @@
 
 /* Help Center Modal */
 .modal--help {
-  padding: 32px 36px;
+  padding: 3.13vh 2.50vw;
 }
 
 .help-contact-list {
-  margin-top: 28px;
+  margin-top: 2.73vh;
 }
 
 .help-contact-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 0;
+  gap: 1.11vw;
+  padding: 1.37vh 0;
 }
 
 .help-contact-item__icon {
-  width: 28px;
-  height: 28px;
+  width: 1.94vw;
+  height: 1.94vw;
   flex-shrink: 0;
   color: #6E7F99;
 }
@@ -701,7 +642,7 @@
 }
 
 .help-contact-item__text {
-  font-size: 15px;
+  font-size: 1.04vw;
   font-weight: 500;
   color: #2B2B2B;
 }

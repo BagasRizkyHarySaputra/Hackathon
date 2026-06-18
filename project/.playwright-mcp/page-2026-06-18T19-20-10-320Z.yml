@@ -1,0 +1,32 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan-page/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - button "Notifications" [ref=e21] [cursor=pointer]
+        - button "Profile" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]: All
+          - generic [ref=e26] [cursor=pointer]: Acne
+          - generic [ref=e27] [cursor=pointer]: Dry Skin
+          - generic [ref=e28] [cursor=pointer]: Oily Skin
+          - generic [ref=e29] [cursor=pointer]: Sensitive
+          - generic [ref=e30] [cursor=pointer]: Combination
+        - generic [ref=e31]:
+          - textbox "Search..." [ref=e32]
+          - img [ref=e33]

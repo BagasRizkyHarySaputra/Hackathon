@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="/assets/css/components/global.css" />
   <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/header.css" />
-  <link rel="stylesheet" href="/assets/css/components/tips-artikel.css" />
   <link rel="stylesheet" href="/assets/css/components/artikel.css" />
 </head>
 <body style="height:100%;overflow:hidden;background:#FFFFFF;">
@@ -30,7 +29,7 @@
     <div class="article-app app-layout">
       <div id="sidebar-root" data-active="diary"></div>
 
-      <main class="article-main app-main app-main--scroll" id="article-main">
+      <main class="app-main app-main--scroll" id="article-main">
         <!-- ========== LISTING VIEW ========== -->
         <div id="listing-view">
           <header id="header-root" class="home-header"></header>
@@ -54,7 +53,13 @@
             </div>
           </div>
 
-          <div class="artikel-grid" id="artikel-grid"></div>
+          <div class="artikel-grid" id="artikel-grid">
+            <div class="artikel-sentinel" id="artikel-sentinel"></div>
+            <div class="artikel-load-more" id="artikel-load-more" style="display:none;">
+              <div class="artikel-load-more__spinner"></div>
+              <span class="artikel-load-more__text">Loading more articles...</span>
+            </div>
+          </div>
 
           <!-- Empty State (hidden by default) -->
           <div class="artikel-empty" id="artikel-empty" style="display:none;">

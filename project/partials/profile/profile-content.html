@@ -14,42 +14,28 @@
   <div class="profile-app">
     <div id="sidebar-root" data-active="profile"></div>
 
-    <main class="profile-main app-main app-main--scroll">
+    <main class="app-main app-main--scroll">
       <!-- Uses .profile-content → same as unified .app-content pattern -->
     <div class="profile-content">
 
-        <!-- ═══ Profile Header ═══ -->
-        <div class="profile-header">
-          <div class="profile-avatar-wrap">
-            <svg viewBox="0 0 100 100" fill="none">
-              <ellipse cx="50" cy="36" rx="28" ry="26" fill="#FFFFFF" opacity="0.9"/>
-              <path d="M10 85 C10 58 28 46 50 46 C72 46 90 58 90 85 L90 100 L10 100 Z" fill="#FFFFFF" opacity="0.9"/>
-            </svg>
+        <!-- ═══ Profile Header (sama persis dengan account page) ═══ -->
+        <div class="account-profile-header">
+          <div class="account-avatar-wrap">
+            <img class="account-avatar-img" src="/assets/images/profile/avatar-default.png" alt="Avatar" id="profile-avatar-img" />
+            <input type="file" id="profile-avatar-upload" accept="image/*" hidden />
+            <button class="account-avatar-edit" type="button" id="profile-avatar-edit-btn">
+              <img class="account-edit" src="/assets/icons/profile/edit.svg" alt="Edit" />
+            </button>
           </div>
-          <div class="profile-header__info">
-            <h1 class="profile-header__name">Username</h1>
-            <div class="profile-header__row">
-              <span class="profile-header__skin-type">Combination</span>
-              <button class="profile-header__edit-badge">
-                <img src="/assets/icons/profile/edit.svg" alt="Edit" width="28" height="28" />
-              </button>
-            </div>
-            <div class="profile-header__member">
+          <div class="account-profile-header__info">
+            <h1 class="account-profile-header__name">Username</h1>
+            <div class="account-profile-header__type">Combination</div>
+            <div class="account-profile-header__member">
               <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
               <span>Member since Juni 2026</span>
             </div>
           </div>
-
-          <!-- Notification bell top-right -->
-          <div class="profile-notif-bell" onclick="openModal('notif-modal')">
-            <div class="profile-notif-bell__icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-              </svg>
-              <div class="profile-notif-bell__dot"></div>
-            </div>
-          </div>
+          <button class="account-edit-btn">Edit Profile</button>
         </div>
 
         <!-- ═══ Content Grid ═══ -->

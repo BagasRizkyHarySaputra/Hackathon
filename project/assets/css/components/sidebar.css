@@ -8,7 +8,6 @@
   flex-direction: column;
   align-items: center;
   width: 8.33vw;
-  margin-left: 6.04vw;
   flex-shrink: 0;
   z-index: 10;
   padding-top: 5.47vh;
@@ -44,7 +43,7 @@
   align-items: center;
   justify-content: center;
   padding: 3.71vh 0;
-  border-radius: 40px;
+  border-radius: 2.78vw;
   position: relative;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.35);

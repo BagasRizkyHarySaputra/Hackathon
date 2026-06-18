@@ -90,7 +90,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 4vw 40px 4vw;
+  padding: 0 4vw 3.91vh 4vw;
   position: relative;
   z-index: 1;
 }
@@ -111,6 +111,8 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  margin-left: 14.37vw;  /* offset for fixed sidebar (6.04vw gap + 8.33vw sidebar) */
+  padding: 7.23vh 6vw 3.61vh 4.03vw;
 }
 
 /* Scrollable variant for pages that need scrolling */
@@ -123,3 +125,15 @@
 .app-main--fixed {
   overflow: hidden;
 }
+
+/* ─── Fixed Sidebar Container ─── */
+#sidebar-root {
+  position: fixed;
+  left: 6.04vw;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+}
+
+
+

@@ -1,0 +1,27 @@
+# Secrets
+
+fetch.js
+
+# Environment variables
+
+.env
+.env.*
+
+# Node.js
+
+node_modules/
+
+# Logs
+
+*.log
+
+# Build output
+
+dist/
+build/
+
+# OS files
+
+.DS_Store
+Thumbs.db
+fetch.js

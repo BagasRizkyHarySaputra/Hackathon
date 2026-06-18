@@ -23,14 +23,8 @@
 }
 
 /* ─── Main Content ─── */
-.home-main {
-  flex: 1;
-  padding: 7.23vh 8vw 3.61vh 4.03vw;
-  position: relative;
+.app-main {
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
 }
 
 .home-main__top-bg {
@@ -155,7 +149,7 @@
 
 .week-line {
   flex: 1;
-  height: 2px;
+  height: 0.20vh;
   background: #2B2B2B;
   opacity: 0.2;
 }
@@ -256,7 +250,7 @@ input.ba-slider {
   position: absolute;
   top: 0;
   left: var(--ba-position, 50%);
-  width: 2px;
+  width: 0.14vw;
   height: 100%;
   z-index: 4;
   pointer-events: none;
@@ -287,15 +281,15 @@ input.ba-slider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 0.21vw;
   box-shadow:
     0 0 0 2px rgba(255, 255, 255, 0.6),
     0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .ba-dot .ba-arrow {
-  width: 12px;
-  height: 12px;
+  width: 0.83vw;
+  height: 0.83vw;
   display: block;
 }
 

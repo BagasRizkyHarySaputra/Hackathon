@@ -38,6 +38,9 @@ function createLoginComponent() {
     /** @type {'signin'|'signup'} Current active tab */
     activeTab: 'signin',
 
+    /** @type {string|null} Active animation direction. Non-null = animation playing */
+    animDirection: null,
+
     /** @type {string} Email input value */
     email: '',
 
@@ -76,15 +79,25 @@ function createLoginComponent() {
 
     /**
      * Switches between Sign In and Sign Up tabs.
-     * Clears error messages on tab switch.
+     * Plays a transform animation (up → rotate → back → down) on the card images,
+     * then updates activeTab after animation completes.
      *
      * @param {'signin'|'signup'} tab - Tab to activate
      * @returns {void}
      */
     switchTab(tab) {
-      this.activeTab = tab;
+      if (tab === this.activeTab || this.animDirection) return;
       this.errorMessage = '';
-      console.log('[INFO] [Login] Tab switched.', { tab });
+
+      const direction = tab === 'signup' ? 'to-signup' : 'to-signin';
+      this.animDirection = direction;
+
+      console.log('[INFO] [Login] Starting tab animation.', { from: this.activeTab, to: tab });
+
+      setTimeout(() => {
+        this.activeTab = tab;
+        this.animDirection = null;
+      }, 700);
     },
 
     /**

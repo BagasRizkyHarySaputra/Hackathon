@@ -12,7 +12,7 @@
 /* ──────────────────────────────────────────────
  * Main Layout Setup
  * ────────────────────────────────────────────── */
-.scan-page {
+.app-main--scan {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-left: 0;
 }
 
 .scan-layout {
@@ -29,8 +30,8 @@
   justify-content: center;
   z-index: 10;
   width: 100%;
-  max-width: 900px;
-  padding: 24px;
+  max-width: 62.50vw;
+  padding: 2.34vh;
 }
 
 /* ──────────────────────────────────────────────
@@ -66,10 +67,10 @@
   -webkit-backdrop-filter: blur(35px);
   
   /* Asymmetric organic rounded shape for liquid theme */
-  border-radius: 38px 32px 42px 36px;
-  padding: 56px 64px 48px;
+  border-radius: 2.64vw 2.22vw 2.92vw 2.50vw;
+  padding: 5.47vh 4.44vw 4.69vh;
   width: 100%;
-  max-width: 720px;
+  max-width: 50.00vw;
   border: 1.5px solid rgba(255, 255, 255, 0.8);
   
   /* Combined Outer Ambient + Soft Deep Shadows */
@@ -81,11 +82,11 @@
 }
 
 .scan-card__title {
-  font-size: 34px;
+  font-size: 2.36vw;
   font-weight: 500;
   color: #2D2D2D;
   text-align: center;
-  margin-bottom: 38px;
+  margin-bottom: 3.71vh;
   letter-spacing: -0.5px;
 text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
 }
@@ -97,8 +98,8 @@ text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px 18px;
-  max-width: 580px;
+  gap: 1.56vw 1.25vw;
+  max-width: 40.28vw;
   margin: 0 auto;
 }
 
@@ -108,16 +109,16 @@ text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
   background: linear-gradient(135deg, #CFDFEE 0%, #B4C5D4 100%);
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: #4A5664;
-  font-size: 15px;
+  font-size: 1.04vw;
   font-weight: 600;
-  padding: 12px 28px;
+  padding: 1.17vh 1.94vw;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   
   /* Liquid Form — custom corner curves for water drop physics */
-  border-radius: 24px 30px 22px 28px;
+  border-radius: 1.67vw 2.08vw 1.53vw 1.94vw;
   
   /* 3D KICKER SHADOWS: Heavy drop shadow + inner glossy reflection */
   box-shadow: 
@@ -169,17 +170,17 @@ text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
 .scan-card__footer {
   display: flex;
   justify-content: center;
-  margin-top: 46px;
+  margin-top: 4.49vh;
 }
 
 .scan-confirm-btn {
   background: linear-gradient(135deg, #9CB5C7 0%, #839EB1 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #2F3E49;
-  font-size: 14.5px;
+  font-size: 1.01vw;
   font-weight: 600;
-  padding: 11px 40px;
-  border-radius: 24px;
+  padding: 1.07vh 2.78vw;
+  border-radius: 1.67vw;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
@@ -209,11 +210,11 @@ text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
  * ────────────────────────────────────────────── */
 .scan-mascot {
   position: absolute;
-  bottom: -32px;  
-  right: -32px;  
+  bottom: -3.13vh;  
+  right: -2.22vw;  
   z-index: 30;
-  width: 96px;   
-  height: 96px;
+  width: 6.67vw;   
+  height: 6.67vw;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
   pointer-events: none;
 }
@@ -229,30 +230,30 @@ text-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* Bayangan luar */
  * ────────────────────────────────────────────── */
 @media (max-width: 680px) {
   .scan-card {
-    padding: 44px 28px;
-    border-radius: 28px;
-    margin: 10px;
+    padding: 4.30vh 1.94vw;
+    border-radius: 1.94vw;
+    margin: 0.69vw;
   }
 
   .scan-card__title {
-    font-size: 26px;
-    margin-bottom: 28px;
+    font-size: 1.81vw;
+    margin-bottom: 2.73vh;
   }
 
   .scan-card__options {
-    gap: 12px 10px;
+    gap: 0.83vw 0.69vw;
   }
 
   .scan-type-btn {
-    font-size: 13.5px;
-    padding: 10px 22px;
-    border-radius: 18px 22px 16px 20px;
+    font-size: 0.94vw;
+    padding: 0.98vh 1.53vw;
+    border-radius: 1.25vw 1.53vw 1.11vw 1.39vw;
   }
 
   .scan-mascot {
-    width: 80px;
-    height: 80px;
-    bottom: -24px;
-    right: -24px;
+    width: 5.56vw;
+    height: 5.56vw;
+    bottom: -2.34vh;
+    right: -1.67vw;
   }
 }

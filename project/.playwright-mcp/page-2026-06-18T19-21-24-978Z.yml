@@ -1,0 +1,93 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /pages/home/index.html
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /pages/community/index.html
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /pages/scan-page/index.html
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /pages/artikel/index.html
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /pages/profile/index.html
+    - img [ref=e16]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - button "Notifications" [ref=e21] [cursor=pointer]
+        - button "Profile" [ref=e22] [cursor=pointer]
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]: All
+          - generic [ref=e26] [cursor=pointer]: Acne
+          - generic [ref=e27] [cursor=pointer]: Dry Skin
+          - generic [ref=e28] [cursor=pointer]: Oily Skin
+          - generic [ref=e29] [cursor=pointer]: Sensitive
+          - generic [ref=e30] [cursor=pointer]: Combination
+        - generic [ref=e31]:
+          - textbox "Search..." [ref=e32]
+          - img [ref=e33]
+      - generic [ref=e36]:
+        - article [ref=e37]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: acne
+            - heading "Jangan Keliru, Begini Cara Tepat Pakai Retinol untuk Pemula" [level=3] [ref=e41]
+            - paragraph [ref=e42]: Retinol merupakan salah satu bahan aktif yang paling sering digunakan dalam berb...
+            - button "Read article" [ref=e43] [cursor=pointer]
+        - article [ref=e44]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: acne
+            - heading "Retinol yang Bagus Merk Apa? Cek Rekomendasi Ini!" [level=3] [ref=e48]
+            - paragraph [ref=e49]: Retinol adalah turunan dari vitamin A yang termasuk dalam kelompok retinoid. Zat...
+            - button "Read article" [ref=e50] [cursor=pointer]
+        - article [ref=e51]:
+          - generic [ref=e52]:
+            - generic [ref=e53]: combination
+            - heading "Moisturizer Dulu atau Sunscreen Dulu? Urutan Skincare!" [level=3] [ref=e54]
+            - paragraph [ref=e55]: Banyak orang bertanya-tanya, pakai sunscreen dulu atau moisturizer dulu? Urutan ...
+            - button "Read article" [ref=e56] [cursor=pointer]
+        - article [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: acne
+            - heading "Cari Serum Bagus? Ini Pilihan Terbaik Sesuai Kulit" [level=3] [ref=e60]
+            - paragraph [ref=e61]: Memilih serum yang tepat merupakan langkah krusial dalam rutinitas perawatan kul...
+            - button "Read article" [ref=e62] [cursor=pointer]
+        - article [ref=e63]:
+          - generic [ref=e65]:
+            - generic [ref=e66]: acne
+            - heading "Cerahkan Wajah! Manfaat Serum Vitamin C untuk Kulit Glowing" [level=3] [ref=e67]
+            - paragraph [ref=e68]: Serum vitamin C telah menjadi salah satu produk perawatan kulit yang paling dica...
+            - button "Read article" [ref=e69] [cursor=pointer]
+        - article [ref=e70]:
+          - generic [ref=e72]:
+            - generic [ref=e73]: acne
+            - heading "Ini 6 Manfaat Niacinamide untuk Perawatan Kulit" [level=3] [ref=e74]
+            - paragraph [ref=e75]: Niacinamide atau yang juga dikenal dengan niasin merupakan salah satu bentuk vit...
+            - button "Read article" [ref=e76] [cursor=pointer]
+        - article [ref=e77]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: combination
+            - 'heading "Skincare Bagus: Panduan Pemula Kulit Sehat dan Glowing!" [level=3] [ref=e81]'
+            - paragraph [ref=e82]: Skincare adalah serangkaian perawatan kulit yang bertujuan untuk menjaga kesehat...
+            - button "Read article" [ref=e83] [cursor=pointer]
+        - article [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: oily
+            - heading "Ini 5 Rekomendasi Sunscreen untuk Kulit Berminyak" [level=3] [ref=e87]
+            - paragraph [ref=e88]: Bagi pemilik kulit berminyak, pemilihan sunscreen yang tepat adalah kunci menjag...
+            - button "Read article" [ref=e89] [cursor=pointer]
+        - article [ref=e90]:
+          - generic [ref=e92]:
+            - generic [ref=e93]: acne
+            - heading "Ini Alasan Pria Juga Harus Pakai Skincare Wajah" [level=3] [ref=e94]
+            - paragraph [ref=e95]: Tak hanya wanita, pria juga membutuhkan skincare guna menjaga kesehatan kulit wa...
+            - button "Read article" [ref=e96] [cursor=pointer]
+        - article [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]: acne
+            - heading "Skincare Cowok Berjerawat dan Berminyak, Auto Glowing" [level=3] [ref=e100]
+            - paragraph [ref=e101]: Kulit berjerawat dan berminyak adalah kondisi umum yang sering dialami banyak co...
+            - button "Read article" [ref=e102] [cursor=pointer]
