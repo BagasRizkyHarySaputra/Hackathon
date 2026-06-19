@@ -87,47 +87,34 @@
   position: relative;
   width: var(--login-element-size);
   aspect-ratio: 593 / 639;
-  filter: drop-shadow(0 4px 24px rgba(160, 130, 145, 0.15))
-          drop-shadow(0 2px 8px rgba(160, 130, 145, 0.08));
+  transition: aspect-ratio 0.4s ease;
 }
 
-/* ── Card Box (stacked) ── */
+/* ── Card Box (stacked SVG shapes) ── */
 .login-card-box {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 3.47vw;
-  background: linear-gradient(145deg, #FFFFFF 0%, #F9F5F6 35%, #F2EAEE 100%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  pointer-events: none;
 }
 
 .login-card-box--signin {
   z-index: 2;
   opacity: 1;
-  transform: translateX(0);
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 85%);
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 30% 100%, 0% 85%);
 }
 
 .login-card-box--signup {
   z-index: 1;
-  opacity: 0;
-  transform: translateX(12px);
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 85%,
-    70% 100%,
-    0% 100%
-  );
+  opacity: 1;
 }
 
-/* Active states */
+/* Active states — swap z-index, keep both fully visible & stacked */
 .login-card-container[data-tab="signup"] .login-card-box--signin {
-  opacity: 0;
-  transform: translateX(-12px);
+  opacity: 1;
   z-index: 1;
 }
 
@@ -374,12 +361,12 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -3.91vh;
+  margin-top: -9vh;
 }
 
 .login-btn {
-  width: 27.78vw;
-  height: 7.81vh;
+  width: 25vw;
+  height: 8vh;
   background: linear-gradient(to right, #F9F7F7 43%, #E4D8DC 88%);
   border: none;
   border-radius: 1.74vw; /* Dibuat lebih membulat agar sesuai dengan proporsi kapsul */
@@ -388,7 +375,6 @@
   color: var(--login-text-body);
   cursor: pointer;
   font-family: inherit;
-  
   /* Shadow yang lebih dalam dan lembut untuk kesan 3D Figma */
 box-shadow:
     0 -4px 8px rgba(255, 255, 255, 0.9),      /* Cahaya putih di tepi atas (outer) */
@@ -434,50 +420,28 @@ box-shadow:
 
 /* ── sign-in exits (up → rotate 90° → -90° → down behind sign-up) ── */
 @keyframes signinFlipOut {
-  0%   { transform: translateX(0)    rotate(0deg)   translateY(0);    opacity: 1; z-index: 2; }
-  20%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 1; z-index: 2; }
-  45%  { transform: translateX(0)    rotate(90deg)  translateY(-40%); opacity: 1; z-index: 2; }
-  70%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 0.6; z-index: 1; }
-  100% { transform: translateX(0)    rotate(0deg)   translateY(0);    opacity: 0; z-index: 1; }
-}
-
-/* ── sign-up enters (slides in from below while sign-in flips out) ── */
-@keyframes signupFlipIn {
-  0%   { transform: translateX(12px) translateY(30%); opacity: 0; z-index: 1; }
-  40%  { opacity: 0.3; z-index: 1; }
-  70%  { opacity: 0.7; z-index: 2; }
-  100% { transform: translateX(0)    translateY(0);   opacity: 1; z-index: 2; }
+  0%   { transform: translateX(0)    rotate(0deg)   translateY(0);    opacity: 1; }
+  20%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 1; }
+  45%  { transform: translateX(0)    rotate(-90deg)  translateY(-40%); opacity: 1; }
+  70%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 1; }
+  100% { transform: translateX(0px) rotate(0deg)   translateY(0);    opacity: 1; }
 }
 
 /* ── sign-up exits (up → rotate -90° → 90° → down behind sign-in) ── */
 @keyframes signupFlipOut {
-  0%   { transform: translateX(0)    rotate(0deg)    translateY(0);   opacity: 1; z-index: 2; }
-  20%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 1; z-index: 2; }
-  45%  { transform: translateX(0)    rotate(-90deg)  translateY(-40%); opacity: 1; z-index: 2; }
-  70%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 0.6; z-index: 1; }
-  100% { transform: translateX(0)    rotate(0deg)    translateY(0);   opacity: 0; z-index: 1; }
-}
-
-/* ── sign-in enters (slides in from below while sign-up flips out) ── */
-@keyframes signinFlipIn {
-  0%   { transform: translateX(-12px) translateY(30%); opacity: 0; z-index: 1; }
-  40%  { opacity: 0.3; z-index: 1; }
-  70%  { opacity: 0.7; z-index: 2; }
-  100% { transform: translateX(0)      translateY(0);  opacity: 1; z-index: 2; }
+  0%   { transform: translateX(0)    rotate(0deg)    translateY(0);   opacity: 1; }
+  20%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 1; }
+  45%  { transform: translateX(0)    rotate(90deg)  translateY(-40%); opacity: 1; }
+  70%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 1; }
+  100% { transform: translateX(0px)   rotate(0deg)    translateY(0);   opacity: 1; }
 }
 
 /* ── Trigger classes (higher specificity overrides data-tab rules) ── */
 .login-card-container[anim-direction="to-signup"] .login-card-box--signin {
   animation: signinFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-.login-card-container[anim-direction="to-signup"] .login-card-box--signup {
-  animation: signupFlipIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
 .login-card-container[anim-direction="to-signin"] .login-card-box--signup {
   animation: signupFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-.login-card-container[anim-direction="to-signin"] .login-card-box--signin {
-  animation: signinFlipIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* ── Lock interaction on content during animation ── */

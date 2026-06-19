@@ -35,11 +35,76 @@
               <span>Member since Juni 2026</span>
             </div>
           </div>
-          <button class="account-edit-btn">Edit Profile</button>
+          <button class="account-edit-btn" id="account-edit-btn" style="display:none;">Edit Profile</button>
+        </div>
+
+        <!-- ═══ Account Edit Section (hidden by default, shown when Account active) ═══ -->
+        <div class="account-grid-wrap" id="account-grid-wrap" style="display:none;">
+          <div class="account-grid">
+            <div class="account-grid__left">
+              <div class="account-card account-card--data">
+                <div class="account-data__header">
+                  <div class="account-data__icon">
+                    <svg viewBox="0 0 35 35" fill="none">
+                      <ellipse cx="17.5" cy="12.5" rx="8" ry="7.5" stroke="#6E7F99" stroke-width="2"/>
+                      <path d="M6 30 C6 23 11 18 17.5 18 C24 18 29 23 29 30" stroke="#6E7F99" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="account-data__title">Data Personal</div>
+                </div>
+                <div class="account-form-grid">
+                  <div class="account-field">
+                    <label class="account-field__label">Nama Lengkap*</label>
+                    <input type="text" class="account-field__input" disabled />
+                  </div>
+                  <div class="account-field">
+                    <label class="account-field__label">Email Pengguna*</label>
+                    <input type="email" class="account-field__input" disabled />
+                  </div>
+                  <div class="account-field">
+                    <label class="account-field__label">Jenis Kelamin*</label>
+                    <input type="text" class="account-field__input" disabled />
+                  </div>
+                  <div class="account-field">
+                    <label class="account-field__label">Tanggal Lahir</label>
+                    <input type="text" class="account-field__input" disabled />
+                  </div>
+                </div>
+                <div class="account-save-wrap">
+                  <button class="account-save-btn" id="account-save-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="account-grid__right">
+              <div class="account-card account-card--skin">
+                <div class="account-skin__title">Skin Type</div>
+                <div class="account-skin__options">
+                  <button class="account-skin-option account-skin-option--selected" data-skin="oily">Oily Skin</button>
+                  <button class="account-skin-option" data-skin="dry">Dry Skin</button>
+                  <button class="account-skin-option" data-skin="combination">Combination Skin</button>
+                  <button class="account-skin-option" data-skin="sensitive">Sensitive Skin</button>
+                  <button class="account-skin-option" data-skin="unsure">Not Sure :(</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="account-speech-bubble">
+            <div class="account-speech-mascot">
+              <img src="/assets/icons/water-drop-mascot.svg" alt="Mascot" width="150" height="150" />
+            </div>
+            <div class="account-speech-content">
+              <span>Let's complete your profile</span>
+            </div>
+          </div>
         </div>
 
         <!-- ═══ Content Grid ═══ -->
-        <div class="profile-grid">
+        <div class="profile-grid" id="profile-grid">
 
           <!-- Left Column -->
           <div class="profile-grid__left">
@@ -168,7 +233,7 @@
           <div class="settings-bar__title">Settings &amp; Account</div>
           <div class="settings-bar__items">
             <!-- Account -->
-            <div class="settings-bar__item settings-bar__item--disabled">
+            <div class="settings-bar__item" id="settings-account-btn" onclick="toggleAccountEdit()">
               <div class="settings-bar__icon">
                 <svg viewBox="0 0 45 45" fill="none">
                   <ellipse cx="22.5" cy="15.5" rx="10" ry="9" stroke="#6E7F99" stroke-width="2"/>
@@ -339,3 +404,66 @@
   </div>
 
 </div> <!-- /profile-viewport -->
+
+<script>
+(function() {
+  // ── Account Edit Toggle ──
+  window.toggleAccountEdit = function() {
+    var grid        = document.getElementById('profile-grid');
+    var accountWrap = document.getElementById('account-grid-wrap');
+    var editBtn     = document.getElementById('account-edit-btn');
+    var accountItem = document.getElementById('settings-account-btn');
+
+    var isActive = accountItem.classList.contains('settings-bar__item--active');
+
+    if (isActive) {
+      accountItem.classList.remove('settings-bar__item--active');
+      grid.style.display = '';
+      accountWrap.style.display = 'none';
+      editBtn.style.display = 'none';
+    } else {
+      accountItem.classList.add('settings-bar__item--active');
+      grid.style.display = 'none';
+      accountWrap.style.display = '';
+      editBtn.style.display = '';
+    }
+  };
+
+  // ── Edit Profile / Batal Toggle ──
+  var editBtn = document.getElementById('account-edit-btn');
+  var inputs  = document.querySelectorAll('#account-grid-wrap .account-field__input');
+  var saveBtn = document.getElementById('account-save-btn');
+
+  if (editBtn) {
+    editBtn.addEventListener('click', function() {
+      var isEditing = editBtn.textContent === 'Batal';
+      if (isEditing) {
+        inputs.forEach(function(inp) { inp.disabled = true; });
+        editBtn.textContent = 'Edit Profile';
+      } else {
+        inputs.forEach(function(inp) { inp.disabled = false; });
+        editBtn.textContent = 'Batal';
+      }
+    });
+  }
+
+  // ── Save Changes ──
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function() {
+      inputs.forEach(function(inp) { inp.disabled = true; });
+      editBtn.textContent = 'Edit Profile';
+      // TODO: Send data to backend API
+      console.log('Profile changes saved');
+    });
+  }
+
+  // ── Skin Type Selection ──
+  var skinOptions = document.querySelectorAll('#account-grid-wrap .account-skin-option');
+  skinOptions.forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      skinOptions.forEach(function(o) { o.classList.remove('account-skin-option--selected'); });
+      opt.classList.add('account-skin-option--selected');
+    });
+  });
+})();
+</script>

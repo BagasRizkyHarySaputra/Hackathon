@@ -1,6 +1,0 @@
-ultralytics==8.4.66
-roboflow==1.3.10
-opencv-python
-fastapi
-uvicorn
-python-multipart

@@ -1,0 +1,25 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - img [ref=e5]
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img
+        - img
+        - generic:
+          - generic [ref=e8]:
+            - button "Sign In" [active] [ref=e9] [cursor=pointer]
+            - button "Sign Up" [ref=e10] [cursor=pointer]
+          - generic [ref=e11]:
+            - button "Google" [ref=e12] [cursor=pointer]
+            - button "Facebook" [ref=e13] [cursor=pointer]
+          - generic [ref=e16]: Or
+          - generic [ref=e18]:
+            - textbox "Email" [ref=e20]
+            - generic [ref=e21]:
+              - textbox "Password" [ref=e22]
+              - button [ref=e23] [cursor=pointer]
+            - paragraph [ref=e24]:
+              - text: Don't have an account?
+              - link "Sign Up" [ref=e25] [cursor=pointer]:
+                - /url: "#"
+      - button "Sign In" [ref=e42] [cursor=pointer]

@@ -104,15 +104,27 @@
 }
 
 .skin-type__icon {
-  width: 4.17vw;
-  height: 6.45vh;
+  /* 1. Samakan lebar dan tinggi agar jadi persegi sempurna dulu */
+  width: 5.5vw; /* Sesuaikan ukurannya dengan layout-mu */
+  height: 5.5vw; 
   flex-shrink: 0;
-  color: #95B4C6;
+  
+  /* 2. Bikin Bunderan & Efeknya */
+  background-color: #E2E7ED; /* Warna abu-abu/biru pucat untuk background lingkaran */
+  border-radius: 50%; /* Ini yang bikin bentuknya jadi bulat sempurna */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Bayangan lembut di bawah lingkaran */
+  
+  /* 3. Center-in isi gambarnya (SVG/IMG) ke tengah bunderan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* 4. Atur ukuran gambar agar pas di dalam bunderan */
 .skin-type__icon svg {
-  width: 100%;
-  height: 100%;
+  width: 80%; /* Ukuran gambar dibikin proporsional terhadap lingkarannya */
+  height: auto;
+  object-fit: contain;
 }
 
 .skin-type__label {
@@ -186,16 +198,24 @@
   font-size: 0.97vw;
   font-weight: 600;
   color: #2B2B2B;
-  margin: 0 0 1.37vh;
+  margin: 2vh 0 3vh 2vw;
   padding: 0 1.39vw;
 }
 
 /* Tab bar */
+/* 1. Container menjadi "Track" (Jalur) */
 .routine-tabs {
   display: flex;
-  width: 100%;
+  width: 80%;
+  padding: 4px; /* Memberi sedikit jarak antara tombol dan batas luar track */
+  background: #CED4DE; /* Warna dasar abu-abu/biru pucat untuk track */
+  border-radius: 50px; /* Membuat bentuk oval melengkung (pill shape) */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek cekung/masuk ke dalam */
+  position: relative;
+  margin: 0 auto; /* Memberi jarak kiri-kanan agar track tidak mepet ke tepi kartu */
 }
 
+/* 2. Style Dasar untuk Tombol */
 .routine-tab {
   flex: 1;
   height: 4.10vh;
@@ -204,34 +224,43 @@
   justify-content: center;
   font-size: 0.90vw;
   font-weight: 600;
-  color: #2B2B2B;
   cursor: pointer;
   border: none;
   font-family: 'Onest', sans-serif;
-  background: #CACDD6;
-  transition: background 0.2s;
+  border-radius: 50px; /* Tombol juga harus berbentuk oval */
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); /* Animasi transisi yang lebih mulus */
+  position: relative;
 }
 
-.routine-tab:first-child {
-  border-radius: 0;
-}
+/* 3. Style saat Tombol AKTIF (Timbul) */
 
-.routine-tab:last-child {
-  border-radius: 0;
-}
-
-.routine-tab--active {
+/* Active: Morning Routine (Warna Pink) */
+.routine-tab[data-routine="morning"].routine-tab--active {
   background: #FFE3E2;
+  color: #2B2B2B;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Memberikan efek timbul */
+  z-index: 2; /* Memastikan bayangannya jatuh di atas tombol sebelahnya */
 }
 
-.routine-tab--inactive {
+/* Active: Night Routine (Warna Biru) */
+.routine-tab[data-routine="night"].routine-tab--active {
   background: #95B4C6;
   color: #2B2B2B;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Memberikan efek timbul */
+  z-index: 2;
+}
+
+/* 4. Style saat Tombol INACTIVE (Menyatu dengan track) */
+.routine-tab.routine-tab--inactive {
+  background: transparent; /* Background transparan agar warna track terlihat */
+  color: #9AA4B2; /* Warna teks agak pudar seperti di gambar */
+  box-shadow: none; /* Hilangkan efek timbul */
+  z-index: 1;
 }
 
 /* Product Items */
 .routine-items {
-  padding: 3vh 0 0 0.5vw;
+  padding: 3vh 0 0 1.5vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* PENTING: Membuat item di dalamnya tidak melar penuh (width otomatis menyusut) */
@@ -367,6 +396,16 @@
 
 .settings-bar__item--disabled:hover {
   opacity: 1;
+}
+
+.settings-bar__item--active {
+  background: rgba(149, 180, 198, 0.15);
+  border-radius: 0.69vw;
+}
+
+.settings-bar__item--active .settings-bar__label {
+  color: #2B2B2B;
+  font-weight: 600;
 }
 
 .settings-bar__icon {

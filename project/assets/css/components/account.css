@@ -81,8 +81,8 @@
 
 .account-avatar-edit {
   position: absolute;
-  bottom: -10%;
-  right: -10%;
+  bottom: -5%;
+  right: -5%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -92,11 +92,27 @@ function createLoginComponent() {
       const direction = tab === 'signup' ? 'to-signup' : 'to-signin';
       this.animDirection = direction;
 
+      var signinCard = document.querySelector('.login-card-box--signin');
+      var signupCard = document.querySelector('.login-card-box--signup');
+
       console.log('[INFO] [Login] Starting tab animation.', { from: this.activeTab, to: tab });
 
-      setTimeout(() => {
-        this.activeTab = tab;
-        this.animDirection = null;
+      setTimeout(function () {
+        if (direction === 'to-signup') {
+          if (signinCard) signinCard.style.zIndex = '1';
+          if (signupCard) signupCard.style.zIndex = '2';
+        } else {
+          if (signupCard) signupCard.style.zIndex = '1';
+          if (signinCard) signinCard.style.zIndex = '2';
+        }
+      }, 150);
+
+      var self = this;
+      setTimeout(function () {
+        self.activeTab = tab;
+        if (signinCard) signinCard.style.zIndex = '';
+        if (signupCard) signupCard.style.zIndex = '';
+        self.animDirection = null;
       }, 700);
     },
 
