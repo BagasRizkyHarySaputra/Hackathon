@@ -1,0 +1,1217 @@
+[
+  {
+    "name": "Scan-page",
+    "type": "FRAME",
+    "size": {
+      "width": 1440,
+      "height": 1024
+    },
+    "position": {
+      "x": 1512,
+      "y": 2295
+    },
+    "colors": [
+      "#FFFFFF"
+    ],
+    "layers": [
+      {
+        "name": "Background",
+        "type": "GROUP",
+        "size": {
+          "width": 2192.84,
+          "height": 2068.75
+        },
+        "position": {
+          "x": 1350,
+          "y": 1694
+        },
+        "layers": [
+          {
+            "name": "Rectangle 91",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": 2413,
+              "y": 2699
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 92",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 991.71,
+              "height": 988.02
+            },
+            "position": {
+              "x": 2327.28,
+              "y": 2774.72
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 93",
+            "type": "VECTOR",
+            "size": {
+              "width": 800,
+              "height": 800
+            },
+            "position": {
+              "x": 1479,
+              "y": 2122
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 90",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 492.02,
+              "height": 383.58
+            },
+            "position": {
+              "x": 1926,
+              "y": 2507.0
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 89",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 600,
+              "height": 600
+            },
+            "position": {
+              "x": 1350,
+              "y": 3014
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 94",
+            "type": "VECTOR",
+            "size": {
+              "width": 897.84,
+              "height": 985.22
+            },
+            "position": {
+              "x": 2645.0,
+              "y": 1694.0
+            },
+            "colors": [
+              "#6E7F99"
+            ]
+          },
+          {
+            "name": "Rectangle 96",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 492,
+              "height": 410
+            },
+            "position": {
+              "x": 1986,
+              "y": 3079
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 288895",
+        "type": "GROUP",
+        "size": {
+          "width": 167,
+          "height": 80
+        },
+        "position": {
+          "x": 2726,
+          "y": 2369
+        },
+        "layers": [
+          {
+            "name": "Icon Profile",
+            "type": "VECTOR",
+            "size": {
+              "width": 80,
+              "height": 80
+            },
+            "position": {
+              "x": 2813,
+              "y": 2369
+            },
+            "colors": [
+              "#6E7F99"
+            ]
+          },
+          {
+            "name": "Notification",
+            "type": "GROUP",
+            "size": {
+              "width": 42,
+              "height": 56
+            },
+            "position": {
+              "x": 2726,
+              "y": 2379
+            },
+            "layers": [
+              {
+                "name": "Vector",
+                "type": "VECTOR",
+                "size": {
+                  "width": 42,
+                  "height": 52
+                },
+                "position": {
+                  "x": 2726,
+                  "y": 2383
+                }
+              },
+              {
+                "name": "Ellipse 45",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 16,
+                  "height": 16
+                },
+                "position": {
+                  "x": 2752,
+                  "y": 2379
+                },
+                "colors": [
+                  "#95B4C6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 288894",
+        "type": "GROUP",
+        "size": {
+          "width": 1137,
+          "height": 790
+        },
+        "position": {
+          "x": 1756,
+          "y": 2471
+        },
+        "layers": [
+          {
+            "name": "Rectangle 103",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 1137,
+              "height": 790
+            },
+            "position": {
+              "x": 1756,
+              "y": 2471
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Group 288893",
+            "type": "GROUP",
+            "size": {
+              "width": 1055,
+              "height": 73
+            },
+            "position": {
+              "x": 1805,
+              "y": 2505
+            },
+            "layers": [
+              {
+                "name": "Ready to scan your skin?",
+                "type": "TEXT",
+                "size": {
+                  "width": 437,
+                  "height": 46
+                },
+                "position": {
+                  "x": 2106,
+                  "y": 2519
+                },
+                "colors": [
+                  "#2B2B2B"
+                ],
+                "text_content": "Ready to scan your skin?"
+              },
+              {
+                "name": "<",
+                "type": "GROUP",
+                "size": {
+                  "width": 74,
+                  "height": 73
+                },
+                "position": {
+                  "x": 1805,
+                  "y": 2505
+                },
+                "layers": [
+                  {
+                    "name": "Rectangle 107",
+                    "type": "RECTANGLE",
+                    "size": {
+                      "width": 74,
+                      "height": 73
+                    },
+                    "position": {
+                      "x": 1805,
+                      "y": 2505
+                    }
+                  },
+                  {
+                    "name": "<",
+                    "type": "TEXT",
+                    "size": {
+                      "width": 22,
+                      "height": 46
+                    },
+                    "position": {
+                      "x": 1831,
+                      "y": 2519
+                    },
+                    "colors": [
+                      "#2B2B2B"
+                    ],
+                    "text_content": "<"
+                  }
+                ]
+              },
+              {
+                "name": "?",
+                "type": "GROUP",
+                "size": {
+                  "width": 74,
+                  "height": 73
+                },
+                "position": {
+                  "x": 2786,
+                  "y": 2505
+                },
+                "layers": [
+                  {
+                    "name": "Rectangle 108",
+                    "type": "RECTANGLE",
+                    "size": {
+                      "width": 74,
+                      "height": 73
+                    },
+                    "position": {
+                      "x": 2786,
+                      "y": 2505
+                    }
+                  },
+                  {
+                    "name": "?",
+                    "type": "TEXT",
+                    "size": {
+                      "width": 20,
+                      "height": 46
+                    },
+                    "position": {
+                      "x": 2813,
+                      "y": 2519
+                    },
+                    "colors": [
+                      "#2B2B2B"
+                    ],
+                    "text_content": "?"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Group 288892",
+            "type": "GROUP",
+            "size": {
+              "width": 707,
+              "height": 590
+            },
+            "position": {
+              "x": 1966,
+              "y": 2596
+            },
+            "layers": [
+              {
+                "name": "Rectangle 106",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 707,
+                  "height": 590
+                },
+                "position": {
+                  "x": 1966,
+                  "y": 2596
+                }
+              },
+              {
+                "name": "Icon Camera",
+                "type": "GROUP",
+                "size": {
+                  "width": 109,
+                  "height": 108
+                },
+                "position": {
+                  "x": 2270,
+                  "y": 3047
+                },
+                "layers": [
+                  {
+                    "name": "Rectangle 109",
+                    "type": "RECTANGLE",
+                    "size": {
+                      "width": 109,
+                      "height": 108
+                    },
+                    "position": {
+                      "x": 2270,
+                      "y": 3047
+                    }
+                  },
+                  {
+                    "name": "Camera",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 60,
+                      "height": 53
+                    },
+                    "position": {
+                      "x": 2295,
+                      "y": 3074
+                    },
+                    "layers": [
+                      {
+                        "name": "Rectangle 74",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 60,
+                          "height": 53
+                        },
+                        "position": {
+                          "x": 2295,
+                          "y": 3074
+                        }
+                      },
+                      {
+                        "name": "Ellipse 33",
+                        "type": "ELLIPSE",
+                        "size": {
+                          "width": 18,
+                          "height": 18.17
+                        },
+                        "position": {
+                          "x": 2316,
+                          "y": 3093.69
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "image 3",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 321,
+                  "height": 321
+                },
+                "position": {
+                  "x": 2164,
+                  "y": 2676
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "image 4",
+        "type": "RECTANGLE",
+        "size": {
+          "width": 321,
+          "height": 323
+        },
+        "position": {
+          "x": 2164,
+          "y": 2676
+        }
+      },
+      {
+        "name": "Scan ",
+        "type": "GROUP",
+        "size": {
+          "width": 282,
+          "height": 291
+        },
+        "position": {
+          "x": 2183,
+          "y": 2691
+        },
+        "layers": [
+          {
+            "name": "Vector 1",
+            "type": "VECTOR",
+            "size": {
+              "width": 98,
+              "height": 86
+            },
+            "position": {
+              "x": 2183,
+              "y": 2691
+            }
+          },
+          {
+            "name": "Vector 2",
+            "type": "VECTOR",
+            "size": {
+              "width": 86,
+              "height": 98
+            },
+            "position": {
+              "x": 2379,
+              "y": 2691
+            },
+            "colors": [
+              "#D9D9D9"
+            ]
+          },
+          {
+            "name": "Vector 3",
+            "type": "VECTOR",
+            "size": {
+              "width": 98,
+              "height": 86
+            },
+            "position": {
+              "x": 2364,
+              "y": 2896
+            }
+          },
+          {
+            "name": "Vector 4",
+            "type": "VECTOR",
+            "size": {
+              "width": 86,
+              "height": 98
+            },
+            "position": {
+              "x": 2189,
+              "y": 2884
+            },
+            "colors": [
+              "#D9D9D9"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Group 288899",
+        "type": "GROUP",
+        "size": {
+          "width": 157,
+          "height": 951
+        },
+        "position": {
+          "x": 1575,
+          "y": 2351
+        },
+        "layers": [
+          {
+            "name": "L I C I N",
+            "type": "TEXT",
+            "size": {
+              "width": 133,
+              "height": 46
+            },
+            "position": {
+              "x": 1599,
+              "y": 2351
+            },
+            "colors": [
+              "#6E7F99"
+            ],
+            "text_content": "L I C I N"
+          },
+          {
+            "name": "Side Bar",
+            "type": "GROUP",
+            "size": {
+              "width": 120,
+              "height": 642
+            },
+            "position": {
+              "x": 1599,
+              "y": 2444
+            },
+            "layers": [
+              {
+                "name": "Group 288898",
+                "type": "GROUP",
+                "size": {
+                  "width": 120,
+                  "height": 642
+                },
+                "position": {
+                  "x": 1599,
+                  "y": 2444
+                },
+                "layers": [
+                  {
+                    "name": "Rectangle 105",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 120,
+                      "height": 642
+                    },
+                    "position": {
+                      "x": 1599,
+                      "y": 2444
+                    }
+                  },
+                  {
+                    "name": "Group 288897",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 80,
+                      "height": 557.71
+                    },
+                    "position": {
+                      "x": 1619,
+                      "y": 2489
+                    },
+                    "layers": [
+                      {
+                        "name": "Icon Profile",
+                        "type": "GROUP",
+                        "size": {
+                          "width": 55,
+                          "height": 59.71
+                        },
+                        "position": {
+                          "x": 1631,
+                          "y": 2987
+                        },
+                        "layers": [
+                          {
+                            "name": "Ellipse 33",
+                            "type": "ELLIPSE",
+                            "size": {
+                              "width": 31.43,
+                              "height": 27.43
+                            },
+                            "position": {
+                              "x": 1641.79,
+                              "y": 2987
+                            },
+                            "colors": [
+                              "#95B4C6"
+                            ]
+                          },
+                          {
+                            "name": "Rectangle 2",
+                            "type": "VECTOR",
+                            "size": {
+                              "width": 55,
+                              "height": 25.71
+                            },
+                            "position": {
+                              "x": 1631,
+                              "y": 3021
+                            },
+                            "colors": [
+                              "#95B4C6"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Icon Article",
+                        "type": "GROUP",
+                        "size": {
+                          "width": 55,
+                          "height": 60
+                        },
+                        "position": {
+                          "x": 1631,
+                          "y": 2861
+                        },
+                        "layers": [
+                          {
+                            "name": "Subtract",
+                            "type": "VECTOR",
+                            "size": {
+                              "width": 55,
+                              "height": 60
+                            },
+                            "position": {
+                              "x": 1631,
+                              "y": 2861
+                            },
+                            "colors": [
+                              "#95B4C6"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Group 288896",
+                        "type": "GROUP",
+                        "size": {
+                          "width": 80,
+                          "height": 80
+                        },
+                        "position": {
+                          "x": 1619,
+                          "y": 2724
+                        },
+                        "layers": [
+                          {
+                            "name": "Selection",
+                            "type": "VECTOR",
+                            "size": {
+                              "width": 80,
+                              "height": 80
+                            },
+                            "position": {
+                              "x": 1619,
+                              "y": 2724
+                            },
+                            "colors": [
+                              "#FFFFFF"
+                            ]
+                          },
+                          {
+                            "name": "Camera",
+                            "type": "GROUP",
+                            "size": {
+                              "width": 55,
+                              "height": 50
+                            },
+                            "position": {
+                              "x": 1631,
+                              "y": 2739
+                            },
+                            "layers": [
+                              {
+                                "name": "Subtract",
+                                "type": "BOOLEAN_OPERATION",
+                                "size": {
+                                  "width": 55,
+                                  "height": 50
+                                },
+                                "position": {
+                                  "x": 1631,
+                                  "y": 2739
+                                },
+                                "colors": [
+                                  "#6E7F99"
+                                ],
+                                "layers": [
+                                  {
+                                    "name": "Rectangle 75",
+                                    "type": "VECTOR",
+                                    "size": {
+                                      "width": 55,
+                                      "height": 50
+                                    },
+                                    "position": {
+                                      "x": 1631,
+                                      "y": 2739
+                                    },
+                                    "colors": [
+                                      "#2B3F6C"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Ellipse 33",
+                                    "type": "ELLIPSE",
+                                    "size": {
+                                      "width": 16.5,
+                                      "height": 17.14
+                                    },
+                                    "position": {
+                                      "x": 1650.25,
+                                      "y": 2757.57
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Icon Comunity",
+                        "type": "GROUP",
+                        "size": {
+                          "width": 55,
+                          "height": 55
+                        },
+                        "position": {
+                          "x": 1631,
+                          "y": 2619
+                        },
+                        "layers": [
+                          {
+                            "name": "Subtract",
+                            "type": "BOOLEAN_OPERATION",
+                            "size": {
+                              "width": 55,
+                              "height": 55
+                            },
+                            "position": {
+                              "x": 1631,
+                              "y": 2619
+                            },
+                            "colors": [
+                              "#95B4C6"
+                            ],
+                            "layers": [
+                              {
+                                "name": "Union",
+                                "type": "BOOLEAN_OPERATION",
+                                "size": {
+                                  "width": 55,
+                                  "height": 55
+                                },
+                                "position": {
+                                  "x": 1631,
+                                  "y": 2619
+                                },
+                                "colors": [
+                                  "#2B3F6C"
+                                ],
+                                "layers": [
+                                  {
+                                    "name": "Union",
+                                    "type": "VECTOR",
+                                    "size": {
+                                      "width": 51.16,
+                                      "height": 51.16
+                                    },
+                                    "position": {
+                                      "x": 1632.92,
+                                      "y": 2620.92
+                                    },
+                                    "colors": [
+                                      "#C4C4C4"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Union (Stroke)",
+                                    "type": "VECTOR",
+                                    "size": {
+                                      "width": 55,
+                                      "height": 55
+                                    },
+                                    "position": {
+                                      "x": 1631,
+                                      "y": 2619
+                                    },
+                                    "colors": [
+                                      "#2B3F6C"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "Dots",
+                                "type": "GROUP",
+                                "size": {
+                                  "width": 31.98,
+                                  "height": 6.4
+                                },
+                                "position": {
+                                  "x": 1642.64,
+                                  "y": 2643.43
+                                },
+                                "layers": [
+                                  {
+                                    "name": "Ellipse 37",
+                                    "type": "ELLIPSE",
+                                    "size": {
+                                      "width": 6.4,
+                                      "height": 6.4
+                                    },
+                                    "position": {
+                                      "x": 1642.64,
+                                      "y": 2643.43
+                                    },
+                                    "colors": [
+                                      "#2B3F6C"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Ellipse 38",
+                                    "type": "ELLIPSE",
+                                    "size": {
+                                      "width": 6.4,
+                                      "height": 6.4
+                                    },
+                                    "position": {
+                                      "x": 1655.43,
+                                      "y": 2643.43
+                                    },
+                                    "colors": [
+                                      "#2B3F6C"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Ellipse 39",
+                                    "type": "ELLIPSE",
+                                    "size": {
+                                      "width": 6.4,
+                                      "height": 6.4
+                                    },
+                                    "position": {
+                                      "x": 1668.22,
+                                      "y": 2643.43
+                                    },
+                                    "colors": [
+                                      "#2B3F6C"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "home",
+                        "type": "INSTANCE",
+                        "size": {
+                          "width": 65,
+                          "height": 65
+                        },
+                        "position": {
+                          "x": 1626,
+                          "y": 2489
+                        },
+                        "layers": [
+                          {
+                            "name": "vuesax/bold/home-2",
+                            "type": "GROUP",
+                            "size": {
+                              "width": 65,
+                              "height": 65
+                            },
+                            "position": {
+                              "x": 1626,
+                              "y": 2489
+                            },
+                            "layers": [
+                              {
+                                "name": "home-2",
+                                "type": "GROUP",
+                                "size": {
+                                  "width": 65,
+                                  "height": 65
+                                },
+                                "position": {
+                                  "x": 1626,
+                                  "y": 2489
+                                },
+                                "layers": [
+                                  {
+                                    "name": "Vector",
+                                    "type": "VECTOR",
+                                    "size": {
+                                      "width": 54.22,
+                                      "height": 54.16
+                                    },
+                                    "position": {
+                                      "x": 1631.39,
+                                      "y": 2494.42
+                                    },
+                                    "colors": [
+                                      "#95B4C6"
+                                    ]
+                                  },
+                                  {
+                                    "name": "Vector",
+                                    "type": "VECTOR",
+                                    "size": {
+                                      "width": 65,
+                                      "height": 65
+                                    },
+                                    "position": {
+                                      "x": 1626,
+                                      "y": 2489
+                                    },
+                                    "colors": [
+                                      "#95B4C6"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Maskot",
+            "type": "GROUP",
+            "size": {
+              "width": 150,
+              "height": 150
+            },
+            "position": {
+              "x": 1575,
+              "y": 3152
+            },
+            "layers": [
+              {
+                "name": "water drop",
+                "type": "GROUP",
+                "size": {
+                  "width": 150.0,
+                  "height": 150
+                },
+                "position": {
+                  "x": 1575,
+                  "y": 3152
+                },
+                "layers": [
+                  {
+                    "name": "Ellipse 7",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 113.21,
+                      "height": 131.05
+                    },
+                    "position": {
+                      "x": 1595.94,
+                      "y": 3152
+                    }
+                  },
+                  {
+                    "name": "Ellipse 6",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 99.06,
+                      "height": 114.74
+                    },
+                    "position": {
+                      "x": 1604.7,
+                      "y": 3168.73
+                    }
+                  },
+                  {
+                    "name": "Subtract",
+                    "type": "BOOLEAN_OPERATION",
+                    "size": {
+                      "width": 110.14,
+                      "height": 86.11
+                    },
+                    "position": {
+                      "x": 1595.94,
+                      "y": 3196.74
+                    },
+                    "layers": [
+                      {
+                        "name": "Ellipse 1",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 113.21,
+                          "height": 131.05
+                        },
+                        "position": {
+                          "x": 1595.94,
+                          "y": 3151.8
+                        }
+                      },
+                      {
+                        "name": "Ellipse 3",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 113.21,
+                          "height": 131.05
+                        },
+                        "position": {
+                          "x": 1604.43,
+                          "y": 3137.06
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Ellipse 4",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 107.55,
+                      "height": 100.0
+                    },
+                    "position": {
+                      "x": 1617.45,
+                      "y": 3152
+                    }
+                  },
+                  {
+                    "name": "Ellipse 5",
+                    "type": "ELLIPSE",
+                    "size": {
+                      "width": 107.55,
+                      "height": 100.0
+                    },
+                    "position": {
+                      "x": 1575,
+                      "y": 3202
+                    }
+                  },
+                  {
+                    "name": "Ellipse 2",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 34.0,
+                      "height": 62.91
+                    },
+                    "position": {
+                      "x": 1612.5,
+                      "y": 3171.69
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Ellipse 51",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 18.0,
+                  "height": 10.44
+                },
+                "position": {
+                  "x": 1620,
+                  "y": 3247.89
+                },
+                "colors": [
+                  "#D3ADC3"
+                ]
+              },
+              {
+                "name": "Ellipse 52",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 18.0,
+                  "height": 10.44
+                },
+                "position": {
+                  "x": 1666,
+                  "y": 3247.89
+                },
+                "colors": [
+                  "#D3ADC3"
+                ]
+              },
+              {
+                "name": "Ellipse 47",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 14.0,
+                  "height": 18.99
+                },
+                "position": {
+                  "x": 1626,
+                  "y": 3230.8
+                },
+                "colors": [
+                  "#0B1939"
+                ]
+              },
+              {
+                "name": "Ellipse 48",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 4.0,
+                  "height": 4.75
+                },
+                "position": {
+                  "x": 1629,
+                  "y": 3234.59
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Ellipse 49",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 14.0,
+                  "height": 18.99
+                },
+                "position": {
+                  "x": 1664,
+                  "y": 3230.8
+                },
+                "colors": [
+                  "#0B1939"
+                ]
+              },
+              {
+                "name": "Ellipse 50",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 4.0,
+                  "height": 4.75
+                },
+                "position": {
+                  "x": 1668,
+                  "y": 3233.65
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Ellipse 53",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 12.0,
+                  "height": 11.39
+                },
+                "position": {
+                  "x": 1647,
+                  "y": 3249.78
+                },
+                "colors": [
+                  "#0A1939"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

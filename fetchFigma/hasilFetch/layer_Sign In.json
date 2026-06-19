@@ -1,0 +1,2667 @@
+[
+  {
+    "name": "Sign In ",
+    "type": "GROUP",
+    "size": {
+      "width": 573,
+      "height": 644.0
+    },
+    "position": {
+      "x": 694,
+      "y": 193.0
+    },
+    "layers": [
+      {
+        "name": "Masuk",
+        "type": "BOOLEAN_OPERATION",
+        "size": {
+          "width": 573,
+          "height": 618.28
+        },
+        "position": {
+          "x": 694,
+          "y": 193.0
+        },
+        "colors": [
+          "#D0DCE1"
+        ],
+        "layers": [
+          {
+            "name": "Rectangle 87",
+            "type": "VECTOR",
+            "size": {
+              "width": 573.0,
+              "height": 633.05
+            },
+            "position": {
+              "x": 694,
+              "y": 178.23
+            },
+            "colors": [
+              "#D9D9D9"
+            ]
+          },
+          {
+            "name": "Rectangle 88",
+            "type": "VECTOR",
+            "size": {
+              "width": 453.0,
+              "height": 114.0
+            },
+            "position": {
+              "x": 754.0,
+              "y": 727.37
+            },
+            "colors": [
+              "#A7A7A7"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Button Sign In",
+        "type": "FRAME",
+        "size": {
+          "width": 421,
+          "height": 89
+        },
+        "position": {
+          "x": 770,
+          "y": 748
+        },
+        "auto_layout": {
+          "direction": "HORIZONTAL",
+          "spacing": 10,
+          "padding_left": 118,
+          "padding_top": 20
+        },
+        "layers": [
+          {
+            "name": "Sign In",
+            "type": "TEXT",
+            "size": {
+              "width": 104,
+              "height": 41
+            },
+            "position": {
+              "x": 928.5,
+              "y": 772
+            },
+            "colors": [
+              "#5A5959"
+            ],
+            "text_content": "Sign In"
+          }
+        ]
+      },
+      {
+        "name": "Don\u2019t have an account? Sign Up",
+        "type": "TEXT",
+        "size": {
+          "width": 243,
+          "height": 20
+        },
+        "position": {
+          "x": 860,
+          "y": 644
+        },
+        "colors": [
+          "#5A5959"
+        ],
+        "text_content": "Don\u2019t have an account? Sign Up "
+      },
+      {
+        "name": "Email",
+        "type": "GROUP",
+        "size": {
+          "width": 396,
+          "height": 54
+        },
+        "position": {
+          "x": 784,
+          "y": 490
+        },
+        "layers": [
+          {
+            "name": "Rectangle 98",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 396,
+              "height": 54
+            },
+            "position": {
+              "x": 784,
+              "y": 490
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "eva:email-outline",
+            "type": "FRAME",
+            "size": {
+              "width": 30,
+              "height": 30
+            },
+            "position": {
+              "x": 805,
+              "y": 502
+            },
+            "colors": [
+              "#FFFFFF"
+            ],
+            "layers": [
+              {
+                "name": "Vector",
+                "type": "VECTOR",
+                "size": {
+                  "width": 25,
+                  "height": 20
+                },
+                "position": {
+                  "x": 807.5,
+                  "y": 507
+                },
+                "colors": [
+                  "#5F6368"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Email",
+            "type": "TEXT",
+            "size": {
+              "width": 40,
+              "height": 20
+            },
+            "position": {
+              "x": 859,
+              "y": 507
+            },
+            "colors": [
+              "#5A5959"
+            ],
+            "text_content": "Email"
+          }
+        ]
+      },
+      {
+        "name": "Password",
+        "type": "GROUP",
+        "size": {
+          "width": 396,
+          "height": 54
+        },
+        "position": {
+          "x": 784,
+          "y": 560
+        },
+        "layers": [
+          {
+            "name": "Rectangle 99",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 396,
+              "height": 54
+            },
+            "position": {
+              "x": 784,
+              "y": 560
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Hicon / Bold / Hide",
+            "type": "INSTANCE",
+            "size": {
+              "width": 24,
+              "height": 24
+            },
+            "position": {
+              "x": 1140,
+              "y": 575
+            },
+            "layers": [
+              {
+                "name": "Hide",
+                "type": "GROUP",
+                "size": {
+                  "width": 21.5,
+                  "height": 17.5
+                },
+                "position": {
+                  "x": 1141.25,
+                  "y": 578.25
+                },
+                "layers": [
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 21.5,
+                      "height": 17.5
+                    },
+                    "position": {
+                      "x": 1141.25,
+                      "y": 578.25
+                    },
+                    "colors": [
+                      "#5F6368"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Vector",
+            "type": "VECTOR",
+            "size": {
+              "width": 25,
+              "height": 25
+            },
+            "position": {
+              "x": 808,
+              "y": 572
+            },
+            "colors": [
+              "#5F6368"
+            ]
+          },
+          {
+            "name": "Password",
+            "type": "TEXT",
+            "size": {
+              "width": 74,
+              "height": 20
+            },
+            "position": {
+              "x": 862,
+              "y": 577
+            },
+            "colors": [
+              "#5A5959"
+            ],
+            "text_content": "Password"
+          }
+        ]
+      },
+      {
+        "name": "Facebook",
+        "type": "GROUP",
+        "size": {
+          "width": 66,
+          "height": 66
+        },
+        "position": {
+          "x": 1010,
+          "y": 365
+        },
+        "layers": [
+          {
+            "name": "Rectangle 101",
+            "type": "VECTOR",
+            "size": {
+              "width": 66,
+              "height": 66
+            },
+            "position": {
+              "x": 1010,
+              "y": 365
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Facebook Icons",
+            "type": "INSTANCE",
+            "size": {
+              "width": 44,
+              "height": 44
+            },
+            "position": {
+              "x": 1021,
+              "y": 376
+            },
+            "colors": [
+              "#FFFFFF"
+            ],
+            "layers": [
+              {
+                "name": "c",
+                "type": "VECTOR",
+                "size": {
+                  "width": 44.0,
+                  "height": 43.84
+                },
+                "position": {
+                  "x": 1021,
+                  "y": 376
+                },
+                "colors": [
+                  "#0866FF"
+                ]
+              },
+              {
+                "name": "d",
+                "type": "VECTOR",
+                "size": {
+                  "width": 20.06,
+                  "height": 35.86
+                },
+                "position": {
+                  "x": 1033.15,
+                  "y": 384.14
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Google",
+        "type": "GROUP",
+        "size": {
+          "width": 66,
+          "height": 66
+        },
+        "position": {
+          "x": 877,
+          "y": 365
+        },
+        "layers": [
+          {
+            "name": "Rectangle 100",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 66,
+              "height": 66
+            },
+            "position": {
+              "x": 877,
+              "y": 365
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "google-logo-9808 1",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 44,
+              "height": 44
+            },
+            "position": {
+              "x": 888,
+              "y": 376
+            }
+          }
+        ]
+      },
+      {
+        "name": "Teks Sign In",
+        "type": "GROUP",
+        "size": {
+          "width": 78,
+          "height": 31
+        },
+        "position": {
+          "x": 745,
+          "y": 295
+        },
+        "layers": [
+          {
+            "name": "Sign In",
+            "type": "TEXT",
+            "size": {
+              "width": 78,
+              "height": 31
+            },
+            "position": {
+              "x": 745,
+              "y": 295
+            },
+            "colors": [
+              "#2C2C2C"
+            ],
+            "text_content": "Sign In"
+          },
+          {
+            "name": "Rectangle 95",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 74,
+              "height": 2
+            },
+            "position": {
+              "x": 747,
+              "y": 321
+            },
+            "colors": [
+              "#2C2C2C"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "OR",
+        "type": "GROUP",
+        "size": {
+          "width": 262,
+          "height": 18
+        },
+        "position": {
+          "x": 851,
+          "y": 453
+        },
+        "layers": [
+          {
+            "name": "Or",
+            "type": "TEXT",
+            "size": {
+              "width": 16,
+              "height": 18
+            },
+            "position": {
+              "x": 973,
+              "y": 453
+            },
+            "colors": [
+              "#2C2C2C"
+            ],
+            "text_content": "Or"
+          },
+          {
+            "name": "Line 9",
+            "type": "VECTOR",
+            "size": {
+              "width": 100,
+              "height": 0
+            },
+            "position": {
+              "x": 1013,
+              "y": 462
+            }
+          },
+          {
+            "name": "Line 10",
+            "type": "VECTOR",
+            "size": {
+              "width": 99,
+              "height": 0
+            },
+            "position": {
+              "x": 851,
+              "y": 462
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sign In",
+    "type": "FRAME",
+    "size": {
+      "width": 1440,
+      "height": 1024
+    },
+    "position": {
+      "x": 13,
+      "y": 1183
+    },
+    "colors": [
+      "#FFFFFF"
+    ],
+    "layers": [
+      {
+        "name": "Background",
+        "type": "GROUP",
+        "size": {
+          "width": 2287.34,
+          "height": 1987.75
+        },
+        "position": {
+          "x": -65.5,
+          "y": 663.0
+        },
+        "layers": [
+          {
+            "name": "Rectangle 91",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": 914,
+              "y": 1587
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 96",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": 230,
+              "y": 1961
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 92",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 991.71,
+              "height": 988.02
+            },
+            "position": {
+              "x": 828.28,
+              "y": 1662.72
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 93",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 800,
+              "height": 800
+            },
+            "position": {
+              "x": -20,
+              "y": 895
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 90",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 492.02,
+              "height": 383.58
+            },
+            "position": {
+              "x": 631,
+              "y": 1497.0
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 89",
+            "type": "VECTOR",
+            "size": {
+              "width": 600,
+              "height": 600
+            },
+            "position": {
+              "x": -65.5,
+              "y": 2001
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 94",
+            "type": "VECTOR",
+            "size": {
+              "width": 897.84,
+              "height": 985.22
+            },
+            "position": {
+              "x": 1324.0,
+              "y": 663.0
+            },
+            "colors": [
+              "#6E7F99"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sign In",
+        "type": "GROUP",
+        "size": {
+          "width": 573,
+          "height": 618.28
+        },
+        "position": {
+          "x": 694,
+          "y": 1376.0
+        },
+        "layers": [
+          {
+            "name": "Masuk",
+            "type": "BOOLEAN_OPERATION",
+            "size": {
+              "width": 573,
+              "height": 618.28
+            },
+            "position": {
+              "x": 694,
+              "y": 1376.0
+            },
+            "colors": [
+              "#D0DCE1"
+            ],
+            "layers": [
+              {
+                "name": "Rectangle 87",
+                "type": "VECTOR",
+                "size": {
+                  "width": 573.0,
+                  "height": 633.05
+                },
+                "position": {
+                  "x": 694,
+                  "y": 1361.23
+                },
+                "colors": [
+                  "#D9D9D9"
+                ]
+              },
+              {
+                "name": "Rectangle 88",
+                "type": "VECTOR",
+                "size": {
+                  "width": 453.0,
+                  "height": 114.0
+                },
+                "position": {
+                  "x": 754.0,
+                  "y": 1910.37
+                },
+                "colors": [
+                  "#A7A7A7"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Teks Sign In",
+            "type": "GROUP",
+            "size": {
+              "width": 78,
+              "height": 31
+            },
+            "position": {
+              "x": 745,
+              "y": 1478
+            },
+            "layers": [
+              {
+                "name": "Sign In",
+                "type": "TEXT",
+                "size": {
+                  "width": 78,
+                  "height": 31
+                },
+                "position": {
+                  "x": 745,
+                  "y": 1478
+                },
+                "colors": [
+                  "#2C2C2C"
+                ],
+                "text_content": "Sign In"
+              },
+              {
+                "name": "Rectangle 95",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 74,
+                  "height": 2
+                },
+                "position": {
+                  "x": 747,
+                  "y": 1504
+                },
+                "colors": [
+                  "#2C2C2C"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sign Up",
+        "type": "GROUP",
+        "size": {
+          "width": 570,
+          "height": 644.0
+        },
+        "position": {
+          "x": 697,
+          "y": 1376.0
+        },
+        "layers": [
+          {
+            "name": "Daftar",
+            "type": "BOOLEAN_OPERATION",
+            "size": {
+              "width": 570,
+              "height": 613.88
+            },
+            "position": {
+              "x": 697,
+              "y": 1376.0
+            },
+            "colors": [
+              "#E4D8DC"
+            ],
+            "layers": [
+              {
+                "name": "Rectangle 87",
+                "type": "VECTOR",
+                "size": {
+                  "width": 570,
+                  "height": 628.62
+                },
+                "position": {
+                  "x": 697,
+                  "y": 1361.26
+                },
+                "colors": [
+                  "#D9D9D9"
+                ]
+              },
+              {
+                "name": "Rectangle 88",
+                "type": "VECTOR",
+                "size": {
+                  "width": 450.63,
+                  "height": 113.4
+                },
+                "position": {
+                  "x": 756.69,
+                  "y": 1907.81
+                },
+                "colors": [
+                  "#A7A7A7"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Facebook",
+            "type": "GROUP",
+            "size": {
+              "width": 66,
+              "height": 66
+            },
+            "position": {
+              "x": 1010,
+              "y": 1526
+            },
+            "layers": [
+              {
+                "name": "Rectangle 101",
+                "type": "VECTOR",
+                "size": {
+                  "width": 66,
+                  "height": 66
+                },
+                "position": {
+                  "x": 1010,
+                  "y": 1526
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Facebook Icons",
+                "type": "INSTANCE",
+                "size": {
+                  "width": 44,
+                  "height": 44
+                },
+                "position": {
+                  "x": 1021,
+                  "y": 1537
+                },
+                "colors": [
+                  "#FFFFFF"
+                ],
+                "layers": [
+                  {
+                    "name": "c",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 44.0,
+                      "height": 43.84
+                    },
+                    "position": {
+                      "x": 1021,
+                      "y": 1537
+                    },
+                    "colors": [
+                      "#0866FF"
+                    ]
+                  },
+                  {
+                    "name": "d",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 20.06,
+                      "height": 35.86
+                    },
+                    "position": {
+                      "x": 1033.15,
+                      "y": 1545.14
+                    },
+                    "colors": [
+                      "#FFFFFF"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": " Google",
+            "type": "GROUP",
+            "size": {
+              "width": 66,
+              "height": 66
+            },
+            "position": {
+              "x": 877,
+              "y": 1526
+            },
+            "layers": [
+              {
+                "name": "Rectangle 100",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 66,
+                  "height": 66
+                },
+                "position": {
+                  "x": 877,
+                  "y": 1526
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "google-logo-9808 1",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 44,
+                  "height": 44
+                },
+                "position": {
+                  "x": 888,
+                  "y": 1537
+                }
+              }
+            ]
+          },
+          {
+            "name": "OR",
+            "type": "GROUP",
+            "size": {
+              "width": 262,
+              "height": 18
+            },
+            "position": {
+              "x": 851,
+              "y": 1614
+            },
+            "layers": [
+              {
+                "name": "Or",
+                "type": "TEXT",
+                "size": {
+                  "width": 16,
+                  "height": 18
+                },
+                "position": {
+                  "x": 973,
+                  "y": 1614
+                },
+                "colors": [
+                  "#2C2C2C"
+                ],
+                "text_content": "Or"
+              },
+              {
+                "name": "Line 9",
+                "type": "VECTOR",
+                "size": {
+                  "width": 100,
+                  "height": 0
+                },
+                "position": {
+                  "x": 1013,
+                  "y": 1623
+                }
+              },
+              {
+                "name": "Line 10",
+                "type": "VECTOR",
+                "size": {
+                  "width": 99,
+                  "height": 0
+                },
+                "position": {
+                  "x": 851,
+                  "y": 1623
+                }
+              }
+            ]
+          },
+          {
+            "name": "Button Sign Up",
+            "type": "FRAME",
+            "size": {
+              "width": 421,
+              "height": 89
+            },
+            "position": {
+              "x": 770,
+              "y": 1931
+            },
+            "auto_layout": {
+              "direction": "HORIZONTAL",
+              "spacing": 10,
+              "padding_left": 118,
+              "padding_top": 20
+            },
+            "layers": [
+              {
+                "name": "Sign Up",
+                "type": "TEXT",
+                "size": {
+                  "width": 119,
+                  "height": 41
+                },
+                "position": {
+                  "x": 921,
+                  "y": 1955
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Sign Up"
+              }
+            ]
+          },
+          {
+            "name": "Email",
+            "type": "GROUP",
+            "size": {
+              "width": 396,
+              "height": 54
+            },
+            "position": {
+              "x": 784,
+              "y": 1654
+            },
+            "layers": [
+              {
+                "name": "Rectangle 103",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 396,
+                  "height": 54
+                },
+                "position": {
+                  "x": 784,
+                  "y": 1654
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Vector",
+                "type": "VECTOR",
+                "size": {
+                  "width": 25,
+                  "height": 20
+                },
+                "position": {
+                  "x": 808,
+                  "y": 1670
+                },
+                "colors": [
+                  "#5F6368"
+                ]
+              },
+              {
+                "name": "Email",
+                "type": "TEXT",
+                "size": {
+                  "width": 40,
+                  "height": 20
+                },
+                "position": {
+                  "x": 857,
+                  "y": 1672
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Email"
+              }
+            ]
+          },
+          {
+            "name": "Confirm Password",
+            "type": "GROUP",
+            "size": {
+              "width": 396,
+              "height": 54
+            },
+            "position": {
+              "x": 784,
+              "y": 1798
+            },
+            "layers": [
+              {
+                "name": "Rectangle 99",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 396,
+                  "height": 54
+                },
+                "position": {
+                  "x": 784,
+                  "y": 1798
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Hicon / Bold / Hide",
+                "type": "INSTANCE",
+                "size": {
+                  "width": 24,
+                  "height": 24
+                },
+                "position": {
+                  "x": 1140,
+                  "y": 1813
+                },
+                "layers": [
+                  {
+                    "name": "Hide",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 21.5,
+                      "height": 17.5
+                    },
+                    "position": {
+                      "x": 1141.25,
+                      "y": 1816.25
+                    },
+                    "layers": [
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 21.5,
+                          "height": 17.5
+                        },
+                        "position": {
+                          "x": 1141.25,
+                          "y": 1816.25
+                        },
+                        "colors": [
+                          "#5F6368"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Vector",
+                "type": "VECTOR",
+                "size": {
+                  "width": 25,
+                  "height": 25
+                },
+                "position": {
+                  "x": 808,
+                  "y": 1810
+                },
+                "colors": [
+                  "#5F6368"
+                ]
+              },
+              {
+                "name": "Confirm Password",
+                "type": "TEXT",
+                "size": {
+                  "width": 138,
+                  "height": 20
+                },
+                "position": {
+                  "x": 857,
+                  "y": 1815
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Confirm Password"
+              }
+            ]
+          },
+          {
+            "name": "Password",
+            "type": "GROUP",
+            "size": {
+              "width": 396,
+              "height": 54
+            },
+            "position": {
+              "x": 784,
+              "y": 1726
+            },
+            "layers": [
+              {
+                "name": "Rectangle 104",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 396,
+                  "height": 54
+                },
+                "position": {
+                  "x": 784,
+                  "y": 1726
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Hicon / Bold / Hide",
+                "type": "INSTANCE",
+                "size": {
+                  "width": 24,
+                  "height": 24
+                },
+                "position": {
+                  "x": 1140,
+                  "y": 1740
+                },
+                "layers": [
+                  {
+                    "name": "Hide",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 21.5,
+                      "height": 17.5
+                    },
+                    "position": {
+                      "x": 1141.25,
+                      "y": 1743.25
+                    },
+                    "layers": [
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 21.5,
+                          "height": 17.5
+                        },
+                        "position": {
+                          "x": 1141.25,
+                          "y": 1743.25
+                        },
+                        "colors": [
+                          "#5F6368"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Vector",
+                "type": "VECTOR",
+                "size": {
+                  "width": 25,
+                  "height": 25
+                },
+                "position": {
+                  "x": 808,
+                  "y": 1737
+                },
+                "colors": [
+                  "#5F6368"
+                ]
+              },
+              {
+                "name": "Password",
+                "type": "TEXT",
+                "size": {
+                  "width": 74,
+                  "height": 20
+                },
+                "position": {
+                  "x": 857,
+                  "y": 1742
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Password"
+              }
+            ]
+          },
+          {
+            "name": "Teks Sign Up",
+            "type": "GROUP",
+            "size": {
+              "width": 90,
+              "height": 31
+            },
+            "position": {
+              "x": 1144,
+              "y": 1478
+            },
+            "layers": [
+              {
+                "name": "Sign Up",
+                "type": "TEXT",
+                "size": {
+                  "width": 90,
+                  "height": 31
+                },
+                "position": {
+                  "x": 1144,
+                  "y": 1478
+                },
+                "colors": [
+                  "#2C2C2C"
+                ],
+                "text_content": "Sign Up"
+              },
+              {
+                "name": "Rectangle 95",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 74,
+                  "height": 2
+                },
+                "position": {
+                  "x": 1152,
+                  "y": 1504
+                },
+                "colors": [
+                  "#2C2C2C"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Maskot",
+        "type": "GROUP",
+        "size": {
+          "width": 500,
+          "height": 500
+        },
+        "position": {
+          "x": 131,
+          "y": 1468
+        },
+        "layers": [
+          {
+            "name": "water drop",
+            "type": "GROUP",
+            "size": {
+              "width": 500.0,
+              "height": 500
+            },
+            "position": {
+              "x": 131,
+              "y": 1468
+            },
+            "layers": [
+              {
+                "name": "Ellipse 7",
+                "type": "VECTOR",
+                "size": {
+                  "width": 377.36,
+                  "height": 436.84
+                },
+                "position": {
+                  "x": 200.81,
+                  "y": 1468
+                }
+              },
+              {
+                "name": "Ellipse 6",
+                "type": "VECTOR",
+                "size": {
+                  "width": 330.19,
+                  "height": 382.46
+                },
+                "position": {
+                  "x": 230,
+                  "y": 1523.77
+                }
+              },
+              {
+                "name": "Subtract",
+                "type": "BOOLEAN_OPERATION",
+                "size": {
+                  "width": 367.12,
+                  "height": 287.03
+                },
+                "position": {
+                  "x": 200.81,
+                  "y": 1617.13
+                },
+                "layers": [
+                  {
+                    "name": "Ellipse 1",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 377.36,
+                      "height": 436.84
+                    },
+                    "position": {
+                      "x": 200.81,
+                      "y": 1467.32
+                    }
+                  },
+                  {
+                    "name": "Ellipse 3",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 377.36,
+                      "height": 436.84
+                    },
+                    "position": {
+                      "x": 229.11,
+                      "y": 1418.2
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Ellipse 4",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 358.49,
+                  "height": 333.33
+                },
+                "position": {
+                  "x": 272.51,
+                  "y": 1468
+                }
+              },
+              {
+                "name": "Ellipse 5",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 358.49,
+                  "height": 333.33
+                },
+                "position": {
+                  "x": 131,
+                  "y": 1634.67
+                }
+              },
+              {
+                "name": "Ellipse 2",
+                "type": "VECTOR",
+                "size": {
+                  "width": 113.33,
+                  "height": 209.68
+                },
+                "position": {
+                  "x": 256.0,
+                  "y": 1533.63
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ellipse 51",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 60.0,
+              "height": 34.81
+            },
+            "position": {
+              "x": 281,
+              "y": 1787.62
+            },
+            "colors": [
+              "#D3ADC3"
+            ]
+          },
+          {
+            "name": "Ellipse 52",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 60.0,
+              "height": 34.81
+            },
+            "position": {
+              "x": 434.33,
+              "y": 1787.62
+            },
+            "colors": [
+              "#D3ADC3"
+            ]
+          },
+          {
+            "name": "Ellipse 47",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 46.67,
+              "height": 63.29
+            },
+            "position": {
+              "x": 301,
+              "y": 1730.66
+            },
+            "colors": [
+              "#0B1939"
+            ]
+          },
+          {
+            "name": "Ellipse 48",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 13.33,
+              "height": 15.82
+            },
+            "position": {
+              "x": 311.0,
+              "y": 1743.32
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Ellipse 49",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 46.67,
+              "height": 63.29
+            },
+            "position": {
+              "x": 427.67,
+              "y": 1730.66
+            },
+            "colors": [
+              "#0B1939"
+            ]
+          },
+          {
+            "name": "Ellipse 50",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 13.33,
+              "height": 15.82
+            },
+            "position": {
+              "x": 441.0,
+              "y": 1740.15
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Ellipse 53",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 40.0,
+              "height": 37.97
+            },
+            "position": {
+              "x": 371,
+              "y": 1793.95
+            },
+            "colors": [
+              "#0A1939"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Shadow Sign In",
+    "type": "TEXT",
+    "size": {
+      "width": 178,
+      "height": 31
+    },
+    "position": {
+      "x": -3473,
+      "y": -1919
+    },
+    "colors": [
+      "#2C2C2C"
+    ],
+    "text_content": "Shadow Sign In"
+  },
+  {
+    "name": "Sign In - Mobile",
+    "type": "FRAME",
+    "size": {
+      "width": 430,
+      "height": 932
+    },
+    "position": {
+      "x": -4739,
+      "y": 12435
+    },
+    "colors": [
+      "#FFFFFF"
+    ],
+    "layers": [
+      {
+        "name": "background",
+        "type": "GROUP",
+        "size": {
+          "width": 2183.84,
+          "height": 2068.75
+        },
+        "position": {
+          "x": -5616,
+          "y": 11867
+        },
+        "layers": [
+          {
+            "name": "Rectangle 91",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": -4562,
+              "y": 12872
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 96",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "position": {
+              "x": -5246,
+              "y": 13246
+            },
+            "colors": [
+              "#E4D8DC"
+            ]
+          },
+          {
+            "name": "Rectangle 92",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 991.71,
+              "height": 988.02
+            },
+            "position": {
+              "x": -4647.72,
+              "y": 12947.72
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 93",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 800,
+              "height": 800
+            },
+            "position": {
+              "x": -5496,
+              "y": 12180
+            },
+            "colors": [
+              "#FFE3E2"
+            ]
+          },
+          {
+            "name": "Rectangle 90",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 492.02,
+              "height": 383.58
+            },
+            "position": {
+              "x": -5054,
+              "y": 12782.0
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 89",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 600,
+              "height": 600
+            },
+            "position": {
+              "x": -5616,
+              "y": 13192
+            },
+            "colors": [
+              "#95B4C6"
+            ]
+          },
+          {
+            "name": "Rectangle 94",
+            "type": "VECTOR",
+            "size": {
+              "width": 897.84,
+              "height": 985.22
+            },
+            "position": {
+              "x": -4330.0,
+              "y": 11867.0
+            },
+            "colors": [
+              "#6E7F99"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Maskot",
+        "type": "GROUP",
+        "size": {
+          "width": 180.0,
+          "height": 180.0
+        },
+        "position": {
+          "x": -4625,
+          "y": 12602
+        },
+        "layers": [
+          {
+            "name": "water drop",
+            "type": "GROUP",
+            "size": {
+              "width": 180.0,
+              "height": 180.0
+            },
+            "position": {
+              "x": -4625,
+              "y": 12602
+            },
+            "layers": [
+              {
+                "name": "Ellipse 7",
+                "type": "VECTOR",
+                "size": {
+                  "width": 135.85,
+                  "height": 157.26
+                },
+                "position": {
+                  "x": -4599.87,
+                  "y": 12602
+                }
+              },
+              {
+                "name": "Ellipse 6",
+                "type": "VECTOR",
+                "size": {
+                  "width": 118.87,
+                  "height": 137.68
+                },
+                "position": {
+                  "x": -4589.36,
+                  "y": 12622.08
+                }
+              },
+              {
+                "name": "Subtract",
+                "type": "BOOLEAN_OPERATION",
+                "size": {
+                  "width": 132.16,
+                  "height": 103.33
+                },
+                "position": {
+                  "x": -4599.87,
+                  "y": 12655.69
+                },
+                "layers": [
+                  {
+                    "name": "Ellipse 1",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 135.85,
+                      "height": 157.26
+                    },
+                    "position": {
+                      "x": -4599.87,
+                      "y": 12601.75
+                    }
+                  },
+                  {
+                    "name": "Ellipse 3",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 135.85,
+                      "height": 157.26
+                    },
+                    "position": {
+                      "x": -4589.68,
+                      "y": 12584.07
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Ellipse 4",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 129.06,
+                  "height": 120.0
+                },
+                "position": {
+                  "x": -4574.06,
+                  "y": 12602
+                }
+              },
+              {
+                "name": "Ellipse 5",
+                "type": "ELLIPSE",
+                "size": {
+                  "width": 129.06,
+                  "height": 120.0
+                },
+                "position": {
+                  "x": -4625,
+                  "y": 12662
+                }
+              },
+              {
+                "name": "Ellipse 2",
+                "type": "VECTOR",
+                "size": {
+                  "width": 40.8,
+                  "height": 75.49
+                },
+                "position": {
+                  "x": -4580,
+                  "y": 12625.63
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ellipse 51",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 21.6,
+              "height": 12.53
+            },
+            "position": {
+              "x": -4571,
+              "y": 12717.06
+            },
+            "colors": [
+              "#D3ADC3"
+            ]
+          },
+          {
+            "name": "Ellipse 52",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 21.6,
+              "height": 12.53
+            },
+            "position": {
+              "x": -4515.8,
+              "y": 12717.06
+            },
+            "colors": [
+              "#D3ADC3"
+            ]
+          },
+          {
+            "name": "Ellipse 47",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 16.8,
+              "height": 22.78
+            },
+            "position": {
+              "x": -4563.8,
+              "y": 12696.56
+            },
+            "colors": [
+              "#0B1939"
+            ]
+          },
+          {
+            "name": "Ellipse 48",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 4.8,
+              "height": 5.7
+            },
+            "position": {
+              "x": -4560.2,
+              "y": 12701.11
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Ellipse 49",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 16.8,
+              "height": 22.78
+            },
+            "position": {
+              "x": -4518.2,
+              "y": 12696.56
+            },
+            "colors": [
+              "#0B1939"
+            ]
+          },
+          {
+            "name": "Ellipse 50",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 4.8,
+              "height": 5.7
+            },
+            "position": {
+              "x": -4513.4,
+              "y": 12699.97
+            },
+            "colors": [
+              "#FFFFFF"
+            ]
+          },
+          {
+            "name": "Ellipse 53",
+            "type": "ELLIPSE",
+            "size": {
+              "width": 14.4,
+              "height": 13.67
+            },
+            "position": {
+              "x": -4538.6,
+              "y": 12719.34
+            },
+            "colors": [
+              "#0A1939"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sign Up",
+        "type": "GROUP",
+        "size": {
+          "width": 313.35,
+          "height": 330.36
+        },
+        "position": {
+          "x": -4680.35,
+          "y": 12797
+        },
+        "layers": [
+          {
+            "name": "Sign Up",
+            "type": "BOOLEAN_OPERATION",
+            "size": {
+              "width": 313.35,
+              "height": 325.54
+            },
+            "position": {
+              "x": -4680.35,
+              "y": 12801.82
+            },
+            "colors": [
+              "#E4D8DC"
+            ],
+            "layers": [
+              {
+                "name": "Rectangle 87",
+                "type": "VECTOR",
+                "size": {
+                  "width": 313.35,
+                  "height": 340.01
+                },
+                "position": {
+                  "x": -4680.35,
+                  "y": 12787.35
+                },
+                "colors": [
+                  "#D9D9D9"
+                ]
+              },
+              {
+                "name": "Rectangle 88",
+                "type": "VECTOR",
+                "size": {
+                  "width": 247.73,
+                  "height": 61.34
+                },
+                "position": {
+                  "x": -4647.54,
+                  "y": 13082.97
+                },
+                "colors": [
+                  "#A7A7A7"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Teks Sign Up",
+            "type": "GROUP",
+            "size": {
+              "width": 49.48,
+              "height": 16.77
+            },
+            "position": {
+              "x": -4434.62,
+              "y": 12850.5
+            },
+            "layers": [
+              {
+                "name": "Sign Up",
+                "type": "TEXT",
+                "size": {
+                  "width": 49.48,
+                  "height": 16.77
+                },
+                "position": {
+                  "x": -4434.62,
+                  "y": 12850.5
+                },
+                "colors": [
+                  "#2C2C2C"
+                ],
+                "text_content": "Sign Up"
+              },
+              {
+                "name": "Rectangle 95",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 40,
+                  "height": 1
+                },
+                "position": {
+                  "x": -4430,
+                  "y": 12864.82
+                },
+                "colors": [
+                  "#2C2C2C"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sign In ",
+        "type": "GROUP",
+        "size": {
+          "width": 315,
+          "height": 346.82
+        },
+        "position": {
+          "x": -4682,
+          "y": 12797
+        },
+        "layers": [
+          {
+            "name": "Masuk",
+            "type": "BOOLEAN_OPERATION",
+            "size": {
+              "width": 315,
+              "height": 332.74
+            },
+            "position": {
+              "x": -4682,
+              "y": 12797
+            },
+            "colors": [
+              "#D0DCE1"
+            ],
+            "layers": [
+              {
+                "name": "Rectangle 87",
+                "type": "VECTOR",
+                "size": {
+                  "width": 315.0,
+                  "height": 342.41
+                },
+                "position": {
+                  "x": -4682,
+                  "y": 12787.33
+                },
+                "colors": [
+                  "#D9D9D9"
+                ]
+              },
+              {
+                "name": "Rectangle 88",
+                "type": "VECTOR",
+                "size": {
+                  "width": 249.03,
+                  "height": 61.66
+                },
+                "position": {
+                  "x": -4649.02,
+                  "y": 13084.35
+                },
+                "colors": [
+                  "#A7A7A7"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Button Sign In",
+            "type": "FRAME",
+            "size": {
+              "width": 231,
+              "height": 48
+            },
+            "position": {
+              "x": -4640,
+              "y": 13095.82
+            },
+            "auto_layout": {
+              "direction": "HORIZONTAL",
+              "spacing": 10,
+              "padding_left": 118,
+              "padding_top": 20
+            },
+            "layers": [
+              {
+                "name": "Sign In",
+                "type": "TEXT",
+                "size": {
+                  "width": 52,
+                  "height": 20
+                },
+                "position": {
+                  "x": -4550.5,
+                  "y": 13109.82
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Sign In"
+              }
+            ]
+          },
+          {
+            "name": "Don\u2019t have an account? Sign Up",
+            "type": "TEXT",
+            "size": {
+              "width": 156,
+              "height": 13
+            },
+            "position": {
+              "x": -4591,
+              "y": 13039
+            },
+            "colors": [
+              "#5A5959"
+            ],
+            "text_content": "Don\u2019t have an account? Sign Up "
+          },
+          {
+            "name": "Email",
+            "type": "GROUP",
+            "size": {
+              "width": 217.7,
+              "height": 29.21
+            },
+            "position": {
+              "x": -4632.52,
+              "y": 12955.96
+            },
+            "layers": [
+              {
+                "name": "Rectangle 98",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 217.7,
+                  "height": 29.21
+                },
+                "position": {
+                  "x": -4632.52,
+                  "y": 12955.96
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "eva:email-outline",
+                "type": "FRAME",
+                "size": {
+                  "width": 16.49,
+                  "height": 16.23
+                },
+                "position": {
+                  "x": -4621,
+                  "y": 12962.82
+                },
+                "colors": [
+                  "#FFFFFF"
+                ],
+                "layers": [
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 13.74,
+                      "height": 10.82
+                    },
+                    "position": {
+                      "x": -4619.63,
+                      "y": 12965.52
+                    },
+                    "colors": [
+                      "#5F6368"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Email",
+                "type": "TEXT",
+                "size": {
+                  "width": 34,
+                  "height": 11
+                },
+                "position": {
+                  "x": -4588.51,
+                  "y": 12964.82
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Email"
+              }
+            ]
+          },
+          {
+            "name": "Password",
+            "type": "GROUP",
+            "size": {
+              "width": 217.7,
+              "height": 29.21
+            },
+            "position": {
+              "x": -4632.52,
+              "y": 12993.17
+            },
+            "layers": [
+              {
+                "name": "Rectangle 99",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 217.7,
+                  "height": 29.21
+                },
+                "position": {
+                  "x": -4632.52,
+                  "y": 12993.17
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Hicon / Bold / Hide",
+                "type": "INSTANCE",
+                "size": {
+                  "width": 12,
+                  "height": 12
+                },
+                "position": {
+                  "x": -4437,
+                  "y": 13001.17
+                },
+                "layers": [
+                  {
+                    "name": "Hide",
+                    "type": "GROUP",
+                    "size": {
+                      "width": 10.75,
+                      "height": 8.75
+                    },
+                    "position": {
+                      "x": -4436.38,
+                      "y": 13002.79
+                    },
+                    "layers": [
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "size": {
+                          "width": 10.75,
+                          "height": 8.75
+                        },
+                        "position": {
+                          "x": -4436.38,
+                          "y": 13002.79
+                        },
+                        "colors": [
+                          "#5F6368"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Vector",
+                "type": "VECTOR",
+                "size": {
+                  "width": 12,
+                  "height": 12
+                },
+                "position": {
+                  "x": -4619,
+                  "y": 13001.17
+                },
+                "colors": [
+                  "#5F6368"
+                ]
+              },
+              {
+                "name": "Password",
+                "type": "TEXT",
+                "size": {
+                  "width": 56,
+                  "height": 11
+                },
+                "position": {
+                  "x": -4591,
+                  "y": 13002.17
+                },
+                "colors": [
+                  "#5A5959"
+                ],
+                "text_content": "Password"
+              }
+            ]
+          },
+          {
+            "name": "Facebook",
+            "type": "GROUP",
+            "size": {
+              "width": 36.28,
+              "height": 35.7
+            },
+            "position": {
+              "x": -4508.28,
+              "y": 12888.35
+            },
+            "layers": [
+              {
+                "name": "Rectangle 101",
+                "type": "VECTOR",
+                "size": {
+                  "width": 36.28,
+                  "height": 35.7
+                },
+                "position": {
+                  "x": -4508.28,
+                  "y": 12888.35
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "Facebook Icons",
+                "type": "INSTANCE",
+                "size": {
+                  "width": 24.19,
+                  "height": 23.8
+                },
+                "position": {
+                  "x": -4502.24,
+                  "y": 12894.3
+                },
+                "colors": [
+                  "#FFFFFF"
+                ],
+                "layers": [
+                  {
+                    "name": "c",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 24.19,
+                      "height": 23.71
+                    },
+                    "position": {
+                      "x": -4502.24,
+                      "y": 12894.3
+                    },
+                    "colors": [
+                      "#0866FF"
+                    ]
+                  },
+                  {
+                    "name": "d",
+                    "type": "VECTOR",
+                    "size": {
+                      "width": 11.03,
+                      "height": 19.39
+                    },
+                    "position": {
+                      "x": -4495.56,
+                      "y": 12898.71
+                    },
+                    "colors": [
+                      "#FFFFFF"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Google",
+            "type": "GROUP",
+            "size": {
+              "width": 36.28,
+              "height": 35.7
+            },
+            "position": {
+              "x": -4581.4,
+              "y": 12888.35
+            },
+            "layers": [
+              {
+                "name": "Rectangle 100",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 36.28,
+                  "height": 35.7
+                },
+                "position": {
+                  "x": -4581.4,
+                  "y": 12888.35
+                },
+                "colors": [
+                  "#FFFFFF"
+                ]
+              },
+              {
+                "name": "google-logo-9808 1",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 24.19,
+                  "height": 23.8
+                },
+                "position": {
+                  "x": -4575.35,
+                  "y": 12894.3
+                }
+              }
+            ]
+          },
+          {
+            "name": "Teks Sign In",
+            "type": "GROUP",
+            "size": {
+              "width": 41,
+              "height": 15
+            },
+            "position": {
+              "x": -4654,
+              "y": 12849.82
+            },
+            "layers": [
+              {
+                "name": "Sign In",
+                "type": "TEXT",
+                "size": {
+                  "width": 40,
+                  "height": 15
+                },
+                "position": {
+                  "x": -4654,
+                  "y": 12849.82
+                },
+                "colors": [
+                  "#2C2C2C"
+                ],
+                "text_content": "Sign In"
+              },
+              {
+                "name": "Rectangle 95",
+                "type": "RECTANGLE",
+                "size": {
+                  "width": 40,
+                  "height": 1
+                },
+                "position": {
+                  "x": -4653,
+                  "y": 12863.82
+                },
+                "colors": [
+                  "#2C2C2C"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "OR",
+            "type": "GROUP",
+            "size": {
+              "width": 144.03,
+              "height": 12
+            },
+            "position": {
+              "x": -4595.69,
+              "y": 12933.82
+            },
+            "layers": [
+              {
+                "name": "Or",
+                "type": "TEXT",
+                "size": {
+                  "width": 12,
+                  "height": 12
+                },
+                "position": {
+                  "x": -4529,
+                  "y": 12933.82
+                },
+                "colors": [
+                  "#2C2C2C"
+                ],
+                "text_content": "Or"
+              },
+              {
+                "name": "Line 9",
+                "type": "VECTOR",
+                "size": {
+                  "width": 54.97,
+                  "height": 0
+                },
+                "position": {
+                  "x": -4506.63,
+                  "y": 12940.82
+                }
+              },
+              {
+                "name": "Line 10",
+                "type": "VECTOR",
+                "size": {
+                  "width": 54.42,
+                  "height": 0
+                },
+                "position": {
+                  "x": -4595.69,
+                  "y": 12940.82
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sign In",
+    "type": "GROUP",
+    "size": {
+      "width": 315,
+      "height": 343.62
+    },
+    "position": {
+      "x": -4218,
+      "y": 12797
+    },
+    "layers": [
+      {
+        "name": "Masuk",
+        "type": "BOOLEAN_OPERATION",
+        "size": {
+          "width": 315,
+          "height": 343.62
+        },
+        "position": {
+          "x": -4218,
+          "y": 12797
+        },
+        "colors": [
+          "#D0DCE1"
+        ],
+        "layers": [
+          {
+            "name": "Rectangle 87",
+            "type": "VECTOR",
+            "size": {
+              "width": 315.0,
+              "height": 353.65
+            },
+            "position": {
+              "x": -4218,
+              "y": 12786.97
+            },
+            "colors": [
+              "#D9D9D9"
+            ]
+          },
+          {
+            "name": "Rectangle 88",
+            "type": "VECTOR",
+            "size": {
+              "width": 249.03,
+              "height": 63.68
+            },
+            "position": {
+              "x": -4185.02,
+              "y": 13093.74
+            },
+            "colors": [
+              "#A7A7A7"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Teks Sign In",
+        "type": "GROUP",
+        "size": {
+          "width": 41,
+          "height": 17.32
+        },
+        "position": {
+          "x": -4192,
+          "y": 12850.01
+        },
+        "layers": [
+          {
+            "name": "Sign In",
+            "type": "TEXT",
+            "size": {
+              "width": 41,
+              "height": 17.32
+            },
+            "position": {
+              "x": -4192,
+              "y": 12850.01
+            },
+            "colors": [
+              "#2C2C2C"
+            ],
+            "text_content": "Sign In"
+          },
+          {
+            "name": "Rectangle 95",
+            "type": "RECTANGLE",
+            "size": {
+              "width": 38.9,
+              "height": 1.12
+            },
+            "position": {
+              "x": -4190.95,
+              "y": 12864.54
+            },
+            "colors": [
+              "#2C2C2C"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
