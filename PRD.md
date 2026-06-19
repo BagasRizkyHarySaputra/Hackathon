@@ -33,12 +33,15 @@
 ### 3.2 Login Page (`pages/login/`)
 - **Purpose:** User authentication.
 - **Features:**
-  - Sign In / Sign Up tab switching
+  - Sign In / Sign Up tab switching with animated card flip
+  - SVG card shapes (`/assets/shape/Sign-In.svg`, `/assets/shape/Sign-up.svg`) with built-in drop shadow + inner shadow filters
+  - Card flip animation: exiting card lifts, rotates, and tucks behind the entering card (z-index swap timed at 150ms via JS)
   - Email & password form with validation
   - Password visibility toggle (eye icon)
+  - Confirm password field (Sign Up tab only)
   - Social login buttons: Google, Facebook
   - Mock auth accepts `contoh@gmail.com` / `contoh123`
-  - Responsive two-column layout (mascot left, form right)
+  - Responsive two-column layout (mascot left, card right)
 
 ### 3.3 Home Page (`pages/home/`)
 - **Purpose:** Main dashboard and skin diary.
@@ -90,6 +93,10 @@
 - **Purpose:** User profile and settings.
 - **Features:**
   - Profile header: avatar upload/compress, username, skin type, member since
+  - **Account toggle mode:** Click "Account" in settings bar → profile-grid hides, account-grid-wrap shows with edit form
+  - **Account Edit Form** (inline, not separate page): Nama Lengkap, Email, Jenis Kelamin, Tanggal Lahir, Skin Type selector, speech bubble mascot, Save button
+  - "Edit Profile" / "Batal" toggle button (hidden by default, shown in account mode)
+  - Active settings bar item highlighted with `--active` class
   - **Skin Type Card:** Displays current skin type (e.g., Combination)
   - **Skin Score Card:** Donut chart (80/Good)
   - **Skincare Routine:** Morning/Night tabs with product cards
@@ -206,14 +213,14 @@
 | # | Page | Status | Responsive | Notes |
 |---|------|--------|-----------|-------|
 | 3.1 | Loading |  Built |  Ya | Progress bar, mascot, animated shapes, auto-redirect |
-| 3.2 | Login |  Built |  Ya | Sign In/Up tabs, social buttons, password toggle |
+| 3.2 | Login |  Built |  Ya | SVG card shapes with flip animation, Sign In/Up tabs, social buttons, password toggle, JS-timed z-index swap (150ms) |
 | 3.3 | Home |  Built |  Belum | Skin diary, donut chart, progress table |
 | 3.4 | Scan — Skin Type |  Built |  Ya | 6 skin types, confirm toast |
 | 3.5 | Scan — Camera |  Built |  Ya | Camera, framing guide, analysis markers, product card, routine toggle |
 | 3.6 | Artikel |  Built |  Belum | Tag filter, search, 18 artikel, detail view, bilingual |
 | 3.7 | Community |  Built |  Belum | Three-panel: channels, topics, chat |
 | 3.8 | Community Admin |  Built |  Belum | Sama + "Add Topic" button |
-| 3.9 | Profile |  Built |  Belum | Avatar, skin type card, score chart, routine, settings |
+| 3.9 | Profile |  Built |  Belum | Avatar, account toggle mode (inline edit form), skin type card, score chart, routine, settings |
 | 3.10 | Account |  Built |  Belum | Data form, skin type selector, mascot, settings |
 | 3.11 | Tips & Artikel |  Built |  Belum | Static article, three-column layout |
 
@@ -230,13 +237,15 @@
 - [x] Blurred gradient background component
 - [x] Alpine stores: ui.store (toasts, theme), auth.store (token, user)
 - [x] Centralized config: config/app.config.js
+- [x] Login page: SVG card shapes with animated flip tab-switching
+- [x] Profile page: Account toggle mode (inline edit, no separate account page needed)
 
 #### Known Issues
 
 - [ ] **Resolve sync conflicts** — 100+ `.sync-conflict-*` files dari editor conflict (Syncthing?), tersebar di pages/, assets/css/, assets/js/, mock/, config/, root files
 - [ ] **Finalize branding** — Masih campuran: beberapa pake "SkinGlow" (loading, login, home), beberapa pake "LICIN" (profile, account, title tag di index.html)
 - [ ] **Responsive layout** — 7 dari 11 halaman masih desktop-only, belum ada @media queries
-- [ ] **Mock auth belum diverifikasi** — Login page sudah built, tapi kredensial mock (contoh@gmail.com / contoh123) belum dipastikan berfungsi
+- [ ] **Account toggle form belum save** — Profile page Account mode toggle works (show/hide), tapi Save button hanya console.log, belum integrasi ke backend/database
 - [ ] **Komponen belum dipisah** — components/layout/ dan components/ui/ kosong, komponen masih embedded di masing-masing halaman
 
 ### Phase 2 — Backend Integration
