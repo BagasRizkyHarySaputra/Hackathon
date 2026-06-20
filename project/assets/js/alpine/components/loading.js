@@ -73,12 +73,65 @@ function createLoadingComponent() {
      *
      * @returns {void}
      */
+    _authChecked: false,
+
     init() {
       console.log('[INFO] [Loading] Component mounted.', {
         keys: ['progress', 'isLoading', 'isComplete', 'statusMessage'],
       });
 
-      this.startProgressSimulation();
+      this.checkAuthThenStart();
+    },
+
+    checkAuthThenStart() {
+      var self = this;
+
+      function redirectToLogin() {
+        console.log('[Loading] No authenticated user — redirecting to /login.');
+        setTimeout(function () {
+          window.location.href = '/login';
+        }, 400);
+      }
+
+      function userIsAuthenticated() {
+        self._authChecked = true;
+        console.log('[Loading] User authenticated — starting analysis.');
+        self.startProgressSimulation();
+      }
+
+      var authStore = window.Alpine && Alpine.store('auth');
+      if (authStore && authStore.isAuthenticated && authStore.user && authStore.user.id) {
+        userIsAuthenticated();
+        return;
+      }
+
+      var sb = window.__supabase;
+      if (sb) {
+        sb.auth.getSession().then(function (result) {
+          var session = result.data && result.data.session;
+          if (session && session.user) {
+            authStore.login(session.access_token, {
+              id: session.user.id,
+              email: session.user.email,
+              name: session.user.user_metadata?.full_name || session.user.email,
+              avatar: session.user.user_metadata?.avatar_url || '',
+            });
+            userIsAuthenticated();
+          } else {
+            redirectToLogin();
+          }
+        }).catch(function () {
+          redirectToLogin();
+        });
+        return;
+      }
+
+      if (!self._authChecked) {
+        document.addEventListener('supabase:ready', function readyHandler() {
+          document.removeEventListener('supabase:ready', readyHandler);
+          self.checkAuthThenStart();
+        });
+      }
     },
 
     /**
@@ -149,16 +202,66 @@ function createLoadingComponent() {
       this.$dispatch('analysis:complete', { progress: 100 });
 
       /**
-       * In Phase 2, this would trigger an HTMX request:
-       * htmx.ajax('GET', '/api/analysis/results', '#results-container');
-       *
-       * For mock mode, we simulate a redirect delay.
+       * Check if user has skin_type set in Supabase.
+       * If yes → redirect to /home. If no → redirect to /scan to choose.
        */
-      if (APP_CONFIG.IS_MOCK_MODE) {
-        setTimeout(() => {
-          window.location.href = '/login/?';
+      this.redirectBasedOnSkinType();
+    },
+
+    /**
+     * Fetches the current user's skin_type from Supabase profiles
+     * and redirects accordingly.
+     * - skin_type is set (not null/unsure) → /home
+     * - skin_type is null or 'unsure' → /scan
+     * - no user/no profile → /login
+     */
+    redirectBasedOnSkinType() {
+      var self = this;
+      var SUPABASE_URL = 'https://gvkzgicbykyjkusxranv.supabase.co';
+      var ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2a3pnaWNieWt5amt1c3hyYW52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4OTg0OTAsImV4cCI6MjA5NzQ3NDQ5MH0.8DEahyrZ-IxZmuM7wVuO6-LP3K4IfX3v3eNsXnh_Hzw';
+
+      function redirect(path) {
+        setTimeout(function () {
+          window.location.href = path;
         }, 800);
       }
+
+      // Get user ID from Alpine auth store
+      var authStore = window.Alpine && Alpine.store('auth');
+      var userId = authStore && authStore.user && authStore.user.id;
+      if (!userId) {
+        console.warn('[Loading] No authenticated user — redirecting to login.');
+        redirect('/login');
+        return;
+      }
+
+      // Fetch profile skin_type from Supabase
+      var url = SUPABASE_URL + '/rest/v1/profiles?select=skin_type&id=eq.' + encodeURIComponent(userId);
+
+      fetch(url, {
+        headers: {
+          'apikey': ANON_KEY,
+          'Authorization': 'Bearer ' + ANON_KEY
+        }
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          var skinType = data && data.length > 0 ? data[0].skin_type : null;
+          if (skinType && skinType !== 'unsure') {
+            console.log('[Loading] Skin type found: ' + skinType + ' — redirecting to /home.');
+            redirect('/home');
+          } else {
+            console.log('[Loading] No skin type set — redirecting to /scan.');
+            redirect('/scan');
+          }
+        })
+        .catch(function (err) {
+          console.warn('[Loading] Failed to fetch profile:', err.message);
+          redirect('/scan');
+        });
     },
 
     /**
