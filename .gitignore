@@ -1,6 +1,7 @@
 # Secrets
 
 fetch.js
+*.local.js
 
 # Environment variables
 

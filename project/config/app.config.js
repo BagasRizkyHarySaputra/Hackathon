@@ -51,6 +51,10 @@ const APP_CONFIG = Object.freeze({
     INSTALL_PROMPT: true,
   },
 
+  // Supabase — fill SUPABASE_ANON_KEY from .env
+  SUPABASE_URL: 'https://gvkzgicbykyjkusxranv.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2a3pnaWNieWt5amt1c3hyYW52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4OTg0OTAsImV4cCI6MjA5NzQ3NDQ5MH0.8DEahyrZ-IxZmuM7wVuO6-LP3K4IfX3v3eNsXnh_Hzw',
+
   // Mock Mode — set false in production
   IS_MOCK_MODE: true,
 });
