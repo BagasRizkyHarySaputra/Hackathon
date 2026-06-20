@@ -1,0 +1,126 @@
+Berikut adalah rancangan struktur database (Schema) yang sudah saya susun dan kelompokkan agar rapi, *scalable*, dan sesuai dengan kebutuhanmu:
+
+### 1. Autentikasi, Profil & Pengaturan User
+
+Kita pisahkan tabel profil utama dan pengaturannya agar tidak terlalu menumpuk.
+
+`users`*(Data Utama)
+`id` (Primary Key)
+`email` (String, Unique)
+`auth_provider` (Enum: 'google', 'facebook', 'email')
+`auth_id` (String, Unique - ID dari Google/FB)
+`name` (String)
+`profile_image_url` (String)
+`skin_type` (Enum: 'normal', 'dry', 'oily', 'combination', 'sensitive')
+`created_at` / `updated_at` (Timestamp)
+(Ini update, harusnya ada penyimpanan untuk passwordnya juga)
+
+`user_settings`*(Preferensi & Notifikasi)
+`user_id` (Foreign Key ke `users`)
+`push_notification` (Boolean)
+`email_notification` (Boolean)
+`privacy_1` (Boolean) *-- Sesuai request, karena kamu males nulisnya haha*
+`privacy_2` (Boolean)
+`privacy_3` (Boolean)
+`privacy_4` (Boolean)
+`privacy_5` (Boolean)
+
+
+
+---
+
+### 2. Fitur Scan Kulit & Diary (Siklus 21 Hari)
+
+Untuk mengakomodasi aturan "3 foto dalam 21 hari (1 foto/7 hari)", kita buat sistem siklus/perjalanan (*journey*).
+
+`skin_cycles`*(Sesi 21 hari per user)
+`id` (Primary Key)
+`user_id` (Foreign Key ke `users`)
+`start_date` (Date)
+`end_date` (Date)
+`status` (Enum: 'ongoing', 'completed')
+
+
+`scan_records`*(Data tiap kali scan / foto)
+`id` (Primary Key)
+`cycle_id` (Foreign Key ke `skin_cycles`)
+`week_number` (Integer: 1, 2, atau 3)
+`scan_image_url` (String)
+
+(`acne_count` (Integer)
+`acne_severity` (Enum/String: 'mild', 'moderate', 'severe')) -> dua bagian ini diubah agar bisa menyimpan data: Blackheads, Dark Spot, Nodules, Popules, Pustules, Whiteheads. Untuk setiap user Itu nanti data nya persen an. Lalu buat severity nya itu harusnya persenan juga ya.
+
+`scan_date` (Timestamp)
+
+---
+
+### 3. Komunitas & Real-time Chat
+
+Struktur ini mirip dengan Discord atau Slack untuk memfasilitasi topik, chat, gambar, dan polling.
+
+`channels`*(Kategori obrolan)
+`id` (Primary Key)
+`name` (String, misal: "General", "Skincare")
+
+`topics`*(Thread di dalam channel)
+`id` (Primary Key)
+`channel_id` (Foreign Key ke `channels`)
+`title` (String, misal: "Acne Fighters", "Oily Skin")
+`created_by` (Foreign Key ke `users`)
+
+
+`chat_messages`*(Isi chat)
+`id` (Primary Key)
+`topic_id` (Foreign Key ke `topics`)
+`user_id` (Foreign Key ke `users`)
+`message` (Text - Nullable kalau cuma kirim gambar)
+`image_url` (String - Nullable)
+`created_at` (Timestamp)
+
+
+`polls`*& `poll_options`*(Untuk fitur voting di chat)
+`polls`: `id`, `message_id`, `question`
+`poll_options`: `id`, `poll_id`, `option_text`, `votes_count` (Integer)
+
+
+
+---
+
+### 4. Chatbot AI
+
+Untuk menyimpan riwayat percakapan user dengan AI.
+
+`ai_sessions`*(Satu topik obrolan dengan AI)
+`id` (Primary Key)
+`user_id` (Foreign Key ke `users`)
+`session_name` (String - Bisa di-generate otomatis oleh AI)
+`created_at` (Timestamp)
+
+
+`ai_chat_history`*(Isi pesan AI dan User)
+`id` (Primary Key)
+`session_id` (Foreign Key ke `ai_sessions`)
+`sender_type` (Enum: 'user', 'ai')
+`message` (Text)
+`created_at` (Timestamp)
+
+
+
+---
+
+### 5. Konten (Artikel & Produk)
+
+`articles`
+`id` (Primary Key)
+`title` (String)
+`content` (Text)
+`image_url` (String - Link aman)
+`published_at` (Timestamp)
+
+
+`skincare_products`
+`id` (Primary Key)
+`name` (String)
+`description` (Text)
+`image_url` (String - Link GDrive)
+`product_link` (String - Link pembelian/referensi)
