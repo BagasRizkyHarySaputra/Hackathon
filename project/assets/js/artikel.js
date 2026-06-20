@@ -5,28 +5,31 @@
  * FEATURE: Artikel Listing Page — Infinite Scroll + Varied Layouts
  *
  * PURPOSE:
- *   Controls the article listing page. Fetches all article data in
- *   parallel from batch files, renders first 10, then loads 5 more
- *   on scroll via IntersectionObserver. Cards have varied layouts.
+ *   Fetches all article data from Supabase, renders first 10,
+ *   then loads 5 more on scroll via IntersectionObserver.
+ *   Falls back to local JSON if Supabase is unavailable.
  *
- * DEPENDENCIES:
- *   - /assets/data/artikel/batch-0{1-4}.json (40 articles)
- *   - /assets/css/components/artikel.css (listing grid styles)
+ * DATA SOURCE: Supabase articles table (REST API)
  * ============================================================
  */
 
 (function () {
   'use strict';
 
+  /* ─── Supabase Config ─── */
+  var SUPABASE_URL = 'https://gvkzgicbykyjkusxranv.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2a3pnaWNieWt5amt1c3hyYW52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4OTg0OTAsImV4cCI6MjA5NzQ3NDQ5MH0.8DEahyrZ-IxZmuM7wVuO6-LP3K4IfX3v3eNsXnh_Hzw';
+
+  function supabaseHeaders() {
+    return {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+    };
+  }
+
   /* ─── Constants ─── */
   var INITIAL_LOAD = 10;
   var BATCH_SIZE = 5;
-  var BATCH_URLS = [
-    '/assets/data/artikel/batch-01.json',
-    '/assets/data/artikel/batch-02.json',
-    '/assets/data/artikel/batch-03.json',
-    '/assets/data/artikel/batch-04.json'
-  ];
 
   var LAYOUT_CYCLE = [
     'vertical', 'horizontal', 'horizontal-reverse',
@@ -50,6 +53,23 @@
   var searchInput   = document.getElementById('artikel-search-input');
   var tagContainer  = document.getElementById('artikel-tags');
   var backBtn       = document.getElementById('artikel-back-btn');
+
+  /* ─── Data normalization: Supabase snake_case → unified format ─── */
+  function normalizeArticle(row) {
+    return {
+      id: row.slug || row.id,
+      slug: row.slug || row.id,
+      title: row.title || '',
+      content: row.content || '',
+      summary: row.simple_desc || row.summary || '',
+      image_url: row.image_url || '',
+      tags: row.tags || [],
+      source: row.source || '',
+      sections: row.sections || [],
+      tips: row.tips || [],
+      category: row.category || 'general'
+    };
+  }
 
   /* ─── Layout helpers ─── */
   function getCardLayout(index) {
@@ -78,36 +98,82 @@
     });
   }
 
-  /* ─── Fetch all articles from batch files ─── */
+  /* ─── Fetch all articles from Supabase ─── */
   function fetchAllArticles() {
-    var fetches = BATCH_URLS.map(function (url) {
-      return fetch(url).then(function (r) {
+    return fetch(SUPABASE_URL + '/rest/v1/articles?select=*&order=published_at.desc', {
+      headers: supabaseHeaders()
+    })
+      .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
+      })
+      .then(function (rows) {
+        allArticles = [];
+        for (var i = 0; i < rows.length; i++) {
+          var article = normalizeArticle(rows[i]);
+          allArticles.push(article);
+        }
+      })
+      .catch(function (err) {
+        console.warn('Supabase fetch failed, trying local fallback:', err.message);
+        return fetchLocalFallback();
       });
-    });
+  }
+
+  function fetchLocalFallback() {
+    var BATCH_URLS = [
+      '/assets/data/artikel/batch-01.json',
+      '/assets/data/artikel/batch-02.json',
+      '/assets/data/artikel/batch-03.json',
+      '/assets/data/artikel/batch-04.json'
+    ];
+
+    var fetches = [];
+    for (var b = 0; b < BATCH_URLS.length; b++) {
+      fetches.push(fetch(BATCH_URLS[b]).then(function (r) { return r.json(); }));
+    }
 
     return Promise.all(fetches)
       .then(function (batches) {
         allArticles = [];
         for (var i = 0; i < batches.length; i++) {
-          allArticles = allArticles.concat(batches[i]);
-        }
-        for (var j = 0; j < allArticles.length; j++) {
-          if (!allArticles[j].id) allArticles[j].id = 'artikel-' + j;
-          if (!allArticles[j].tags) allArticles[j].tags = [];
+          // Transform old JSON format → normalized format
+          for (var k = 0; k < batches[i].length; k++) {
+            var a = batches[i][k];
+            a = normalizeArticle({
+              slug: a.id,
+              title: a.Title || a.title,
+              content: a.Description || a.content,
+              summary: a['Simple-desc'] || a.summary,
+              image_url: a['Link-Image'] || a.image,
+              tags: a.tags,
+              source: a.Source || a.source,
+              sections: a.sections,
+              tips: a.tips
+            });
+            allArticles.push(a);
+          }
         }
       })
-      .catch(function (err) {
-        console.error('Failed to load articles from batches, trying fallback:', err);
+      .catch(function () {
         return fetch('/assets/data/articles.json')
           .then(function (r) { return r.json(); })
           .then(function (data) {
-            allArticles = data.map(function (a, i) {
-              if (!a.id) a.id = 'artikel-' + i;
-              if (!a.tags) a.tags = [];
-              return a;
-            });
+            allArticles = [];
+            for (var j = 0; j < data.length; j++) {
+              var a = data[j];
+              allArticles.push(normalizeArticle({
+                slug: a.id,
+                title: a.Title || a.title,
+                content: a.Description || a.content,
+                summary: a['Simple-desc'] || a.summary,
+                image_url: a['Link-Image'] || a.image,
+                tags: a.tags,
+                source: a.Source || a.source,
+                sections: a.sections,
+                tips: a.tips
+              }));
+            }
           });
       });
   }
@@ -120,12 +186,10 @@
       var matchesTag = activeTag === 'all' || (a.tags && a.tags.indexOf(activeTag) !== -1);
       var matchesSearch = true;
       if (searchQuery) {
-        var haystack = ((a.Title || a.title || '') + ' ' + (a.Description || a.content || '') + ' ' + (a.tags ? a.tags.join(' ') : '')).toLowerCase();
+        var haystack = ((a.title || '') + ' ' + (a.content || '') + ' ' + (a.summary || '') + ' ' + (a.tags ? a.tags.join(' ') : '')).toLowerCase();
         matchesSearch = haystack.indexOf(searchQuery) !== -1;
       }
-      if (matchesTag && matchesSearch) {
-        filtered.push(a);
-      }
+      if (matchesTag && matchesSearch) filtered.push(a);
     }
     return filtered;
   }
@@ -162,24 +226,18 @@
   /* ─── Append cards to grid (staggered fade-in) ─── */
   function appendCards(articles, startIdx, count, onComplete) {
     var end = Math.min(startIdx + count, articles.length);
-    if (startIdx >= end) {
-      if (onComplete) onComplete();
-      return;
-    }
+    if (startIdx >= end) { if (onComplete) onComplete(); return; }
 
     var anchor = document.getElementById('artikel-sentinel');
-    var inserted = 0;
-    var total = end - startIdx;
+    var inserted = 0, total = end - startIdx;
 
     function appendOne(i) {
       var a = articles[i];
       var tag = (a.tags && a.tags.length > 0) ? a.tags[0] : 'all';
       var layout = getCardLayout(i);
-      var titleHtml = escHtml(a.Title || a.title || '');
-      if (searchQuery) {
-        titleHtml = highlightMatch(titleHtml, searchQuery);
-      }
-      var html = buildCardHtml(a, layout, tag, titleHtml, i);
+      var titleHtml = escHtml(a.title || '');
+      if (searchQuery) titleHtml = highlightMatch(titleHtml, searchQuery);
+      var html = buildCardHtml(a, layout, tag, titleHtml);
 
       var temp = document.createElement('div');
       temp.innerHTML = html;
@@ -199,9 +257,7 @@
       });
 
       if (inserted < total) {
-        setTimeout(function () {
-          appendOne(startIdx + inserted);
-        }, 80);
+        setTimeout(function () { appendOne(startIdx + inserted); }, 80);
       } else {
         if (onComplete) onComplete();
       }
@@ -210,11 +266,11 @@
     appendOne(startIdx);
   }
 
-  function buildCardHtml(article, layout, tag, titleHtml, globalIndex) {
+  function buildCardHtml(article, layout, tag, titleHtml) {
     var baseClass = 'artikel-card artikel-card--' + layout;
-    var imgSrc = escAttr(article['Link-Image'] || article.image || '/assets/images/SkincareBottleMockup2.png');
-    var descText = article.Description || article['Simple-desc'] || article.content || '';
-    var excerpt = descText ? escHtml(descText.substring(0, 80)) + '...' : '';
+    var imgSrc = escAttr(article.image_url || '/assets/images/SkincareBottleMockup2.png');
+    var excerptText = article.summary || article.content || '';
+    var excerpt = excerptText ? escHtml(excerptText.substring(0, 80)) + '...' : '';
     var tagEsc = escHtml(tag);
     var tagAttr = escAttr(tag);
 
@@ -235,24 +291,21 @@
       return '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '">' +
         imgHtml + bodyHtml + '</article>';
     }
-
     if (layout === 'horizontal-reverse') {
       return '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '">' +
         bodyHtml + imgHtml + '</article>';
     }
-
     return '<article class="' + baseClass + '" data-id="' + escAttr(article.id) + '">' +
       imgHtml + bodyHtml + '</article>';
   }
 
-  /* ─── Wire card buttons (avoid duplicate listeners) ─── */
+  /* ─── Wire card buttons ─── */
   function wireCardButtons() {
     var btns = gridContainer.querySelectorAll('.artikel-card__btn:not([data-wired])');
     for (var j = 0; j < btns.length; j++) {
       btns[j].setAttribute('data-wired', 'true');
       btns[j].addEventListener('click', function () {
-        var id = this.getAttribute('data-id');
-        navigateToDetail(id);
+        navigateToDetail(this.getAttribute('data-id'));
       });
     }
   }
@@ -264,15 +317,11 @@
 
     var scrollContainer = document.getElementById('article-main');
     var observerOptions = { rootMargin: '100px' };
-    if (scrollContainer) {
-      observerOptions.root = scrollContainer;
-    }
+    if (scrollContainer) observerOptions.root = scrollContainer;
 
     var observer = new IntersectionObserver(function (entries) {
       for (var i = 0; i < entries.length; i++) {
-        if (entries[i].isIntersecting && hasMore && !isLoading) {
-          loadMoreCards();
-        }
+        if (entries[i].isIntersecting && hasMore && !isLoading) loadMoreCards();
       }
     }, observerOptions);
 
@@ -292,7 +341,6 @@
     appendCards(filtered, displayedCount, nextBatch, function () {
       displayedCount += nextBatch;
       hasMore = displayedCount < filtered.length;
-
       wireCardButtons();
 
       if (loadEl) {
@@ -304,36 +352,16 @@
           loadEl.style.display = 'none';
         }
       }
-
       isLoading = false;
     });
   }
 
   /* ─── View Switching ─── */
-  function showDetailView(id) {
+  function showDetailView(slug) {
     if (listingView) listingView.style.display = 'none';
     if (detailView) detailView.style.display = '';
     document.title = 'SkinGlow — Artikel';
-
-    if (typeof loadArticle === 'function') {
-      loadArticle(id);
-    } else {
-      fetch('/assets/data/articles.json')
-        .then(function (r) { return r.json(); })
-        .then(function (articles) {
-          var article = null;
-          for (var i = 0; i < articles.length; i++) {
-            if (articles[i].id === id) {
-              article = articles[i];
-              break;
-            }
-          }
-          renderArticleDetail(article);
-        })
-        .catch(function (err) {
-          console.error('Failed to load article detail:', err);
-        });
-    }
+    loadArticleFromSupabase(slug);
   }
 
   function navigateToDetail(id) {
@@ -409,6 +437,44 @@
     renderGrid(filtered);
   }
 
+  /* ─── Detail view: load article from Supabase by slug ─── */
+  function loadArticleFromSupabase(slug) {
+    var url = SUPABASE_URL + '/rest/v1/articles?select=*&slug=eq.' + encodeURIComponent(slug);
+    fetch(url, { headers: supabaseHeaders() })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var article = data.length > 0 ? normalizeArticle(data[0]) : null;
+        renderArticleDetail(article);
+      })
+      .catch(function (err) {
+        console.error('Failed to load article from Supabase:', err);
+        // Try local fallback
+        fetch('/assets/data/articles.json')
+          .then(function (r) { return r.json(); })
+          .then(function (articles) {
+            var found = null;
+            for (var i = 0; i < articles.length; i++) {
+              var aid = articles[i].id || 'artikel-' + i;
+              if (aid === slug) {
+                found = normalizeArticle({
+                  slug: articles[i].id,
+                  title: articles[i].Title || articles[i].title,
+                  content: articles[i].Description || articles[i].content,
+                  summary: articles[i]['Simple-desc'] || articles[i].summary,
+                  image_url: articles[i]['Link-Image'] || articles[i].image,
+                  tags: articles[i].tags,
+                  source: articles[i].Source || articles[i].source,
+                  sections: articles[i].sections || [],
+                  tips: articles[i].tips || []
+                });
+                break;
+              }
+            }
+            renderArticleDetail(found);
+          });
+      });
+  }
+
   /* ─── Detail view rendering ─── */
   function renderArticleDetail(article) {
     if (!article) {
@@ -427,15 +493,15 @@
     var sourceEl = document.getElementById('article-source');
     var sourceTextEl = document.getElementById('article-source-text');
 
-    var artTitle = article.Title || article.title || '';
+    var artTitle = article.title || '';
     if (titleEl) titleEl.textContent = artTitle;
     if (imgEl) {
-      imgEl.src = article['Link-Image'] || article.image || '/assets/images/SkincareBottleMockup2.png';
+      imgEl.src = article.image_url || '/assets/images/SkincareBottleMockup2.png';
       imgEl.alt = artTitle;
     }
 
     if (descEl) {
-      var descText = article.Description || article.content || '';
+      var descText = article.content || '';
       var paragraphs = splitIntoParagraphs(descText);
       var descHtml = '';
       for (var k = 0; k < paragraphs.length; k++) {
@@ -444,7 +510,7 @@
       descEl.innerHTML = descHtml || '<p class="article-card__text">' + escHtml(descText) + '</p>';
     }
 
-    if (sectionsEl && article.sections) {
+    if (sectionsEl && article.sections && article.sections.length > 0) {
       var secHtml = '';
       for (var i = 0; i < article.sections.length; i++) {
         var s = article.sections[i];
@@ -457,7 +523,7 @@
       sectionsEl.innerHTML = secHtml;
     }
 
-    if (tipsEl && article.tips) {
+    if (tipsEl && article.tips && article.tips.length > 0) {
       var tipHtml =
         '<div class="article-card__section">' +
           '<h3 class="article-card__section-title">Key Tips</h3>' +
@@ -469,8 +535,8 @@
       tipsEl.innerHTML = tipHtml;
     }
 
-    if (sourceEl && sourceTextEl && article.Source) {
-      sourceTextEl.textContent = article.Source;
+    if (sourceEl && sourceTextEl && article.source) {
+      sourceTextEl.textContent = article.source;
       sourceEl.style.display = 'flex';
     } else if (sourceEl) {
       sourceEl.style.display = 'none';
@@ -486,9 +552,7 @@
     for (var i = 0; i < sentences.length; i += groupSize) {
       var group = sentences.slice(i, i + groupSize);
       var cleaned = [];
-      for (var j = 0; j < group.length; j++) {
-        cleaned.push(group[j].trim());
-      }
+      for (var j = 0; j < group.length; j++) cleaned.push(group[j].trim());
       paragraphs.push(cleaned.join(' '));
     }
     return paragraphs;
@@ -513,23 +577,9 @@
     return text.replace(re, '<mark class="artikel-highlight">$1</mark>');
   }
 
-  window.loadArticle = function (id) {
-    fetch('/assets/data/articles.json')
-      .then(function (r) { return r.json(); })
-      .then(function (articles) {
-        var article = null;
-        for (var i = 0; i < articles.length; i++) {
-          var aid = articles[i].id || 'artikel-' + i;
-          if (aid === id) {
-            article = articles[i];
-            break;
-          }
-        }
-        renderArticleDetail(article);
-      })
-      .catch(function (err) {
-        console.error('loadArticle error:', err);
-      });
+  /* ─── Public: loadArticle for external use ─── */
+  window.loadArticle = function (slug) {
+    loadArticleFromSupabase(slug);
   };
 
 })();

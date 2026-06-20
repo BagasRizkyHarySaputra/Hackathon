@@ -1,0 +1,31 @@
+Project Structure
+/Hackathon/project/
+├── assets/
+│   ├── js/
+│   │   ├── alpine/
+│   │   │   ├── app.js            # Alpine init entry
+│   │   │   ├── components/
+│   │   │   │   ├── login.js      # Login Alpine component w/ social auth
+│   │   │   │   ├── scan.js
+│   │   │   │   ├── scan-page.js
+│   │   │   │   └── loading.js
+│   │   │   └── stores/
+│   │   │       ├── auth.store.js # Auth state (user, session, login/logout)
+│   │   │       └── ui.store.js
+│   │   ├── supabase/
+│   │   │   └── supabase-client.js # createClient() singleton
+│   │   └── ... (htmx, vendor, pwa, router, etc.)
+│   ├── css/ (main + component styles)
+│   └── icons/ (SVG assets)
+├── config/
+│   └── app.config.js             # APP_CONFIG — Supabase URL + anon key
+├── pages/
+│   ├── login/index.html           # Login page (Google/Facebook OAuth + email)
+│   ├── home/index.html
+│   ├── scan/index.html
+│   ├── artikel/index.html
+│   ├── community/index.html
+│   ├── profile/index.html
+│   └── ... (chatbot, account, loading)
+├── vercel.json                    # Rewrites SPA routing
+└── package.json

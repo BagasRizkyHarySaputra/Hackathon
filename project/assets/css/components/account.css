@@ -105,6 +105,8 @@
 .account-profile-header__info {
   flex: 1;
   padding-right: 12.50vw;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .account-profile-header__name {
@@ -113,6 +115,9 @@
   color: #2B2B2B;
   margin: 0 0 0.39vh;
   letter-spacing: 0.01em;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .account-profile-header__type {
