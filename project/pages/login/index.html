@@ -31,7 +31,7 @@
             </div>
             
             <div class="login-social">
-              <button class="login-social__btn" type="button" aria-label="Google">
+              <button class="login-social__btn" type="button" aria-label="Google" @click="handleSocialLogin('google')">
                 <img src="/assets/icons/artikel/google-logo.svg" alt="" />
               </button>
               <button class="login-social__btn" type="button" aria-label="Facebook" @click="handleSocialLogin('facebook')">
@@ -119,6 +119,7 @@
 
   <script src="/config/app.config.js"></script>
   <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script type="module" src="/assets/js/supabase/supabase-client.js"></script>
   <script src="/assets/js/vendor/htmx.min.js"></script>
   <script src="/assets/js/alpine/app.js"></script>
   <script src="/assets/js/alpine/stores/ui.store.js"></script>
