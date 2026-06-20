@@ -156,7 +156,7 @@ function createLoadingComponent() {
        */
       if (APP_CONFIG.IS_MOCK_MODE) {
         setTimeout(() => {
-          window.location.href = '/login';
+          window.location.href = '/login/';
         }, 800);
       }
     },
