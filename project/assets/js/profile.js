@@ -180,8 +180,8 @@
 
     // Skin Type — profile header
     var skinTypeEl = document.querySelector('.account-profile-header__type');
-    if (skinTypeEl && profile.skin_type) {
-      skinTypeEl.textContent = capitalize(profile.skin_type);
+    if (skinTypeEl) {
+      skinTypeEl.textContent = profile.skin_type ? capitalize(profile.skin_type) : 'Unknown';
     }
 
     // Member since
@@ -195,10 +195,10 @@
     // Skin Type Card
     var stLabel = document.querySelector('.skin-type__label');
     var stDesc = document.querySelector('.skin-type__desc');
-    if (stLabel && profile.skin_type) {
-      stLabel.textContent = capitalize(profile.skin_type);
+    if (stLabel) {
+      stLabel.textContent = profile.skin_type ? capitalize(profile.skin_type) : 'Unknown';
       if (stDesc) {
-        stDesc.textContent = getSkinTypeDescription(profile.skin_type);
+        stDesc.textContent = profile.skin_type ? getSkinTypeDescription(profile.skin_type) : 'Take our skin analysis to find out your skin type!';
       }
     }
 
@@ -432,6 +432,26 @@
     });
   }
 
+  function wireSignOut() {
+    var signOutItems = document.querySelectorAll('.settings-bar__item');
+    signOutItems.forEach(function (item) {
+      var label = item.querySelector('.settings-bar__label');
+      if (!label || label.textContent.trim() !== 'Sign Out') return;
+      if (item.hasAttribute('data-signout-wired')) return;
+
+      item.setAttribute('data-signout-wired', 'true');
+      item.classList.remove('settings-bar__item--disabled');
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', function () {
+        var authStore = window.Alpine && Alpine.store('auth');
+        if (authStore) authStore.logout();
+        // authStore.logout() calls sb.auth.signOut() internally,
+        // no need to call it again here — just redirect.
+        window.location.href = '/';
+      });
+    });
+  }
+
   /* ─── Helpers ─── */
   function capitalize(str) {
     if (!str) return '';
@@ -464,19 +484,19 @@
 
   /* ─── Wait for Supabase client and Alpine, then init ─── */
   function waitAndInit() {
-    // If Alpine is already initialized
     if (window.Alpine && window.Alpine.store && window.Alpine.store('auth')) {
       init();
       wireSaveButton();
       wireAvatarUpload();
+      wireSignOut();
       return;
     }
 
-    // Wait for Alpine init
     document.addEventListener('alpine:init', function () {
       init();
       wireSaveButton();
       wireAvatarUpload();
+      wireSignOut();
     });
   }
 
