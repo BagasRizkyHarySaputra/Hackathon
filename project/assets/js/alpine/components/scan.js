@@ -89,25 +89,78 @@ function createScanComponent() {
       const selected = this.skinTypes.find(t => t.id === this.selectedType);
       console.log('[INFO] [Scan] Confirmed selection:', selected);
 
-      /** Store in Alpine global store if available */
-      if (this.$store?.ui) {
-        this.$store.ui.showToast(
-          `Skin type set to: ${selected.label}`,
-          'success'
-        );
+      /** Get user ID from Alpine auth store */
+      var authStore = this.$store?.auth;
+      var userId = authStore && authStore.user && authStore.user.id;
+
+      if (!userId) {
+        console.warn('[Scan] No authenticated user — cannot save skin type.');
+        if (this.$store?.ui) {
+          this.$store.ui.showToast('Please log in first.', 'error');
+        }
+        setTimeout(function () { window.location.href = '/login'; }, 800);
+        return;
       }
 
-      /** Dispatch custom event for parent/HTMX handling */
-      this.$dispatch('skin:type-selected', {
-        type: this.selectedType,
-        label: selected.label,
-      });
+      /** Save skin_type to Supabase profiles */
+      this.saveSkinTypeToSupabase(userId, selected);
+    },
 
-      if (typeof APP_CONFIG !== 'undefined' && APP_CONFIG.IS_MOCK_MODE) {
-        setTimeout(() => {
-          window.location.href = '/home';
-        }, 800);
-      }
+    /**
+     * Saves the selected skin_type to Supabase profiles table.
+     * For 'unsure' selection, saves null so user will be prompted again.
+     */
+    saveSkinTypeToSupabase(userId, selected) {
+      var self = this;
+      var SUPABASE_URL = 'https://gvkzgicbykyjkusxranv.supabase.co';
+      var ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2a3pnaWNieWt5amt1c3hyYW52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4OTg0OTAsImV4cCI6MjA5NzQ3NDQ5MH0.8DEahyrZ-IxZmuM7wVuO6-LP3K4IfX3v3eNsXnh_Hzw';
+
+      // Get user's access token for authenticated RLS
+      var authStore = window.Alpine && Alpine.store('auth');
+      var token = authStore && authStore.token;
+      var authHeader = token || ANON_KEY;
+
+      // Save skin_type (null for 'unsure', actual value otherwise)
+      var skinTypeValue = self.selectedType === 'unsure' ? null : self.selectedType;
+
+      var url = SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId);
+      var body = JSON.stringify({ skin_type: skinTypeValue });
+
+      fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'apikey': ANON_KEY,
+          'Authorization': 'Bearer ' + authHeader,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: body
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          console.log('[Scan] Skin type saved to Supabase:', skinTypeValue);
+        })
+        .catch(function (err) {
+          console.error('[Scan] Failed to save skin type:', err.message);
+        })
+        .finally(function () {
+          /** Show toast + redirect */
+          if (self.$store?.ui) {
+            self.$store.ui.showToast(
+              'Skin type set to: ' + selected.label,
+              'success'
+            );
+          }
+
+          self.$dispatch('skin:type-selected', {
+            type: self.selectedType,
+            label: selected.label,
+          });
+
+          setTimeout(function () {
+            window.location.href = '/home';
+          }, 800);
+        });
     },
   };
 }
