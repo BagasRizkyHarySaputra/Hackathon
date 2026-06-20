@@ -20,8 +20,24 @@ node_modules/
 dist/
 build/
 
-# OS files
+# OS & crash files
 
 .DS_Store
 Thumbs.db
+core.*
+
+# ML models
+
+*.pt
+
+# Sync conflicts
+
+*.sync-conflict*
+
+# Internal logs
+
+.logs/
+
+# Secrets
+
 fetch.js
