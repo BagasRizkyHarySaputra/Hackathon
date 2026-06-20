@@ -1,0 +1,528 @@
+/* ──────────────────────────────────────────────
+ * Community Page Styles
+ * Colors derived from layer_Community - User.json Figma tokens
+ * Responsive layout: 100vw x 100vh, no scrolling
+ * Design frame: 1440x1024
+ * ────────────────────────────────────────────── */
+
+/* ─── Viewport Wrapper (full screen, no scroll) ─── */
+.community-viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+/* ─── App Layout: sidebar + main, fills viewport ─── */
+.community-app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* ─── Main Content ─── */
+.app-main {
+  overflow: hidden;
+}
+
+.community-viewport .app-main--fixed {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── ChatBot Layout Wrapper (flex row: panel kiri + chat kanan) ─── */
+.chatbot-layout {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  gap: 1.5vw;
+  padding: 0vh 0vw;
+  background: #ffffff;
+  border-radius: 1.5cqw;
+}
+
+/* ─── ChatBot Panel (Container Utama) ─── */
+.chatbot-panel {
+  width: 18.3vw;
+  min-width: 250px;
+  background: #e1e6ed; /* Warna abu-abu kebiruan yang soft */
+  border-radius: 1.5vw;
+  display: flex;
+  flex-direction: column;
+  padding: 3.5vh 1.5vw;
+  gap: 2.5vh;
+  flex-shrink: 0;
+  overflow-y: auto;
+  /* Shadow neumorphism agar terlihat menyatu tapi menonjol */
+  box-shadow: 
+    8px 8px 16px rgba(180, 190, 205, 0.6),
+    -8px -8px 16px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.chatbot-panel__title {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  color: #6a6c72;
+  margin: 0;
+  margin-bottom: 0.5vh;
+}
+
+/* ─── Komponen Card Umum di dalam Panel ─── */
+.chatbot-card {
+  background: #e7ecf2;
+  border-radius: 1vw;
+  box-shadow: 
+    4px 4px 10px rgba(180, 190, 205, 0.5),
+    -4px -4px 10px rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ─── New Chat Card (Tombol Atas) ─── */
+.action-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5vh 1.2vw;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.action-card:active {
+  transform: scale(0.98); /* Efek saat diklik */
+  box-shadow: 
+    inset 4px 4px 8px rgba(180, 190, 205, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+
+.action-card__text {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 500;
+  color: #6a6c72;
+}
+
+.action-card__btn {
+  width: 2vw;
+  height: 2vw;
+  min-width: 26px;
+  min-height: 26px;
+  border-radius: 0.4vw;
+  background: linear-gradient(135deg, #7a8ba3, #5a6a84);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── History Card (Bagian Bawah) ─── */
+.history-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh 1vw;
+  flex: 1; /* Membuatnya memanjang memenuhi sisa ruang */
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5vw;
+  cursor: pointer;
+}
+
+.history-title {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  font-weight: 500;
+  color: #6a6c72;
+}
+
+.history-icon {
+  color: #4b4b4b;
+}
+
+.history-divider {
+  border: none;
+  border-top: 1px solid rgba(150, 160, 175, 0.4);
+  margin: 1.5vh 0;
+  width: 100%;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+}
+
+.history-item {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.75rem, 0.85vw, 0.9rem);
+  font-weight: 500;
+  color: #6a6c72;
+  padding: 1vh 0.8vw;
+  border-radius: 0.5vw;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Style khusus untuk item list yang sedang aktif (putih menonjol) */
+.history-item.active {
+  background: #ffffff;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  color: #555555;
+}
+
+/* Efek hover untuk item list yang tidak aktif */
+.history-item:not(.active):hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ─── Chat Area (rightmost) ─── */
+.chat-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ─── Chat Messages Scroll Wrapper ─── */
+.chat-messages-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ─── Chat Messages ─── */
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 3vh 1.5vw;
+  min-height: 100%;
+}
+
+/* ─── Message Row ─── */
+.chat-msg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.8vw;
+  max-width: 85%;
+}
+
+.chat-msg-row--sent {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+  animation: msg-slide-in-right 0.35s ease-out both;
+}
+
+.chat-msg-row--received {
+  align-self: flex-start;
+  animation: msg-slide-in-left 0.35s ease-out both;
+}
+
+/* ─── Message Row Animations ─── */
+@keyframes msg-slide-in-left {
+  0%   { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes msg-slide-in-right {
+  0%   { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.chat-msg-row--animated { animation: none; }
+
+/* ─── Chat Avatar (small, next to message) ─── */
+.chat-avatar {
+  flex-shrink: 0;
+}
+
+.chat-avatar__circle {
+  width: 3.33vw;
+  height: 3.33vw;
+  max-width: 48px;
+  max-height: 48px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  background: #E4D8DC;
+  box-shadow: 
+    /* 1. Drop shadow di bagian bawah (luar) */
+    0px 6px 8px rgba(0, 0, 0, 0.15),
+    
+    /* 2. Inner shadow gelap di bagian atas */
+    inset 0px 6px 4px rgba(0, 0, 0, 0.1),
+    
+    /* 3. Inner shadow terang (putih) di bagian kiri dan bawah */
+    inset 4px -4px 4px rgba(255, 255, 255, 0.4);
+
+}
+
+.chat-avatar__circle--self {
+  background: #FCEFEF;
+}
+
+/* ─── Water-drop mascot in received avatars ─── */
+.chat-avatar__mascot {
+  width: 3.33vw;
+  height: 3.33vw;
+  max-width: 48px;
+  max-height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid #FFFFFF;
+  box-shadow:
+    0px 6px 8px rgba(0, 0, 0, 0.15),
+    inset 0px 6px 4px rgba(0, 0, 0, 0.1),
+    inset 4px -4px 4px rgba(255, 255, 255, 0.4);
+}
+
+/* ─── Chat Bubble ─── */
+.chat-bubble {
+  border-radius: 1.11vw;
+  border: 2px solid #FFFFFF;
+  padding: 1.5vh 1.39vw;
+  max-width: 100%;
+  box-shadow: 
+    /* 1. Drop shadow di bagian bawah (luar) */
+    0px 6px 8px rgba(0, 0, 0, 0.15),
+    
+    /* 2. Inner shadow gelap di bagian atas */
+    inset 0px 6px 8px rgba(0, 0, 0, 0.1),
+    
+    /* 3. Inner shadow terang (putih) di bagian kiri dan bawah */
+    inset 4px -4px 8px rgba(255, 255, 255, 0.8);
+
+}
+
+.chat-bubble--received {
+  background: #E4D8DC;
+  border-bottom-left-radius: 0.28vw;
+}
+
+.chat-bubble--sent {
+  background: #FCEFEF;
+  border-bottom-right-radius: 0.28vw;
+}
+
+.chat-bubble__text {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.8125rem);
+
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  line-height: 1.5;
+}
+
+/* ─── Chat Input ─── */
+.chat-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  padding: 1.8vh 1.5vw;
+  border-top: 1px solid rgba(110, 127, 153, 0.12);
+  flex-shrink: 0;
+}
+
+.chat-input__field {
+  flex: 1;
+  min-width: 0;
+  height: 5.5vh;
+  min-height: 40px;
+  background: #CACDD6;
+  border-radius: 0.83vw;
+  border: 4px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding: 0 1.11vw;
+}
+
+.chat-input__textbox {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.83vw, 0.75rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  outline: none;
+}
+
+.chat-input__textbox::placeholder {
+  color: rgba(43, 43, 43, 0.5);
+}
+
+.chat-input__placeholder {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.83vw, 0.75rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.5);
+}
+
+.chat-input__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  flex-shrink: 0;
+}
+
+.chat-input__icon {
+  width: 2.78vw;
+  height: 2.78vw;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.chat-input__icon:hover {
+  opacity: 0.7;
+}
+
+.chat-input__icon--send {
+  width: 2.78vw;
+  height: 2.78vw;
+}
+
+/* ─── Custom scrollbar for chat ─── */
+.chat-messages-scroll::-webkit-scrollbar {
+  width: 0.28vw;
+}
+
+.chat-messages-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages-scroll::-webkit-scrollbar-thumb {
+  background: rgba(110, 127, 153, 0.25);
+  border-radius: 0.14vw;
+}
+
+/* ─── History rename inline input ─── */
+.history-item__input {
+  width: 100%;
+  border: 1px solid rgba(149, 180, 198, 0.6);
+  border-radius: 0.3vw;
+  padding: 0.2vh 0.4vw;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.75rem, 0.85vw, 0.9rem);
+  font-weight: 500;
+  color: #6a6c72;
+  background: #ffffff;
+  outline: none;
+}
+
+/* ─── Emoji Picker ─── */
+.emoji-picker {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 0.5vh);
+  right: 0;
+  width: 28vw;
+  max-width: 380px;
+  height: 32vh;
+  max-height: 320px;
+  background: #FFFFFF;
+  border-radius: 1vw;
+  box-shadow:
+    0 -4px 20px rgba(0,0,0,0.08),
+    0 8px 32px rgba(0,0,0,0.12);
+  border: 1px solid rgba(110,127,153,0.15);
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+  animation: emoji-popup-in 0.18s ease-out both;
+}
+
+.emoji-picker--open {
+  display: flex;
+}
+
+@keyframes emoji-popup-in {
+  0%   { opacity: 0; transform: translateY(8px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.emoji-picker__categories {
+  display: flex;
+  gap: 0;
+  padding: 1.2vh 0.8vw;
+  border-bottom: 1px solid rgba(110,127,153,0.1);
+  flex-shrink: 0;
+  overflow-x: auto;
+  justify-content: space-around;
+}
+
+.emoji-picker__cat {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  background: none;
+  border: none;
+  padding: 0.4vh 0.4vw;
+  cursor: pointer;
+  border-radius: 0.4vw;
+  transition: background 0.15s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.emoji-picker__cat:hover {
+  background: rgba(110,127,153,0.08);
+}
+
+.emoji-picker__cat--active {
+  background: rgba(149,180,198,0.2);
+}
+
+.emoji-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.2vw;
+  padding: 1vh 0.8vw;
+  overflow-y: auto;
+  flex: 1;
+  align-content: start;
+}
+
+.emoji-picker__item {
+  font-size: clamp(1.2rem, 1.6vw, 1.8rem);
+  background: none;
+  border: none;
+  padding: 0.3vh 0;
+  cursor: pointer;
+  border-radius: 0.4vw;
+  text-align: center;
+  transition: background 0.12s, transform 0.12s;
+  line-height: 1.2;
+}
+
+.emoji-picker__item:hover {
+  background: rgba(149,180,198,0.15);
+  transform: scale(1.2);
+}
+
+.emoji-picker__item:active {
+  transform: scale(0.95);
+}
+
+.emoji-picker__grid::-webkit-scrollbar {
+  width: 0.2vw;
+}
+
+.emoji-picker__grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.emoji-picker__grid::-webkit-scrollbar-thumb {
+  background: rgba(110,127,153,0.15);
+  border-radius: 0.14vw;
+}

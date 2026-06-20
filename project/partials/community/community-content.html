@@ -11,7 +11,6 @@
   ============================================================
 -->
 <div class="community-viewport">
-  <!-- Blurred gradient background -->
   <div class="loading-bg-blur" aria-hidden="true">
     <div class="loading-bg-blur__blob--pink-tl"></div>
     <div class="loading-bg-blur__blob--blue-tr"></div>
@@ -24,17 +23,14 @@
   <div class="community-app">
     <div id="sidebar-root" data-active="community"></div>
 
-    <!-- Main Content -->
     <main class="app-main app-main--fixed">
       <div class="home-main__top-bg"></div>
 
       <header id="header-root" class="home-header"></header>
 
-      <!-- Community Card -->
       <section class="community-card">
 
-        <!-- Channel Avatars (leftmost section) -->
-        <div class="channel-section">
+        <div class="channel-section" id="channel-section">
           <div class="channel-avatar">
             <div class="channel-avatar__circle"></div>
           </div>
@@ -46,66 +42,68 @@
           <span class="channel-label">Channel?</span>
         </div>
 
-        <!-- Topic Panel (middle) -->
-        <div class="topic-panel">
-          <h2 class="topic-panel__title">Topic</h2>
-
-          <div class="topic-item">
-            <span class="topic-item__name">#Acne Fighter</span>
-          </div>
-
-          <div class="topic-item">
-            <span class="topic-item__name">#Review Skincare</span>
-          </div>
-
-          <div class="topic-item">
-            <span class="topic-item__name">#Skincare</span>
-          </div>
-        </div>
-
-        <!-- Chat Area (rightmost) -->
-        <div class="chat-area">
-          <!-- Chat messages -->
-          <div class="chat-messages">
-            <!-- Received message 1 -->
-            <div class="chat-msg-row chat-msg-row--received">
-              <div class="chat-avatar">
-                <div class="chat-avatar__circle"></div>
-              </div>
-              <div class="chat-bubble chat-bubble--received">
-                <p class="chat-bubble__text">Hadirin sekalian, dimohon untuk selalu menjaga kesehatan kulit wajah masing-masing ya.</p>
-              </div>
+        <div class="community-card__body">
+          <div class="topic-panel" id="topic-panel">
+            <div class="topic-panel__header">
+              <button class="topic-panel__burger" id="topic-burger" aria-label="Toggle topic panel">
+                <span class="topic-panel__burger-line"></span>
+                <span class="topic-panel__burger-line"></span>
+                <span class="topic-panel__burger-line"></span>
+              </button>
+              <h2 class="topic-panel__title">Topic</h2>
             </div>
 
-            <!-- Received message 2 -->
-            <div class="chat-msg-row chat-msg-row--received">
-              <div class="chat-avatar">
-                <div class="chat-avatar__circle"></div>
-              </div>
-              <div class="chat-bubble chat-bubble--received">
-                <p class="chat-bubble__text">Jangan lupa untuk selalu menggunakan sunscreen setiap hari.</p>
-              </div>
+            <div class="topic-item">
+              <span class="topic-item__name">#Acne Fighter</span>
             </div>
 
-            <!-- Sent message (from me) -->
-            <div class="chat-msg-row chat-msg-row--sent">
-              <div class="chat-bubble chat-bubble--sent">
-                <p class="chat-bubble__text">Noted kak, makasih infonya.</p>
-              </div>
-              <div class="chat-avatar">
-                <div class="chat-avatar__circle chat-avatar__circle--self"></div>
-              </div>
+            <div class="topic-item">
+              <span class="topic-item__name">#Review Skincare</span>
+            </div>
+
+            <div class="topic-item">
+              <span class="topic-item__name">#Skincare</span>
             </div>
           </div>
 
-          <!-- Input area -->
-          <div class="chat-input">
-            <div class="chat-input__field">
-              <span class="chat-input__placeholder">Type something...</span>
+          <div class="chat-area">
+            <div class="chat-messages">
+              <div class="chat-msg-row chat-msg-row--received">
+                <div class="chat-avatar">
+                  <div class="chat-avatar__circle"></div>
+                </div>
+                <div class="chat-bubble chat-bubble--received">
+                  <p class="chat-bubble__text">Hadirin sekalian, dimohon untuk selalu menjaga kesehatan kulit wajah masing-masing ya.</p>
+                </div>
+              </div>
+
+              <div class="chat-msg-row chat-msg-row--received">
+                <div class="chat-avatar">
+                  <div class="chat-avatar__circle"></div>
+                </div>
+                <div class="chat-bubble chat-bubble--received">
+                  <p class="chat-bubble__text">Jangan lupa untuk selalu menjaga kesehatan kulit wajah masing-masing ya.</p>
+                </div>
+              </div>
+
+              <div class="chat-msg-row chat-msg-row--sent">
+                <div class="chat-bubble chat-bubble--sent">
+                  <p class="chat-bubble__text">Noted kak, makasih infonya.</p>
+                </div>
+                <div class="chat-avatar">
+                  <div class="chat-avatar__circle chat-avatar__circle--self"></div>
+                </div>
+              </div>
             </div>
-            <div class="chat-input__actions">
-              <img src="/assets/icons/nav/face-smile-wink.svg" alt="" class="chat-input__icon" />
-              <img src="/assets/icons/nav/paper-plane.svg" alt="" class="chat-input__icon chat-input__icon--send" />
+
+            <div class="chat-input">
+              <div class="chat-input__field">
+                <span class="chat-input__placeholder">Type something...</span>
+              </div>
+              <div class="chat-input__actions">
+                <img src="/assets/icons/nav/face-smile-wink.svg" alt="" class="chat-input__icon" />
+                <img src="/assets/icons/nav/paper-plane.svg" alt="" class="chat-input__icon chat-input__icon--send" />
+              </div>
             </div>
           </div>
         </div>

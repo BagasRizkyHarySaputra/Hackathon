@@ -98,9 +98,9 @@ function createLoadingComponent() {
 
         /** Calculate increment with easing — slower early, faster later */
         const remaining = 100 - this.progress;
-        const baseIncrement = 0.4;
-        const accelerationFactor = Math.max(0.1, remaining / 100);
-        const randomBoost = Math.random() * 0.8;
+        const baseIncrement = 1.5;
+        const accelerationFactor = Math.max(0.15, remaining / 100);
+        const randomBoost = Math.random() * 1.5;
         const increment = baseIncrement + (randomBoost * accelerationFactor);
 
         this.progress = Math.min(100, this.progress + increment);
@@ -156,8 +156,8 @@ function createLoadingComponent() {
        */
       if (APP_CONFIG.IS_MOCK_MODE) {
         setTimeout(() => {
-          window.location.href = '/pages/login/index.html';
-        }, 1500);
+          window.location.href = '/login';
+        }, 800);
       }
     },
 

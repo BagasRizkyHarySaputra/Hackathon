@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;overflow:hidden;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow — ChatBot" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>SkinGlow — ChatBot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/global.css" />
+  <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
+  <link rel="stylesheet" href="/assets/css/components/header.css" />
+  <link rel="stylesheet" href="/assets/css/components/home.css" />
+  <link rel="stylesheet" href="/assets/css/components/chatbot.css" />
+<link rel="stylesheet" href="/assets/css/components/chatbot-mobile.css" />
+</head>
+<body style="height:100%;overflow:hidden;background:#FFFFFF;">
+  <div class="community-viewport">
+    <!-- Blurred gradient background -->
+    <div class="loading-bg-blur" aria-hidden="true">
+      <div class="loading-bg-blur__blob--pink-tl"></div>
+      <div class="loading-bg-blur__blob--blue-tr"></div>
+      <div class="loading-bg-blur__blob--dusty-center"></div>
+      <div class="loading-bg-blur__blob--blue-bl"></div>
+      <div class="loading-bg-blur__blob--pink-br"></div>
+      <div class="loading-bg-blur__blob--slate"></div>
+    </div>
+
+    <div class="community-app app-layout">
+      <div id="sidebar-root" data-active="community"></div>
+
+      <!-- Main Content -->
+      <main class="app-main app-main--fixed app-main--chatbot">
+        <div class="home-main__top-bg"></div>
+
+         <header id="header-root" class="home-header"></header>
+
+        <div class="chatbot-layout">
+          <!-- ChatBot Panel (middle) -->
+        <div class="chatbot-panel">
+          <h2 class="chatbot-panel__title">Chatbot</h2>
+
+          <!-- New Chat Card -->
+            <div class="chatbot-card action-card" id="btn-new-chat">
+              <span class="action-card__text">New Chat</span>
+              <div class="action-card__btn">
+              <!-- Ikon Plus menggunakan SVG -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+          </div>
+        
+          <!-- History Section -->
+          <div class="chatbot-card history-card">
+            <div class="history-header">
+              <span class="history-title">History</span>
+              <!-- Ikon Chevron Bawah menggunakan SVG -->
+              <svg class="history-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B4B4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          
+            <hr class="history-divider">
+          
+            <div class="history-list" id="history-list">
+                <!-- dynamically populated -->
+              </div>
+          </div>
+        </div>
+          <!-- Chat Area (rightmost) -->
+          <div class="chat-area">
+            <div class="chat-messages-scroll">
+              <div class="chat-messages" id="chat-messages">
+                <!-- dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Input area -->
+            <div class="chat-input">
+              <!-- Emoji Picker -->
+              <div class="emoji-picker" id="emoji-picker">
+                <div class="emoji-picker__categories" id="emoji-cats"></div>
+                <div class="emoji-picker__grid" id="emoji-grid"></div>
+              </div>
+              <div class="chat-input__field">
+                <input type="text" class="chat-input__textbox" id="chat-input-text" placeholder="Type something..." autocomplete="off" />
+              </div>
+              <div class="chat-input__actions">
+                <img src="/assets/icons/nav/face-smile-wink.svg" alt="" class="chat-input__icon" id="btn-emoji" />
+                <img src="/assets/icons/nav/paper-plane.svg" alt="" class="chat-input__icon chat-input__icon--send" id="btn-send" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/components/sidebar.js"></script>
+  <script src="/assets/js/components/header.js"></script>
+  <script src="/assets/js/router.js"></script>
+  <script src="/assets/js/chat-engine.js"></script>
+  <script src="/assets/js/chatbot-page.js"></script>
+</body>
+</html>

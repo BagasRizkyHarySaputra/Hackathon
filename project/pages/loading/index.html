@@ -29,7 +29,7 @@
 </head>
 <body>
   <main
-    class="app-main app-main--loading"
+    class="loading-page"
     id="loading-container"
     hx-get="/api/loading/partial"
     hx-trigger="load"
@@ -91,8 +91,8 @@
 
   <!-- Scripts — Order matters -->
   <script src="/config/app.config.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script src="/assets/js/vendor/htmx.min.js"></script>
   <script src="/assets/js/alpine/app.js"></script>
   <script src="/assets/js/alpine/stores/ui.store.js"></script>
   <script src="/assets/js/alpine/stores/auth.store.js"></script>

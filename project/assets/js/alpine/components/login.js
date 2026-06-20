@@ -38,8 +38,8 @@ function createLoginComponent() {
     /** @type {'signin'|'signup'} Current active tab */
     activeTab: 'signin',
 
-    /** @type {string|null} Active animation direction. Non-null = animation playing */
-    animDirection: null,
+    /** @type {'forward'|'backward'} Animation direction for tab transitions */
+    animDirection: 'forward',
 
     /** @type {string} Email input value */
     email: '',
@@ -79,41 +79,17 @@ function createLoginComponent() {
 
     /**
      * Switches between Sign In and Sign Up tabs.
-     * Plays a transform animation (up → rotate → back → down) on the card images,
-     * then updates activeTab after animation completes.
+     * Clears error messages on tab switch.
      *
      * @param {'signin'|'signup'} tab - Tab to activate
      * @returns {void}
      */
     switchTab(tab) {
-      if (tab === this.activeTab || this.animDirection) return;
+      if (tab === this.activeTab) return;
+      this.animDirection = tab === 'signin' ? 'backward' : 'forward';
+      this.activeTab = tab;
       this.errorMessage = '';
-
-      const direction = tab === 'signup' ? 'to-signup' : 'to-signin';
-      this.animDirection = direction;
-
-      var signinCard = document.querySelector('.login-card-box--signin');
-      var signupCard = document.querySelector('.login-card-box--signup');
-
-      console.log('[INFO] [Login] Starting tab animation.', { from: this.activeTab, to: tab });
-
-      setTimeout(function () {
-        if (direction === 'to-signup') {
-          if (signinCard) signinCard.style.zIndex = '1';
-          if (signupCard) signupCard.style.zIndex = '2';
-        } else {
-          if (signupCard) signupCard.style.zIndex = '1';
-          if (signinCard) signinCard.style.zIndex = '2';
-        }
-      }, 150);
-
-      var self = this;
-      setTimeout(function () {
-        self.activeTab = tab;
-        if (signinCard) signinCard.style.zIndex = '';
-        if (signupCard) signupCard.style.zIndex = '';
-        self.animDirection = null;
-      }, 700);
+      console.log('[INFO] [Login] Tab switched.', { tab, direction: this.animDirection });
     },
 
     /**
@@ -219,16 +195,10 @@ function createLoginComponent() {
 
       try {
         if (APP_CONFIG.IS_MOCK_MODE) {
+          /** Simulate API delay */
           await new Promise(resolve => setTimeout(resolve, 1200));
 
-          if (this.activeTab === 'signin') {
-            if (this.email !== 'contoh@gmail.com' || this.password !== 'contoh123') {
-              this.errorMessage = 'Email atau password salah.';
-              this.isSubmitting = false;
-              return;
-            }
-          }
-
+          /** Mock successful login */
           const mockToken = 'mock_jwt_token_' + Date.now();
           const mockUser = {
             name: this.fullName || this.email.split('@')[0],
@@ -237,7 +207,8 @@ function createLoginComponent() {
           };
 
           /** Update auth store */
-          Alpine.store('auth').login(mockToken, mockUser);
+          Alpine.store('auth').setToken(mockToken);
+          Alpine.store('auth').setUser(mockUser);
 
           console.log('[INFO] [Login] Mock login successful.', { user: mockUser });
 
@@ -250,8 +221,10 @@ function createLoginComponent() {
             `Welcome back, ${mockUser.name}!`
           );
 
+          /** Mock redirect after delay */
           setTimeout(() => {
-            window.location.href = '/pages/scan/index.html';
+            this.$dispatch('auth:redirect', { target: '/scan' });
+            window.location.href = '/scan';
           }, 800);
         } else {
           /**

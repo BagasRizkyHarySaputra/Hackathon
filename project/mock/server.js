@@ -31,6 +31,7 @@
  */
 
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
@@ -260,6 +261,49 @@ function handleRequest(req, res) {
       serveFile(res, path.join(ROOT, 'index.html'));
       break;
 
+    /** Scan page— standalone page */
+    case pathname === '/scan' || pathname === '/scan/':
+      serveFile(res, path.join(ROOT, 'pages', 'scan', 'index.html'));
+      break;
+    /** Scan-page page — standalone page */
+    case pathname === '/scan-page' || pathname === '/scan-page/':
+      serveFile(res, path.join(ROOT, 'pages', 'scan-page', 'index.html'));
+      break;
+    /** Login page */
+    case pathname === '/login' || pathname === '/login/':
+      serveFile(res, path.join(ROOT, 'pages', 'login', 'index.html'));
+      break;
+
+    /** Home page */
+    case pathname === '/home' || pathname === '/home/':
+      serveFile(res, path.join(ROOT, 'pages', 'home', 'index.html'));
+      break;
+
+    /** Account page */
+    case pathname === '/account' || pathname === '/account/':
+      serveFile(res, path.join(ROOT, 'pages', 'account', 'index.html'));
+      break;
+
+    /** Community page */
+    case pathname === '/community' || pathname === '/community/':
+      serveFile(res, path.join(ROOT, 'pages', 'community', 'index.html'));
+      break;
+
+    /** Profile page */
+    case pathname === '/profile' || pathname === '/profile/':
+      serveFile(res, path.join(ROOT, 'pages', 'profile', 'index.html'));
+      break;
+
+    /** Artikel page */
+    case pathname === '/artikel' || pathname === '/artikel/':
+      serveFile(res, path.join(ROOT, 'pages', 'artikel', 'index.html'));
+      break;
+
+    /** Chatbot page */
+    case pathname === '/chatbot' || pathname === '/chatbot/':
+      serveFile(res, path.join(ROOT, 'pages', 'chatbot', 'index.html'));
+      break;
+
     /** Manifest */
     case pathname === '/manifest.json':
       serveFile(res, path.join(ROOT, 'manifest.json'));
@@ -283,6 +327,47 @@ function handleRequest(req, res) {
       serveFile(res, path.join(ROOT, pathname));
       break;
 
+    /** Chat — Send message */
+    case pathname === '/api/chat/send' && req.method === 'POST':
+      try {
+        parseBody(req).then(body => {
+          const { chat_id, text } = body;
+          if (!text) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'text is required' }));
+            return;
+          }
+          const sent = appendMessage(chat_id, text, 'sent');
+          const reply = appendMessage(chat_id, 'Meehh…', 'received');
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ sent, reply }));
+        }).catch(() => {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid JSON body' }));
+        });
+      } catch {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid request' }));
+      }
+      break;
+
+    /** Chat — Get history */
+    case pathname === '/api/chat/history':
+      const chatQuery = url.searchParams.get('chat_id');
+      const msgs = getMessages(chatQuery);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(msgs));
+      break;
+
+    /** Static assets, config, pages, partials, db-sementara */
+    case pathname.startsWith('/assets/') ||
+         pathname.startsWith('/config/') ||
+         pathname.startsWith('/pages/') ||
+         pathname.startsWith('/partials/') ||
+         pathname.startsWith('/db-sementara/'):
+      serveFile(res, path.join(ROOT, pathname));
+      break;
+
     /** 404 fallback */
     default:
       res.writeHead(404, { 'Content-Type': 'text/html' });
@@ -290,26 +375,144 @@ function handleRequest(req, res) {
   }
 }
 
-/** Start the mock server */
-const server = http.createServer(handleRequest);
+/**
+ * Parses JSON request body.
+ */
+function parseBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', chunk => { data += chunk; });
+    req.on('end', () => {
+      try { resolve(JSON.parse(data)); }
+      catch (e) { reject(e); }
+    });
+    req.on('error', reject);
+  });
+}
 
-server.listen(PORT, () => {
+/**
+ * Appends a message to the in-memory chat store and returns it.
+ */
+function appendMessage(chatId, text, type) {
+  if (!chatStore[chatId]) {
+    chatStore[chatId] = [];
+  }
+  const msg = {
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    type,
+    text,
+    timestamp: new Date().toISOString()
+  };
+  chatStore[chatId].push(msg);
+  return msg;
+}
+
+/**
+ * Returns messages for a chat, with seed data fallback.
+ */
+function getMessages(chatId) {
+  if (chatStore[chatId] && chatStore[chatId].length > 0) {
+    return { chatId, messages: chatStore[chatId] };
+  }
+  return loadSeedMessages(chatId);
+}
+
+/**
+ * Loads seed messages from db-sementara JSON files.
+ */
+function loadSeedMessages(chatId) {
+  const map = { general: 'community', chatbot: 'chatbot' };
+  const key = map[chatId] || chatId;
+  try {
+    const seedPath = path.join(ROOT, 'db-sementara', `${key}.json`);
+    const seed = JSON.parse(fs.readFileSync(seedPath, 'utf-8'));
+    const chat = seed[chatId] || seed[Object.keys(seed)[0]];
+    return {
+      chatType: key,
+      chatId: chatId,
+      messages: chat.messages || []
+    };
+  } catch {
+    return { chatType: 'community', chatId: 'general', messages: [] };
+  }
+}
+
+/** In-memory chat message store */
+const chatStore = {};
+
+/** ── SSL Certificates (mkcert) ── */
+const SSL_KEY_PATH = path.join(__dirname, '..', 'localhost+3-key.pem');
+const SSL_CERT_PATH = path.join(__dirname, '..', 'localhost+3.pem');
+
+let sslOptions = null;
+try {
+  sslOptions = {
+    key: fs.readFileSync(SSL_KEY_PATH),
+    cert: fs.readFileSync(SSL_CERT_PATH),
+  };
+  console.log('[INFO] SSL certificates loaded.');
+} catch (e) {
+  console.log('[WARN] SSL certificates not found. HTTPS unavailable:', e.message);
+}
+
+/** Start the mock server(s) */
+let httpsUrl = '';
+let httpUrl = '';
+
+if (sslOptions) {
+  /** HTTPS server (main) */
+  const server = https.createServer(sslOptions, handleRequest);
+  server.listen(PORT, '0.0.0.0', () => {
+    httpsUrl = `https://0.0.0.0:${PORT}`;
+    printBanner();
+  });
+
+  /** HTTP redirect server (port 8000 → HTTPS) */
+  const httpRedirect = http.createServer((req, res) => {
+    const host = req.headers.host ? req.headers.host.split(':')[0] : 'localhost';
+    res.writeHead(301, { Location: `https://${host}:${PORT}${req.url}` });
+    res.end();
+  });
+  httpRedirect.listen(8000, '0.0.0.0', () => {
+    httpUrl = `http://0.0.0.0:8000 (redirects to HTTPS)`;
+  });
+} else {
+  /** Fallback: plain HTTP (no SSL certs) */
+  const server = http.createServer(handleRequest);
+  server.listen(PORT, '0.0.0.0', () => {
+    httpsUrl = `http://0.0.0.0:${PORT} (no SSL — camera may not work on mobile)`;
+    printBanner();
+  });
+}
+
+function printBanner() {
   console.log(`
-  ╔══════════════════════════════════════════════╗
-  ║  SkinGlow Mock Server                        ║
-  ║  Running on: http://localhost:${PORT}          ║
-  ║  Mock Mode:  ENABLED                         ║
-  ║                                              ║
-  ║  Endpoints:                                  ║
-  ║    GET /                       → App Shell       ║
-  ║    GET /api/loading/partial    → Loading HTML    ║
-  ║    GET /api/analysis/status    → Status JSON     ║
-  ║    GET /api/login/partial      → Login HTML      ║
-  ║    GET /api/scan/partial       → Scan HTML       ║
-  ║    GET /api/artikel/partial    → Artikel HTML    ║
-  ║    GET /api/community/partial  → Community HTML  ║
-  ║    GET /api/profile/partial   → Profile HTML    ║
-  ║    Any path + ?dry_run=true   → 200 OK          ║
-  ╚══════════════════════════════════════════════╝
+  ╔══════════════════════════════════════════════════╗
+  ║  SkinGlow Mock Server                            ║
+  ║  HTTPS:  https://localhost:${PORT}                  ║
+  ║  Network: https://192.168.1.8:${PORT}               ║
+  ║  HTTP:   ${httpUrl || '(no HTTP redirect)'}  ║
+  ║  Mock Mode:  ENABLED                             ║
+  ║                                                  ║
+  ║  Endpoints:                                      ║
+  ║    GET /                       → Loading           ║
+  ║    GET /scan                   → Scan Page         ║
+  ║    GET /login                  → Login Page        ║
+  ║    GET /home                   → Home Page         ║
+  ║    GET /account                → Account Page      ║
+  ║    GET /community              → Community         ║
+  ║    GET /profile                → Profile           ║
+  ║    GET /artikel                → Artikel           ║
+  ║    GET /chatbot                → Chatbot           ║
+  ║                                                  ║
+  ║    GET /api/loading/partial    → Loading HTML      ║
+  ║    GET /api/analysis/status    → Status JSON       ║
+  ║    GET /api/login/partial      → Login HTML        ║
+  ║    GET /api/scan/partial       → Scan HTML         ║
+  ║    GET /api/artikel/partial    → Artikel HTML      ║
+  ║    GET /api/community/partial  → Community HTML    ║
+  ║    GET /api/profile/partial    → Profile HTML      ║
+  ║    Any path + ?dry_run=true    → 200 OK            ║
+  ╚══════════════════════════════════════════════════╝
   `);
-});
+}

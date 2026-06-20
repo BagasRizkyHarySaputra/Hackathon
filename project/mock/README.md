@@ -28,12 +28,6 @@ The server starts on **http://localhost:8001**.
 | `GET` | `/api/analysis/status` | Mock analysis status JSON |
 | `GET` | `/api/login/partial` | Login page HTML partial |
 | `POST` | `/api/auth/login` | Mock login response JSON |
-| `GET` | `/api/scan/partial` | Scan page HTML partial |
-| `GET` | `/api/artikel/partial` | Artikel page HTML partial |
-| `GET` | `/api/community/partial` | Community page HTML partial |
-| `GET` | `/api/community-admin/partial` | Community Admin page HTML partial |
-| `GET` | `/api/profile/partial` | Profile page HTML partial |
-| `GET` | `/api/tips-artikel/partial` | Tips & Artikel page HTML partial |
 | `GET` | `/offline.html` | PWA offline fallback |
 | `GET` | `/pages/loading/` | Loading page (standalone) |
 | `GET` | `/*` + `?dry_run=true` | Returns 200 OK without side effects |

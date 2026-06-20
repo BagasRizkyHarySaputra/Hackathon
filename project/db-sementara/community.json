@@ -1,0 +1,51 @@
+{
+  "general": {
+    "messages": [
+      {
+        "id": 1,
+        "type": "received",
+        "text": "Hadirin sekalian, dimohon untuk selalu menjaga kesehatan kulit wajah masing-masing ya.",
+        "timestamp": "2026-06-19T10:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "type": "received",
+        "text": "Jangan lupa untuk selalu menggunakan sunscreen setiap hari.",
+        "timestamp": "2026-06-19T10:01:00.000Z"
+      },
+      {
+        "id": 1781870430098,
+        "type": "sent",
+        "text": "hello",
+        "timestamp": "2026-06-19T12:00:30.098Z"
+      },
+      {
+        "id": 1781870430099,
+        "type": "received",
+        "text": "Meehh…",
+        "timestamp": "2026-06-19T12:00:30.098Z"
+      },
+      {
+        "id": 1781871049557,
+        "type": "sent",
+        "text": "halo",
+        "timestamp": "2026-06-19T12:10:49.557Z"
+      },
+      {
+        "id": 1781871049559,
+        "type": "received",
+        "text": "Meehh…",
+        "timestamp": "2026-06-19T12:10:49.558Z"
+      }
+    ]
+  },
+  "acne-fighter": {
+    "messages": []
+  },
+  "skincare-review": {
+    "messages": []
+  },
+  "skincare": {
+    "messages": []
+  }
+}

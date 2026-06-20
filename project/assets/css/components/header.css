@@ -105,3 +105,78 @@
   height: 50%;
   object-fit: contain;
 }
+
+/* ═══════════════════════════════════════════════════════════
+ * Mobile: Header stacks vertically, actions float top-right
+ * Breakpoint: max-width 768px
+ * ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  .home-header {
+    flex-direction: column;
+    gap: 1.8vh;
+    margin-bottom: 4.5vh;
+    width: 100%;
+    position: relative;
+  }
+
+  .home-header::before {
+    content: "L I C I N";
+    display: block;
+    font-family: 'Onest', sans-serif;
+    font-size: 3.2vw;
+    font-weight: 600;
+    color: #6E7F99;
+    letter-spacing: 0.9vw;
+    margin-bottom: 0.9vh;
+  }
+
+  .home-header__greeting-wrap {
+    padding-top: 0;
+  }
+
+  .home-header__greeting {
+    font-size: 5vw;
+    font-weight: 600;
+    color: #2B2B2B;
+    line-height: 1.2;
+  }
+
+  .home-header__sub {
+    font-size: 3vw;
+    color: #2B2B2B;
+    margin-top: 0.9vh;
+  }
+
+  .home-header__actions {
+    position: absolute;
+    top: 0.9vh;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 2.7vw;
+    margin-left: 0;
+  }
+
+  .header-action-btn {
+    width: 8.3vw;
+    height: 8.3vw;
+    max-width: 36px;
+    max-height: 36px;
+    border-radius: 2.3vw;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .avatar-btn {
+    width: 9.3vw;
+    height: 9.3vw;
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 50%;
+    background: #E8EDF5;
+  }
+
+}

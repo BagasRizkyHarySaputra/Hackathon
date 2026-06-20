@@ -28,14 +28,32 @@
   background: transparent;
 }
 
+/* ─── Page entrance animation ─── */
+@keyframes profile-scroll-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2.5vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ─── Content Inner Wrap (consistent with .app-content) ─── */
 .profile-content {
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;              /* ← CENTERS the content, fixes left-shrink */
-  padding: 0 4vw 3.91vh 4vw;    /* responsive vw padding like other pages */
+  margin: 0 auto;
+  padding: 0 4vw 3.91vh 4vw;
   position: relative;
   z-index: 1;
+  animation: profile-scroll-in 0.55s ease-out forwards;
+}
+
+/* Account edit section — replay entrance animation each time it appears */
+#account-grid-wrap {
+  animation: profile-scroll-in 0.5s ease-out both;
 }
 
 /* ─── Profile Header ─── */

@@ -5,11 +5,11 @@
   var active = root.getAttribute('data-active') || 'home';
 
   var navItems = [
-    { id: 'home', label: 'Home', icon: 'home.svg', href: '/pages/home/index.html' },
-    { id: 'community', label: 'Community', icon: 'Message.svg', href: '/pages/community/index.html' },
-    { id: 'scan', label: 'Scan', icon: 'camera.svg', href: '/pages/scan-page/index.html' },
-    { id: 'diary', label: 'Diary', icon: 'document.svg', href: '/pages/artikel/index.html' },
-    { id: 'profile', label: 'Profile', icon: 'user.svg', href: '/pages/profile/index.html' }
+    { id: 'home', label: 'Home', icon: 'home.svg', href: '/home' },
+    { id: 'community', label: 'Community', icon: 'Message.svg', href: '/community' },
+    { id: 'scan', label: 'Scan', icon: 'camera.svg', href: '/scan-page' },
+    { id: 'diary', label: 'Diary', icon: 'document.svg', href: '/artikel' },
+    { id: 'profile', label: 'Profile', icon: 'user.svg', href: '/profile' }
   ];
 
   var html = '<div class="sidebar-column">' +
@@ -35,5 +35,12 @@
 
   root.innerHTML = html;
 
+  var mascot = root.querySelector('.mascot-img');
+  if (mascot) {
+    mascot.style.cursor = 'pointer';
+    mascot.addEventListener('click', function() {
+      window.location.href = '/chatbot';
+    });
+  }
 
 })();

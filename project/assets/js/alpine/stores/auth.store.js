@@ -49,6 +49,15 @@ document.addEventListener('alpine:init', () => {
       console.log('[INFO] [Auth Store] User logged in.', { email: user.email });
     },
 
+    setToken(token) {
+      this.token = token;
+      this.isAuthenticated = !!token;
+    },
+
+    setUser(user) {
+      this.user = user;
+    },
+
     /**
      * Clears all authentication state and redirects to login page.
      */

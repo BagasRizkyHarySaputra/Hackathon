@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/header.css" />
   <link rel="stylesheet" href="/assets/css/components/scan-page.css" />
+<link rel="stylesheet" href="/assets/css/components/scan-mobile.css" />
 </head>
 <body style="height:100%;background:#FFFFFF;">
   <div class="scan-page-viewport">
@@ -32,7 +33,7 @@
       <div id="sidebar-root" data-active="scan"></div>
 
       <main class="app-main app-main--scroll">
-        <header id="header-root" class="home-header" data-show-greeting="false"></header>
+        <header id="header-root" class="home-header" data-show-greeting="true"></header>
 
         <div class="scan-card-wrap" x-data="createScanPageComponent()">
           <!-- Card Header Row: back / title / help -->
@@ -77,7 +78,18 @@
               <div class="scan-frame__corner scan-frame__corner--br"></div>
             </div>
 
-  <div class="scan-camera-error" x-show="cameraError" x-text="cameraError" aria-live="polite"></div>
+  <div class="scan-camera-error" x-show="cameraError && !cameraReady" role="alert">
+    <svg class="scan-camera-error__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+      <circle cx="12" cy="13" r="4"/>
+    </svg>
+    <p class="scan-camera-error__title">Camera Access Required</p>
+    <p class="scan-camera-error__text" x-text="cameraError"></p>
+    <button class="scan-camera-error__btn" @click="requestCamera()">
+      Allow Camera Access
+    </button>
+    <p class="scan-camera-error__hint">We need camera access to scan your skin</p>
+  </div>
 
   <button
     class="scan-camera-btn"
@@ -123,24 +135,22 @@
         <div class="scan-overlay-card__info">
           <h3 class="scan-overlay-card__name" x-text="product?.name"></h3>
           <p class="scan-overlay-card__desc" x-text="product?.description"></p>
-          <div class="scan-overlay-card__routine">
-            <button
-              class="scan-results-routine-btn"
-              :class="{ 'active': routineType === 'morning' }"
-              @click="routineType = 'morning'"
-            >
-              <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
-              <span>Morning</span>
-            </button>
-            <button
-              class="scan-results-routine-btn"
-              :class="{ 'active': routineType === 'night' }"
-              @click="routineType = 'night'"
-            >
-              <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
-              <span>Night</span>
-            </button>
-          </div>
+        </div>
+        <div class="scan-overlay-card__routine">
+          <button
+            class="scan-results-routine-btn"
+            :class="{ 'active': routineType === 'morning' }"
+            @click="routineType = 'morning'"
+          >
+            <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
+          </button>
+          <button
+            class="scan-results-routine-btn"
+            :class="{ 'active': routineType === 'night' }"
+            @click="routineType = 'night'"
+          >
+            <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
+          </button>
         </div>
         <button class="scan-overlay-card__save" @click="saveRoutine()" aria-label="Save routine">
           <span>Save Routine</span>
@@ -165,8 +175,8 @@
   <script src="/config/app.config.js"></script>
   <script src="/assets/js/components/sidebar.js"></script>
   <script src="/assets/js/components/header.js"></script>
-  <script src="/assets/js/alpine/components/scan.js"></script>
+  <script src="/assets/js/alpine/components/scan-page.js"></script>
   <script src="/assets/js/router.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
 </body>
 </html>

@@ -1,13 +1,88 @@
+<!--
+  ============================================================
+  FILE: index.html
+  ============================================================
+  FEATURE: App Shell — PWA Entry Point
+  PURPOSE:
+    Main entry point for the SkinGlow Analyzer PWA. Serves as
+    the application shell with navigation and toast container.
+  HTMX CONTRACT:
+    - Navigation links use hx-get for partial page swaps
+    - Toast notifications rendered via Alpine.js store
+  ALPINE DEPENDENCIES:
+    - ui.store.js (toasts, theme)
+    - auth.store.js (authentication state)
+  ============================================================
+-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data x-cloak>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkinGlow Analyzer — AI-powered skin analysis and glow detection." />
   <meta name="theme-color" content="#95B4C6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="SkinGlow" />
   <link rel="manifest" href="/manifest.json" />
-  <title>LICIN</title>
-  <script>window.location.replace('/pages/loading/index.html');</script>
+  <link rel="icon" type="image/png" href="/assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/loading.css" />
+  <title>SkinGlow Analyzer</title>
 </head>
-<body></body>
+<body>
+  <div id="app">
+    <!-- Main Content Area -->
+    <main class="loading-page">
+      <div class="loading-bg-blur" aria-hidden="true">
+        <div class="loading-bg-blur__blob--pink-tl"></div>
+        <div class="loading-bg-blur__blob--blue-tr"></div>
+        <div class="loading-bg-blur__blob--dusty-center"></div>
+        <div class="loading-bg-blur__blob--blue-bl"></div>
+        <div class="loading-bg-blur__blob--pink-br"></div>
+        <div class="loading-bg-blur__blob--slate"></div>
+      </div>
+      <div class="loading-layout">
+        <div class="loading-mascot" aria-hidden="true">
+          <img class="loading-mascot__svg" src="/assets/icons/water-drop-mascot.svg" alt="" width="220" height="234" loading="eager" />
+        </div>
+        <div class="loading-content" x-data="createLoadingComponent()" @beforeunload.window="destroy()">
+          <div class="loading-heading-wrapper">
+            <h1 class="loading-heading" x-html="statusMessage.replace('\n', '<br>')"></h1>
+          </div>
+          <p class="loading-subtext" x-text="subtext"></p>
+          <div class="loading-progress-wrapper">
+            <div class="loading-progress-track" role="progressbar" :aria-valuenow="displayProgress" aria-valuemin="0" aria-valuemax="100" :aria-label="'Analysis progress: ' + displayProgress + '%'">
+              <div class="loading-progress-fill" :style="'width: ' + progress + '%'"></div>
+            </div>
+          </div>
+          <div class="loading-percentage">
+            <svg class="loading-percentage__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" x-show="isLoading">
+              <path d="M12 2C6.48 2 2 6.48 2 12h2c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8v2c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+            </svg>
+            <svg class="loading-percentage__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" x-show="isComplete" x-cloak style="animation: none; fill: #4CAF50;">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+            </svg>
+            <span class="loading-percentage__text" x-text="displayProgress + '%'"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="toast-container" x-data aria-live="polite" aria-atomic="true" style="position: fixed; top: 16px; right: 16px; z-index: 9999; display: flex; flex-direction: column; gap: 8px;">
+      <template x-for="toast in $store.ui?.toasts || []" :key="toast.id">
+        <div :class="'toast toast--' + toast.type" style="padding: 12px 20px; border-radius: 8px; background: #333; color: #fff; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: opacity 0.3s;" x-text="toast.message" @click="$store.ui.removeToast(toast.id)"></div>
+      </template>
+    </div>
+  </div>
+  <script src="/config/app.config.js"></script>
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script src="/assets/js/vendor/htmx.min.js"></script>
+  <script src="/assets/js/alpine/app.js"></script>
+  <script src="/assets/js/alpine/stores/ui.store.js"></script>
+  <script src="/assets/js/alpine/stores/auth.store.js"></script>
+  <script src="/assets/js/alpine/components/loading.js"></script>
+  <script src="/assets/js/htmx/config.js"></script>
+  <script src="/assets/js/htmx/interceptors.js"></script>
+  <script src="/assets/js/pwa/sw-register.js"></script>
+</body>
 </html>

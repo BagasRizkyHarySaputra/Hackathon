@@ -311,7 +311,7 @@ input.ba-slider {
   justify-content: center;
 }
 
-.home-mascot-bubble { /* ─── Mascot & Bubble (inside diary card, right of Before/After) ─── */
+.home-mascot-bubble { /* ─── Mascot & Bubble (desktop: inside diary card, right of Before/After) ─── */
   flex: 0 0 30%;
   min-width: 0;
   display: flex;
@@ -321,9 +321,18 @@ input.ba-slider {
   gap: 0vh;
   margin-top: 0;
 }
+.home-mascot-bubble--mobile {
+  display: none;
+}
 .mascot-bubble{
   width: 15.42vw;
   max-width: 200px;
+}
+
+.mascot-img--sm {
+  width: 10vw;
+  max-width: 300px;
+  height: auto;
 }
 
 .bubble {
@@ -349,12 +358,20 @@ input.ba-slider {
   text-align: center;
 }
 
+.summary-body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.04vw;
+  width: 100%;
+}
+
 .donut-wrap {
-  margin-top: 1.56vh;
+  margin-top: 1vh;
 }
 
 .donut {
-  width: 16.15vw;
+  width: 11vw;
   max-width: 233px;
   aspect-ratio: 1;
   position: relative;

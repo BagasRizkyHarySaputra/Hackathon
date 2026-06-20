@@ -11,22 +11,22 @@
   <link rel="stylesheet" href="/assets/css/components/scan.css" />
 </head>
 <body>
-  <div class="scan-bg" aria-hidden="true"></div>
+  <main class="scan-page">
+    <div class="scan-bg" aria-hidden="true">
+      <div class="scan-bg__bubble scan-bg__bubble--1"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--2"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--3"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--4"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--5"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--6"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--7"></div>
+      <div class="scan-bg__bubble scan-bg__bubble--8"></div>
+    </div>
 
-  <main class="app-main app-main--scan" id="scan-container">
     <div class="scan-layout" x-data="createScanComponent()">
       <div class="scan-card">
-        
-        <div class="scan-mascot" aria-hidden="true">
-          <img 
-            src="/assets/icons/water-drop-mascot.svg" 
-            alt="Mascot" 
-            class="scan-mascot__img"
-          />
-        </div>
-
         <h1 class="scan-card__title">What's Your Skin Type?</h1>
-
+      
         <div class="scan-card__options">
           <template x-for="type in skinTypes" :key="type.id">
             <button
@@ -35,12 +35,12 @@
               @click="selectType(type.id)"
               type="button"
             >
-              <span class="scan-type-btn__label" x-text="type.label"></span>
+              <span x-text="type.label"></span>
             </button>
           </template>
         </div>
-
-        <div class="scan-card__footer">
+      
+        <div class="scan-card__action">
           <button
             class="scan-confirm-btn"
             @click="confirmSelection()"
@@ -50,13 +50,21 @@
             Confirm
           </button>
         </div>
+      
+        <div class="scan-mascot" aria-hidden="true">
+          <img 
+            src="/assets/icons/water-drop-mascot.svg" 
+            alt="Mascot" 
+            class="scan-mascot__img"
+          />
+        </div>
       </div>
     </div>
   </main>
 
   <script src="/config/app.config.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script src="/assets/js/vendor/htmx.min.js"></script>
   <script src="/assets/js/alpine/app.js"></script>
   <script src="/assets/js/alpine/stores/ui.store.js"></script>
   <script src="/assets/js/alpine/stores/auth.store.js"></script>
@@ -64,6 +72,5 @@
   <script src="/assets/js/htmx/config.js"></script>
   <script src="/assets/js/htmx/interceptors.js"></script>
   <script src="/assets/js/pwa/sw-register.js"></script>
-<script src="/assets/js/router.js"></script>
 </body>
 </html>

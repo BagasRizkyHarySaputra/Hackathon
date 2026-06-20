@@ -9,24 +9,27 @@
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/loading.css" />
   <link rel="stylesheet" href="/assets/css/components/login.css" />
+<link rel="stylesheet" href="/assets/css/components/login-mobile.css" />
 </head>
 <body>
-  <main class="app-main app-main--login-page" id="login-container">
+  <main class="login-page" id="login-container">
     <div class="login-layout" x-data="createLoginComponent()">
+      
       <div class="login-mascot" aria-hidden="true">
         <img class="login-mascot__svg" src="/assets/icons/water-drop-mascot.svg" alt="SkinGlow mascot"/>
       </div>
 
       <div class="login-card-area">
         <div class="login-card-container" :data-tab="activeTab" :anim-direction="animDirection">
-          <img class="login-card-box login-card-box--signin" src="/assets/shape/Sign-In.svg" alt="" aria-hidden="true" />
-          <img class="login-card-box login-card-box--signup" src="/assets/shape/Sign-up.svg" alt="" aria-hidden="true" />
+          <img class="login-card-svg login-card-svg--signin" src="/assets/shape/Sign-In.svg" alt="" aria-hidden="true" />
+          <img class="login-card-svg login-card-svg--signup" src="/assets/shape/Sign-up.svg" alt="" aria-hidden="true" />
 
           <div class="login-card-content">
             <div class="login-tabs">
               <button class="login-tab" :class="{ 'login-tab--active': activeTab === 'signin' }" type="button" @click="switchTab('signin')">Sign In</button>
               <button class="login-tab" :class="{ 'login-tab--active': activeTab === 'signup' }" type="button" @click="switchTab('signup')">Sign Up</button>
             </div>
+            
             <div class="login-social">
               <button class="login-social__btn" type="button" aria-label="Google">
                 <img src="/assets/icons/artikel/google-logo.svg" alt="" />
@@ -35,83 +38,88 @@
                 <img src="/assets/icons/artikel/Facebook-Icons.svg" alt="" />
               </button>
             </div>
+            
             <div class="login-divider">
               <div class="login-divider__line"></div>
               <span class="login-divider__text">Or</span>
               <div class="login-divider__line"></div>
             </div>
 
-            <!-- Sign In Form -->
-            <form id="login-form" class="login-form" x-show="activeTab === 'signin'" @submit.prevent="handleSubmit">
-              <div class="login-input-group">
-                <span class="login-input-group__icon">
-                  <img src="/assets/icons/artikel/Email.svg" alt="" />
-                </span>
-                <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
-              </div>
-              <div class="login-input-group">
-                <span class="login-input-group__icon">
-                  <img src="/assets/icons/artikel/Lock.svg" alt="" />
-                </span>
-                <input class="login-input" :type="passwordType" x-model="password" placeholder="Password" autocomplete="current-password" />
-                <button class="login-input-group__toggle" type="button" @click="togglePassword">
-                  <img x-show="!showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
-                  <img x-show="showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
-                </button>
-              </div>
-              <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
-              <p class="login-account-link">Don't have an account? <a href="#" @click.prevent="switchTab('signup')">Sign Up</a></p>
-            </form>
+            <div class="login-forms-wrapper">
+              <form id="login-form" class="login-form login-form--signin" @submit.prevent="handleSubmit">
+                <div class="login-input-group">
+                  <span class="login-input-group__icon">
+                    <img src="/assets/icons/artikel/Email.svg" alt="" />
+                  </span>
+                  <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
+                </div>
+                <div class="login-input-group">
+                  <span class="login-input-group__icon">
+                    <img src="/assets/icons/artikel/Lock.svg" alt="" />
+                  </span>
+                  <input class="login-input" :type="passwordType" x-model="password" placeholder="Password" autocomplete="current-password" />
+                  <button class="login-input-group__toggle" type="button" @click="togglePassword">
+                    <img x-show="!showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
+                    <img x-show="showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
+                  </button>
+                </div>
+                <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
+                <p class="login-account-link">Don't have an account? <a href="#" @click.prevent="switchTab('signup')">Sign Up</a></p>
+              </form>
 
-            <!-- Sign Up Form -->
-            <form id="signup-form" class="login-form" x-show="activeTab === 'signup'" @submit.prevent="handleSubmit">
-              <div class="login-input-group">
-                <span class="login-input-group__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </span>
-                <input class="login-input" type="text" x-model="fullName" placeholder="Full Name" autocomplete="name" />
-              </div>
-              <div class="login-input-group">
-                <span class="login-input-group__icon">
-                  <img src="/assets/icons/artikel/Email.svg" alt="" />
-                </span>
-                <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
-              </div>
-              <div class="login-input-group">
-                <span class="login-input-group__icon">
-                  <img src="/assets/icons/artikel/Lock.svg" alt="" />
-                </span>
-                <input class="login-input" :type="passwordType" x-model="password" placeholder="Password" autocomplete="new-password" />
-                <button class="login-input-group__toggle" type="button" @click="togglePassword">
-                  <img x-show="!showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
-                  <img x-show="showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
-                </button>
-              </div>
-              <div class="login-input-group">
-                <span class="login-input-group__icon">
-                  <img src="/assets/icons/artikel/Lock.svg" alt="" />
-                </span>
-                <input class="login-input" :type="confirmPasswordType" x-model="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" />
-                <button class="login-input-group__toggle" type="button" @click="toggleConfirmPassword">
-                  <img x-show="!showConfirmPassword" src="/assets/icons/artikel/eye.svg" alt="" />
-                  <img x-show="showConfirmPassword" src="/assets/icons/artikel/eye.svg" alt="" />
-                </button>
-              </div>
-              <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
-              <p class="login-account-link">Already have an account? <a href="#" @click.prevent="switchTab('signin')">Sign In</a></p>
-            </form>
+              <form id="signup-form" class="login-form login-form--signup" @submit.prevent="handleSubmit">
+                <div class="login-input-group">
+                  <span class="login-input-group__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <input class="login-input" type="text" x-model="fullName" placeholder="Full Name" autocomplete="name" />
+                </div>
+                <div class="login-input-group">
+                  <span class="login-input-group__icon">
+                    <img src="/assets/icons/artikel/Email.svg" alt="" />
+                  </span>
+                  <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
+                </div>
+                <div class="login-input-group">
+                  <span class="login-input-group__icon">
+                    <img src="/assets/icons/artikel/Lock.svg" alt="" />
+                  </span>
+                  <input class="login-input" :type="passwordType" x-model="password" placeholder="Password" autocomplete="new-password" />
+                  <button class="login-input-group__toggle" type="button" @click="togglePassword">
+                    <img x-show="!showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
+                    <img x-show="showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
+                  </button>
+                </div>
+                <div class="login-input-group">
+                  <span class="login-input-group__icon">
+                    <img src="/assets/icons/artikel/Lock.svg" alt="" />
+                  </span>
+                  <input class="login-input" :type="confirmPasswordType" x-model="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" />
+                  <button class="login-input-group__toggle" type="button" @click="toggleConfirmPassword">
+                    <img x-show="!showConfirmPassword" src="/assets/icons/artikel/eye.svg" alt="" />
+                    <img x-show="showConfirmPassword" src="/assets/icons/artikel/eye.svg" alt="" />
+                  </button>
+                </div>
+                <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
+                <p class="login-account-link">Already have an account? <a href="#" @click.prevent="switchTab('signin')">Sign In</a></p>
+              </form>
+            </div>
           </div>
         </div>
+        
         <div class="login-btn-wrap">
-          <button class="login-btn" type="button" @click="handleSubmit" x-text="activeTab === 'signin' ? 'Sign In' : 'Sign Up'" :class="{ 'login-btn--loading': isSubmitting }"></button>
+          <button class="login-btn" type="button" @click="handleSubmit" :class="{ 'login-btn--loading': isSubmitting }">
+            <span x-text="activeTab === 'signin' ? 'Sign In' : 'Sign Up'">Sign In</span>
+          </button>
         </div>
+        
       </div>
     </div>
   </main>
 
   <script src="/config/app.config.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script src="/assets/js/vendor/htmx.min.js"></script>
   <script src="/assets/js/alpine/app.js"></script>
   <script src="/assets/js/alpine/stores/ui.store.js"></script>
   <script src="/assets/js/alpine/stores/auth.store.js"></script>
@@ -119,6 +127,6 @@
   <script src="/assets/js/htmx/config.js"></script>
   <script src="/assets/js/htmx/interceptors.js"></script>
   <script src="/assets/js/pwa/sw-register.js"></script>
-<script src="/assets/js/router.js"></script>
+  <script src="/assets/js/router.js"></script>
 </body>
 </html>

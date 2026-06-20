@@ -1,0 +1,16 @@
+{
+  "chats": [
+    {
+      "id": "c001",
+      "name": "Skincare Recommendation",
+      "createdAt": "2026-06-19T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "c002",
+      "name": "Skincare Routine",
+      "createdAt": "2026-06-19T10:30:00.000Z",
+      "messages": []
+    }
+  ]
+}

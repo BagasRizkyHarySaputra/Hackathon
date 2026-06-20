@@ -1,7 +1,44 @@
+/**
+ * ============================================================
+ * FILE: assets/js/alpine/components/scan.js
+ * ============================================================
+ * FEATURE: Scan Page — Skin Type Selection Alpine Component
+ *
+ * PURPOSE:
+ *   Manages the skin type selection UI. Users pick one of
+ *   six skin types (Oily, Dry, Combination, Normal, Sensitive,
+ *   Not Sure). Selected bubble turns red. Confirm button saves
+ *   selection and proceeds to the next step.
+ *
+ * USE CASES:
+ *   - Displayed after loading/login to gather user skin data
+ *   - Stores selected skin type in Alpine store for later use
+ *
+ * DEPENDENCIES:
+ *   - Alpine.js v3.x (component data pattern)
+ *   - config/app.config.js
+ *   - assets/css/components/scan.css
+ *
+ * PHASE: Frontend (Mock)
+ * ============================================================
+ */
+
+/**
+ * Creates the Alpine.js data object for the scan page.
+ * Manages skin type selection and confirmation.
+ *
+ * @returns {Object} Alpine component data object
+ */
 function createScanComponent() {
   return {
+    /** @type {string|null} Currently selected skin type ID */
     selectedType: null,
 
+    /**
+     * Available skin type options.
+     * Each has a unique ID, display label, and base color.
+     * @type {Array<{id: string, label: string, color: string}>}
+     */
     skinTypes: [
       { id: 'oily',        label: 'Oily Skin',        color: '#FFB5B5' },
       { id: 'dry',         label: 'Dry Skin',         color: '#B5D8FF' },
@@ -11,12 +48,25 @@ function createScanComponent() {
       { id: 'unsure',      label: 'Not Sure :(',      color: '#D5D5E0' },
     ],
 
+    /**
+     * Initializes the component.
+     * Called automatically by Alpine.js on mount.
+     *
+     * @returns {void}
+     */
     init() {
       console.log('[INFO] [Scan] Component mounted.', {
         selectedType: this.selectedType,
       });
     },
 
+    /**
+     * Selects a skin type. Toggles selection if tapping the
+     * same type again (deselects).
+     *
+     * @param {string} typeId - The skin type ID to select
+     * @returns {void}
+     */
     selectType(typeId) {
       if (this.selectedType === typeId) {
         this.selectedType = null;
@@ -27,19 +77,27 @@ function createScanComponent() {
       }
     },
 
+    /**
+     * Confirms the skin type selection.
+     * Stores the result and dispatches an event or navigates.
+     *
+     * @returns {void}
+     */
     confirmSelection() {
       if (!this.selectedType) return;
 
       const selected = this.skinTypes.find(t => t.id === this.selectedType);
       console.log('[INFO] [Scan] Confirmed selection:', selected);
 
+      /** Store in Alpine global store if available */
       if (this.$store?.ui) {
-        this.$store.ui.addToast(
+        this.$store.ui.showToast(
           `Skin type set to: ${selected.label}`,
           'success'
         );
       }
 
+      /** Dispatch custom event for parent/HTMX handling */
       this.$dispatch('skin:type-selected', {
         type: this.selectedType,
         label: selected.label,
@@ -47,107 +105,9 @@ function createScanComponent() {
 
       if (typeof APP_CONFIG !== 'undefined' && APP_CONFIG.IS_MOCK_MODE) {
         setTimeout(() => {
-          window.location.href = '/pages/home/index.html';
-        }, 600);
+          window.location.href = '/home';
+        }, 800);
       }
-    },
-  };
-}
-
-function createScanPageComponent() {
-  return {
-    cameraReady: false,
-    cameraError: null,
-    capturedImage: null,
-    stream: null,
-    showPopup: false,
-    routineType: 'morning',
-    analysis: null,
-    product: null,
-
-    init() {
-      this.startCamera();
-    },
-
-    async startCamera() {
-      try {
-        this.stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
-          audio: false,
-        });
-        this.$refs.video.srcObject = this.stream;
-        this.$refs.video.onloadedmetadata = () => {
-          this.$refs.canvas.width = this.$refs.video.videoWidth;
-          this.$refs.canvas.height = this.$refs.video.videoHeight;
-          this.cameraReady = true;
-        };
-      } catch (err) {
-        this.cameraError = 'Camera access denied. Please allow camera permissions.';
-        console.error('[ScanPage] Camera error:', err);
-      }
-    },
-
-    capturePhoto() {
-      if (!this.cameraReady) return;
-
-      const video = this.$refs.video;
-      const canvas = this.$refs.canvas;
-      const ctx = canvas.getContext('2d');
-
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      this.capturedImage = canvas.toDataURL('image/png');
-
-      this.stopCamera();
-
-      this.$dispatch('skin:photo-captured', { image: this.capturedImage });
-
-      this.loadMockResults();
-      this.showPopup = true;
-    },
-
-  loadMockResults() {
-    this.analysis = {
-      stats: [
-        { label: 'Dark Spot', value: '10%' },
-        { label: 'Pustules', value: '7%' },
-        { label: 'Papules', value: '18%' },
-      ],
-      markers: [
-        { id: 1, x: 35, y: 38, label: 'Dark Spot 10%' },
-        { id: 2, x: 62, y: 55, label: 'Pustules 7%' },
-        { id: 3, x: 45, y: 68, label: 'Papules 18%' },
-      ],
-    };
-
-    this.product = {
-      name: 'Facial Treatment Gentle Cleanser',
-      description: 'A nourishing facial cleanser that gently cleanses while maintaining the skin\'s natural moisture balance.',
-    };
-  },
-
-    retakePhoto() {
-      this.capturedImage = null;
-      this.showPopup = false;
-      this.analysis = null;
-      this.product = null;
-      this.startCamera();
-    },
-
-    saveRoutine() {
-      console.log('[ScanPage] Save routine:', this.routineType);
-      this.showPopup = false;
-    },
-
-    stopCamera() {
-      if (this.stream) {
-        this.stream.getTracks().forEach(track => track.stop());
-        this.stream = null;
-      }
-      this.cameraReady = false;
-    },
-
-    destroy() {
-      this.stopCamera();
     },
   };
 }

@@ -27,32 +27,30 @@
   overflow: hidden;
 }
 
-/* ─── Community Card ─── */
-.community-card {
-  width: 100%;
+/* ─── Community Content: wraps channel-section + card, looks like one card on desktop ─── */
+.community-content {
+  display: flex;
+  flex-direction: row;
   flex: 1;
   min-height: 0;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 1.67vw;
-  box-shadow: 0 4px 24px rgba(110, 127, 153, 0.08);
+  box-shadow: 0 4px 24px rgba(110, 127, 153, 0.08), 0px 6px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Community Card ─── */
+.community-card {
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  position: relative;
-  z-index: 1;
-    box-shadow: 
-    /* 1. Drop shadow di bagian bawah (luar) */
-    0px 6px 8px rgba(0, 0, 0, 0.15);
-    
-    /* 2. Inner shadow gelap di bagian atas */
-    /* inset 0px 6px 4px rgba(0, 0, 0, 0.1), */
-    
-    /* 3. Inner shadow terang (putih) di bagian kiri dan bawah */
-    /* inset 4px -4px 4px rgba(255, 255, 255, 0.4); */
-
 }
 
 /* ─── Channel Avatars Section (leftmost) ─── */
@@ -122,11 +120,49 @@
 
 }
 
+.community-card__body {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
 .topic-panel__header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.5vw;
   margin-bottom: 0.5vh;
+}
+
+/* ─── Burger Toggle (hidden on desktop, visible on mobile) ─── */
+.topic-panel__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.topic-panel__burger-line {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: rgba(43, 43, 43, 0.6);
+  border-radius: 1px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.topic-panel__list {
+  display: flex;
+  flex-direction: column; /* Menyusun item secara vertikal dari atas ke bawah */
+  gap: 1.5vh; /* 👈 Ubah angka ini untuk membesarkan atau mengecilkan jarak antar kotaknya */
 }
 
 .topic-panel__title {
@@ -200,14 +236,19 @@
   position: relative;
 }
 
-/* ─── Chat Messages ─── */
-.chat-messages {
+/* ─── Chat Messages Scroll Wrapper ─── */
+.chat-messages-scroll {
   flex: 1;
   overflow-y: auto;
-  padding: 3vh 1.5vw;
+}
+
+/* ─── Chat Messages ─── */
+.chat-messages {
   display: flex;
   flex-direction: column;
   gap: 2vh;
+  padding: 3vh 1.5vw;
+  min-height: 100%;
 }
 
 /* ─── Message Row ─── */
@@ -221,11 +262,26 @@
 .chat-msg-row--sent {
   align-self: flex-end;
   flex-direction: row-reverse;
+  animation: msg-slide-in-right 0.35s ease-out both;
 }
 
 .chat-msg-row--received {
   align-self: flex-start;
+  animation: msg-slide-in-left 0.35s ease-out both;
 }
+
+/* ─── Message Row Animations ─── */
+@keyframes msg-slide-in-left {
+  0%   { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes msg-slide-in-right {
+  0%   { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.chat-msg-row--animated { animation: none; }
 
 /* ─── Chat Avatar (small, next to message) ─── */
 .chat-avatar {
@@ -256,12 +312,49 @@
   background: #FCEFEF;
 }
 
+/* ─── Water-drop mascot in received avatars ─── */
+.chat-avatar__mascot {
+  width: 3.33vw;
+  height: 3.33vw;
+  max-width: 48px;
+  max-height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid #FFFFFF;
+  box-shadow:
+    0px 6px 8px rgba(0, 0, 0, 0.15),
+    inset 0px 6px 4px rgba(0, 0, 0, 0.1),
+    inset 4px -4px 4px rgba(255, 255, 255, 0.4);
+}
+
+/* ─── Active channel avatar ─── */
+.channel-avatar--active .channel-avatar__circle {
+  border-color: #95B4C6;
+  box-shadow:
+    0px 6px 8px rgba(0, 0, 0, 0.15),
+    0 0 0 3px rgba(149, 180, 198, 0.35),
+    inset 0px 6px 4px rgba(0, 0, 0, 0.1),
+    inset 4px -4px 4px rgba(255, 255, 255, 0.4);
+}
+
+.channel-avatar {
+  cursor: pointer;
+}
+
+/* ─── Active topic item ─── */
+.topic-item--active {
+  box-shadow:
+    0px 6px 8px rgba(0, 0, 0, 0.15),
+    0 0 0 2px rgba(149, 180, 198, 0.4),
+    inset 4px -4px 4px rgba(255, 255, 255, 0.4);
+}
+
 /* ─── Chat Bubble ─── */
 .chat-bubble {
   border-radius: 1.11vw;
   border: 2px solid #FFFFFF;
   padding: 1.5vh 1.39vw;
-  max-width: 100%;
+  max-width: min(80%, 480px);
   box-shadow: 
     /* 1. Drop shadow di bagian bawah (luar) */
     0px 6px 8px rgba(0, 0, 0, 0.15),
@@ -287,10 +380,11 @@
 .chat-bubble__text {
   font-family: 'Onest', sans-serif;
   font-size: clamp(0.7rem, 0.9vw, 0.8125rem);
-
   font-weight: 500;
   color: rgba(43, 43, 43, 0.8);
   line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 /* ─── Chat Input ─── */
@@ -301,19 +395,39 @@
   padding: 1.8vh 1.5vw;
   border-top: 1px solid rgba(110, 127, 153, 0.12);
   flex-shrink: 0;
+  position: relative;
 }
 
 .chat-input__field {
   flex: 1;
   min-width: 0;
-  height: 5.5vh;
   min-height: 40px;
+  max-height: 15vh;
   background: #CACDD6;
   border-radius: 0.83vw;
   border: 4px solid #FFFFFF;
   display: flex;
-  align-items: center;
-  padding: 0 1.11vw;
+  align-items: stretch;
+  padding: 0.8vh 1.11vw;
+}
+
+.chat-input__textbox {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.83vw, 0.75rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.4;
+  max-height: calc(3lh + 4px);
+}
+
+.chat-input__textbox::placeholder {
+  color: rgba(43, 43, 43, 0.5);
 }
 
 .chat-input__placeholder {
@@ -349,16 +463,64 @@
   height: 2.78vw;
 }
 
+/* ─── Emoji Picker ─── */
+.emoji-picker {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  right: 0.5vw;
+  margin-bottom: 0.5vh;
+  background: #FFFFFF;
+  border-radius: 0.83vw;
+  box-shadow: 0 4px 24px rgba(110, 127, 153, 0.15), 0px 6px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(110, 127, 153, 0.12);
+  padding: 0.8vh 0.6vw;
+  z-index: 200;
+  max-width: 260px;
+  max-height: 160px;
+  overflow-y: auto;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.emoji-picker--open {
+  display: grid;
+}
+
+.emoji-picker__item {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  text-align: center;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.emoji-picker__item:hover {
+  background: rgba(149, 180, 198, 0.25);
+}
+
+.emoji-picker::-webkit-scrollbar {
+  width: 4px;
+}
+.emoji-picker::-webkit-scrollbar-thumb {
+  background: rgba(110, 127, 153, 0.2);
+  border-radius: 4px;
+}
+
 /* ─── Custom scrollbar for chat ─── */
-.chat-messages::-webkit-scrollbar {
+.chat-messages-scroll::-webkit-scrollbar {
   width: 0.28vw;
 }
 
-.chat-messages::-webkit-scrollbar-track {
+.chat-messages-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.chat-messages::-webkit-scrollbar-thumb {
+.chat-messages-scroll::-webkit-scrollbar-thumb {
   background: rgba(110, 127, 153, 0.25);
   border-radius: 0.14vw;
 }

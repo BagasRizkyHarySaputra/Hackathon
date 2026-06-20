@@ -49,6 +49,10 @@ document.addEventListener('alpine:init', () => {
       console.log('[INFO] [UI Store] Toast added.', { type, message });
     },
 
+    showToast(message, type = 'info', duration = 4000) {
+      this.addToast(type, message, duration);
+    },
+
     /**
      * Removes a specific toast from the queue by ID.
      * @param {number} id - Toast ID to remove

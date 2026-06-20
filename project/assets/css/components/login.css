@@ -1,14 +1,3 @@
-/**
- * ============================================================
- * FILE: assets/css/components/login.css
- * ============================================================
- * Login Page — CSS Card Boxes
- *
- * Two-column layout: mascot left, card right.
- * White/blue ethereal bokeh background.
- * Cards use pre-made SVG shapes as backgrounds.
- */
-
 :root {
   --login-text-primary: #2C2C2C;
   --login-text-body: #5A5959;
@@ -17,49 +6,46 @@
   --login-input-border: #E0E0E0;
   --login-btn-gradient-start: #E4D8DC;
   --login-btn-gradient-end: #95B4C6;
-  /* Dynamic shared size for mascot and card (1:1 ratio) */
-  --login-element-size: clamp(300px, 35vw, 700px);
+  --login-text-light: #fefefe; /* Menambahkan warna terang untuk teks bawah */
 }
 
-/* ── Page ── */
-.app-main--login-page {
+/* 1. Latar Belakang Gradien Pastel Lembut */
+.login-page {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
-  background: #eef2fa;
+  /* Gradien linier pastel lembut (pink ke biru) */
+  background: linear-gradient(135deg, #fce4ec 0%, #e1f5fe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-left: 0;
+  container-type: inline-size;
 }
 
-/* ── Blurred Bokeh Background — White/Blue Ethereal ── */
-
-/* ── Layout — Two Column ── */
+/* 2. Tata Letak Berdampingan Bersih Tanpa Tumpang Tindih */
 .login-layout {
   position: relative;
-  /* z-index: 10; */
   display: flex;
-  align-items: center;
+  align-items: center; /* Sejajarkan vertikal mascot dan panel */
   justify-content: center;
-  gap: 4.17vw;
+  gap: 18vw; /* Jarak yang lebih baik antar elemen */
   width: 100%;
-  max-width: 1100px;
-  padding: 3.91vh 2.78vw;
+  max-width: 85vw; /* Meningkatkan max-width untuk menampung kedua elemen berdampingan */
+  padding: 3vh 3vw;
 }
 
-/* ── Mascot ── */
+/* 3. Mascot Disesuaikan Tata Letaknya */
 .login-mascot {
-  flex-shrink: 0;
-  width: var(--login-element-size);
-  height: var(--login-element-size);
+  width: 27vw; /* Kurangi lebar vw agar proporsional */
+  max-width: 500px; /* Tambahkan max-width dalam px untuk kontrol yang lebih baik */
   display: flex;
   align-items: center;
   justify-content: center;
   animation: loginMascotFloat 4s ease-in-out infinite;
-  filter: drop-shadow(0 24px 48px rgba(149, 180, 198, 0.25));
+  filter: drop-shadow(0 2.2vh 4.4vh rgba(149, 180, 198, 0.25));
   z-index: 1;
+  margin-top: -2vh; /* Penyesuaian vertikal halus */
 }
 
 .login-mascot__svg {
@@ -70,61 +56,130 @@
 
 @keyframes loginMascotFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-1vh); }
 }
 
-/* ── Card Area ── */
 .login-card-area {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 0;
+  container-type: inline-size;
+  width: 30vw;
+  max-width: 600px;
 }
 
-/* ── Card Container ── */
+/* 4. Panel Login Disesuaikan Lebarnya */
 .login-card-container {
   position: relative;
-  width: var(--login-element-size);
-  aspect-ratio: 593 / 639;
-  transition: aspect-ratio 0.4s ease;
+  width: 30vw; /* Kurangi vw agar proporsional, gunakan max-width */
+  max-width: 600px; /* Max-width dalam px untuk konsistensi */
+  height: auto;
+  aspect-ratio: 573 / 644;
+  container-type: inline-size;
 }
 
-/* ── Card Box (stacked SVG shapes) ── */
-.login-card-box {
+.login-card-svg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 0.5s ease;
+  transform-origin: bottom left;
   pointer-events: none;
 }
 
-.login-card-box--signin {
-  z-index: 2;
-  opacity: 1;
-}
-
-.login-card-box--signup {
-  z-index: 1;
-  opacity: 1;
-}
-
-/* Active states — swap z-index, keep both fully visible & stacked */
-.login-card-container[data-tab="signup"] .login-card-box--signin {
-  opacity: 1;
-  z-index: 1;
-}
-
-.login-card-container[data-tab="signup"] .login-card-box--signup {
-  opacity: 1;
-  transform: translateX(0);
+.login-card-svg--signin {
   z-index: 2;
 }
 
-/* ── Card Content (overlay on top of SVG) ── */
+.login-card-svg--signup {
+  z-index: 1;
+}
+
+@keyframes swingToBack {
+  0% { transform: translateY(0) rotate(0deg); z-index: 2; }
+  50% { transform: translateY(-11vh) rotate(-90deg); z-index: 2; }
+  51% { z-index: 1; }
+  100% { transform: translateY(0) rotate(0deg); z-index: 1; }
+}
+
+@keyframes stayBackThenFront {
+  0%   { z-index: 1; }
+  50%  { z-index: 1; }
+  51%  { z-index: 2; }
+  100% { z-index: 2; }
+}
+
+@keyframes swingToBackRight {
+  0% { transform: translateY(0) rotate(0deg); z-index: 2; }
+  50% { transform: translateY(-11vh) rotate(90deg); z-index: 2; }
+  51% { z-index: 1; }
+  100% { transform: translateY(0) rotate(0deg); z-index: 1; }
+}
+
+.login-card-container[anim-direction="forward"][data-tab="signup"]
+  .login-card-svg--signin {
+  animation: swingToBack 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.login-card-container[anim-direction="forward"][data-tab="signup"]
+  .login-card-svg--signup {
+  animation: stayBackThenFront 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.login-card-container[anim-direction="backward"][data-tab="signin"]
+  .login-card-svg--signin {
+  animation: stayBackThenFront 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.login-card-container[anim-direction="backward"][data-tab="signin"]
+  .login-card-svg--signup {
+  transform-origin: bottom right;
+  animation: swingToBackRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@media (max-width: 768px) {
+  @keyframes swingToBack-responsive {
+    0%   { transform: translateY(0) rotate(0deg);   z-index: 2; }
+    50%  { transform: translateY(-7.5vh) rotate(-90deg); z-index: 2; }
+    51%  { z-index: 1; }
+    100% { transform: translateY(0) rotate(0deg);   z-index: 1; }
+  }
+  @keyframes stayBackThenFront-responsive {
+    0%   { z-index: 1; }
+    50%  { z-index: 1; }
+    51%  { z-index: 2; }
+    100% { z-index: 2; }
+  }
+  @keyframes swingToBackRight-responsive {
+    0%   { transform: translateY(0) rotate(0deg);   z-index: 2; }
+    50%  { transform: translateY(-7.5vh) rotate(90deg);  z-index: 2; }
+    51%  { z-index: 1; }
+    100% { transform: translateY(0) rotate(0deg);   z-index: 1; }
+  }
+
+  .login-card-container[anim-direction="forward"][data-tab="signup"]
+    .login-card-svg--signin {
+    animation-name: swingToBack-responsive;
+  }
+
+  .login-card-container[anim-direction="backward"][data-tab="signin"]
+    .login-card-svg--signup {
+    transform-origin: bottom right;
+    animation-name: swingToBackRight-responsive;
+  }
+
+  .login-card-container[anim-direction="forward"][data-tab="signup"]
+    .login-card-svg--signup,
+  .login-card-container[anim-direction="backward"][data-tab="signin"]
+    .login-card-svg--signin {
+    animation-name: stayBackThenFront-responsive;
+  }
+}
+
 .login-card-content {
   position: absolute;
   top: 0;
@@ -135,31 +190,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8.79vh 6.25vw 13.67vh 6.25vw;
+  padding: 17.8cqw 12cqw 12cqw 12cqw; /* Sedikit mengurangi padding horizontal untuk konten yang lebih bersih */
   pointer-events: none;
-  background: transparent;
 }
 
 .login-card-content > * {
   pointer-events: auto;
 }
 
-/* ── Tabs ── */
+/* 5. Penyejajaran Teks Panel Ditingkatkan */
 .login-tabs {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.95vh;
-  width: 100%;
+  align-items: center; /* Sejajarkan vertikal tab */
+  justify-content: space-between; /* Jarak merata */
+  width: 100%; /* Meningkatkan lebar agar lebih bersih */
+  margin-bottom:7cqw;
+  margin-top: -1vh;
+  white-space: nowrap;
 }
 
 .login-tab {
   background: none;
   border: none;
-  font-size: 1.39vw;
+  font-size: 5cqw;
   font-weight: 600;
   color: var(--login-text-primary);
   cursor: pointer;
-  padding: 0 0 0.59vh;
+  padding: 0 0.5cqw 0.6cqw; /* Jarak padding halus */
   position: relative;
   transition: color 0.2s ease;
   font-family: inherit;
@@ -171,98 +228,110 @@
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 0.35cqw;
   background-color: var(--login-text-primary);
   transition: width 0.25s ease;
 }
 
 .login-tab--active::after {
-  width: 4.86vw;
+  width: 100%; /* Gunakan 100% untuk garis penuh di bawah teks */
 }
 
-/* ── Social Buttons ── */
 .login-social {
   display: flex;
-  gap: 3.47vw;
-  margin-bottom: 1.37vh;
+  gap: 10cqw; /* Jarak yang lebih baik antar ikon sosial */
+  margin-bottom: 1cqw;
 }
 
 .login-social__btn {
-  width: 4.31vw;
-  height: 4.31vw;
+  width: 9cqw;
+  height: 9cqw;
   background: var(--login-input-bg);
   border: none;
-  border-radius: 0.97vw;
+  border-radius: 2cqw;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
   box-shadow:
-    2px 2px 6px rgba(180, 180, 180, 0.15),
-    -2px -2px 4px rgba(255, 255, 255, 0.6);
+    0.3cqw 0.3cqw 1cqw rgba(180, 180, 180, 0.15),
+    -0.3cqw -0.3cqw 0.7cqw rgba(255, 255, 255, 0.6);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .login-social__btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-0.3cqw);
   box-shadow:
-    4px 4px 10px rgba(180, 180, 180, 0.2),
-    -3px -3px 6px rgba(255, 255, 255, 0.7);
+    0.7cqw 0.7cqw 1.7cqw rgba(180, 180, 180, 0.2),
+    -0.5cqw -0.5cqw 1cqw rgba(255, 255, 255, 0.7);
 }
 
-.login-social__btn svg,
-.login-social__btn img {
-  width: 2.78vw;
-  height: 2.78vw;
+.login-social__btn svg, .login-social__btn img {
+  width: 6cqw; /* Sedikit mengurangi ukuran ikon sosial */
+  height: 6cqw;
 }
 
-/* ── Divider ── */
 .login-divider {
   display: flex;
   align-items: center;
-  gap: 0.97vw;
+  gap: 2.4cqw;
   width: 100%;
-  max-width: 22.22vw;
-  margin-bottom: 1.76vh;
+  max-width: 40cqw; /* Meningkatkan max-width untuk divider */
+  margin-bottom: 2cqw;
 }
 
 .login-divider__line {
   flex: 1;
-  height: 2px;
+  height: 1px;
   background-color: var(--login-text-primary);
-  opacity: 1;
+  opacity: 0.2;
 }
 
 .login-divider__text {
-  font-size: 0.90vw;
+  font-size: 3.1cqw;
   font-weight: 500;
   color: var(--login-text-primary);
   opacity: 0.6;
 }
 
-/* ── Form ── */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.97vw;
+.login-forms-wrapper {
   width: 100%;
+  max-width: 320px; /* Menambahkan max-width px agar konsisten di semua resolusi */
 }
 
-/* ── Input Group ── */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1cqw;
+}
+
+.login-form--signup {
+  display: none;
+}
+
+[data-tab="signup"] .login-form--signin {
+  display: none;
+}
+
+[data-tab="signup"] .login-form--signup {
+  display: flex;
+}
+
 .login-input-group {
   position: relative;
   width: 100%;
-  height: 5.08vh;
+  height: 8cqw; /* Sedikit mengurangi tinggi input agar lebih bersih */
 }
 
 .login-input-group__icon {
   position: absolute;
-  left: 1.25vw;
+  left: 3.7cqw;
   top: 50%;
   transform: translateY(-50%);
-  width: 1.67vw;
-  height: 1.67vw;
+  width: 5.2cqw;
+  height: 5.2cqw;
   color: var(--login-icon);
   pointer-events: none;
   display: flex;
@@ -270,10 +339,9 @@
   justify-content: center;
 }
 
-.login-input-group__icon svg,
-.login-input-group__icon img {
-  width: 1.67vw;
-  height: 1.67vw;
+.login-input-group__icon svg, .login-input-group__icon img {
+  width: 5.2cqw;
+  height: 5.2cqw;
   fill: var(--login-icon);
   display: block;
 }
@@ -283,9 +351,9 @@
   height: 100%;
   background: var(--login-input-bg);
   border: 1px solid var(--login-input-border);
-  border-radius: 0.83vw;
-  padding: 0 3.33vw 0 3.61vw;
-  font-size: 0.97vw;
+  border-radius: 1.8cqw; /* Mengurangi border-radius halus */
+  padding: 0 8cqw 0 11cqw; /* Mengurangi padding lateral input */
+  font-size: 3.5cqw;
   color: var(--login-text-body);
   font-family: inherit;
   outline: none;
@@ -299,103 +367,118 @@
 
 .login-input:focus {
   border-color: var(--login-btn-gradient-end);
-  box-shadow: 0 0 0 3px rgba(149, 180, 198, 0.12);
+  box-shadow: 0 0 0 0.5cqw rgba(149, 180, 198, 0.12);
 }
 
-/* ── Password Toggle ── */
 .login-input-group__toggle {
   position: absolute;
-  right: 0.97vw;
+  right: 2.6cqw;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.39vh;
+  padding: 0.7cqw;
   color: var(--login-icon);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login-input-group__toggle svg,
-.login-input-group__toggle img {
-  width: 1.53vw;
-  height: 1.53vw;
+.login-input-group__toggle svg, .login-input-group__toggle img {
+  width: 4cqw;
+  height: 4cqw;
   fill: var(--login-icon);
 }
 
-/* ── Account Link ── */
+/* 6. Teks Bawah Menggunakan Warna Terang */
 .login-account-link {
-  font-size: 0.90vw;
-  color: var(--login-text-body);
+  font-size: 3.5cqw;
+  color: var(--login-text-light); /* Gunakan warna terang target */
   text-align: center;
-  margin-top: 0.39vh;
+  margin-top: 1cqw;
 }
 
 .login-account-link a {
-  color: var(--login-btn-gradient-end);
+  color: var(--login-text-light); /* Teks link juga terang */
   text-decoration: none;
   font-weight: 600;
-  margin-left: 0.20vh;
-  transition: color 0.2s ease;
+  margin-left: 0.3cqw;
+  transition: opacity 0.2s ease;
 }
 
 .login-account-link a:hover {
-  text-decoration: underline;
+  opacity: 0.8; /* Efek hover halus daripada underline di target */
+  color: #2C2C2C;
 }
 
-/* ── Error ── */
 .login-error {
-  font-size: 0.90vw;
+  font-size: 2.8cqw;
   color: #D32F2F;
   text-align: center;
-  margin-top: 0.20vh;
-  min-height: 1.76vh;
+  margin-top: 0.3cqw;
+  min-height: 3cqw;
 }
 
-/* ── Sign In / Sign Up Button — Pill Capsule (BIG) ── */
+/* 7. Perbaikan Tombol Besar "Sign In" */
+/* Container pembungkus tombol */
+/* Container pembungkus tombol */
 .login-btn-wrap {
   position: relative;
-  z-index: 10;
+  z-index: 999;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -9vh;
+  /* Tarik tombol ke atas agar pas di lekukan bawah card */
+  margin-top: -16cqw; 
 }
 
+/* Styling utama tombol */
 .login-btn {
-  width: 25vw;
-  height: 8vh;
-  background: linear-gradient(to right, #F9F7F7 43%, #E4D8DC 88%);
+  width: 70cqw; 
+  height: 14cqw; /* Tinggi menggunakan cqw */
+  
+  /* Efek 3D Glossy putih */
+  background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%);
   border: none;
-  border-radius: 1.74vw; /* Dibuat lebih membulat agar sesuai dengan proporsi kapsul */
-  font-size: 1.53vw;
+  /* Setengah dari height agar ujungnya membulat sempurna (pill shape) */
+  border-radius: 4.25cqw; 
+  
+  /* Memusatkan teks */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 5cqw; /* Ukuran font ngikutin lebar container */
   font-weight: 600;
-  color: var(--login-text-body);
+  color: #4A4A4A;
   cursor: pointer;
   font-family: inherit;
-  /* Shadow yang lebih dalam dan lembut untuk kesan 3D Figma */
-box-shadow:
-    0 -4px 8px rgba(255, 255, 255, 0.9),      /* Cahaya putih di tepi atas (outer) */
-    0 8px 20px rgba(0, 0, 0, 0.5),      /* Bayangan dasar untuk kedalaman */
-    inset 0 1px 2px rgba(255, 255, 255, 1), /* Highlight lembut di sisi dalam atas */
-    inset -4px -4px 6px rgba(0, 0, 0, 0.5); /* Shadow dalam yang lebih lembut untuk efek emboss */
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  /* Efek shadow dikonversi ke cqw semua */
+  box-shadow: 
+    0 3.5cqw 6cqw rgba(0, 0, 0, 0.08),
+    inset 0 0.7cqw 1.2cqw rgba(255, 255, 255, 3),
+    inset 0 -1cqw 1.2cqw rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
+/* Efek saat tombol di-hover */
 .login-btn:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 16px 32px rgba(149, 180, 198, 0.5),
-    inset 0 3px 4px rgba(255, 255, 255, 0.6);
+  transform: translateY(-0.5cqw);
+  box-shadow: 
+    0 4.5cqw 7.5cqw rgba(0, 0, 0, 0.1),
+    inset 0 0.7cqw 1.2cqw rgba(255, 255, 255, 1),
+    inset 0 -0.7cqw 1.2cqw rgba(0, 0, 0, 0.03);
 }
 
+/* Efek saat tombol diklik */
 .login-btn:active {
-  transform: translateY(0);
-  box-shadow:
-    0 4px 12px rgba(149, 180, 198, 0.3),
-    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0.2cqw);
+  box-shadow: 
+    0 2cqw 3.5cqw rgba(0, 0, 0, 0.05),
+    inset 0 0.7cqw 1.2cqw rgba(255, 255, 255, 0.5),
+    inset 0 -0.7cqw 1.2cqw rgba(0, 0, 0, 0.03);
 }
 
 .login-btn--loading {
@@ -403,230 +486,71 @@ box-shadow:
   pointer-events: none;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   TAB SWITCHING — Transform Animations
-   sign-in → sign-up:  card goes UP → rotate 90° around
-                       bottom-left → rotate -90° → DOWN + fade
-   sign-up → sign-in:  mirror (bottom-right pivot, -90°)
-   ═══════════════════════════════════════════════════════════ */
-
-/* Pivot points for card flips */
-.login-card-box--signin {
-  transform-origin: bottom left;
-}
-.login-card-box--signup {
-  transform-origin: bottom right;
-}
-
-/* ── sign-in exits (up → rotate 90° → -90° → down behind sign-up) ── */
-@keyframes signinFlipOut {
-  0%   { transform: translateX(0)    rotate(0deg)   translateY(0);    opacity: 1; }
-  20%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 1; }
-  45%  { transform: translateX(0)    rotate(-90deg)  translateY(-40%); opacity: 1; }
-  70%  { transform: translateX(0)    rotate(0deg)   translateY(-40%); opacity: 1; }
-  100% { transform: translateX(0px) rotate(0deg)   translateY(0);    opacity: 1; }
-}
-
-/* ── sign-up exits (up → rotate -90° → 90° → down behind sign-in) ── */
-@keyframes signupFlipOut {
-  0%   { transform: translateX(0)    rotate(0deg)    translateY(0);   opacity: 1; }
-  20%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 1; }
-  45%  { transform: translateX(0)    rotate(90deg)  translateY(-40%); opacity: 1; }
-  70%  { transform: translateX(0)    rotate(0deg)    translateY(-40%); opacity: 1; }
-  100% { transform: translateX(0px)   rotate(0deg)    translateY(0);   opacity: 1; }
-}
-
-/* ── Trigger classes (higher specificity overrides data-tab rules) ── */
-.login-card-container[anim-direction="to-signup"] .login-card-box--signin {
-  animation: signinFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-.login-card-container[anim-direction="to-signin"] .login-card-box--signup {
-  animation: signupFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* ── Lock interaction on content during animation ── */
-.login-card-container[anim-direction] .login-card-content {
-  pointer-events: none;
-}
-
-/* ── Suppress default CSS transition during animation ── */
-.login-card-container[anim-direction] .login-card-box {
-  transition: none;
-}
-
-/* ── Responsive ── */
 @media (max-width: 1000px) {
-  :root {
-    --login-element-size: clamp(280px, 40vw, 500px);
-  }
   .login-layout {
-    gap: 32px;
-    padding: 24px;
+    gap: 3vw;
+    padding: 2.4vh 2.4vw;
+  }
+  .login-mascot {
+    width: 28vw;
+    max-width: 250px;
+  }
+  .login-card-container {
+    width: 48vw;
+    max-width: 380px;
   }
   .login-card-content {
-    padding: 16px 40px 120px;
+    padding: 12cqw 8cqw 18cqw;
+  }
+  .login-tab {
+    font-size: 4.2cqw;
   }
   .login-btn {
-    width: 340px;
-    height: 70px;
-    font-size: 18px;
+    width: 60cqw;
+    max-width: 240px;
+    height: 13cqw;
+    font-size: 5cqw;
   }
 }
 
 @media (max-width: 768px) {
-  :root {
-    --login-element-size: clamp(200px, 50vw, 420px);
-  }
   .login-layout {
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: 3vw;
+    padding: 1.6vh 1.6vw;
+  }
+  .login-mascot {
+    width: 40vw;
+    max-width: 200px;
+  }
+  .login-card-container {
+    width: 90vw;
+    max-width: 380px;
   }
   .login-card-content {
-    padding: 12px 20px 100px;
+    padding: 12cqw 8cqw 15cqw;
+  }
+  .login-tab {
+    font-size: 3.6cqw;
   }
   .login-btn {
     width: 100%;
-    height: 60px;
-    font-size: 16px;
+    max-width: 240px;
+    height: 12cqw;
+    font-size: 4.5cqw;
   }
 }
 
 @media (max-width: 480px) {
-  :root {
-    --login-element-size: 315px;
-  }
-
-  .login-layout {
-    gap: 16px;
-    padding: 40px 16px 24px;
-  }
-
-  .login-mascot {
-    width: 180px;
-    height: 180px;
-  }
-
-  .login-card-area {
-    width: 100%;
-    max-width: var(--login-element-size);
-  }
-
-  .login-card-container {
-    width: 100%;
-  }
-
-  .login-card-content {
-    padding: 52px 28px 12px;
-  }
-
   .login-tabs {
-    margin-bottom: 10px;
+    width: 90%;
   }
-
   .login-tab {
-    font-size: 14px;
-    padding: 0 0 4px;
+    font-size: 5cqw;
   }
-
-  .login-tab--active::after {
-    width: 40px;
-  }
-
-  .login-social {
-    gap: 16px;
-    margin-bottom: 8px;
-  }
-
-  .login-social__btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-  }
-
-  .login-social__btn svg,
-  .login-social__btn img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .login-divider {
-    max-width: 144px;
-    margin-bottom: 10px;
-    gap: 10px;
-  }
-
-  .login-divider__text {
-    font-size: 12px;
-  }
-
-  .login-form {
-    gap: 6px;
-  }
-
-  .login-input-group {
-    height: 30px;
-  }
-
-  .login-input-group__icon {
-    left: 8px;
-    width: 14px;
-    height: 14px;
-  }
-
-  .login-input-group__icon svg,
-  .login-input-group__icon img {
-    width: 14px;
-    height: 14px;
-  }
-
-  .login-input {
-    padding: 0 28px 0 26px;
-    font-size: 11px;
-    border-radius: 4px;
-  }
-
-  .login-input-group__toggle {
-    right: 6px;
-  }
-
-  .login-input-group__toggle svg,
-  .login-input-group__toggle img {
-    width: 12px;
-    height: 12px;
-  }
-
-  .login-account-link {
-    font-size: 11px;
-    margin-top: 4px;
-  }
-
-  .login-error {
-    font-size: 11px;
-    min-height: 14px;
-  }
-
-  .login-btn-wrap {
-    margin-top: -28px;
-  }
-
   .login-btn {
-    width: 231px;
-    height: 48px;
-    font-size: 15px;
-    border-radius: 24px;
-    box-shadow:
-      0 -2px 4px rgba(255, 255, 255, 0.9),
-      0 6px 14px rgba(0, 0, 0, 0.4),
-      inset 0 1px 2px rgba(255, 255, 255, 1),
-      inset -3px -3px 4px rgba(0, 0, 0, 0.4);
-  }
-
-  .login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 10px 24px rgba(149, 180, 198, 0.4),
-      inset 0 2px 3px rgba(255, 255, 255, 0.5);
+    max-width: 200px;
+    font-size: 4cqw;
   }
 }
 
@@ -635,10 +559,8 @@ box-shadow:
   .login-social__btn,
   .login-btn,
   .login-tab::after,
-  .login-card-box,
-  .login-card-container[anim-direction] .login-card-box--signin,
-  .login-card-container[anim-direction] .login-card-box--signup {
+  .login-card-svg {
     animation: none !important;
-    transition: none !important;
+    transition: none;
   }
 }
