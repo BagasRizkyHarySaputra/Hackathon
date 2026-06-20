@@ -1,136 +1,65 @@
-/**
- * ============================================================
- * FILE: assets/js/alpine/components/login.js
- * ============================================================
- * FEATURE: Login Page — Alpine.js Component
- *
- * PURPOSE:
- *   Manages the Sign In / Sign Up form with tab switching,
- *   password visibility toggle, form validation, and mock
- *   authentication. In Phase 2, form submission will go
- *   through HTMX to FastAPI.
- *
- * USE CASES:
- *   - User authenticates with email/password
- *   - User switches between Sign In and Sign Up tabs
- *   - User toggles password visibility
- *   - Social login buttons (Google, Facebook) — placeholder
- *
- * DEPENDENCIES:
- *   - Alpine.js v3.x (component data pattern)
- *   - config/app.config.js (API_BASE_URL, IS_MOCK_MODE)
- *   - assets/js/alpine/stores/auth.store.js (setToken, setUser)
- *   - assets/css/components/login.css
- *
- * PHASE: Frontend (Mock) — Auth is simulated
- * BACKEND CONTRACT: POST /api/auth/login → { token, user }
- * ============================================================
- */
-
-/**
- * Creates the Alpine.js data object for the login page.
- * Manages tab state, form fields, validation, and mock auth.
- *
- * @returns {Object} Alpine component data object
- */
 function createLoginComponent() {
   return {
-    /** @type {'signin'|'signup'} Current active tab */
     activeTab: 'signin',
-
-    /** @type {'forward'|'backward'} Animation direction for tab transitions */
     animDirection: 'forward',
-
-    /** @type {string} Email input value */
     email: '',
-
-    /** @type {string} Password input value */
     password: '',
-
-    /** @type {string} Confirm password (Sign Up only) */
     confirmPassword: '',
-
-    /** @type {string} Full name (Sign Up only) */
     fullName: '',
-
-    /** @type {boolean} Whether password is visible */
     showPassword: false,
-
-    /** @type {boolean} Whether confirm password is visible */
     showConfirmPassword: false,
-
-    /** @type {boolean} Whether form is being submitted */
     isSubmitting: false,
-
-    /** @type {string} Error message to display */
     errorMessage: '',
 
-    /**
-     * Initializes the login component.
-     * Called automatically by Alpine.js on mount.
-     *
-     * @returns {void}
-     */
     init() {
-      console.log('[INFO] [Login] Component mounted.', {
-        keys: ['activeTab', 'email', 'password', 'showPassword'],
+      const sb = window.__supabase;
+      if (!sb || !APP_CONFIG.SUPABASE_ANON_KEY) {
+        console.log('[Login] Supabase not configured — mock fallback mode.');
+        return;
+      }
+      /**
+       * Handle OAuth redirect callback: if Supabase placed a session
+       * in the URL fragment, restore it and redirect to home.
+       */
+      sb.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          const name = session.user.user_metadata?.full_name
+            || session.user.user_metadata?.name
+            || session.user.email;
+          Alpine.store('auth').login(session.access_token, {
+            id: session.user.id,
+            email: session.user.email,
+            name,
+          });
+          Alpine.store('ui').addToast('success', `Welcome back, ${name}!`);
+          setTimeout(() => { window.location.href = '/scan'; }, 600);
+        }
       });
     },
 
-    /**
-     * Switches between Sign In and Sign Up tabs.
-     * Clears error messages on tab switch.
-     *
-     * @param {'signin'|'signup'} tab - Tab to activate
-     * @returns {void}
-     */
     switchTab(tab) {
       if (tab === this.activeTab) return;
       this.animDirection = tab === 'signin' ? 'backward' : 'forward';
       this.activeTab = tab;
       this.errorMessage = '';
-      console.log('[INFO] [Login] Tab switched.', { tab, direction: this.animDirection });
     },
 
-    /**
-     * Toggles password visibility.
-     *
-     * @returns {void}
-     */
     togglePassword() {
       this.showPassword = !this.showPassword;
     },
 
-    /**
-     * Toggles confirm password visibility.
-     *
-     * @returns {void}
-     */
     toggleConfirmPassword() {
       this.showConfirmPassword = !this.showConfirmPassword;
     },
 
-    /**
-     * Returns the input type for the password field.
-     * @returns {string} 'text' if visible, 'password' if hidden
-     */
     get passwordType() {
       return this.showPassword ? 'text' : 'password';
     },
 
-    /**
-     * Returns the input type for the confirm password field.
-     * @returns {string} 'text' if visible, 'password' if hidden
-     */
     get confirmPasswordType() {
       return this.showConfirmPassword ? 'text' : 'password';
     },
 
-    /**
-     * Validates the form fields before submission.
-     *
-     * @returns {boolean} Whether the form is valid
-     */
     validateForm() {
       this.errorMessage = '';
 
@@ -139,7 +68,6 @@ function createLoginComponent() {
         return false;
       }
 
-      /** Basic email format check */
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(this.email)) {
         this.errorMessage = 'Please enter a valid email address.';
@@ -156,7 +84,6 @@ function createLoginComponent() {
         return false;
       }
 
-      /** Sign Up specific validations */
       if (this.activeTab === 'signup') {
         if (!this.fullName.trim()) {
           this.errorMessage = 'Please enter your full name.';
@@ -172,33 +99,51 @@ function createLoginComponent() {
       return true;
     },
 
-    /**
-     * Handles form submission.
-     * In mock mode, simulates a successful login after a delay.
-     * In Phase 2, this will use HTMX POST to /api/auth/login.
-     *
-     * @param {Event} event - Form submit event
-     * @returns {Promise<void>}
-     */
     async handleSubmit(event) {
       event.preventDefault();
-
       if (!this.validateForm()) return;
 
       this.isSubmitting = true;
       this.errorMessage = '';
 
-      console.log('[INFO] [Login] Form submitted.', {
-        action: this.activeTab,
-        email: this.email,
-      });
-
       try {
-        if (APP_CONFIG.IS_MOCK_MODE) {
-          /** Simulate API delay */
+        const sb = window.__supabase;
+        const useSupabase = sb && APP_CONFIG.SUPABASE_ANON_KEY;
+
+        if (useSupabase) {
+          if (this.activeTab === 'signin') {
+            const { data, error } = await sb.auth.signInWithPassword({
+              email: this.email,
+              password: this.password,
+            });
+            if (error) { this.errorMessage = error.message; return; }
+
+            Alpine.store('auth').login(
+              data.session.access_token,
+              { id: data.user.id, email: data.user.email, name: data.user.user_metadata?.full_name || data.user.email }
+            );
+            Alpine.store('ui').addToast('success', `Welcome back, ${data.user.email}!`);
+            setTimeout(() => { window.location.href = '/scan'; }, 600);
+          } else {
+            const { data, error } = await sb.auth.signUp({
+              email: this.email,
+              password: this.password,
+              options: { data: { full_name: this.fullName } },
+            });
+            if (error) { this.errorMessage = error.message; return; }
+
+            if (data?.user?.identities?.length === 0) {
+              this.errorMessage = 'An account with this email already exists.';
+              return;
+            }
+
+            Alpine.store('ui').addToast('success', 'Account created! Check your email to confirm.');
+            this.activeTab = 'signin';
+          }
+        } else {
+          /** Fallback: mock mode */
           await new Promise(resolve => setTimeout(resolve, 1200));
 
-          /** Mock successful login */
           const mockToken = 'mock_jwt_token_' + Date.now();
           const mockUser = {
             name: this.fullName || this.email.split('@')[0],
@@ -206,58 +151,38 @@ function createLoginComponent() {
             role: 'user',
           };
 
-          /** Update auth store */
           Alpine.store('auth').setToken(mockToken);
           Alpine.store('auth').setUser(mockUser);
 
-          console.log('[INFO] [Login] Mock login successful.', { user: mockUser });
+          Alpine.store('ui').addToast('success', `Welcome back, ${mockUser.name}!`);
 
-          /** Dispatch event for navigation */
-          this.$dispatch('auth:login-success', { user: mockUser });
-
-          /** Show toast */
-          Alpine.store('ui').addToast(
-            'success',
-            `Welcome back, ${mockUser.name}!`
-          );
-
-          /** Mock redirect after delay */
-          setTimeout(() => {
-            this.$dispatch('auth:redirect', { target: '/scan' });
-            window.location.href = '/scan';
-          }, 800);
-        } else {
-          /**
-           * Phase 2: Real API call via HTMX
-           * htmx.ajax('POST', '/api/auth/login', {
-           *   target: '#login-response',
-           *   values: { email: this.email, password: this.password }
-           * });
-           */
+          setTimeout(() => { window.location.href = '/scan'; }, 800);
         }
       } catch (error) {
         this.errorMessage = 'Login failed. Please try again.';
-        console.error('[ERROR] [Login] Submission failed.', {
-          error: error.message,
-        });
+        console.error('[Login] Submission failed.', error);
       } finally {
         this.isSubmitting = false;
       }
     },
 
-    /**
-     * Handles social login button click.
-     * Currently a placeholder for Phase 2 OAuth integration.
-     *
-     * @param {'google'|'facebook'} provider - Social provider name
-     * @returns {void}
-     */
     handleSocialLogin(provider) {
-      Alpine.store('ui').addToast(
-        'info',
-        `${provider.charAt(0).toUpperCase() + provider.slice(1)} login coming soon!`
-      );
-      console.log('[INFO] [Login] Social login clicked.', { provider });
+      const sb = window.__supabase;
+      const useSupabase = sb && APP_CONFIG.SUPABASE_ANON_KEY;
+
+      if (useSupabase) {
+        sb.auth.signInWithOAuth({
+          provider,
+          options: {
+            redirectTo: `${window.location.origin}/login`,
+          },
+        });
+      } else {
+        Alpine.store('ui').addToast(
+          'info',
+          `${provider.charAt(0).toUpperCase() + provider.slice(1)} login coming soon!`
+        );
+      }
     },
   };
 }
