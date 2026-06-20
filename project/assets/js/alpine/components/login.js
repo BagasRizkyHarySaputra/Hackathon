@@ -32,7 +32,7 @@ function createLoginComponent() {
             name,
           });
           Alpine.store('ui').addToast('success', `Welcome back, ${name}!`);
-          setTimeout(() => { window.location.href = '/scan'; }, 600);
+          setTimeout(() => { window.location.href = '/loading'; }, 600);
         }
       });
     },
@@ -123,7 +123,7 @@ function createLoginComponent() {
               { id: data.user.id, email: data.user.email, name: data.user.user_metadata?.full_name || data.user.email }
             );
             Alpine.store('ui').addToast('success', `Welcome back, ${data.user.email}!`);
-            setTimeout(() => { window.location.href = '/scan'; }, 600);
+            setTimeout(() => { window.location.href = '/loading'; }, 600);
           } else {
             const { data, error } = await sb.auth.signUp({
               email: this.email,
@@ -156,7 +156,7 @@ function createLoginComponent() {
 
           Alpine.store('ui').addToast('success', `Welcome back, ${mockUser.name}!`);
 
-          setTimeout(() => { window.location.href = '/scan'; }, 800);
+          setTimeout(() => { window.location.href = '/loading'; }, 800);
         }
       } catch (error) {
         this.errorMessage = 'Login failed. Please try again.';
@@ -174,7 +174,7 @@ function createLoginComponent() {
         sb.auth.signInWithOAuth({
           provider,
           options: {
-            redirectTo: `${window.location.origin}/login`,
+            redirectTo: `${window.location.origin}/loading`,
           },
         });
       } else {

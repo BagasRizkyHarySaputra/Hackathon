@@ -51,6 +51,27 @@ document.addEventListener('alpine:init', () => {
           }
         );
         console.log('[Auth Store] Session restored from Supabase.');
+
+        // Edge case: if SIGNED_IN event didn't fire (e.g. URL hash callback on root page),
+        // still redirect to /loading. Skip on login, scan & loading pages.
+        const onLoginPage = window.location.pathname === '/login'
+                          || window.location.pathname === '/login/'
+                          || window.location.pathname.startsWith('/pages/login/');
+        const onScanPage = window.location.pathname === '/scan'
+                        || window.location.pathname === '/scan/'
+                        || window.location.pathname.startsWith('/pages/scan/');
+        const onLoadingPage = window.location.pathname === '/loading'
+                        || window.location.pathname === '/loading/'
+                        || window.location.pathname.startsWith('/pages/loading/');
+        if (!onLoginPage && !onScanPage && !onLoadingPage && window.location.hash.startsWith('#access_token=')) {
+          const name = session.user.user_metadata?.full_name
+                    || session.user.user_metadata?.name
+                    || session.user.email;
+          Alpine.store('ui').addToast('success', `Welcome back, ${name}!`);
+          // Clean the URL hash before redirecting
+          history.replaceState(null, '', window.location.pathname);
+          setTimeout(() => { window.location.href = '/loading'; }, 600);
+        }
       }
     });
 
@@ -65,6 +86,24 @@ document.addEventListener('alpine:init', () => {
             avatar: session.user.user_metadata?.avatar_url || '',
           }
         );
+
+        // If not on the login, scan, or loading page, redirect to /loading.
+        const isLoginPage = window.location.pathname === '/login'
+                          || window.location.pathname === '/login/'
+                          || window.location.pathname.startsWith('/pages/login/');
+        const isScanPage = window.location.pathname === '/scan'
+                        || window.location.pathname === '/scan/'
+                        || window.location.pathname.startsWith('/pages/scan/');
+        const isLoadingPage = window.location.pathname === '/loading'
+                        || window.location.pathname === '/loading/'
+                        || window.location.pathname.startsWith('/pages/loading/');
+        if (!isLoginPage && !isScanPage && !isLoadingPage) {
+          const name = session.user.user_metadata?.full_name
+                    || session.user.user_metadata?.name
+                    || session.user.email;
+          Alpine.store('ui').addToast('success', `Welcome back, ${name}!`);
+          setTimeout(() => { window.location.href = '/loading'; }, 600);
+        }
       } else if (event === 'SIGNED_OUT') {
         Alpine.store('auth').logout();
       } else if (event === 'TOKEN_REFRESHED') {
