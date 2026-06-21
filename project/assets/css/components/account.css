@@ -389,6 +389,12 @@
   background: #b8bcc6;
 }
 
+.account-skin-option--disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
 
 /* ─── Speech Bubble ─── */
 .account-speech-bubble {

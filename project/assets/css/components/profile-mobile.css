@@ -466,6 +466,12 @@
     font-size: 3vw;
   }
 
+  .account-skin-option--disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
   .account-speech-bubble {
     display: none;
   }

@@ -599,24 +599,51 @@
       var editBtn = document.getElementById('account-edit-btn');
       var inputs  = document.querySelectorAll('#account-grid-wrap .account-field__input');
       var saveBtn = document.getElementById('account-save-btn');
+      var skinOptions = document.querySelectorAll('#account-grid-wrap .account-skin-option');
+      var isEditing = false;
+      var isSaving = false;
+      var originalValues = {};
+
+      function captureFieldValues() {
+        return {
+          name: (document.getElementById('profile-name') || {}).value || '',
+          email: (document.getElementById('profile-email') || {}).value || '',
+          gender: (document.getElementById('profile-gender') || {}).value || '',
+          birth_date: (document.getElementById('profile-birthdate') || {}).value || '',
+          skin_type: (document.querySelector('#account-grid-wrap .account-skin-option--selected') || {}).getAttribute?.('data-skin') || ''
+        };
+      }
+
+      function valuesEqual(a, b) {
+        return a.name === b.name
+          && a.email === b.email
+          && a.gender === b.gender
+          && a.birth_date === b.birth_date
+          && a.skin_type === b.skin_type;
+      }
+
+      function setEditing(enabled) {
+        isEditing = enabled;
+        inputs.forEach(function(inp) { inp.disabled = !enabled; });
+        skinOptions.forEach(function(opt) {
+          opt.classList.toggle('account-skin-option--disabled', !enabled);
+        });
+        editBtn.textContent = enabled ? 'Batal' : 'Edit Profile';
+        if (enabled) {
+          originalValues = captureFieldValues();
+        }
+      }
 
       if (editBtn) {
         editBtn.addEventListener('click', function() {
-          var isEditing = editBtn.textContent === 'Batal';
-          if (isEditing) {
-            inputs.forEach(function(inp) { inp.disabled = true; });
-            editBtn.textContent = 'Edit Profile';
-          } else {
-            inputs.forEach(function(inp) { inp.disabled = false; });
-            editBtn.textContent = 'Batal';
-          }
+          setEditing(!isEditing);
         });
       }
 
-      // ── Skin Type Selection ──
-      var skinOptions = document.querySelectorAll('#account-grid-wrap .account-skin-option');
+      // ── Skin Type Selection (hanya aktif saat edit mode) ──
       skinOptions.forEach(function(opt) {
         opt.addEventListener('click', function() {
+          if (!isEditing) return;
           skinOptions.forEach(function(o) { o.classList.remove('account-skin-option--selected'); });
           opt.classList.add('account-skin-option--selected');
         });
@@ -702,24 +729,32 @@
         });
       }
 
-      // ── Save Changes to Supabase ──
+      // ── Save Changes — hanya POST kalau ada data berubah ──
       if (saveBtn) {
         saveBtn.addEventListener('click', function() {
-          var authStore = window.Alpine && Alpine.store('auth');
-          if (!authStore || !authStore.user) return;
+          if (!isEditing || isSaving) return;
+          isSaving = true;
 
-          var nameInput = document.getElementById('profile-name');
-          var emailInput = document.getElementById('profile-email');
-          var genderSelect = document.getElementById('profile-gender');
-          var birthdateInput = document.getElementById('profile-birthdate');
-          var selectedSkin = document.querySelector('#account-grid-wrap .account-skin-option--selected');
+          var newValues = captureFieldValues();
+          if (valuesEqual(originalValues, newValues)) {
+            // Ga ada perubahan — exit edit mode aja, ga POST
+            setEditing(false);
+            isSaving = false;
+            return;
+          }
+
+          var authStore = window.Alpine && Alpine.store('auth');
+          if (!authStore || !authStore.user) {
+            isSaving = false;
+            return;
+          }
 
           var payload = { id: authStore.user.id };
-          if (nameInput && nameInput.value) payload.name = nameInput.value;
-          if (genderSelect && genderSelect.value) payload.gender = genderSelect.value;
-          if (birthdateInput && birthdateInput.value) payload.birth_date = birthdateInput.value;
-          if (emailInput && emailInput.value) payload.email = emailInput.value;
-          if (selectedSkin) payload.skin_type = selectedSkin.getAttribute('data-skin');
+          if (newValues.name) payload.name = newValues.name;
+          if (newValues.gender) payload.gender = newValues.gender;
+          if (newValues.birth_date) payload.birth_date = newValues.birth_date;
+          if (newValues.email) payload.email = newValues.email;
+          if (newValues.skin_type) payload.skin_type = newValues.skin_type;
 
           var token = authStore.token || APP_CONFIG.SUPABASE_ANON_KEY;
           var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
@@ -736,16 +771,23 @@
           })
           .then(function(r) {
             if (r.ok) {
-              // Disable inputs after save
-              inputs.forEach(function(inp) { inp.disabled = true; });
-              editBtn.textContent = 'Edit Profile';
               console.log('[Profile] Saved successfully');
+              setEditing(false);
+              isSaving = false;
+              // Update header setelah save
+              var headerName = document.getElementById('profile-header-name');
+              if (headerName && newValues.name) headerName.textContent = newValues.name;
+              var headerSkin = document.getElementById('profile-header-skin');
+              var skinLabel = { oily: 'Oily Skin', dry: 'Dry Skin', combination: 'Combination Skin', sensitive: 'Sensitive Skin', unsure: 'Not Sure' };
+              if (headerSkin && newValues.skin_type) headerSkin.textContent = skinLabel[newValues.skin_type] || 'Not Sure';
             } else {
               console.warn('[Profile] Save failed:', r.status);
+              isSaving = false;
             }
           })
           .catch(function(err) {
             console.warn('[Profile] Save error:', err.message);
+            isSaving = false;
           });
         });
       }
