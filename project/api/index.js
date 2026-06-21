@@ -133,6 +133,19 @@ module.exports = async (req, res) => {
         }
         return serveJSON(res, loadSeed(chatId || 'general'));
 
+      /* ── Telegram Photo Proxy ── */
+      case '/api/telegram/send-photo':
+        if (req.method !== 'POST') {
+          return serveJSON(res, { error: 'Method not allowed' }, 405);
+        }
+        return proxyToTelegram(req, res);
+
+      case '/api/telegram/photo':
+        if (req.method !== 'GET') {
+          return serveJSON(res, { error: 'Method not allowed' }, 405);
+        }
+        return proxyTelegramPhoto(req, res);
+
       /* ── 404 ── */
       default:
         return serveJSON(res, { error: 'Not found' }, 404);
@@ -141,3 +154,157 @@ module.exports = async (req, res) => {
     return serveJSON(res, { error: 'Internal server error' }, 500);
   }
 };
+
+/**
+ * Proxies a base64 photo to Telegram Bot API for unlimited cloud storage.
+ * Returns the largest photo file_id for storage reference.
+ */
+async function proxyToTelegram(req, res) {
+  const body = await parseBody(req);
+
+  if (!body.photo) {
+    return serveJSON(res, { error: 'Missing photo (base64)' }, 400);
+  }
+
+  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8987787750:AAHADzqwz95GaMKuhPOwB2CjtlLcCGDJ8No';
+  const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '6265895260';
+
+  // Strip data URI prefix
+  const b64 = body.photo.replace(/^data:image\/\w+;base64,/, '');
+  const photoBuf = Buffer.from(b64, 'base64');
+
+  // Build multipart body
+  const boundary = '----TelegramBoundary' + Date.now();
+  const parts = [];
+  parts.push(Buffer.from('--' + boundary + '\r\n'));
+  parts.push(Buffer.from('Content-Disposition: form-data; name="chat_id"\r\n\r\n'));
+  parts.push(Buffer.from(TELEGRAM_CHAT_ID + '\r\n'));
+  parts.push(Buffer.from('--' + boundary + '\r\n'));
+  parts.push(Buffer.from('Content-Disposition: form-data; name="photo"; filename="scan.jpg"\r\n'));
+  parts.push(Buffer.from('Content-Type: image/jpeg\r\n\r\n'));
+  parts.push(photoBuf);
+  parts.push(Buffer.from('\r\n--' + boundary + '--\r\n'));
+
+  const multipartBody = Buffer.concat(parts);
+
+  return new Promise((resolve) => {
+    const https = require('https');
+    const tgReq = https.request({
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: '/bot' + TELEGRAM_BOT_TOKEN + '/sendPhoto',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data; boundary=' + boundary,
+        'Content-Length': multipartBody.length,
+        'Accept': 'application/json',
+      },
+      timeout: 30000,
+    }, (tgRes) => {
+      let tgBody = '';
+      tgRes.on('data', (d) => { tgBody += d; });
+      tgRes.on('end', () => {
+        let tgData;
+        try { tgData = JSON.parse(tgBody); }
+        catch (e) { tgData = { ok: false, raw: tgBody }; }
+
+        if (tgData.ok && tgData.result && tgData.result.photo) {
+          const photos = tgData.result.photo;
+          const largest = photos[photos.length - 1];
+          resolve(serveJSON(res, {
+            ok: true,
+            file_id: largest.file_id,
+            file_unique_id: largest.file_unique_id,
+            width: largest.width,
+            height: largest.height,
+            message_id: tgData.result.message_id,
+          }));
+        } else {
+          console.error('[Telegram Proxy] Upload failed:', tgBody);
+          resolve(serveJSON(res, {
+            error: 'Telegram upload failed',
+            detail: tgData.description || tgBody,
+          }, 502));
+        }
+      });
+    });
+
+    tgReq.on('error', (err) => {
+      console.error('[Telegram Proxy] Error:', err.message);
+      resolve(serveJSON(res, { error: 'Telegram API unavailable', detail: err.message }, 502));
+    });
+
+    tgReq.on('timeout', () => {
+      tgReq.destroy();
+      console.error('[Telegram Proxy] Timeout');
+      resolve(serveJSON(res, { error: 'Telegram API timeout' }, 504));
+    });
+
+    tgReq.write(multipartBody);
+    tgReq.end();
+  });
+}
+
+/**
+ * Serves a Telegram photo by file_id via the getFile API.
+ * Proxies the image so the bot token stays server-side.
+ */
+async function proxyTelegramPhoto(req, res) {
+  const url = new URL(req.url, 'https://' + (req.headers.host || 'localhost'));
+  const fileId = url.searchParams.get('file_id');
+
+  if (!fileId) {
+    return serveJSON(res, { error: 'Missing file_id' }, 400);
+  }
+
+  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8987787750:AAHADzqwz95GaMKuhPOwB2CjtlLcCGDJ8No';
+
+  return new Promise((resolve) => {
+    const https = require('https');
+
+    // Step 1: get file_path
+    https.get({
+      hostname: 'api.telegram.org',
+      port: 443,
+      path: '/bot' + TELEGRAM_BOT_TOKEN + '/getFile?file_id=' + encodeURIComponent(fileId),
+      timeout: 10000,
+    }, (gfRes) => {
+      let body = '';
+      gfRes.on('data', (d) => { body += d; });
+      gfRes.on('end', () => {
+        let data;
+        try { data = JSON.parse(body); }
+        catch (e) {
+          resolve(serveJSON(res, { error: 'Telegram getFile parse error' }, 502));
+          return;
+        }
+
+        if (!data.ok || !data.result || !data.result.file_path) {
+          resolve(serveJSON(res, { error: 'File not found' }, 404));
+          return;
+        }
+
+        // Step 2: proxy the image
+        const filePath = data.result.file_path;
+        https.get({
+          hostname: 'api.telegram.org',
+          port: 443,
+          path: '/file/bot' + TELEGRAM_BOT_TOKEN + '/' + filePath,
+          timeout: 15000,
+        }, (fileRes) => {
+          res.writeHead(fileRes.statusCode, {
+            'Content-Type': fileRes.headers['content-type'] || 'image/jpeg',
+            'Cache-Control': 'public, max-age=86400',
+          });
+          fileRes.pipe(res);
+        }).on('error', (err) => {
+          console.error('[Telegram Photo Proxy] Download error:', err.message);
+          resolve(serveJSON(res, { error: 'Photo download failed' }, 502));
+        });
+      });
+    }).on('error', (err) => {
+      console.error('[Telegram Photo Proxy] getFile error:', err.message);
+      resolve(serveJSON(res, { error: 'Telegram getFile failed' }, 502));
+    });
+  });
+}
