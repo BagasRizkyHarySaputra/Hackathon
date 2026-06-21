@@ -1,0 +1,2955 @@
+.
+├── api
+│   └── index.js
+├── assets
+│   ├── css
+│   │   ├── components
+│   │   │   ├── account.css
+│   │   │   ├── account-mobile.css
+│   │   │   ├── artikel.css
+│   │   │   ├── artikel-mobile.css
+│   │   │   ├── chatbot.css
+│   │   │   ├── chatbot-mobile.css
+│   │   │   ├── community.css
+│   │   │   ├── community-mobile.css
+│   │   │   ├── global.css
+│   │   │   ├── header.css
+│   │   │   ├── home.css
+│   │   │   ├── home-mobile.css
+│   │   │   ├── loading.css
+│   │   │   ├── login.css
+│   │   │   ├── login-mobile.css
+│   │   │   ├── profile.css
+│   │   │   ├── profile-mobile.css
+│   │   │   ├── scan.css
+│   │   │   ├── scan-mobile.css
+│   │   │   ├── scan-page.css
+│   │   │   └── sidebar.css
+│   │   ├── main.css
+│   │   └── utilities
+│   ├── data
+│   │   ├── articles.json
+│   │   └── artikel
+│   │       ├── batch-01.json
+│   │       ├── batch-02.json
+│   │       ├── batch-03.json
+│   │       └── batch-04.json
+│   ├── icons
+│   │   ├── artikel
+│   │   │   ├── discord-logo.svg
+│   │   │   ├── Email.svg
+│   │   │   ├── eye.svg
+│   │   │   ├── Facebook-Icons.svg
+│   │   │   ├── google-logo.svg
+│   │   │   └── Lock.svg
+│   │   ├── nav
+│   │   │   ├── add.svg
+│   │   │   ├── camera.svg
+│   │   │   ├── Camera.svg
+│   │   │   ├── document.svg
+│   │   │   ├── face-smile-wink.svg
+│   │   │   ├── Gatau.zip
+│   │   │   ├── home.svg
+│   │   │   ├── licin.png
+│   │   │   ├── Message.svg
+│   │   │   ├── Notification.svg
+│   │   │   ├── paper-plane.svg
+│   │   │   ├── Profile.svg
+│   │   │   └── user.svg
+│   │   ├── profile
+│   │   │   ├── account.svg
+│   │   │   ├── border.svg
+│   │   │   ├── calendar.svg
+│   │   │   ├── edit.svg
+│   │   │   ├── email.svg
+│   │   │   ├── msg.svg
+│   │   │   ├── notification.svg
+│   │   │   ├── question.svg
+│   │   │   ├── shield-check.svg
+│   │   │   ├── sign-out.svg
+│   │   │   ├── Vector.svg
+│   │   │   └── waterdrop.svg
+│   │   ├── watera-drop-mascot.svg
+│   │   └── water-drop-mascot.svg
+│   ├── images
+│   │   ├── article-lifestyle.png
+│   │   ├── article-mistakes.png
+│   │   ├── article-routine.png
+│   │   ├── profile
+│   │   │   ├── avatar-default.png
+│   │   │   ├── product-1.png
+│   │   │   ├── product-2.png
+│   │   │   └── product-3.png
+│   │   ├── scan-page
+│   │   │   ├── Badge.svg
+│   │   │   ├── Camera.svg
+│   │   │   ├── image3.png
+│   │   │   ├── kurang-dari.svg
+│   │   │   ├── Morning-cropped.svg
+│   │   │   ├── Night-cropped.svg
+│   │   │   ├── product-cleanser.png
+│   │   │   └── tanda-tanya.svg
+│   │   ├── Scan.svg
+│   │   └── SkincareBottleMockup2.png
+│   ├── js
+│   │   ├── alpine
+│   │   │   ├── app.js
+│   │   │   ├── components
+│   │   │   │   ├── loading.js
+│   │   │   │   ├── login.js
+│   │   │   │   ├── scan.js
+│   │   │   │   └── scan-page.js
+│   │   │   └── stores
+│   │   │       ├── auth.store.js
+│   │   │       └── ui.store.js
+│   │   ├── artikel.js
+│   │   ├── chatbot-page.js
+│   │   ├── chat-engine.js
+│   │   ├── community-page.js
+│   │   ├── components
+│   │   │   ├── header.js
+│   │   │   ├── home.js
+│   │   │   └── sidebar.js
+│   │   ├── htmx
+│   │   │   ├── config.js
+│   │   │   └── interceptors.js
+│   │   ├── ml
+│   │   │   └── skin-analyzer.js
+│   │   ├── profile.js
+│   │   ├── pwa
+│   │   │   ├── install-prompt.js
+│   │   │   └── sw-register.js
+│   │   ├── router.js
+│   │   ├── supabase
+│   │   │   └── supabase-client.js
+│   │   └── vendor
+│   │       ├── alpine.min.js
+│   │       └── htmx.min.js
+│   └── shape
+│       ├── Scan.svg
+│       ├── sign-in.png
+│       ├── Sign-In.svg
+│       ├── sign-up.png
+│       └── Sign-up.svg
+├── chatbot-test.png
+├── components
+│   ├── layout
+│   └── ui
+├── config
+│   └── app.config.js
+├── db-sementara
+│   ├── chatbot.json
+│   └── community.json
+├── Design.md
+├── home-after-1-scan.png
+├── home-after-2-scans.png
+├── home-final-working.png
+├── home-page.png
+├── index.html
+├── layer_Scanning-1.json
+├── localhost+3-key.pem
+├── localhost+3.pem
+├── login-page.png
+├── manifest.json
+├── migrations
+│   ├── 001_scan_results.sql
+│   ├── 002_scan_results_telegram.sql
+│   └── 003_chatbot.sql
+├── ml-api
+│   ├── app.py
+│   ├── best.pt
+│   ├── Dockerfile
+│   ├── main.py
+│   ├── __pycache__
+│   │   └── main.cpython-313.pyc
+│   ├── README.md
+│   └── requirements.txt
+├── mock
+│   ├── data
+│   │   ├── loading.json
+│   │   └── login.json
+│   ├── README.md
+│   └── server.js
+├── node_modules
+│   ├── @asamuzakjp
+│   │   ├── css-color
+│   │   │   ├── dist
+│   │   │   │   └── esm
+│   │   │   │       ├── index.d.ts
+│   │   │   │       ├── index.js
+│   │   │   │       ├── index.js.map
+│   │   │   │       └── js
+│   │   │   │           ├── cache.d.ts
+│   │   │   │           ├── cache.js
+│   │   │   │           ├── cache.js.map
+│   │   │   │           ├── color.d.ts
+│   │   │   │           ├── color.js
+│   │   │   │           ├── color.js.map
+│   │   │   │           ├── common.d.ts
+│   │   │   │           ├── common.js
+│   │   │   │           ├── common.js.map
+│   │   │   │           ├── constant.d.ts
+│   │   │   │           ├── constant.js
+│   │   │   │           ├── constant.js.map
+│   │   │   │           ├── convert.d.ts
+│   │   │   │           ├── convert.js
+│   │   │   │           ├── convert.js.map
+│   │   │   │           ├── css-calc.d.ts
+│   │   │   │           ├── css-calc.js
+│   │   │   │           ├── css-calc.js.map
+│   │   │   │           ├── css-gradient.d.ts
+│   │   │   │           ├── css-gradient.js
+│   │   │   │           ├── css-gradient.js.map
+│   │   │   │           ├── css-var.d.ts
+│   │   │   │           ├── css-var.js
+│   │   │   │           ├── css-var.js.map
+│   │   │   │           ├── relative-color.d.ts
+│   │   │   │           ├── relative-color.js
+│   │   │   │           ├── relative-color.js.map
+│   │   │   │           ├── resolve.d.ts
+│   │   │   │           ├── resolve.js
+│   │   │   │           ├── resolve.js.map
+│   │   │   │           ├── typedef.d.ts
+│   │   │   │           ├── util.d.ts
+│   │   │   │           ├── util.js
+│   │   │   │           └── util.js.map
+│   │   │   ├── LICENSE
+│   │   │   ├── package.json
+│   │   │   ├── README.md
+│   │   │   └── src
+│   │   │       ├── index.ts
+│   │   │       └── js
+│   │   │           ├── cache.ts
+│   │   │           ├── color.ts
+│   │   │           ├── common.ts
+│   │   │           ├── constant.ts
+│   │   │           ├── convert.ts
+│   │   │           ├── css-calc.ts
+│   │   │           ├── css-gradient.ts
+│   │   │           ├── css-var.ts
+│   │   │           ├── relative-color.ts
+│   │   │           ├── resolve.ts
+│   │   │           ├── typedef.ts
+│   │   │           └── util.ts
+│   │   ├── dom-selector
+│   │   │   ├── LICENSE
+│   │   │   ├── package.json
+│   │   │   ├── README.md
+│   │   │   ├── src
+│   │   │   │   ├── index.js
+│   │   │   │   └── js
+│   │   │   │       ├── constant.js
+│   │   │   │       ├── finder.js
+│   │   │   │       ├── matcher.js
+│   │   │   │       ├── parser.js
+│   │   │   │       └── utility.js
+│   │   │   └── types
+│   │   │       ├── index.d.ts
+│   │   │       └── js
+│   │   │           ├── constant.d.ts
+│   │   │           ├── finder.d.ts
+│   │   │           ├── matcher.d.ts
+│   │   │           ├── parser.d.ts
+│   │   │           └── utility.d.ts
+│   │   ├── generational-cache
+│   │   │   ├── LICENSE
+│   │   │   ├── package.json
+│   │   │   ├── README.md
+│   │   │   ├── src
+│   │   │   │   └── index.js
+│   │   │   └── types
+│   │   │       └── index.d.ts
+│   │   └── nwsapi
+│   │       ├── LICENSE
+│   │       ├── package.json
+│   │       ├── README.md
+│   │       └── src
+│   │           └── nwsapi.js
+│   ├── bidi-js
+│   │   ├── dist
+│   │   │   ├── bidi.js
+│   │   │   ├── bidi.min.js
+│   │   │   ├── bidi.min.mjs
+│   │   │   └── bidi.mjs
+│   │   ├── LICENSE.txt
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   └── src
+│   │       ├── brackets.js
+│   │       ├── charTypes.js
+│   │       ├── data
+│   │       │   ├── bidiBrackets.data.js
+│   │       │   ├── bidiCharTypes.data.js
+│   │       │   └── bidiMirroring.data.js
+│   │       ├── embeddingLevels.js
+│   │       ├── index.js
+│   │       ├── mirroring.js
+│   │       ├── reordering.js
+│   │       └── util
+│   │           └── parseCharacterMap.js
+│   ├── @bramus
+│   │   └── specificity
+│   │       ├── bin
+│   │       │   └── cli.js
+│   │       ├── dist
+│   │       │   ├── index.cjs
+│   │       │   ├── index.cjs.map
+│   │       │   ├── index.js
+│   │       │   └── index.js.map
+│   │       ├── index.d.ts
+│   │       ├── LICENSE
+│   │       ├── package.json
+│   │       ├── README.md
+│   │       └── src
+│   │           ├── core
+│   │           │   ├── calculate.js
+│   │           │   └── index.js
+│   │           ├── index.js
+│   │           └── util
+│   │               ├── compare.js
+│   │               ├── filter.js
+│   │               ├── index.js
+│   │               └── sort.js
+│   ├── @csstools
+│   │   ├── color-helpers
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.mjs
+│   │   │   ├── LICENSE.md
+│   │   │   ├── package.json
+│   │   │   └── README.md
+│   │   ├── css-calc
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.mjs
+│   │   │   ├── LICENSE.md
+│   │   │   ├── package.json
+│   │   │   └── README.md
+│   │   ├── css-color-parser
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.mjs
+│   │   │   ├── LICENSE.md
+│   │   │   ├── package.json
+│   │   │   └── README.md
+│   │   ├── css-parser-algorithms
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.mjs
+│   │   │   ├── LICENSE.md
+│   │   │   ├── package.json
+│   │   │   └── README.md
+│   │   ├── css-syntax-patches-for-csstree
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── dist
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.json
+│   │   │   ├── LICENSE.md
+│   │   │   ├── package.json
+│   │   │   └── README.md
+│   │   └── css-tokenizer
+│   │       ├── CHANGELOG.md
+│   │       ├── dist
+│   │       │   ├── index.d.ts
+│   │       │   └── index.mjs
+│   │       ├── LICENSE.md
+│   │       ├── package.json
+│   │       └── README.md
+│   ├── css-tree
+│   │   ├── cjs
+│   │   │   ├── convertor
+│   │   │   │   ├── create.cjs
+│   │   │   │   └── index.cjs
+│   │   │   ├── data.cjs
+│   │   │   ├── data-patch.cjs
+│   │   │   ├── definition-syntax
+│   │   │   │   ├── generate.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── parse.cjs
+│   │   │   │   ├── scanner.cjs
+│   │   │   │   ├── SyntaxError.cjs
+│   │   │   │   └── walk.cjs
+│   │   │   ├── generator
+│   │   │   │   ├── create.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── sourceMap.cjs
+│   │   │   │   └── token-before.cjs
+│   │   │   ├── index.cjs
+│   │   │   ├── lexer
+│   │   │   │   ├── error.cjs
+│   │   │   │   ├── generic-an-plus-b.cjs
+│   │   │   │   ├── generic.cjs
+│   │   │   │   ├── generic-const.cjs
+│   │   │   │   ├── generic-urange.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── Lexer.cjs
+│   │   │   │   ├── match.cjs
+│   │   │   │   ├── match-graph.cjs
+│   │   │   │   ├── prepare-tokens.cjs
+│   │   │   │   ├── search.cjs
+│   │   │   │   ├── structure.cjs
+│   │   │   │   ├── trace.cjs
+│   │   │   │   └── units.cjs
+│   │   │   ├── parser
+│   │   │   │   ├── create.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── parse-selector.cjs
+│   │   │   │   ├── sequence.cjs
+│   │   │   │   └── SyntaxError.cjs
+│   │   │   ├── syntax
+│   │   │   │   ├── atrule
+│   │   │   │   │   ├── container.cjs
+│   │   │   │   │   ├── font-face.cjs
+│   │   │   │   │   ├── import.cjs
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   ├── layer.cjs
+│   │   │   │   │   ├── media.cjs
+│   │   │   │   │   ├── nest.cjs
+│   │   │   │   │   ├── page.cjs
+│   │   │   │   │   ├── scope.cjs
+│   │   │   │   │   ├── starting-style.cjs
+│   │   │   │   │   └── supports.cjs
+│   │   │   │   ├── config
+│   │   │   │   │   ├── generator.cjs
+│   │   │   │   │   ├── lexer.cjs
+│   │   │   │   │   ├── mix.cjs
+│   │   │   │   │   ├── parser.cjs
+│   │   │   │   │   ├── parser-selector.cjs
+│   │   │   │   │   └── walker.cjs
+│   │   │   │   ├── create.cjs
+│   │   │   │   ├── function
+│   │   │   │   │   ├── expression.cjs
+│   │   │   │   │   └── var.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── node
+│   │   │   │   │   ├── AnPlusB.cjs
+│   │   │   │   │   ├── Atrule.cjs
+│   │   │   │   │   ├── AtrulePrelude.cjs
+│   │   │   │   │   ├── AttributeSelector.cjs
+│   │   │   │   │   ├── Block.cjs
+│   │   │   │   │   ├── Brackets.cjs
+│   │   │   │   │   ├── CDC.cjs
+│   │   │   │   │   ├── CDO.cjs
+│   │   │   │   │   ├── ClassSelector.cjs
+│   │   │   │   │   ├── Combinator.cjs
+│   │   │   │   │   ├── Comment.cjs
+│   │   │   │   │   ├── Condition.cjs
+│   │   │   │   │   ├── Declaration.cjs
+│   │   │   │   │   ├── DeclarationList.cjs
+│   │   │   │   │   ├── Dimension.cjs
+│   │   │   │   │   ├── Feature.cjs
+│   │   │   │   │   ├── FeatureFunction.cjs
+│   │   │   │   │   ├── FeatureRange.cjs
+│   │   │   │   │   ├── Function.cjs
+│   │   │   │   │   ├── GeneralEnclosed.cjs
+│   │   │   │   │   ├── Hash.cjs
+│   │   │   │   │   ├── Identifier.cjs
+│   │   │   │   │   ├── IdSelector.cjs
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   ├── index-generate.cjs
+│   │   │   │   │   ├── index-parse.cjs
+│   │   │   │   │   ├── index-parse-selector.cjs
+│   │   │   │   │   ├── Layer.cjs
+│   │   │   │   │   ├── LayerList.cjs
+│   │   │   │   │   ├── MediaQuery.cjs
+│   │   │   │   │   ├── MediaQueryList.cjs
+│   │   │   │   │   ├── NestingSelector.cjs
+│   │   │   │   │   ├── Nth.cjs
+│   │   │   │   │   ├── Number.cjs
+│   │   │   │   │   ├── Operator.cjs
+│   │   │   │   │   ├── Parentheses.cjs
+│   │   │   │   │   ├── Percentage.cjs
+│   │   │   │   │   ├── PseudoClassSelector.cjs
+│   │   │   │   │   ├── PseudoElementSelector.cjs
+│   │   │   │   │   ├── Ratio.cjs
+│   │   │   │   │   ├── Raw.cjs
+│   │   │   │   │   ├── Rule.cjs
+│   │   │   │   │   ├── Scope.cjs
+│   │   │   │   │   ├── Selector.cjs
+│   │   │   │   │   ├── SelectorList.cjs
+│   │   │   │   │   ├── String.cjs
+│   │   │   │   │   ├── StyleSheet.cjs
+│   │   │   │   │   ├── SupportsDeclaration.cjs
+│   │   │   │   │   ├── TypeSelector.cjs
+│   │   │   │   │   ├── UnicodeRange.cjs
+│   │   │   │   │   ├── Url.cjs
+│   │   │   │   │   ├── Value.cjs
+│   │   │   │   │   └── WhiteSpace.cjs
+│   │   │   │   ├── pseudo
+│   │   │   │   │   ├── index.cjs
+│   │   │   │   │   └── lang.cjs
+│   │   │   │   └── scope
+│   │   │   │       ├── atrulePrelude.cjs
+│   │   │   │       ├── default.cjs
+│   │   │   │       ├── index.cjs
+│   │   │   │       ├── selector.cjs
+│   │   │   │       └── value.cjs
+│   │   │   ├── tokenizer
+│   │   │   │   ├── adopt-buffer.cjs
+│   │   │   │   ├── char-code-definitions.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── names.cjs
+│   │   │   │   ├── OffsetToLocation.cjs
+│   │   │   │   ├── TokenStream.cjs
+│   │   │   │   ├── types.cjs
+│   │   │   │   └── utils.cjs
+│   │   │   ├── utils
+│   │   │   │   ├── clone.cjs
+│   │   │   │   ├── create-custom-error.cjs
+│   │   │   │   ├── ident.cjs
+│   │   │   │   ├── index.cjs
+│   │   │   │   ├── List.cjs
+│   │   │   │   ├── names.cjs
+│   │   │   │   ├── string.cjs
+│   │   │   │   └── url.cjs
+│   │   │   ├── version.cjs
+│   │   │   └── walker
+│   │   │       ├── create.cjs
+│   │   │       └── index.cjs
+│   │   ├── data
+│   │   │   └── patch.json
+│   │   ├── dist
+│   │   │   ├── csstree.esm.js
+│   │   │   ├── csstree.js
+│   │   │   ├── data.cjs
+│   │   │   ├── data.js
+│   │   │   ├── version.cjs
+│   │   │   └── version.js
+│   │   ├── lib
+│   │   │   ├── convertor
+│   │   │   │   ├── create.js
+│   │   │   │   └── index.js
+│   │   │   ├── data.js
+│   │   │   ├── data-patch.js
+│   │   │   ├── definition-syntax
+│   │   │   │   ├── generate.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── parse.js
+│   │   │   │   ├── scanner.js
+│   │   │   │   ├── SyntaxError.js
+│   │   │   │   └── walk.js
+│   │   │   ├── generator
+│   │   │   │   ├── create.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── sourceMap.js
+│   │   │   │   └── token-before.js
+│   │   │   ├── index.js
+│   │   │   ├── lexer
+│   │   │   │   ├── error.js
+│   │   │   │   ├── generic-an-plus-b.js
+│   │   │   │   ├── generic-const.js
+│   │   │   │   ├── generic.js
+│   │   │   │   ├── generic-urange.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── Lexer.js
+│   │   │   │   ├── match-graph.js
+│   │   │   │   ├── match.js
+│   │   │   │   ├── prepare-tokens.js
+│   │   │   │   ├── search.js
+│   │   │   │   ├── structure.js
+│   │   │   │   ├── trace.js
+│   │   │   │   └── units.js
+│   │   │   ├── parser
+│   │   │   │   ├── create.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── parse-selector.js
+│   │   │   │   ├── sequence.js
+│   │   │   │   └── SyntaxError.js
+│   │   │   ├── syntax
+│   │   │   │   ├── atrule
+│   │   │   │   │   ├── container.js
+│   │   │   │   │   ├── font-face.js
+│   │   │   │   │   ├── import.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── layer.js
+│   │   │   │   │   ├── media.js
+│   │   │   │   │   ├── nest.js
+│   │   │   │   │   ├── page.js
+│   │   │   │   │   ├── scope.js
+│   │   │   │   │   ├── starting-style.js
+│   │   │   │   │   └── supports.js
+│   │   │   │   ├── config
+│   │   │   │   │   ├── generator.js
+│   │   │   │   │   ├── lexer.js
+│   │   │   │   │   ├── mix.js
+│   │   │   │   │   ├── parser.js
+│   │   │   │   │   ├── parser-selector.js
+│   │   │   │   │   └── walker.js
+│   │   │   │   ├── create.js
+│   │   │   │   ├── function
+│   │   │   │   │   ├── expression.js
+│   │   │   │   │   └── var.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── node
+│   │   │   │   │   ├── AnPlusB.js
+│   │   │   │   │   ├── Atrule.js
+│   │   │   │   │   ├── AtrulePrelude.js
+│   │   │   │   │   ├── AttributeSelector.js
+│   │   │   │   │   ├── Block.js
+│   │   │   │   │   ├── Brackets.js
+│   │   │   │   │   ├── CDC.js
+│   │   │   │   │   ├── CDO.js
+│   │   │   │   │   ├── ClassSelector.js
+│   │   │   │   │   ├── Combinator.js
+│   │   │   │   │   ├── Comment.js
+│   │   │   │   │   ├── Condition.js
+│   │   │   │   │   ├── Declaration.js
+│   │   │   │   │   ├── DeclarationList.js
+│   │   │   │   │   ├── Dimension.js
+│   │   │   │   │   ├── FeatureFunction.js
+│   │   │   │   │   ├── Feature.js
+│   │   │   │   │   ├── FeatureRange.js
+│   │   │   │   │   ├── Function.js
+│   │   │   │   │   ├── GeneralEnclosed.js
+│   │   │   │   │   ├── Hash.js
+│   │   │   │   │   ├── Identifier.js
+│   │   │   │   │   ├── IdSelector.js
+│   │   │   │   │   ├── index-generate.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index-parse.js
+│   │   │   │   │   ├── index-parse-selector.js
+│   │   │   │   │   ├── Layer.js
+│   │   │   │   │   ├── LayerList.js
+│   │   │   │   │   ├── MediaQuery.js
+│   │   │   │   │   ├── MediaQueryList.js
+│   │   │   │   │   ├── NestingSelector.js
+│   │   │   │   │   ├── Nth.js
+│   │   │   │   │   ├── Number.js
+│   │   │   │   │   ├── Operator.js
+│   │   │   │   │   ├── Parentheses.js
+│   │   │   │   │   ├── Percentage.js
+│   │   │   │   │   ├── PseudoClassSelector.js
+│   │   │   │   │   ├── PseudoElementSelector.js
+│   │   │   │   │   ├── Ratio.js
+│   │   │   │   │   ├── Raw.js
+│   │   │   │   │   ├── Rule.js
+│   │   │   │   │   ├── Scope.js
+│   │   │   │   │   ├── Selector.js
+│   │   │   │   │   ├── SelectorList.js
+│   │   │   │   │   ├── String.js
+│   │   │   │   │   ├── StyleSheet.js
+│   │   │   │   │   ├── SupportsDeclaration.js
+│   │   │   │   │   ├── TypeSelector.js
+│   │   │   │   │   ├── UnicodeRange.js
+│   │   │   │   │   ├── Url.js
+│   │   │   │   │   ├── Value.js
+│   │   │   │   │   └── WhiteSpace.js
+│   │   │   │   ├── pseudo
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── lang.js
+│   │   │   │   └── scope
+│   │   │   │       ├── atrulePrelude.js
+│   │   │   │       ├── default.js
+│   │   │   │       ├── index.js
+│   │   │   │       ├── selector.js
+│   │   │   │       └── value.js
+│   │   │   ├── tokenizer
+│   │   │   │   ├── adopt-buffer.js
+│   │   │   │   ├── char-code-definitions.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── names.js
+│   │   │   │   ├── OffsetToLocation.js
+│   │   │   │   ├── TokenStream.js
+│   │   │   │   ├── types.js
+│   │   │   │   └── utils.js
+│   │   │   ├── utils
+│   │   │   │   ├── clone.js
+│   │   │   │   ├── create-custom-error.js
+│   │   │   │   ├── ident.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── List.js
+│   │   │   │   ├── names.js
+│   │   │   │   ├── string.js
+│   │   │   │   └── url.js
+│   │   │   ├── version.js
+│   │   │   └── walker
+│   │   │       ├── create.js
+│   │   │       └── index.js
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── data-urls
+│   │   ├── lib
+│   │   │   ├── parser.js
+│   │   │   └── utils.js
+│   │   ├── LICENSE.txt
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── decimal.js
+│   │   ├── decimal.d.ts
+│   │   ├── decimal.js
+│   │   ├── decimal.mjs
+│   │   ├── LICENCE.md
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── entities
+│   │   ├── dist
+│   │   │   ├── decode-codepoint.d.ts
+│   │   │   ├── decode-codepoint.d.ts.map
+│   │   │   ├── decode-codepoint.js
+│   │   │   ├── decode-codepoint.js.map
+│   │   │   ├── decode.d.ts
+│   │   │   ├── decode.d.ts.map
+│   │   │   ├── decode.js
+│   │   │   ├── decode.js.map
+│   │   │   ├── encode.d.ts
+│   │   │   ├── encode.d.ts.map
+│   │   │   ├── encode.js
+│   │   │   ├── encode.js.map
+│   │   │   ├── escape.d.ts
+│   │   │   ├── escape.d.ts.map
+│   │   │   ├── escape.js
+│   │   │   ├── escape.js.map
+│   │   │   ├── generated
+│   │   │   │   ├── decode-data-html.d.ts
+│   │   │   │   ├── decode-data-html.d.ts.map
+│   │   │   │   ├── decode-data-html.js
+│   │   │   │   ├── decode-data-html.js.map
+│   │   │   │   ├── decode-data-xml.d.ts
+│   │   │   │   ├── decode-data-xml.d.ts.map
+│   │   │   │   ├── decode-data-xml.js
+│   │   │   │   ├── decode-data-xml.js.map
+│   │   │   │   ├── encode-html.d.ts
+│   │   │   │   ├── encode-html.d.ts.map
+│   │   │   │   ├── encode-html.js
+│   │   │   │   └── encode-html.js.map
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.d.ts.map
+│   │   │   ├── index.js
+│   │   │   ├── index.js.map
+│   │   │   └── internal
+│   │   │       ├── bin-trie-flags.d.ts
+│   │   │       ├── bin-trie-flags.d.ts.map
+│   │   │       ├── bin-trie-flags.js
+│   │   │       ├── bin-trie-flags.js.map
+│   │   │       ├── decode-shared.d.ts
+│   │   │       ├── decode-shared.d.ts.map
+│   │   │       ├── decode-shared.js
+│   │   │       ├── decode-shared.js.map
+│   │   │       ├── encode-shared.d.ts
+│   │   │       ├── encode-shared.d.ts.map
+│   │   │       ├── encode-shared.js
+│   │   │       └── encode-shared.js.map
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── readme.md
+│   │   └── src
+│   │       ├── decode-codepoint.ts
+│   │       ├── decode.ts
+│   │       ├── encode.ts
+│   │       ├── escape.ts
+│   │       ├── generated
+│   │       │   ├── decode-data-html.ts
+│   │       │   ├── decode-data-xml.ts
+│   │       │   └── encode-html.ts
+│   │       ├── index.ts
+│   │       └── internal
+│   │           ├── bin-trie-flags.ts
+│   │           ├── decode-shared.ts
+│   │           └── encode-shared.ts
+│   ├── @exodus
+│   │   └── bytes
+│   │       ├── array.d.ts
+│   │       ├── array.js
+│   │       ├── assert.js
+│   │       ├── base32.d.ts
+│   │       ├── base32.js
+│   │       ├── base58check.d.ts
+│   │       ├── base58check.js
+│   │       ├── base58check.node.js
+│   │       ├── base58.d.ts
+│   │       ├── base58.js
+│   │       ├── base64.d.ts
+│   │       ├── base64.js
+│   │       ├── bech32.d.ts
+│   │       ├── bech32.js
+│   │       ├── bigint.d.ts
+│   │       ├── bigint.js
+│   │       ├── encoding-browser.browser.js
+│   │       ├── encoding-browser.d.ts
+│   │       ├── encoding-browser.js
+│   │       ├── encoding-browser.native.js
+│   │       ├── encoding.d.ts
+│   │       ├── encoding.js
+│   │       ├── encoding-lite.d.ts
+│   │       ├── encoding-lite.js
+│   │       ├── fallback
+│   │       │   ├── base32.js
+│   │       │   ├── base58check.js
+│   │       │   ├── base64.js
+│   │       │   ├── encoding.api.js
+│   │       │   ├── encoding.js
+│   │       │   ├── encoding.labels.js
+│   │       │   ├── encoding.util.js
+│   │       │   ├── hex.js
+│   │       │   ├── latin1.js
+│   │       │   ├── multi-byte.encodings.cjs
+│   │       │   ├── multi-byte.encodings.json
+│   │       │   ├── multi-byte.js
+│   │       │   ├── multi-byte.table.js
+│   │       │   ├── percent.js
+│   │       │   ├── platform.browser.js
+│   │       │   ├── platform.js
+│   │       │   ├── platform.native.js
+│   │       │   ├── single-byte.encodings.js
+│   │       │   ├── single-byte.js
+│   │       │   ├── utf16.js
+│   │       │   ├── utf8.auto.browser.js
+│   │       │   ├── utf8.auto.js
+│   │       │   ├── utf8.auto.native.js
+│   │       │   ├── utf8.js
+│   │       │   └── _utils.js
+│   │       ├── hex.d.ts
+│   │       ├── hex.js
+│   │       ├── hex.node.js
+│   │       ├── index.d.ts
+│   │       ├── index.js
+│   │       ├── LICENSE
+│   │       ├── multi-byte.d.ts
+│   │       ├── multi-byte.js
+│   │       ├── multi-byte.node.js
+│   │       ├── package.json
+│   │       ├── README.md
+│   │       ├── single-byte.d.ts
+│   │       ├── single-byte.js
+│   │       ├── single-byte.node.js
+│   │       ├── utf16.browser.js
+│   │       ├── utf16.d.ts
+│   │       ├── utf16.js
+│   │       ├── utf16.native.js
+│   │       ├── utf16.node.js
+│   │       ├── utf8.d.ts
+│   │       ├── utf8.js
+│   │       ├── utf8.node.js
+│   │       ├── whatwg.d.ts
+│   │       ├── whatwg.js
+│   │       ├── wif.d.ts
+│   │       └── wif.js
+│   ├── html-encoding-sniffer
+│   │   ├── lib
+│   │   │   └── html-encoding-sniffer.js
+│   │   ├── LICENSE.txt
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── is-potential-custom-element-name
+│   │   ├── index.js
+│   │   ├── LICENSE-MIT.txt
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── jsdom
+│   │   ├── lib
+│   │   │   ├── api.js
+│   │   │   ├── generated
+│   │   │   │   ├── css-property-definitions.js
+│   │   │   │   ├── css-property-descriptors.js
+│   │   │   │   ├── css-property-metadata.js
+│   │   │   │   ├── event-sets.js
+│   │   │   │   ├── idl
+│   │   │   │   │   ├── AbortController.js
+│   │   │   │   │   ├── AbortSignal.js
+│   │   │   │   │   ├── AbstractRange.js
+│   │   │   │   │   ├── AddEventListenerOptions.js
+│   │   │   │   │   ├── AssignedNodesOptions.js
+│   │   │   │   │   ├── Attr.js
+│   │   │   │   │   ├── BarProp.js
+│   │   │   │   │   ├── BeforeUnloadEvent.js
+│   │   │   │   │   ├── BinaryType.js
+│   │   │   │   │   ├── BlobCallback.js
+│   │   │   │   │   ├── BlobEventInit.js
+│   │   │   │   │   ├── BlobEvent.js
+│   │   │   │   │   ├── Blob.js
+│   │   │   │   │   ├── BlobPropertyBag.js
+│   │   │   │   │   ├── CanPlayTypeResult.js
+│   │   │   │   │   ├── CDATASection.js
+│   │   │   │   │   ├── CharacterData.js
+│   │   │   │   │   ├── CloseEventInit.js
+│   │   │   │   │   ├── CloseEvent.js
+│   │   │   │   │   ├── Comment.js
+│   │   │   │   │   ├── CompositionEventInit.js
+│   │   │   │   │   ├── CompositionEvent.js
+│   │   │   │   │   ├── Crypto.js
+│   │   │   │   │   ├── CSSConditionRule.js
+│   │   │   │   │   ├── CSSContainerRule.js
+│   │   │   │   │   ├── CSSCounterStyleRule.js
+│   │   │   │   │   ├── CSSFontFaceRule.js
+│   │   │   │   │   ├── CSSGroupingRule.js
+│   │   │   │   │   ├── CSSImportRule.js
+│   │   │   │   │   ├── CSSKeyframeRule.js
+│   │   │   │   │   ├── CSSKeyframesRule.js
+│   │   │   │   │   ├── CSSLayerBlockRule.js
+│   │   │   │   │   ├── CSSLayerStatementRule.js
+│   │   │   │   │   ├── CSSMediaRule.js
+│   │   │   │   │   ├── CSSNamespaceRule.js
+│   │   │   │   │   ├── CSSNestedDeclarations.js
+│   │   │   │   │   ├── CSSPageRule.js
+│   │   │   │   │   ├── CSSRule.js
+│   │   │   │   │   ├── CSSRuleList.js
+│   │   │   │   │   ├── CSSScopeRule.js
+│   │   │   │   │   ├── CSSStyleDeclaration.js
+│   │   │   │   │   ├── CSSStyleProperties.js
+│   │   │   │   │   ├── CSSStyleRule.js
+│   │   │   │   │   ├── CSSStyleSheetInit.js
+│   │   │   │   │   ├── CSSStyleSheet.js
+│   │   │   │   │   ├── CSSSupportsRule.js
+│   │   │   │   │   ├── CustomElementConstructor.js
+│   │   │   │   │   ├── CustomElementRegistry.js
+│   │   │   │   │   ├── CustomEventInit.js
+│   │   │   │   │   ├── CustomEvent.js
+│   │   │   │   │   ├── DeviceMotionEventAccelerationInit.js
+│   │   │   │   │   ├── DeviceMotionEventAcceleration.js
+│   │   │   │   │   ├── DeviceMotionEventInit.js
+│   │   │   │   │   ├── DeviceMotionEvent.js
+│   │   │   │   │   ├── DeviceMotionEventRotationRateInit.js
+│   │   │   │   │   ├── DeviceMotionEventRotationRate.js
+│   │   │   │   │   ├── DeviceOrientationEventInit.js
+│   │   │   │   │   ├── DeviceOrientationEvent.js
+│   │   │   │   │   ├── DocumentFragment.js
+│   │   │   │   │   ├── Document.js
+│   │   │   │   │   ├── DocumentReadyState.js
+│   │   │   │   │   ├── DocumentType.js
+│   │   │   │   │   ├── DOMException.js
+│   │   │   │   │   ├── DOMImplementation.js
+│   │   │   │   │   ├── DOMParser.js
+│   │   │   │   │   ├── DOMRectInit.js
+│   │   │   │   │   ├── DOMRect.js
+│   │   │   │   │   ├── DOMRectReadOnly.js
+│   │   │   │   │   ├── DOMStringMap.js
+│   │   │   │   │   ├── DOMTokenList.js
+│   │   │   │   │   ├── ElementCreationOptions.js
+│   │   │   │   │   ├── ElementDefinitionOptions.js
+│   │   │   │   │   ├── ElementInternals.js
+│   │   │   │   │   ├── Element.js
+│   │   │   │   │   ├── EndingType.js
+│   │   │   │   │   ├── ErrorEventInit.js
+│   │   │   │   │   ├── ErrorEvent.js
+│   │   │   │   │   ├── EventHandlerNonNull.js
+│   │   │   │   │   ├── EventInit.js
+│   │   │   │   │   ├── Event.js
+│   │   │   │   │   ├── EventListener.js
+│   │   │   │   │   ├── EventListenerOptions.js
+│   │   │   │   │   ├── EventModifierInit.js
+│   │   │   │   │   ├── EventTarget.js
+│   │   │   │   │   ├── External.js
+│   │   │   │   │   ├── File.js
+│   │   │   │   │   ├── FileList.js
+│   │   │   │   │   ├── FilePropertyBag.js
+│   │   │   │   │   ├── FileReader.js
+│   │   │   │   │   ├── FocusEventInit.js
+│   │   │   │   │   ├── FocusEvent.js
+│   │   │   │   │   ├── FormData.js
+│   │   │   │   │   ├── Function.js
+│   │   │   │   │   ├── GetRootNodeOptions.js
+│   │   │   │   │   ├── HashChangeEventInit.js
+│   │   │   │   │   ├── HashChangeEvent.js
+│   │   │   │   │   ├── Headers.js
+│   │   │   │   │   ├── History.js
+│   │   │   │   │   ├── HTMLAnchorElement.js
+│   │   │   │   │   ├── HTMLAreaElement.js
+│   │   │   │   │   ├── HTMLAudioElement.js
+│   │   │   │   │   ├── HTMLBaseElement.js
+│   │   │   │   │   ├── HTMLBodyElement.js
+│   │   │   │   │   ├── HTMLBRElement.js
+│   │   │   │   │   ├── HTMLButtonElement.js
+│   │   │   │   │   ├── HTMLCanvasElement.js
+│   │   │   │   │   ├── HTMLCollection.js
+│   │   │   │   │   ├── HTMLDataElement.js
+│   │   │   │   │   ├── HTMLDataListElement.js
+│   │   │   │   │   ├── HTMLDetailsElement.js
+│   │   │   │   │   ├── HTMLDialogElement.js
+│   │   │   │   │   ├── HTMLDirectoryElement.js
+│   │   │   │   │   ├── HTMLDivElement.js
+│   │   │   │   │   ├── HTMLDListElement.js
+│   │   │   │   │   ├── HTMLElement.js
+│   │   │   │   │   ├── HTMLEmbedElement.js
+│   │   │   │   │   ├── HTMLFieldSetElement.js
+│   │   │   │   │   ├── HTMLFontElement.js
+│   │   │   │   │   ├── HTMLFormControlsCollection.js
+│   │   │   │   │   ├── HTMLFormElement.js
+│   │   │   │   │   ├── HTMLFrameElement.js
+│   │   │   │   │   ├── HTMLFrameSetElement.js
+│   │   │   │   │   ├── HTMLHeadElement.js
+│   │   │   │   │   ├── HTMLHeadingElement.js
+│   │   │   │   │   ├── HTMLHRElement.js
+│   │   │   │   │   ├── HTMLHtmlElement.js
+│   │   │   │   │   ├── HTMLIFrameElement.js
+│   │   │   │   │   ├── HTMLImageElement.js
+│   │   │   │   │   ├── HTMLInputElement.js
+│   │   │   │   │   ├── HTMLLabelElement.js
+│   │   │   │   │   ├── HTMLLegendElement.js
+│   │   │   │   │   ├── HTMLLIElement.js
+│   │   │   │   │   ├── HTMLLinkElement.js
+│   │   │   │   │   ├── HTMLMapElement.js
+│   │   │   │   │   ├── HTMLMarqueeElement.js
+│   │   │   │   │   ├── HTMLMediaElement.js
+│   │   │   │   │   ├── HTMLMenuElement.js
+│   │   │   │   │   ├── HTMLMetaElement.js
+│   │   │   │   │   ├── HTMLMeterElement.js
+│   │   │   │   │   ├── HTMLModElement.js
+│   │   │   │   │   ├── HTMLObjectElement.js
+│   │   │   │   │   ├── HTMLOListElement.js
+│   │   │   │   │   ├── HTMLOptGroupElement.js
+│   │   │   │   │   ├── HTMLOptionElement.js
+│   │   │   │   │   ├── HTMLOptionsCollection.js
+│   │   │   │   │   ├── HTMLOutputElement.js
+│   │   │   │   │   ├── HTMLParagraphElement.js
+│   │   │   │   │   ├── HTMLParamElement.js
+│   │   │   │   │   ├── HTMLPictureElement.js
+│   │   │   │   │   ├── HTMLPreElement.js
+│   │   │   │   │   ├── HTMLProgressElement.js
+│   │   │   │   │   ├── HTMLQuoteElement.js
+│   │   │   │   │   ├── HTMLScriptElement.js
+│   │   │   │   │   ├── HTMLSelectElement.js
+│   │   │   │   │   ├── HTMLSlotElement.js
+│   │   │   │   │   ├── HTMLSourceElement.js
+│   │   │   │   │   ├── HTMLSpanElement.js
+│   │   │   │   │   ├── HTMLStyleElement.js
+│   │   │   │   │   ├── HTMLTableCaptionElement.js
+│   │   │   │   │   ├── HTMLTableCellElement.js
+│   │   │   │   │   ├── HTMLTableColElement.js
+│   │   │   │   │   ├── HTMLTableElement.js
+│   │   │   │   │   ├── HTMLTableRowElement.js
+│   │   │   │   │   ├── HTMLTableSectionElement.js
+│   │   │   │   │   ├── HTMLTemplateElement.js
+│   │   │   │   │   ├── HTMLTextAreaElement.js
+│   │   │   │   │   ├── HTMLTimeElement.js
+│   │   │   │   │   ├── HTMLTitleElement.js
+│   │   │   │   │   ├── HTMLTrackElement.js
+│   │   │   │   │   ├── HTMLUListElement.js
+│   │   │   │   │   ├── HTMLUnknownElement.js
+│   │   │   │   │   ├── HTMLVideoElement.js
+│   │   │   │   │   ├── InputEventInit.js
+│   │   │   │   │   ├── InputEvent.js
+│   │   │   │   │   ├── KeyboardEventInit.js
+│   │   │   │   │   ├── KeyboardEvent.js
+│   │   │   │   │   ├── Location.js
+│   │   │   │   │   ├── MediaList.js
+│   │   │   │   │   ├── MessageEventInit.js
+│   │   │   │   │   ├── MessageEvent.js
+│   │   │   │   │   ├── MimeTypeArray.js
+│   │   │   │   │   ├── MimeType.js
+│   │   │   │   │   ├── MouseEventInit.js
+│   │   │   │   │   ├── MouseEvent.js
+│   │   │   │   │   ├── MutationCallback.js
+│   │   │   │   │   ├── MutationObserverInit.js
+│   │   │   │   │   ├── MutationObserver.js
+│   │   │   │   │   ├── MutationRecord.js
+│   │   │   │   │   ├── NamedNodeMap.js
+│   │   │   │   │   ├── Navigator.js
+│   │   │   │   │   ├── NodeFilter.js
+│   │   │   │   │   ├── NodeIterator.js
+│   │   │   │   │   ├── Node.js
+│   │   │   │   │   ├── NodeList.js
+│   │   │   │   │   ├── OnBeforeUnloadEventHandlerNonNull.js
+│   │   │   │   │   ├── OnErrorEventHandlerNonNull.js
+│   │   │   │   │   ├── PageTransitionEventInit.js
+│   │   │   │   │   ├── PageTransitionEvent.js
+│   │   │   │   │   ├── Performance.js
+│   │   │   │   │   ├── PluginArray.js
+│   │   │   │   │   ├── Plugin.js
+│   │   │   │   │   ├── PointerEventInit.js
+│   │   │   │   │   ├── PointerEvent.js
+│   │   │   │   │   ├── PopStateEventInit.js
+│   │   │   │   │   ├── PopStateEvent.js
+│   │   │   │   │   ├── ProcessingInstruction.js
+│   │   │   │   │   ├── ProgressEventInit.js
+│   │   │   │   │   ├── ProgressEvent.js
+│   │   │   │   │   ├── PromiseRejectionEventInit.js
+│   │   │   │   │   ├── PromiseRejectionEvent.js
+│   │   │   │   │   ├── RadioNodeList.js
+│   │   │   │   │   ├── Range.js
+│   │   │   │   │   ├── Screen.js
+│   │   │   │   │   ├── ScrollBehavior.js
+│   │   │   │   │   ├── ScrollIntoViewOptions.js
+│   │   │   │   │   ├── ScrollLogicalPosition.js
+│   │   │   │   │   ├── ScrollOptions.js
+│   │   │   │   │   ├── ScrollRestoration.js
+│   │   │   │   │   ├── Selection.js
+│   │   │   │   │   ├── SelectionMode.js
+│   │   │   │   │   ├── ShadowRootInit.js
+│   │   │   │   │   ├── ShadowRoot.js
+│   │   │   │   │   ├── ShadowRootMode.js
+│   │   │   │   │   ├── StaticRangeInit.js
+│   │   │   │   │   ├── StaticRange.js
+│   │   │   │   │   ├── StorageEventInit.js
+│   │   │   │   │   ├── StorageEvent.js
+│   │   │   │   │   ├── Storage.js
+│   │   │   │   │   ├── StyleSheet.js
+│   │   │   │   │   ├── StyleSheetList.js
+│   │   │   │   │   ├── SubmitEventInit.js
+│   │   │   │   │   ├── SubmitEvent.js
+│   │   │   │   │   ├── SupportedType.js
+│   │   │   │   │   ├── SVGAnimatedPreserveAspectRatio.js
+│   │   │   │   │   ├── SVGAnimatedRect.js
+│   │   │   │   │   ├── SVGAnimatedString.js
+│   │   │   │   │   ├── SVGBoundingBoxOptions.js
+│   │   │   │   │   ├── SVGDefsElement.js
+│   │   │   │   │   ├── SVGDescElement.js
+│   │   │   │   │   ├── SVGElement.js
+│   │   │   │   │   ├── SVGGElement.js
+│   │   │   │   │   ├── SVGGraphicsElement.js
+│   │   │   │   │   ├── SVGMetadataElement.js
+│   │   │   │   │   ├── SVGNumber.js
+│   │   │   │   │   ├── SVGPreserveAspectRatio.js
+│   │   │   │   │   ├── SVGRect.js
+│   │   │   │   │   ├── SVGStringList.js
+│   │   │   │   │   ├── SVGSVGElement.js
+│   │   │   │   │   ├── SVGSwitchElement.js
+│   │   │   │   │   ├── SVGSymbolElement.js
+│   │   │   │   │   ├── SVGTitleElement.js
+│   │   │   │   │   ├── TextDecodeOptions.js
+│   │   │   │   │   ├── TextDecoder.js
+│   │   │   │   │   ├── TextDecoderOptions.js
+│   │   │   │   │   ├── TextEncoderEncodeIntoResult.js
+│   │   │   │   │   ├── TextEncoder.js
+│   │   │   │   │   ├── Text.js
+│   │   │   │   │   ├── TextTrackKind.js
+│   │   │   │   │   ├── TouchEventInit.js
+│   │   │   │   │   ├── TouchEvent.js
+│   │   │   │   │   ├── TransitionEventInit.js
+│   │   │   │   │   ├── TransitionEvent.js
+│   │   │   │   │   ├── TreeWalker.js
+│   │   │   │   │   ├── UIEventInit.js
+│   │   │   │   │   ├── UIEvent.js
+│   │   │   │   │   ├── utils.js
+│   │   │   │   │   ├── ValidityState.js
+│   │   │   │   │   ├── VisibilityState.js
+│   │   │   │   │   ├── VoidFunction.js
+│   │   │   │   │   ├── WebSocket.js
+│   │   │   │   │   ├── WheelEventInit.js
+│   │   │   │   │   ├── WheelEvent.js
+│   │   │   │   │   ├── XMLDocument.js
+│   │   │   │   │   ├── XMLHttpRequestEventTarget.js
+│   │   │   │   │   ├── XMLHttpRequest.js
+│   │   │   │   │   ├── XMLHttpRequestResponseType.js
+│   │   │   │   │   ├── XMLHttpRequestUpload.js
+│   │   │   │   │   └── XMLSerializer.js
+│   │   │   │   └── js-globals.json
+│   │   │   └── jsdom
+│   │   │       ├── browser
+│   │   │       │   ├── default-stylesheet.css
+│   │   │       │   ├── not-implemented.js
+│   │   │       │   ├── parser
+│   │   │       │   │   ├── html.js
+│   │   │       │   │   ├── index.js
+│   │   │       │   │   └── xml.js
+│   │   │       │   ├── resources
+│   │   │       │   │   ├── async-resource-queue.js
+│   │   │       │   │   ├── decompress-interceptor.js
+│   │   │       │   │   ├── jsdom-dispatcher.js
+│   │   │       │   │   ├── per-document-resource-loader.js
+│   │   │       │   │   ├── request-interceptor.js
+│   │   │       │   │   ├── request-manager.js
+│   │   │       │   │   ├── resource-queue.js
+│   │   │       │   │   └── stream-handler.js
+│   │   │       │   └── Window.js
+│   │   │       ├── level3
+│   │   │       │   └── xpath.js
+│   │   │       ├── living
+│   │   │       │   ├── aborting
+│   │   │       │   │   ├── AbortController-impl.js
+│   │   │       │   │   └── AbortSignal-impl.js
+│   │   │       │   ├── attributes
+│   │   │       │   │   ├── Attr-impl.js
+│   │   │       │   │   └── NamedNodeMap-impl.js
+│   │   │       │   ├── attributes.js
+│   │   │       │   ├── constraint-validation
+│   │   │       │   │   ├── DefaultConstraintValidation-impl.js
+│   │   │       │   │   └── ValidityState-impl.js
+│   │   │       │   ├── crypto
+│   │   │       │   │   └── Crypto-impl.js
+│   │   │       │   ├── css
+│   │   │       │   │   ├── CSSConditionRule-impl.js
+│   │   │       │   │   ├── CSSContainerRule-impl.js
+│   │   │       │   │   ├── CSSCounterStyleRule-impl.js
+│   │   │       │   │   ├── CSSFontFaceRule-impl.js
+│   │   │       │   │   ├── CSSGroupingRule-impl.js
+│   │   │       │   │   ├── CSSImportRule-impl.js
+│   │   │       │   │   ├── CSSKeyframeRule-impl.js
+│   │   │       │   │   ├── CSSKeyframesRule-impl.js
+│   │   │       │   │   ├── CSSLayerBlockRule-impl.js
+│   │   │       │   │   ├── CSSLayerStatementRule-impl.js
+│   │   │       │   │   ├── CSSMediaRule-impl.js
+│   │   │       │   │   ├── CSSNamespaceRule-impl.js
+│   │   │       │   │   ├── CSSNestedDeclarations-impl.js
+│   │   │       │   │   ├── CSSPageRule-impl.js
+│   │   │       │   │   ├── CSSRule-impl.js
+│   │   │       │   │   ├── CSSRuleList-impl.js
+│   │   │       │   │   ├── CSSScopeRule-impl.js
+│   │   │       │   │   ├── CSSStyleDeclaration-impl.js
+│   │   │       │   │   ├── CSSStyleProperties-impl.js
+│   │   │       │   │   ├── CSSStyleRule-impl.js
+│   │   │       │   │   ├── CSSStyleSheet-impl.js
+│   │   │       │   │   ├── CSSSupportsRule-impl.js
+│   │   │       │   │   ├── ElementCSSInlineStyle-impl.js
+│   │   │       │   │   ├── helpers
+│   │   │       │   │   │   ├── computed-style.js
+│   │   │       │   │   │   ├── css-parser.js
+│   │   │       │   │   │   ├── css-values.js
+│   │   │       │   │   │   ├── generic-property-descriptor.js
+│   │   │       │   │   │   ├── patched-csstree.js
+│   │   │       │   │   │   ├── shorthand-properties.js
+│   │   │       │   │   │   ├── stylesheets.js
+│   │   │       │   │   │   └── system-colors.js
+│   │   │       │   │   ├── MediaList-impl.js
+│   │   │       │   │   ├── properties
+│   │   │       │   │   │   ├── backgroundAttachment.js
+│   │   │       │   │   │   ├── backgroundClip.js
+│   │   │       │   │   │   ├── backgroundColor.js
+│   │   │       │   │   │   ├── backgroundImage.js
+│   │   │       │   │   │   ├── background.js
+│   │   │       │   │   │   ├── backgroundOrigin.js
+│   │   │       │   │   │   ├── backgroundPosition.js
+│   │   │       │   │   │   ├── backgroundRepeat.js
+│   │   │       │   │   │   ├── backgroundSize.js
+│   │   │       │   │   │   ├── borderBottomColor.js
+│   │   │       │   │   │   ├── borderBottom.js
+│   │   │       │   │   │   ├── borderBottomStyle.js
+│   │   │       │   │   │   ├── borderBottomWidth.js
+│   │   │       │   │   │   ├── borderColor.js
+│   │   │       │   │   │   ├── border.js
+│   │   │       │   │   │   ├── borderLeftColor.js
+│   │   │       │   │   │   ├── borderLeft.js
+│   │   │       │   │   │   ├── borderLeftStyle.js
+│   │   │       │   │   │   ├── borderLeftWidth.js
+│   │   │       │   │   │   ├── borderRightColor.js
+│   │   │       │   │   │   ├── borderRight.js
+│   │   │       │   │   │   ├── borderRightStyle.js
+│   │   │       │   │   │   ├── borderRightWidth.js
+│   │   │       │   │   │   ├── borderSpacing.js
+│   │   │       │   │   │   ├── borderStyle.js
+│   │   │       │   │   │   ├── borderTopColor.js
+│   │   │       │   │   │   ├── borderTop.js
+│   │   │       │   │   │   ├── borderTopStyle.js
+│   │   │       │   │   │   ├── borderTopWidth.js
+│   │   │       │   │   │   ├── borderWidth.js
+│   │   │       │   │   │   ├── bottom.js
+│   │   │       │   │   │   ├── clip.js
+│   │   │       │   │   │   ├── display.js
+│   │   │       │   │   │   ├── flexBasis.js
+│   │   │       │   │   │   ├── flexGrow.js
+│   │   │       │   │   │   ├── flex.js
+│   │   │       │   │   │   ├── flexShrink.js
+│   │   │       │   │   │   ├── fontFamily.js
+│   │   │       │   │   │   ├── font.js
+│   │   │       │   │   │   ├── fontSize.js
+│   │   │       │   │   │   ├── fontStyle.js
+│   │   │       │   │   │   ├── fontVariant.js
+│   │   │       │   │   │   ├── fontWeight.js
+│   │   │       │   │   │   ├── height.js
+│   │   │       │   │   │   ├── left.js
+│   │   │       │   │   │   ├── lineHeight.js
+│   │   │       │   │   │   ├── marginBottom.js
+│   │   │       │   │   │   ├── margin.js
+│   │   │       │   │   │   ├── marginLeft.js
+│   │   │       │   │   │   ├── marginRight.js
+│   │   │       │   │   │   ├── marginTop.js
+│   │   │       │   │   │   ├── opacity.js
+│   │   │       │   │   │   ├── paddingBottom.js
+│   │   │       │   │   │   ├── padding.js
+│   │   │       │   │   │   ├── paddingLeft.js
+│   │   │       │   │   │   ├── paddingRight.js
+│   │   │       │   │   │   ├── paddingTop.js
+│   │   │       │   │   │   ├── right.js
+│   │   │       │   │   │   ├── top.js
+│   │   │       │   │   │   └── width.js
+│   │   │       │   │   ├── StyleSheet-impl.js
+│   │   │       │   │   └── StyleSheetList-impl.js
+│   │   │       │   ├── custom-elements
+│   │   │       │   │   ├── CustomElementRegistry-impl.js
+│   │   │       │   │   └── ElementInternals-impl.js
+│   │   │       │   ├── deviceorientation
+│   │   │       │   │   ├── DeviceMotionEventAcceleration-impl.js
+│   │   │       │   │   └── DeviceMotionEventRotationRate-impl.js
+│   │   │       │   ├── documents.js
+│   │   │       │   ├── domparsing
+│   │   │       │   │   ├── DOMParser-impl.js
+│   │   │       │   │   ├── InnerHTML-impl.js
+│   │   │       │   │   ├── parse5-adapter-serialization.js
+│   │   │       │   │   ├── serialization.js
+│   │   │       │   │   └── XMLSerializer-impl.js
+│   │   │       │   ├── encoding
+│   │   │       │   │   ├── TextDecoder-impl.js
+│   │   │       │   │   └── TextEncoder-impl.js
+│   │   │       │   ├── events
+│   │   │       │   │   ├── BeforeUnloadEvent-impl.js
+│   │   │       │   │   ├── BlobEvent-impl.js
+│   │   │       │   │   ├── CloseEvent-impl.js
+│   │   │       │   │   ├── CompositionEvent-impl.js
+│   │   │       │   │   ├── CustomEvent-impl.js
+│   │   │       │   │   ├── DeviceMotionEvent-impl.js
+│   │   │       │   │   ├── DeviceOrientationEvent-impl.js
+│   │   │       │   │   ├── ErrorEvent-impl.js
+│   │   │       │   │   ├── Event-impl.js
+│   │   │       │   │   ├── EventModifierMixin-impl.js
+│   │   │       │   │   ├── EventTarget-impl.js
+│   │   │       │   │   ├── FocusEvent-impl.js
+│   │   │       │   │   ├── HashChangeEvent-impl.js
+│   │   │       │   │   ├── InputEvent-impl.js
+│   │   │       │   │   ├── KeyboardEvent-impl.js
+│   │   │       │   │   ├── MessageEvent-impl.js
+│   │   │       │   │   ├── MouseEvent-impl.js
+│   │   │       │   │   ├── PageTransitionEvent-impl.js
+│   │   │       │   │   ├── PointerEvent-impl.js
+│   │   │       │   │   ├── PopStateEvent-impl.js
+│   │   │       │   │   ├── ProgressEvent-impl.js
+│   │   │       │   │   ├── PromiseRejectionEvent-impl.js
+│   │   │       │   │   ├── StorageEvent-impl.js
+│   │   │       │   │   ├── SubmitEvent-impl.js
+│   │   │       │   │   ├── TouchEvent-impl.js
+│   │   │       │   │   ├── TransitionEvent-impl.js
+│   │   │       │   │   ├── UIEvent-impl.js
+│   │   │       │   │   └── WheelEvent-impl.js
+│   │   │       │   ├── fetch
+│   │   │       │   │   ├── header-list.js
+│   │   │       │   │   ├── Headers-impl.js
+│   │   │       │   │   ├── header-types.js
+│   │   │       │   │   └── header-utils.js
+│   │   │       │   ├── file-api
+│   │   │       │   │   ├── Blob-impl.js
+│   │   │       │   │   ├── File-impl.js
+│   │   │       │   │   ├── FileList-impl.js
+│   │   │       │   │   └── FileReader-impl.js
+│   │   │       │   ├── geometry
+│   │   │       │   │   ├── DOMRect-impl.js
+│   │   │       │   │   └── DOMRectReadOnly-impl.js
+│   │   │       │   ├── helpers
+│   │   │       │   │   ├── binary-data.js
+│   │   │       │   │   ├── by-id-cache.js
+│   │   │       │   │   ├── create-element.js
+│   │   │       │   │   ├── create-event-accessor.js
+│   │   │       │   │   ├── custom-elements.js
+│   │   │       │   │   ├── dates-and-times.js
+│   │   │       │   │   ├── details.js
+│   │   │       │   │   ├── encoding.js
+│   │   │       │   │   ├── events.js
+│   │   │       │   │   ├── focusing.js
+│   │   │       │   │   ├── form-controls.js
+│   │   │       │   │   ├── html-constructor.js
+│   │   │       │   │   ├── internal-constants.js
+│   │   │       │   │   ├── is-window.js
+│   │   │       │   │   ├── iterable-weak-set.js
+│   │   │       │   │   ├── json.js
+│   │   │       │   │   ├── mutation-observers.js
+│   │   │       │   │   ├── namespaces.js
+│   │   │       │   │   ├── node.js
+│   │   │       │   │   ├── number-and-date-inputs.js
+│   │   │       │   │   ├── ordered-set.js
+│   │   │       │   │   ├── page-transition-event.js
+│   │   │       │   │   ├── runtime-script-errors.js
+│   │   │       │   │   ├── shadow-dom.js
+│   │   │       │   │   ├── strings.js
+│   │   │       │   │   ├── svg
+│   │   │       │   │   │   ├── basic-types.js
+│   │   │       │   │   │   └── render.js
+│   │   │       │   │   ├── text.js
+│   │   │       │   │   ├── traversal.js
+│   │   │       │   │   └── validate-names.js
+│   │   │       │   ├── hr-time
+│   │   │       │   │   └── Performance-impl.js
+│   │   │       │   ├── interfaces.js
+│   │   │       │   ├── mutation-observer
+│   │   │       │   │   ├── MutationObserver-impl.js
+│   │   │       │   │   └── MutationRecord-impl.js
+│   │   │       │   ├── navigator
+│   │   │       │   │   ├── MimeTypeArray-impl.js
+│   │   │       │   │   ├── MimeType-impl.js
+│   │   │       │   │   ├── NavigatorConcurrentHardware-impl.js
+│   │   │       │   │   ├── NavigatorCookies-impl.js
+│   │   │       │   │   ├── NavigatorID-impl.js
+│   │   │       │   │   ├── Navigator-impl.js
+│   │   │       │   │   ├── NavigatorLanguage-impl.js
+│   │   │       │   │   ├── NavigatorOnLine-impl.js
+│   │   │       │   │   ├── NavigatorPlugins-impl.js
+│   │   │       │   │   ├── PluginArray-impl.js
+│   │   │       │   │   └── Plugin-impl.js
+│   │   │       │   ├── node-document-position.js
+│   │   │       │   ├── node.js
+│   │   │       │   ├── nodes
+│   │   │       │   │   ├── CDATASection-impl.js
+│   │   │       │   │   ├── CharacterData-impl.js
+│   │   │       │   │   ├── ChildNode-impl.js
+│   │   │       │   │   ├── Comment-impl.js
+│   │   │       │   │   ├── DocumentFragment-impl.js
+│   │   │       │   │   ├── Document-impl.js
+│   │   │       │   │   ├── DocumentOrShadowRoot-impl.js
+│   │   │       │   │   ├── DocumentType-impl.js
+│   │   │       │   │   ├── DOMImplementation-impl.js
+│   │   │       │   │   ├── DOMStringMap-impl.js
+│   │   │       │   │   ├── DOMTokenList-impl.js
+│   │   │       │   │   ├── ElementContentEditable-impl.js
+│   │   │       │   │   ├── Element-impl.js
+│   │   │       │   │   ├── GlobalEventHandlers-impl.js
+│   │   │       │   │   ├── HTMLAnchorElement-impl.js
+│   │   │       │   │   ├── HTMLAreaElement-impl.js
+│   │   │       │   │   ├── HTMLAudioElement-impl.js
+│   │   │       │   │   ├── HTMLBaseElement-impl.js
+│   │   │       │   │   ├── HTMLBodyElement-impl.js
+│   │   │       │   │   ├── HTMLBRElement-impl.js
+│   │   │       │   │   ├── HTMLButtonElement-impl.js
+│   │   │       │   │   ├── HTMLCanvasElement-impl.js
+│   │   │       │   │   ├── HTMLCollection-impl.js
+│   │   │       │   │   ├── HTMLDataElement-impl.js
+│   │   │       │   │   ├── HTMLDataListElement-impl.js
+│   │   │       │   │   ├── HTMLDetailsElement-impl.js
+│   │   │       │   │   ├── HTMLDialogElement-impl.js
+│   │   │       │   │   ├── HTMLDirectoryElement-impl.js
+│   │   │       │   │   ├── HTMLDivElement-impl.js
+│   │   │       │   │   ├── HTMLDListElement-impl.js
+│   │   │       │   │   ├── HTMLElement-impl.js
+│   │   │       │   │   ├── HTMLEmbedElement-impl.js
+│   │   │       │   │   ├── HTMLFieldSetElement-impl.js
+│   │   │       │   │   ├── HTMLFontElement-impl.js
+│   │   │       │   │   ├── HTMLFormControlsCollection-impl.js
+│   │   │       │   │   ├── HTMLFormElement-impl.js
+│   │   │       │   │   ├── HTMLFrameElement-impl.js
+│   │   │       │   │   ├── HTMLFrameSetElement-impl.js
+│   │   │       │   │   ├── HTMLHeadElement-impl.js
+│   │   │       │   │   ├── HTMLHeadingElement-impl.js
+│   │   │       │   │   ├── HTMLHRElement-impl.js
+│   │   │       │   │   ├── HTMLHtmlElement-impl.js
+│   │   │       │   │   ├── HTMLHyperlinkElementUtils-impl.js
+│   │   │       │   │   ├── HTMLIFrameElement-impl.js
+│   │   │       │   │   ├── HTMLImageElement-impl.js
+│   │   │       │   │   ├── HTMLInputElement-impl.js
+│   │   │       │   │   ├── HTMLLabelElement-impl.js
+│   │   │       │   │   ├── HTMLLegendElement-impl.js
+│   │   │       │   │   ├── HTMLLIElement-impl.js
+│   │   │       │   │   ├── HTMLLinkElement-impl.js
+│   │   │       │   │   ├── HTMLMapElement-impl.js
+│   │   │       │   │   ├── HTMLMarqueeElement-impl.js
+│   │   │       │   │   ├── HTMLMediaElement-impl.js
+│   │   │       │   │   ├── HTMLMenuElement-impl.js
+│   │   │       │   │   ├── HTMLMetaElement-impl.js
+│   │   │       │   │   ├── HTMLMeterElement-impl.js
+│   │   │       │   │   ├── HTMLModElement-impl.js
+│   │   │       │   │   ├── HTMLObjectElement-impl.js
+│   │   │       │   │   ├── HTMLOListElement-impl.js
+│   │   │       │   │   ├── HTMLOptGroupElement-impl.js
+│   │   │       │   │   ├── HTMLOptionElement-impl.js
+│   │   │       │   │   ├── HTMLOptionsCollection-impl.js
+│   │   │       │   │   ├── HTMLOrSVGElement-impl.js
+│   │   │       │   │   ├── HTMLOutputElement-impl.js
+│   │   │       │   │   ├── HTMLParagraphElement-impl.js
+│   │   │       │   │   ├── HTMLParamElement-impl.js
+│   │   │       │   │   ├── HTMLPictureElement-impl.js
+│   │   │       │   │   ├── HTMLPreElement-impl.js
+│   │   │       │   │   ├── HTMLProgressElement-impl.js
+│   │   │       │   │   ├── HTMLQuoteElement-impl.js
+│   │   │       │   │   ├── HTMLScriptElement-impl.js
+│   │   │       │   │   ├── HTMLSelectElement-impl.js
+│   │   │       │   │   ├── HTMLSlotElement-impl.js
+│   │   │       │   │   ├── HTMLSourceElement-impl.js
+│   │   │       │   │   ├── HTMLSpanElement-impl.js
+│   │   │       │   │   ├── HTMLStyleElement-impl.js
+│   │   │       │   │   ├── HTMLTableCaptionElement-impl.js
+│   │   │       │   │   ├── HTMLTableCellElement-impl.js
+│   │   │       │   │   ├── HTMLTableColElement-impl.js
+│   │   │       │   │   ├── HTMLTableElement-impl.js
+│   │   │       │   │   ├── HTMLTableRowElement-impl.js
+│   │   │       │   │   ├── HTMLTableSectionElement-impl.js
+│   │   │       │   │   ├── HTMLTemplateElement-impl.js
+│   │   │       │   │   ├── HTMLTextAreaElement-impl.js
+│   │   │       │   │   ├── HTMLTimeElement-impl.js
+│   │   │       │   │   ├── HTMLTitleElement-impl.js
+│   │   │       │   │   ├── HTMLTrackElement-impl.js
+│   │   │       │   │   ├── HTMLUListElement-impl.js
+│   │   │       │   │   ├── HTMLUnknownElement-impl.js
+│   │   │       │   │   ├── HTMLVideoElement-impl.js
+│   │   │       │   │   ├── LinkStyle-impl.js
+│   │   │       │   │   ├── Node-impl.js
+│   │   │       │   │   ├── NodeList-impl.js
+│   │   │       │   │   ├── NonDocumentTypeChildNode-impl.js
+│   │   │       │   │   ├── NonElementParentNode-impl.js
+│   │   │       │   │   ├── ParentNode-impl.js
+│   │   │       │   │   ├── ProcessingInstruction-impl.js
+│   │   │       │   │   ├── RadioNodeList-impl.js
+│   │   │       │   │   ├── ShadowRoot-impl.js
+│   │   │       │   │   ├── Slotable-impl.js
+│   │   │       │   │   ├── SVGDefsElement-impl.js
+│   │   │       │   │   ├── SVGDescElement-impl.js
+│   │   │       │   │   ├── SVGElement-impl.js
+│   │   │       │   │   ├── SVGGElement-impl.js
+│   │   │       │   │   ├── SVGGraphicsElement-impl.js
+│   │   │       │   │   ├── SVGMetadataElement-impl.js
+│   │   │       │   │   ├── SVGSVGElement-impl.js
+│   │   │       │   │   ├── SVGSwitchElement-impl.js
+│   │   │       │   │   ├── SVGSymbolElement-impl.js
+│   │   │       │   │   ├── SVGTests-impl.js
+│   │   │       │   │   ├── SVGTitleElement-impl.js
+│   │   │       │   │   ├── Text-impl.js
+│   │   │       │   │   ├── WindowEventHandlers-impl.js
+│   │   │       │   │   └── XMLDocument-impl.js
+│   │   │       │   ├── node-type.js
+│   │   │       │   ├── range
+│   │   │       │   │   ├── AbstractRange-impl.js
+│   │   │       │   │   ├── boundary-point.js
+│   │   │       │   │   ├── Range-impl.js
+│   │   │       │   │   └── StaticRange-impl.js
+│   │   │       │   ├── selection
+│   │   │       │   │   └── Selection-impl.js
+│   │   │       │   ├── svg
+│   │   │       │   │   ├── SVGAnimatedPreserveAspectRatio-impl.js
+│   │   │       │   │   ├── SVGAnimatedRect-impl.js
+│   │   │       │   │   ├── SVGAnimatedString-impl.js
+│   │   │       │   │   ├── SVGListBase.js
+│   │   │       │   │   ├── SVGNumber-impl.js
+│   │   │       │   │   ├── SVGPreserveAspectRatio-impl.js
+│   │   │       │   │   ├── SVGRect-impl.js
+│   │   │       │   │   └── SVGStringList-impl.js
+│   │   │       │   ├── traversal
+│   │   │       │   │   ├── helpers.js
+│   │   │       │   │   ├── NodeIterator-impl.js
+│   │   │       │   │   └── TreeWalker-impl.js
+│   │   │       │   ├── webidl
+│   │   │       │   │   └── DOMException-impl.js
+│   │   │       │   ├── websockets
+│   │   │       │   │   └── WebSocket-impl.js
+│   │   │       │   ├── webstorage
+│   │   │       │   │   └── Storage-impl.js
+│   │   │       │   ├── window
+│   │   │       │   │   ├── BarProp-impl.js
+│   │   │       │   │   ├── External-impl.js
+│   │   │       │   │   ├── History-impl.js
+│   │   │       │   │   ├── Location-impl.js
+│   │   │       │   │   ├── navigation.js
+│   │   │       │   │   ├── Screen-impl.js
+│   │   │       │   │   └── SessionHistory.js
+│   │   │       │   ├── window-properties.js
+│   │   │       │   └── xhr
+│   │   │       │       ├── FormData-impl.js
+│   │   │       │       ├── multipart-form-data.js
+│   │   │       │       ├── xhr-sync-worker.js
+│   │   │       │       ├── xhr-utils.js
+│   │   │       │       ├── XMLHttpRequestEventTarget-impl.js
+│   │   │       │       ├── XMLHttpRequest-impl.js
+│   │   │       │       └── XMLHttpRequestUpload-impl.js
+│   │   │       ├── utils.js
+│   │   │       └── virtual-console.js
+│   │   ├── LICENSE.txt
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── lru-cache
+│   │   ├── dist
+│   │   │   ├── commonjs
+│   │   │   │   ├── browser
+│   │   │   │   │   ├── diagnostics-channel-browser.d.ts.map
+│   │   │   │   │   ├── diagnostics-channel-browser.js.map
+│   │   │   │   │   ├── diagnostics-channel.d.ts
+│   │   │   │   │   ├── diagnostics-channel.js
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.d.ts.map
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.js.map
+│   │   │   │   │   ├── index.min.js
+│   │   │   │   │   ├── index.min.js.map
+│   │   │   │   │   ├── perf.d.ts
+│   │   │   │   │   ├── perf.d.ts.map
+│   │   │   │   │   ├── perf.js
+│   │   │   │   │   └── perf.js.map
+│   │   │   │   ├── diagnostics-channel-cjs.cjs.map
+│   │   │   │   ├── diagnostics-channel-cjs.d.cts.map
+│   │   │   │   ├── diagnostics-channel.d.ts
+│   │   │   │   ├── diagnostics-channel.js
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.d.ts.map
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.js.map
+│   │   │   │   ├── index.min.js
+│   │   │   │   ├── index.min.js.map
+│   │   │   │   ├── node
+│   │   │   │   │   ├── diagnostics-channel.d.ts
+│   │   │   │   │   ├── diagnostics-channel.js
+│   │   │   │   │   ├── diagnostics-channel-node.d.ts.map
+│   │   │   │   │   ├── diagnostics-channel-node.js.map
+│   │   │   │   │   ├── index.d.ts
+│   │   │   │   │   ├── index.d.ts.map
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── index.js.map
+│   │   │   │   │   ├── index.min.js
+│   │   │   │   │   ├── index.min.js.map
+│   │   │   │   │   ├── perf.d.ts
+│   │   │   │   │   ├── perf.d.ts.map
+│   │   │   │   │   ├── perf.js
+│   │   │   │   │   └── perf.js.map
+│   │   │   │   ├── package.json
+│   │   │   │   ├── perf.d.ts
+│   │   │   │   ├── perf.d.ts.map
+│   │   │   │   ├── perf.js
+│   │   │   │   └── perf.js.map
+│   │   │   └── esm
+│   │   │       ├── browser
+│   │   │       │   ├── diagnostics-channel-browser.d.ts.map
+│   │   │       │   ├── diagnostics-channel-browser.js.map
+│   │   │       │   ├── diagnostics-channel.d.ts
+│   │   │       │   ├── diagnostics-channel.js
+│   │   │       │   ├── index.d.ts
+│   │   │       │   ├── index.d.ts.map
+│   │   │       │   ├── index.js
+│   │   │       │   ├── index.js.map
+│   │   │       │   ├── index.min.js
+│   │   │       │   ├── index.min.js.map
+│   │   │       │   ├── perf.d.ts
+│   │   │       │   ├── perf.d.ts.map
+│   │   │       │   ├── perf.js
+│   │   │       │   └── perf.js.map
+│   │   │       ├── diagnostics-channel.d.ts
+│   │   │       ├── diagnostics-channel-esm.d.mts.map
+│   │   │       ├── diagnostics-channel-esm.mjs.map
+│   │   │       ├── diagnostics-channel.js
+│   │   │       ├── index.d.ts
+│   │   │       ├── index.d.ts.map
+│   │   │       ├── index.js
+│   │   │       ├── index.js.map
+│   │   │       ├── index.min.js
+│   │   │       ├── index.min.js.map
+│   │   │       ├── node
+│   │   │       │   ├── diagnostics-channel.d.ts
+│   │   │       │   ├── diagnostics-channel.js
+│   │   │       │   ├── diagnostics-channel-node.d.ts.map
+│   │   │       │   ├── diagnostics-channel-node.js.map
+│   │   │       │   ├── index.d.ts
+│   │   │       │   ├── index.d.ts.map
+│   │   │       │   ├── index.js
+│   │   │       │   ├── index.js.map
+│   │   │       │   ├── index.min.js
+│   │   │       │   ├── index.min.js.map
+│   │   │       │   ├── perf.d.ts
+│   │   │       │   ├── perf.d.ts.map
+│   │   │       │   ├── perf.js
+│   │   │       │   └── perf.js.map
+│   │   │       ├── package.json
+│   │   │       ├── perf.d.ts
+│   │   │       ├── perf.d.ts.map
+│   │   │       ├── perf.js
+│   │   │       └── perf.js.map
+│   │   ├── LICENSE.md
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── mdn-data
+│   │   ├── api
+│   │   │   ├── index.js
+│   │   │   ├── inheritance.json
+│   │   │   └── inheritance.schema.json
+│   │   ├── css
+│   │   │   ├── at-rules.json
+│   │   │   ├── at-rules.schema.json
+│   │   │   ├── definitions.json
+│   │   │   ├── functions.json
+│   │   │   ├── functions.schema.json
+│   │   │   ├── index.js
+│   │   │   ├── properties.json
+│   │   │   ├── properties.schema.json
+│   │   │   ├── selectors.json
+│   │   │   ├── selectors.schema.json
+│   │   │   ├── syntaxes.json
+│   │   │   ├── syntaxes.schema.json
+│   │   │   ├── types.json
+│   │   │   ├── types.schema.json
+│   │   │   ├── units.json
+│   │   │   └── units.schema.json
+│   │   ├── index.js
+│   │   ├── l10n
+│   │   │   ├── css.json
+│   │   │   └── index.js
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── parse5
+│   │   ├── dist
+│   │   │   ├── common
+│   │   │   │   ├── doctype.d.ts
+│   │   │   │   ├── doctype.js
+│   │   │   │   ├── error-codes.d.ts
+│   │   │   │   ├── error-codes.js
+│   │   │   │   ├── foreign-content.d.ts
+│   │   │   │   ├── foreign-content.js
+│   │   │   │   ├── html.d.ts
+│   │   │   │   ├── html.js
+│   │   │   │   ├── token.d.ts
+│   │   │   │   ├── token.js
+│   │   │   │   ├── unicode.d.ts
+│   │   │   │   └── unicode.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   ├── parser
+│   │   │   │   ├── formatting-element-list.d.ts
+│   │   │   │   ├── formatting-element-list.js
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   ├── open-element-stack.d.ts
+│   │   │   │   └── open-element-stack.js
+│   │   │   ├── serializer
+│   │   │   │   ├── index.d.ts
+│   │   │   │   └── index.js
+│   │   │   ├── tokenizer
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── index.js
+│   │   │   │   ├── preprocessor.d.ts
+│   │   │   │   └── preprocessor.js
+│   │   │   └── tree-adapters
+│   │   │       ├── default.d.ts
+│   │   │       ├── default.js
+│   │   │       ├── interface.d.ts
+│   │   │       └── interface.js
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── @playwright
+│   │   └── test
+│   │       ├── cli.js
+│   │       ├── index.d.ts
+│   │       ├── index.js
+│   │       ├── index.mjs
+│   │       ├── LICENSE
+│   │       ├── NOTICE
+│   │       ├── package.json
+│   │       ├── README.md
+│   │       ├── reporter.d.ts
+│   │       ├── reporter.js
+│   │       └── reporter.mjs
+│   ├── playwright
+│   │   ├── cli.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── index.mjs
+│   │   ├── jsx-runtime.js
+│   │   ├── jsx-runtime.mjs
+│   │   ├── lib
+│   │   │   ├── agents
+│   │   │   │   ├── agentParser.js
+│   │   │   │   ├── copilot-setup-steps.yml
+│   │   │   │   ├── generateAgents.js
+│   │   │   │   ├── playwright-test-coverage.prompt.md
+│   │   │   │   ├── playwright-test-generate.prompt.md
+│   │   │   │   ├── playwright-test-generator.agent.md
+│   │   │   │   ├── playwright-test-healer.agent.md
+│   │   │   │   ├── playwright-test-heal.prompt.md
+│   │   │   │   ├── playwright-test-planner.agent.md
+│   │   │   │   └── playwright-test-plan.prompt.md
+│   │   │   ├── common
+│   │   │   │   ├── config.js
+│   │   │   │   ├── configLoader.js
+│   │   │   │   ├── esmLoaderHost.js
+│   │   │   │   ├── expectBundleImpl.js
+│   │   │   │   ├── expectBundle.js
+│   │   │   │   ├── fixtures.js
+│   │   │   │   ├── globals.js
+│   │   │   │   ├── ipc.js
+│   │   │   │   ├── poolBuilder.js
+│   │   │   │   ├── process.js
+│   │   │   │   ├── suiteUtils.js
+│   │   │   │   ├── test.js
+│   │   │   │   ├── testLoader.js
+│   │   │   │   ├── testType.js
+│   │   │   │   └── validators.js
+│   │   │   ├── errorContext.js
+│   │   │   ├── fsWatcher.js
+│   │   │   ├── index.js
+│   │   │   ├── internalsForTest.js
+│   │   │   ├── isomorphic
+│   │   │   │   ├── events.js
+│   │   │   │   ├── folders.js
+│   │   │   │   ├── stringInternPool.js
+│   │   │   │   ├── teleReceiver.js
+│   │   │   │   ├── teleSuiteUpdater.js
+│   │   │   │   ├── testServerConnection.js
+│   │   │   │   ├── testServerInterface.js
+│   │   │   │   ├── testTree.js
+│   │   │   │   └── types.d.js
+│   │   │   ├── loader
+│   │   │   │   └── loaderMain.js
+│   │   │   ├── matchers
+│   │   │   │   ├── expect.js
+│   │   │   │   ├── matcherHint.js
+│   │   │   │   ├── matchers.js
+│   │   │   │   ├── toBeTruthy.js
+│   │   │   │   ├── toEqual.js
+│   │   │   │   ├── toHaveURL.js
+│   │   │   │   ├── toMatchAriaSnapshot.js
+│   │   │   │   ├── toMatchSnapshot.js
+│   │   │   │   └── toMatchText.js
+│   │   │   ├── mcp
+│   │   │   │   └── test
+│   │   │   │       ├── browserBackend.js
+│   │   │   │       ├── generatorTools.js
+│   │   │   │       ├── plannerTools.js
+│   │   │   │       ├── seed.js
+│   │   │   │       ├── streams.js
+│   │   │   │       ├── testBackend.js
+│   │   │   │       ├── testContext.js
+│   │   │   │       ├── testTool.js
+│   │   │   │       └── testTools.js
+│   │   │   ├── plugins
+│   │   │   │   ├── gitCommitInfoPlugin.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── webServerPlugin.js
+│   │   │   ├── program.js
+│   │   │   ├── reportActions.js
+│   │   │   ├── reporters
+│   │   │   │   ├── base.js
+│   │   │   │   ├── blob.js
+│   │   │   │   ├── dot.js
+│   │   │   │   ├── empty.js
+│   │   │   │   ├── github.js
+│   │   │   │   ├── html.js
+│   │   │   │   ├── internalReporter.js
+│   │   │   │   ├── json.js
+│   │   │   │   ├── junit.js
+│   │   │   │   ├── line.js
+│   │   │   │   ├── list.js
+│   │   │   │   ├── listModeReporter.js
+│   │   │   │   ├── markdown.js
+│   │   │   │   ├── merge.js
+│   │   │   │   ├── multiplexer.js
+│   │   │   │   ├── reporterV2.js
+│   │   │   │   ├── teleEmitter.js
+│   │   │   │   └── versions
+│   │   │   │       └── blobV1.js
+│   │   │   ├── runner
+│   │   │   │   ├── dispatcher.js
+│   │   │   │   ├── failureTracker.js
+│   │   │   │   ├── lastRun.js
+│   │   │   │   ├── loaderHost.js
+│   │   │   │   ├── loadUtils.js
+│   │   │   │   ├── processHost.js
+│   │   │   │   ├── projectUtils.js
+│   │   │   │   ├── rebase.js
+│   │   │   │   ├── reporters.js
+│   │   │   │   ├── sigIntWatcher.js
+│   │   │   │   ├── taskRunner.js
+│   │   │   │   ├── tasks.js
+│   │   │   │   ├── testGroups.js
+│   │   │   │   ├── testRunner.js
+│   │   │   │   ├── testServer.js
+│   │   │   │   ├── uiModeReporter.js
+│   │   │   │   ├── vcs.js
+│   │   │   │   ├── watchMode.js
+│   │   │   │   └── workerHost.js
+│   │   │   ├── testActions.js
+│   │   │   ├── third_party
+│   │   │   │   ├── pirates.js
+│   │   │   │   └── tsconfig-loader.js
+│   │   │   ├── transform
+│   │   │   │   ├── babelBundleImpl.js
+│   │   │   │   ├── babelBundle.js
+│   │   │   │   ├── compilationCache.js
+│   │   │   │   ├── esmLoader.js
+│   │   │   │   ├── portTransport.js
+│   │   │   │   └── transform.js
+│   │   │   ├── util.js
+│   │   │   ├── utilsBundleImpl.js
+│   │   │   ├── utilsBundle.js
+│   │   │   └── worker
+│   │   │       ├── fixtureRunner.js
+│   │   │       ├── testInfo.js
+│   │   │       ├── testTracing.js
+│   │   │       ├── timeoutManager.js
+│   │   │       ├── util.js
+│   │   │       └── workerMain.js
+│   │   ├── LICENSE
+│   │   ├── NOTICE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── test.d.ts
+│   │   ├── test.js
+│   │   ├── test.mjs
+│   │   ├── ThirdPartyNotices.txt
+│   │   └── types
+│   │       ├── test.d.ts
+│   │       └── testReporter.d.ts
+│   ├── playwright-core
+│   │   ├── bin
+│   │   │   ├── install_media_pack.ps1
+│   │   │   ├── install_webkit_wsl.ps1
+│   │   │   ├── reinstall_chrome_beta_linux.sh
+│   │   │   ├── reinstall_chrome_beta_mac.sh
+│   │   │   ├── reinstall_chrome_beta_win.ps1
+│   │   │   ├── reinstall_chrome_stable_linux.sh
+│   │   │   ├── reinstall_chrome_stable_mac.sh
+│   │   │   ├── reinstall_chrome_stable_win.ps1
+│   │   │   ├── reinstall_msedge_beta_linux.sh
+│   │   │   ├── reinstall_msedge_beta_mac.sh
+│   │   │   ├── reinstall_msedge_beta_win.ps1
+│   │   │   ├── reinstall_msedge_dev_linux.sh
+│   │   │   ├── reinstall_msedge_dev_mac.sh
+│   │   │   ├── reinstall_msedge_dev_win.ps1
+│   │   │   ├── reinstall_msedge_stable_linux.sh
+│   │   │   ├── reinstall_msedge_stable_mac.sh
+│   │   │   └── reinstall_msedge_stable_win.ps1
+│   │   ├── browsers.json
+│   │   ├── cli.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── index.mjs
+│   │   ├── lib
+│   │   │   ├── androidServerImpl.js
+│   │   │   ├── bootstrap.js
+│   │   │   ├── browserServerImpl.js
+│   │   │   ├── cli
+│   │   │   │   ├── browserActions.js
+│   │   │   │   ├── driver.js
+│   │   │   │   ├── installActions.js
+│   │   │   │   ├── program.js
+│   │   │   │   └── programWithTestStub.js
+│   │   │   ├── client
+│   │   │   │   ├── android.js
+│   │   │   │   ├── api.js
+│   │   │   │   ├── artifact.js
+│   │   │   │   ├── browserContext.js
+│   │   │   │   ├── browser.js
+│   │   │   │   ├── browserType.js
+│   │   │   │   ├── cdpSession.js
+│   │   │   │   ├── channelOwner.js
+│   │   │   │   ├── clientHelper.js
+│   │   │   │   ├── clientInstrumentation.js
+│   │   │   │   ├── clientStackTrace.js
+│   │   │   │   ├── clock.js
+│   │   │   │   ├── connection.js
+│   │   │   │   ├── connect.js
+│   │   │   │   ├── consoleMessage.js
+│   │   │   │   ├── coverage.js
+│   │   │   │   ├── debugger.js
+│   │   │   │   ├── dialog.js
+│   │   │   │   ├── disposable.js
+│   │   │   │   ├── download.js
+│   │   │   │   ├── electron.js
+│   │   │   │   ├── elementHandle.js
+│   │   │   │   ├── errors.js
+│   │   │   │   ├── eventEmitter.js
+│   │   │   │   ├── events.js
+│   │   │   │   ├── fetch.js
+│   │   │   │   ├── fileChooser.js
+│   │   │   │   ├── fileUtils.js
+│   │   │   │   ├── frame.js
+│   │   │   │   ├── harRouter.js
+│   │   │   │   ├── input.js
+│   │   │   │   ├── jsHandle.js
+│   │   │   │   ├── jsonPipe.js
+│   │   │   │   ├── localUtils.js
+│   │   │   │   ├── locator.js
+│   │   │   │   ├── network.js
+│   │   │   │   ├── page.js
+│   │   │   │   ├── platform.js
+│   │   │   │   ├── playwright.js
+│   │   │   │   ├── screencast.js
+│   │   │   │   ├── selectors.js
+│   │   │   │   ├── stream.js
+│   │   │   │   ├── timeoutSettings.js
+│   │   │   │   ├── tracing.js
+│   │   │   │   ├── types.js
+│   │   │   │   ├── video.js
+│   │   │   │   ├── waiter.js
+│   │   │   │   ├── webError.js
+│   │   │   │   ├── worker.js
+│   │   │   │   └── writableStream.js
+│   │   │   ├── generated
+│   │   │   │   ├── bindingsControllerSource.js
+│   │   │   │   ├── clockSource.js
+│   │   │   │   ├── injectedScriptSource.js
+│   │   │   │   ├── pollingRecorderSource.js
+│   │   │   │   ├── storageScriptSource.js
+│   │   │   │   ├── utilityScriptSource.js
+│   │   │   │   └── webSocketMockSource.js
+│   │   │   ├── inProcessFactory.js
+│   │   │   ├── inprocess.js
+│   │   │   ├── mcpBundleImpl.js
+│   │   │   ├── mcpBundle.js
+│   │   │   ├── outofprocess.js
+│   │   │   ├── protocol
+│   │   │   │   ├── serializers.js
+│   │   │   │   ├── validator.js
+│   │   │   │   └── validatorPrimitives.js
+│   │   │   ├── remote
+│   │   │   │   ├── playwrightConnection.js
+│   │   │   │   ├── playwrightPipeServer.js
+│   │   │   │   ├── playwrightServer.js
+│   │   │   │   ├── playwrightWebSocketServer.js
+│   │   │   │   └── serverTransport.js
+│   │   │   ├── server
+│   │   │   │   ├── android
+│   │   │   │   │   ├── android.js
+│   │   │   │   │   └── backendAdb.js
+│   │   │   │   ├── artifact.js
+│   │   │   │   ├── bidi
+│   │   │   │   │   ├── bidiBrowser.js
+│   │   │   │   │   ├── bidiChromium.js
+│   │   │   │   │   ├── bidiConnection.js
+│   │   │   │   │   ├── bidiDeserializer.js
+│   │   │   │   │   ├── bidiExecutionContext.js
+│   │   │   │   │   ├── bidiFirefox.js
+│   │   │   │   │   ├── bidiInput.js
+│   │   │   │   │   ├── bidiNetworkManager.js
+│   │   │   │   │   ├── bidiOverCdp.js
+│   │   │   │   │   ├── bidiPage.js
+│   │   │   │   │   ├── bidiPdf.js
+│   │   │   │   │   └── third_party
+│   │   │   │   │       ├── bidiCommands.d.js
+│   │   │   │   │       ├── bidiKeyboard.js
+│   │   │   │   │       ├── bidiProtocolCore.js
+│   │   │   │   │       ├── bidiProtocol.js
+│   │   │   │   │       ├── bidiProtocolPermissions.js
+│   │   │   │   │       ├── bidiSerializer.js
+│   │   │   │   │       └── firefoxPrefs.js
+│   │   │   │   ├── browserContext.js
+│   │   │   │   ├── browser.js
+│   │   │   │   ├── browserType.js
+│   │   │   │   ├── callLog.js
+│   │   │   │   ├── chromium
+│   │   │   │   │   ├── appIcon.png
+│   │   │   │   │   ├── chromium.js
+│   │   │   │   │   ├── chromiumSwitches.js
+│   │   │   │   │   ├── crBrowser.js
+│   │   │   │   │   ├── crConnection.js
+│   │   │   │   │   ├── crCoverage.js
+│   │   │   │   │   ├── crDevTools.js
+│   │   │   │   │   ├── crDragDrop.js
+│   │   │   │   │   ├── crExecutionContext.js
+│   │   │   │   │   ├── crInput.js
+│   │   │   │   │   ├── crNetworkManager.js
+│   │   │   │   │   ├── crPage.js
+│   │   │   │   │   ├── crPdf.js
+│   │   │   │   │   ├── crProtocolHelper.js
+│   │   │   │   │   ├── crServiceWorker.js
+│   │   │   │   │   ├── defaultFontFamilies.js
+│   │   │   │   │   └── protocol.d.js
+│   │   │   │   ├── clock.js
+│   │   │   │   ├── codegen
+│   │   │   │   │   ├── csharp.js
+│   │   │   │   │   ├── java.js
+│   │   │   │   │   ├── javascript.js
+│   │   │   │   │   ├── jsonl.js
+│   │   │   │   │   ├── language.js
+│   │   │   │   │   ├── languages.js
+│   │   │   │   │   ├── python.js
+│   │   │   │   │   └── types.js
+│   │   │   │   ├── console.js
+│   │   │   │   ├── cookieStore.js
+│   │   │   │   ├── debugController.js
+│   │   │   │   ├── debugger.js
+│   │   │   │   ├── deviceDescriptors.js
+│   │   │   │   ├── deviceDescriptorsSource.json
+│   │   │   │   ├── dialog.js
+│   │   │   │   ├── dispatchers
+│   │   │   │   │   ├── androidDispatcher.js
+│   │   │   │   │   ├── artifactDispatcher.js
+│   │   │   │   │   ├── browserContextDispatcher.js
+│   │   │   │   │   ├── browserDispatcher.js
+│   │   │   │   │   ├── browserTypeDispatcher.js
+│   │   │   │   │   ├── cdpSessionDispatcher.js
+│   │   │   │   │   ├── debugControllerDispatcher.js
+│   │   │   │   │   ├── debuggerDispatcher.js
+│   │   │   │   │   ├── dialogDispatcher.js
+│   │   │   │   │   ├── dispatcher.js
+│   │   │   │   │   ├── disposableDispatcher.js
+│   │   │   │   │   ├── electronDispatcher.js
+│   │   │   │   │   ├── elementHandlerDispatcher.js
+│   │   │   │   │   ├── frameDispatcher.js
+│   │   │   │   │   ├── jsHandleDispatcher.js
+│   │   │   │   │   ├── jsonPipeDispatcher.js
+│   │   │   │   │   ├── localUtilsDispatcher.js
+│   │   │   │   │   ├── networkDispatchers.js
+│   │   │   │   │   ├── pageDispatcher.js
+│   │   │   │   │   ├── playwrightDispatcher.js
+│   │   │   │   │   ├── streamDispatcher.js
+│   │   │   │   │   ├── tracingDispatcher.js
+│   │   │   │   │   ├── webSocketRouteDispatcher.js
+│   │   │   │   │   └── writableStreamDispatcher.js
+│   │   │   │   ├── disposable.js
+│   │   │   │   ├── dom.js
+│   │   │   │   ├── download.js
+│   │   │   │   ├── electron
+│   │   │   │   │   ├── electron.js
+│   │   │   │   │   └── loader.js
+│   │   │   │   ├── errors.js
+│   │   │   │   ├── fetch.js
+│   │   │   │   ├── fileChooser.js
+│   │   │   │   ├── fileUploadUtils.js
+│   │   │   │   ├── firefox
+│   │   │   │   │   ├── ffBrowser.js
+│   │   │   │   │   ├── ffConnection.js
+│   │   │   │   │   ├── ffExecutionContext.js
+│   │   │   │   │   ├── ffInput.js
+│   │   │   │   │   ├── ffNetworkManager.js
+│   │   │   │   │   ├── ffPage.js
+│   │   │   │   │   ├── firefox.js
+│   │   │   │   │   └── protocol.d.js
+│   │   │   │   ├── formData.js
+│   │   │   │   ├── frameSelectors.js
+│   │   │   │   ├── frames.js
+│   │   │   │   ├── har
+│   │   │   │   │   ├── harRecorder.js
+│   │   │   │   │   └── harTracer.js
+│   │   │   │   ├── harBackend.js
+│   │   │   │   ├── helper.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── input.js
+│   │   │   │   ├── instrumentation.js
+│   │   │   │   ├── javascript.js
+│   │   │   │   ├── launchApp.js
+│   │   │   │   ├── localUtils.js
+│   │   │   │   ├── macEditingCommands.js
+│   │   │   │   ├── network.js
+│   │   │   │   ├── overlay.js
+│   │   │   │   ├── page.js
+│   │   │   │   ├── pipeTransport.js
+│   │   │   │   ├── playwright.js
+│   │   │   │   ├── progress.js
+│   │   │   │   ├── protocolError.js
+│   │   │   │   ├── recorder
+│   │   │   │   │   ├── chat.js
+│   │   │   │   │   ├── recorderApp.js
+│   │   │   │   │   ├── recorderRunner.js
+│   │   │   │   │   ├── recorderSignalProcessor.js
+│   │   │   │   │   ├── recorderUtils.js
+│   │   │   │   │   └── throttledFile.js
+│   │   │   │   ├── recorder.js
+│   │   │   │   ├── registry
+│   │   │   │   │   ├── browserFetcher.js
+│   │   │   │   │   ├── dependencies.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── nativeDeps.js
+│   │   │   │   │   └── oopDownloadBrowserMain.js
+│   │   │   │   ├── screencast.js
+│   │   │   │   ├── screenshotter.js
+│   │   │   │   ├── selectors.js
+│   │   │   │   ├── socksClientCertificatesInterceptor.js
+│   │   │   │   ├── socksInterceptor.js
+│   │   │   │   ├── trace
+│   │   │   │   │   ├── recorder
+│   │   │   │   │   │   ├── snapshotterInjected.js
+│   │   │   │   │   │   ├── snapshotter.js
+│   │   │   │   │   │   └── tracing.js
+│   │   │   │   │   └── viewer
+│   │   │   │   │       └── traceViewer.js
+│   │   │   │   ├── transport.js
+│   │   │   │   ├── types.js
+│   │   │   │   ├── usKeyboardLayout.js
+│   │   │   │   ├── utils
+│   │   │   │   │   ├── ascii.js
+│   │   │   │   │   ├── comparators.js
+│   │   │   │   │   ├── crypto.js
+│   │   │   │   │   ├── debug.js
+│   │   │   │   │   ├── debugLogger.js
+│   │   │   │   │   ├── disposable.js
+│   │   │   │   │   ├── env.js
+│   │   │   │   │   ├── eventsHelper.js
+│   │   │   │   │   ├── expectUtils.js
+│   │   │   │   │   ├── fileUtils.js
+│   │   │   │   │   ├── happyEyeballs.js
+│   │   │   │   │   ├── hostPlatform.js
+│   │   │   │   │   ├── httpServer.js
+│   │   │   │   │   ├── image_tools
+│   │   │   │   │   │   ├── colorUtils.js
+│   │   │   │   │   │   ├── compare.js
+│   │   │   │   │   │   ├── imageChannel.js
+│   │   │   │   │   │   └── stats.js
+│   │   │   │   │   ├── linuxUtils.js
+│   │   │   │   │   ├── network.js
+│   │   │   │   │   ├── nodePlatform.js
+│   │   │   │   │   ├── pipeTransport.js
+│   │   │   │   │   ├── processLauncher.js
+│   │   │   │   │   ├── profiler.js
+│   │   │   │   │   ├── socksProxy.js
+│   │   │   │   │   ├── spawnAsync.js
+│   │   │   │   │   ├── task.js
+│   │   │   │   │   ├── userAgent.js
+│   │   │   │   │   ├── wsServer.js
+│   │   │   │   │   ├── zipFile.js
+│   │   │   │   │   └── zones.js
+│   │   │   │   ├── videoRecorder.js
+│   │   │   │   └── webkit
+│   │   │   │       ├── protocol.d.js
+│   │   │   │       ├── webkit.js
+│   │   │   │       ├── wkBrowser.js
+│   │   │   │       ├── wkConnection.js
+│   │   │   │       ├── wkExecutionContext.js
+│   │   │   │       ├── wkInput.js
+│   │   │   │       ├── wkInterceptableRequest.js
+│   │   │   │       ├── wkPage.js
+│   │   │   │       ├── wkProvisionalPage.js
+│   │   │   │       └── wkWorkers.js
+│   │   │   ├── serverRegistry.js
+│   │   │   ├── third_party
+│   │   │   │   └── pixelmatch.js
+│   │   │   ├── tools
+│   │   │   │   ├── backend
+│   │   │   │   │   ├── browserBackend.js
+│   │   │   │   │   ├── common.js
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── console.js
+│   │   │   │   │   ├── context.js
+│   │   │   │   │   ├── cookies.js
+│   │   │   │   │   ├── devtools.js
+│   │   │   │   │   ├── dialogs.js
+│   │   │   │   │   ├── evaluate.js
+│   │   │   │   │   ├── files.js
+│   │   │   │   │   ├── form.js
+│   │   │   │   │   ├── keyboard.js
+│   │   │   │   │   ├── logFile.js
+│   │   │   │   │   ├── mouse.js
+│   │   │   │   │   ├── navigate.js
+│   │   │   │   │   ├── network.js
+│   │   │   │   │   ├── pdf.js
+│   │   │   │   │   ├── response.js
+│   │   │   │   │   ├── route.js
+│   │   │   │   │   ├── runCode.js
+│   │   │   │   │   ├── screenshot.js
+│   │   │   │   │   ├── sessionLog.js
+│   │   │   │   │   ├── snapshot.js
+│   │   │   │   │   ├── storage.js
+│   │   │   │   │   ├── tab.js
+│   │   │   │   │   ├── tabs.js
+│   │   │   │   │   ├── tool.js
+│   │   │   │   │   ├── tools.js
+│   │   │   │   │   ├── tracing.js
+│   │   │   │   │   ├── utils.js
+│   │   │   │   │   ├── verify.js
+│   │   │   │   │   ├── video.js
+│   │   │   │   │   ├── wait.js
+│   │   │   │   │   └── webstorage.js
+│   │   │   │   ├── cli-client
+│   │   │   │   │   ├── cli.js
+│   │   │   │   │   ├── help.json
+│   │   │   │   │   ├── minimist.js
+│   │   │   │   │   ├── program.js
+│   │   │   │   │   ├── registry.js
+│   │   │   │   │   ├── session.js
+│   │   │   │   │   └── skill
+│   │   │   │   │       ├── references
+│   │   │   │   │       │   ├── element-attributes.md
+│   │   │   │   │       │   ├── playwright-tests.md
+│   │   │   │   │       │   ├── request-mocking.md
+│   │   │   │   │       │   ├── running-code.md
+│   │   │   │   │       │   ├── session-management.md
+│   │   │   │   │       │   ├── storage-state.md
+│   │   │   │   │       │   ├── test-generation.md
+│   │   │   │   │       │   ├── tracing.md
+│   │   │   │   │       │   └── video-recording.md
+│   │   │   │   │       └── SKILL.md
+│   │   │   │   ├── cli-daemon
+│   │   │   │   │   ├── command.js
+│   │   │   │   │   ├── commands.js
+│   │   │   │   │   ├── daemon.js
+│   │   │   │   │   ├── helpGenerator.js
+│   │   │   │   │   └── program.js
+│   │   │   │   ├── dashboard
+│   │   │   │   │   ├── appIcon.png
+│   │   │   │   │   ├── dashboardApp.js
+│   │   │   │   │   └── dashboardController.js
+│   │   │   │   ├── exports.js
+│   │   │   │   ├── mcp
+│   │   │   │   │   ├── browserFactory.js
+│   │   │   │   │   ├── cdpRelay.js
+│   │   │   │   │   ├── cli-stub.js
+│   │   │   │   │   ├── config.d.js
+│   │   │   │   │   ├── configIni.js
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── extensionContextFactory.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── log.js
+│   │   │   │   │   ├── program.js
+│   │   │   │   │   ├── protocol.js
+│   │   │   │   │   └── watchdog.js
+│   │   │   │   ├── trace
+│   │   │   │   │   ├── installSkill.js
+│   │   │   │   │   ├── SKILL.md
+│   │   │   │   │   ├── traceActions.js
+│   │   │   │   │   ├── traceAttachments.js
+│   │   │   │   │   ├── traceCli.js
+│   │   │   │   │   ├── traceConsole.js
+│   │   │   │   │   ├── traceErrors.js
+│   │   │   │   │   ├── traceOpen.js
+│   │   │   │   │   ├── traceParser.js
+│   │   │   │   │   ├── traceRequests.js
+│   │   │   │   │   ├── traceScreenshot.js
+│   │   │   │   │   ├── traceSnapshot.js
+│   │   │   │   │   └── traceUtils.js
+│   │   │   │   └── utils
+│   │   │   │       ├── connect.js
+│   │   │   │       ├── mcp
+│   │   │   │       │   ├── http.js
+│   │   │   │       │   ├── server.js
+│   │   │   │       │   └── tool.js
+│   │   │   │       └── socketConnection.js
+│   │   │   ├── utils
+│   │   │   │   └── isomorphic
+│   │   │   │       ├── ariaSnapshot.js
+│   │   │   │       ├── assert.js
+│   │   │   │       ├── colors.js
+│   │   │   │       ├── cssParser.js
+│   │   │   │       ├── cssTokenizer.js
+│   │   │   │       ├── formatUtils.js
+│   │   │   │       ├── headers.js
+│   │   │   │       ├── imageUtils.js
+│   │   │   │       ├── jsonSchema.js
+│   │   │   │       ├── locatorGenerators.js
+│   │   │   │       ├── locatorParser.js
+│   │   │   │       ├── locatorUtils.js
+│   │   │   │       ├── lruCache.js
+│   │   │   │       ├── manualPromise.js
+│   │   │   │       ├── mimeType.js
+│   │   │   │       ├── multimap.js
+│   │   │   │       ├── protocolFormatter.js
+│   │   │   │       ├── protocolMetainfo.js
+│   │   │   │       ├── rtti.js
+│   │   │   │       ├── selectorParser.js
+│   │   │   │       ├── semaphore.js
+│   │   │   │       ├── stackTrace.js
+│   │   │   │       ├── stringUtils.js
+│   │   │   │       ├── time.js
+│   │   │   │       ├── timeoutRunner.js
+│   │   │   │       ├── trace
+│   │   │   │       │   ├── entries.js
+│   │   │   │       │   ├── snapshotRenderer.js
+│   │   │   │       │   ├── snapshotServer.js
+│   │   │   │       │   ├── snapshotStorage.js
+│   │   │   │       │   ├── traceLoader.js
+│   │   │   │       │   ├── traceModel.js
+│   │   │   │       │   ├── traceModernizer.js
+│   │   │   │       │   ├── traceUtils.js
+│   │   │   │       │   └── versions
+│   │   │   │       │       ├── traceV3.js
+│   │   │   │       │       ├── traceV4.js
+│   │   │   │       │       ├── traceV5.js
+│   │   │   │       │       ├── traceV6.js
+│   │   │   │       │       ├── traceV7.js
+│   │   │   │       │       └── traceV8.js
+│   │   │   │       ├── types.js
+│   │   │   │       ├── urlMatch.js
+│   │   │   │       ├── utilityScriptSerializers.js
+│   │   │   │       └── yaml.js
+│   │   │   ├── utilsBundleImpl
+│   │   │   │   ├── index.js
+│   │   │   │   └── xdg-open
+│   │   │   ├── utilsBundle.js
+│   │   │   ├── utils.js
+│   │   │   ├── vite
+│   │   │   │   ├── dashboard
+│   │   │   │   │   ├── assets
+│   │   │   │   │   │   ├── index-BAOybkp8.js
+│   │   │   │   │   │   └── index-CZAYOG76.css
+│   │   │   │   │   └── index.html
+│   │   │   │   ├── htmlReport
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── report.css
+│   │   │   │   │   └── report.js
+│   │   │   │   ├── recorder
+│   │   │   │   │   ├── assets
+│   │   │   │   │   │   ├── codeMirrorModule-C8KMvO9L.js
+│   │   │   │   │   │   ├── codeMirrorModule-DYBRYzYX.css
+│   │   │   │   │   │   ├── codicon-DCmgc-ay.ttf
+│   │   │   │   │   │   ├── index-BSjZa4pk.css
+│   │   │   │   │   │   └── index-CqAYX1I3.js
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   └── playwright-logo.svg
+│   │   │   │   └── traceViewer
+│   │   │   │       ├── assets
+│   │   │   │       │   ├── codeMirrorModule-DS0FLvoc.js
+│   │   │   │       │   ├── defaultSettingsView-GTWI-W_B.js
+│   │   │   │       │   └── xtermModule-CsJ4vdCR.js
+│   │   │   │       ├── codeMirrorModule.DYBRYzYX.css
+│   │   │   │       ├── codicon.DCmgc-ay.ttf
+│   │   │   │       ├── defaultSettingsView.B4dS75f0.css
+│   │   │   │       ├── index.CzXZzn5A.css
+│   │   │   │       ├── index.Dtstcb7U.js
+│   │   │   │       ├── index.html
+│   │   │   │       ├── manifest.webmanifest
+│   │   │   │       ├── playwright-logo.svg
+│   │   │   │       ├── snapshot.html
+│   │   │   │       ├── sw.bundle.js
+│   │   │   │       ├── uiMode.Btcz36p_.css
+│   │   │   │       ├── uiMode.html
+│   │   │   │       ├── uiMode.Vipi55dB.js
+│   │   │   │       └── xtermModule.DYP7pi_n.css
+│   │   │   ├── zipBundleImpl.js
+│   │   │   ├── zipBundle.js
+│   │   │   ├── zodBundleImpl.js
+│   │   │   └── zodBundle.js
+│   │   ├── LICENSE
+│   │   ├── NOTICE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── ThirdPartyNotices.txt
+│   │   └── types
+│   │       ├── protocol.d.ts
+│   │       ├── structs.d.ts
+│   │       └── types.d.ts
+│   ├── punycode
+│   │   ├── LICENSE-MIT.txt
+│   │   ├── package.json
+│   │   ├── punycode.es6.js
+│   │   ├── punycode.js
+│   │   └── README.md
+│   ├── require-from-string
+│   │   ├── index.js
+│   │   ├── license
+│   │   ├── package.json
+│   │   └── readme.md
+│   ├── saxes
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── saxes.d.ts
+│   │   ├── saxes.js
+│   │   └── saxes.js.map
+│   ├── source-map-js
+│   │   ├── lib
+│   │   │   ├── array-set.js
+│   │   │   ├── base64.js
+│   │   │   ├── base64-vlq.js
+│   │   │   ├── binary-search.js
+│   │   │   ├── mapping-list.js
+│   │   │   ├── quick-sort.js
+│   │   │   ├── source-map-consumer.d.ts
+│   │   │   ├── source-map-consumer.js
+│   │   │   ├── source-map-generator.d.ts
+│   │   │   ├── source-map-generator.js
+│   │   │   ├── source-node.d.ts
+│   │   │   ├── source-node.js
+│   │   │   └── util.js
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── source-map.d.ts
+│   │   └── source-map.js
+│   ├── symbol-tree
+│   │   ├── lib
+│   │   │   ├── SymbolTree.js
+│   │   │   ├── SymbolTreeNode.js
+│   │   │   ├── TreeIterator.js
+│   │   │   └── TreePosition.js
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── tldts
+│   │   ├── bin
+│   │   │   └── cli.js
+│   │   ├── dist
+│   │   │   ├── cjs
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.js.map
+│   │   │   │   ├── src
+│   │   │   │   │   ├── data
+│   │   │   │   │   │   ├── trie.js
+│   │   │   │   │   │   └── trie.js.map
+│   │   │   │   │   ├── suffix-trie.js
+│   │   │   │   │   └── suffix-trie.js.map
+│   │   │   │   └── tsconfig.tsbuildinfo
+│   │   │   ├── es6
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.js.map
+│   │   │   │   ├── src
+│   │   │   │   │   ├── data
+│   │   │   │   │   │   ├── trie.js
+│   │   │   │   │   │   └── trie.js.map
+│   │   │   │   │   ├── suffix-trie.js
+│   │   │   │   │   └── suffix-trie.js.map
+│   │   │   │   └── tsconfig.bundle.tsbuildinfo
+│   │   │   ├── index.cjs.min.js
+│   │   │   ├── index.cjs.min.js.map
+│   │   │   ├── index.esm.min.js
+│   │   │   ├── index.esm.min.js.map
+│   │   │   ├── index.umd.min.js
+│   │   │   ├── index.umd.min.js.map
+│   │   │   └── types
+│   │   │       ├── index.d.ts
+│   │   │       └── src
+│   │   │           ├── data
+│   │   │           │   └── trie.d.ts
+│   │   │           └── suffix-trie.d.ts
+│   │   ├── index.ts
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   └── src
+│   │       ├── data
+│   │       │   └── trie.ts
+│   │       └── suffix-trie.ts
+│   ├── tldts-core
+│   │   ├── dist
+│   │   │   ├── cjs
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.js.map
+│   │   │   │   ├── src
+│   │   │   │   │   ├── domain.js
+│   │   │   │   │   ├── domain.js.map
+│   │   │   │   │   ├── domain-without-suffix.js
+│   │   │   │   │   ├── domain-without-suffix.js.map
+│   │   │   │   │   ├── extract-hostname.js
+│   │   │   │   │   ├── extract-hostname.js.map
+│   │   │   │   │   ├── factory.js
+│   │   │   │   │   ├── factory.js.map
+│   │   │   │   │   ├── is-ip.js
+│   │   │   │   │   ├── is-ip.js.map
+│   │   │   │   │   ├── is-special-use.js
+│   │   │   │   │   ├── is-special-use.js.map
+│   │   │   │   │   ├── is-valid.js
+│   │   │   │   │   ├── is-valid.js.map
+│   │   │   │   │   ├── lookup
+│   │   │   │   │   │   ├── fast-path.js
+│   │   │   │   │   │   ├── fast-path.js.map
+│   │   │   │   │   │   ├── interface.js
+│   │   │   │   │   │   └── interface.js.map
+│   │   │   │   │   ├── options.js
+│   │   │   │   │   ├── options.js.map
+│   │   │   │   │   ├── subdomain.js
+│   │   │   │   │   └── subdomain.js.map
+│   │   │   │   └── tsconfig.tsbuildinfo
+│   │   │   ├── es6
+│   │   │   │   ├── index.js
+│   │   │   │   ├── index.js.map
+│   │   │   │   ├── src
+│   │   │   │   │   ├── domain.js
+│   │   │   │   │   ├── domain.js.map
+│   │   │   │   │   ├── domain-without-suffix.js
+│   │   │   │   │   ├── domain-without-suffix.js.map
+│   │   │   │   │   ├── extract-hostname.js
+│   │   │   │   │   ├── extract-hostname.js.map
+│   │   │   │   │   ├── factory.js
+│   │   │   │   │   ├── factory.js.map
+│   │   │   │   │   ├── is-ip.js
+│   │   │   │   │   ├── is-ip.js.map
+│   │   │   │   │   ├── is-special-use.js
+│   │   │   │   │   ├── is-special-use.js.map
+│   │   │   │   │   ├── is-valid.js
+│   │   │   │   │   ├── is-valid.js.map
+│   │   │   │   │   ├── lookup
+│   │   │   │   │   │   ├── fast-path.js
+│   │   │   │   │   │   ├── fast-path.js.map
+│   │   │   │   │   │   ├── interface.js
+│   │   │   │   │   │   └── interface.js.map
+│   │   │   │   │   ├── options.js
+│   │   │   │   │   ├── options.js.map
+│   │   │   │   │   ├── subdomain.js
+│   │   │   │   │   └── subdomain.js.map
+│   │   │   │   └── tsconfig.bundle.tsbuildinfo
+│   │   │   └── types
+│   │   │       ├── index.d.ts
+│   │   │       └── src
+│   │   │           ├── domain.d.ts
+│   │   │           ├── domain-without-suffix.d.ts
+│   │   │           ├── extract-hostname.d.ts
+│   │   │           ├── factory.d.ts
+│   │   │           ├── is-ip.d.ts
+│   │   │           ├── is-special-use.d.ts
+│   │   │           ├── is-valid.d.ts
+│   │   │           ├── lookup
+│   │   │           │   ├── fast-path.d.ts
+│   │   │           │   └── interface.d.ts
+│   │   │           ├── options.d.ts
+│   │   │           └── subdomain.d.ts
+│   │   ├── index.ts
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   └── src
+│   │       ├── domain.ts
+│   │       ├── domain-without-suffix.ts
+│   │       ├── extract-hostname.ts
+│   │       ├── factory.ts
+│   │       ├── is-ip.ts
+│   │       ├── is-special-use.ts
+│   │       ├── is-valid.ts
+│   │       ├── lookup
+│   │       │   ├── fast-path.ts
+│   │       │   └── interface.ts
+│   │       ├── options.ts
+│   │       └── subdomain.ts
+│   ├── tough-cookie
+│   │   ├── dist
+│   │   │   ├── index.cjs
+│   │   │   ├── index.cjs.map
+│   │   │   ├── index.d.cts
+│   │   │   ├── index.d.ts
+│   │   │   ├── index.js
+│   │   │   └── index.js.map
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── tr46
+│   │   ├── index.js
+│   │   ├── lib
+│   │   │   ├── mappingTable.json
+│   │   │   ├── regexes.js
+│   │   │   └── statusMapping.js
+│   │   ├── LICENSE.md
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── undici
+│   │   ├── docs
+│   │   │   └── docs
+│   │   │       ├── api
+│   │   │       │   ├── Agent.md
+│   │   │       │   ├── api-lifecycle.md
+│   │   │       │   ├── BalancedPool.md
+│   │   │       │   ├── CacheStorage.md
+│   │   │       │   ├── CacheStore.md
+│   │   │       │   ├── Client.md
+│   │   │       │   ├── ClientStats.md
+│   │   │       │   ├── Connector.md
+│   │   │       │   ├── ContentType.md
+│   │   │       │   ├── Cookies.md
+│   │   │       │   ├── Debug.md
+│   │   │       │   ├── DiagnosticsChannel.md
+│   │   │       │   ├── Dispatcher.md
+│   │   │       │   ├── EnvHttpProxyAgent.md
+│   │   │       │   ├── Errors.md
+│   │   │       │   ├── EventSource.md
+│   │   │       │   ├── Fetch.md
+│   │   │       │   ├── GlobalInstallation.md
+│   │   │       │   ├── H2CClient.md
+│   │   │       │   ├── MockAgent.md
+│   │   │       │   ├── MockCallHistoryLog.md
+│   │   │       │   ├── MockCallHistory.md
+│   │   │       │   ├── MockClient.md
+│   │   │       │   ├── MockErrors.md
+│   │   │       │   ├── MockPool.md
+│   │   │       │   ├── Pool.md
+│   │   │       │   ├── PoolStats.md
+│   │   │       │   ├── ProxyAgent.md
+│   │   │       │   ├── RedirectHandler.md
+│   │   │       │   ├── RetryAgent.md
+│   │   │       │   ├── RetryHandler.md
+│   │   │       │   ├── RoundRobinPool.md
+│   │   │       │   ├── SnapshotAgent.md
+│   │   │       │   ├── Socks5ProxyAgent.md
+│   │   │       │   ├── Util.md
+│   │   │       │   └── WebSocket.md
+│   │   │       └── best-practices
+│   │   │           ├── client-certificate.md
+│   │   │           ├── crawling.md
+│   │   │           ├── mocking-request.md
+│   │   │           ├── proxy.md
+│   │   │           ├── undici-vs-builtin-fetch.md
+│   │   │           └── writing-tests.md
+│   │   ├── index.d.ts
+│   │   ├── index-fetch.js
+│   │   ├── index.js
+│   │   ├── lib
+│   │   │   ├── api
+│   │   │   │   ├── abort-signal.js
+│   │   │   │   ├── api-connect.js
+│   │   │   │   ├── api-pipeline.js
+│   │   │   │   ├── api-request.js
+│   │   │   │   ├── api-stream.js
+│   │   │   │   ├── api-upgrade.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── readable.js
+│   │   │   ├── cache
+│   │   │   │   ├── memory-cache-store.js
+│   │   │   │   └── sqlite-cache-store.js
+│   │   │   ├── core
+│   │   │   │   ├── connect.js
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── diagnostics.js
+│   │   │   │   ├── errors.js
+│   │   │   │   ├── request.js
+│   │   │   │   ├── socks5-client.js
+│   │   │   │   ├── socks5-utils.js
+│   │   │   │   ├── symbols.js
+│   │   │   │   ├── tree.js
+│   │   │   │   └── util.js
+│   │   │   ├── dispatcher
+│   │   │   │   ├── agent.js
+│   │   │   │   ├── balanced-pool.js
+│   │   │   │   ├── client-h1.js
+│   │   │   │   ├── client-h2.js
+│   │   │   │   ├── client.js
+│   │   │   │   ├── dispatcher-base.js
+│   │   │   │   ├── dispatcher.js
+│   │   │   │   ├── env-http-proxy-agent.js
+│   │   │   │   ├── fixed-queue.js
+│   │   │   │   ├── h2c-client.js
+│   │   │   │   ├── pool-base.js
+│   │   │   │   ├── pool.js
+│   │   │   │   ├── proxy-agent.js
+│   │   │   │   ├── retry-agent.js
+│   │   │   │   ├── round-robin-pool.js
+│   │   │   │   └── socks5-proxy-agent.js
+│   │   │   ├── encoding
+│   │   │   │   └── index.js
+│   │   │   ├── global.js
+│   │   │   ├── handler
+│   │   │   │   ├── cache-handler.js
+│   │   │   │   ├── cache-revalidation-handler.js
+│   │   │   │   ├── decorator-handler.js
+│   │   │   │   ├── deduplication-handler.js
+│   │   │   │   ├── redirect-handler.js
+│   │   │   │   ├── retry-handler.js
+│   │   │   │   ├── unwrap-handler.js
+│   │   │   │   └── wrap-handler.js
+│   │   │   ├── interceptor
+│   │   │   │   ├── cache.js
+│   │   │   │   ├── decompress.js
+│   │   │   │   ├── deduplicate.js
+│   │   │   │   ├── dns.js
+│   │   │   │   ├── dump.js
+│   │   │   │   ├── redirect.js
+│   │   │   │   ├── response-error.js
+│   │   │   │   └── retry.js
+│   │   │   ├── llhttp
+│   │   │   │   ├── constants.d.ts
+│   │   │   │   ├── constants.js
+│   │   │   │   ├── llhttp_simd-wasm.js
+│   │   │   │   ├── llhttp-wasm.js
+│   │   │   │   ├── utils.d.ts
+│   │   │   │   └── utils.js
+│   │   │   ├── mock
+│   │   │   │   ├── mock-agent.js
+│   │   │   │   ├── mock-call-history.js
+│   │   │   │   ├── mock-client.js
+│   │   │   │   ├── mock-errors.js
+│   │   │   │   ├── mock-interceptor.js
+│   │   │   │   ├── mock-pool.js
+│   │   │   │   ├── mock-symbols.js
+│   │   │   │   ├── mock-utils.js
+│   │   │   │   ├── pending-interceptors-formatter.js
+│   │   │   │   ├── snapshot-agent.js
+│   │   │   │   ├── snapshot-recorder.js
+│   │   │   │   └── snapshot-utils.js
+│   │   │   ├── util
+│   │   │   │   ├── cache.js
+│   │   │   │   ├── date.js
+│   │   │   │   ├── promise.js
+│   │   │   │   ├── runtime-features.js
+│   │   │   │   ├── stats.js
+│   │   │   │   └── timers.js
+│   │   │   └── web
+│   │   │       ├── cache
+│   │   │       │   ├── cache.js
+│   │   │       │   ├── cachestorage.js
+│   │   │       │   └── util.js
+│   │   │       ├── cookies
+│   │   │       │   ├── constants.js
+│   │   │       │   ├── index.js
+│   │   │       │   ├── parse.js
+│   │   │       │   └── util.js
+│   │   │       ├── eventsource
+│   │   │       │   ├── eventsource.js
+│   │   │       │   ├── eventsource-stream.js
+│   │   │       │   └── util.js
+│   │   │       ├── fetch
+│   │   │       │   ├── body.js
+│   │   │       │   ├── constants.js
+│   │   │       │   ├── data-url.js
+│   │   │       │   ├── formdata.js
+│   │   │       │   ├── formdata-parser.js
+│   │   │       │   ├── global.js
+│   │   │       │   ├── headers.js
+│   │   │       │   ├── index.js
+│   │   │       │   ├── LICENSE
+│   │   │       │   ├── request.js
+│   │   │       │   ├── response.js
+│   │   │       │   └── util.js
+│   │   │       ├── infra
+│   │   │       │   └── index.js
+│   │   │       ├── subresource-integrity
+│   │   │       │   ├── Readme.md
+│   │   │       │   └── subresource-integrity.js
+│   │   │       ├── webidl
+│   │   │       │   └── index.js
+│   │   │       └── websocket
+│   │   │           ├── connection.js
+│   │   │           ├── constants.js
+│   │   │           ├── events.js
+│   │   │           ├── frame.js
+│   │   │           ├── permessage-deflate.js
+│   │   │           ├── receiver.js
+│   │   │           ├── sender.js
+│   │   │           ├── stream
+│   │   │           │   ├── websocketerror.js
+│   │   │           │   └── websocketstream.js
+│   │   │           ├── util.js
+│   │   │           └── websocket.js
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── scripts
+│   │   │   └── strip-comments.js
+│   │   └── types
+│   │       ├── agent.d.ts
+│   │       ├── api.d.ts
+│   │       ├── balanced-pool.d.ts
+│   │       ├── cache.d.ts
+│   │       ├── cache-interceptor.d.ts
+│   │       ├── client.d.ts
+│   │       ├── client-stats.d.ts
+│   │       ├── connector.d.ts
+│   │       ├── content-type.d.ts
+│   │       ├── cookies.d.ts
+│   │       ├── diagnostics-channel.d.ts
+│   │       ├── dispatcher.d.ts
+│   │       ├── env-http-proxy-agent.d.ts
+│   │       ├── errors.d.ts
+│   │       ├── eventsource.d.ts
+│   │       ├── fetch.d.ts
+│   │       ├── formdata.d.ts
+│   │       ├── global-dispatcher.d.ts
+│   │       ├── global-origin.d.ts
+│   │       ├── h2c-client.d.ts
+│   │       ├── handlers.d.ts
+│   │       ├── header.d.ts
+│   │       ├── index.d.ts
+│   │       ├── interceptors.d.ts
+│   │       ├── mock-agent.d.ts
+│   │       ├── mock-call-history.d.ts
+│   │       ├── mock-client.d.ts
+│   │       ├── mock-errors.d.ts
+│   │       ├── mock-interceptor.d.ts
+│   │       ├── mock-pool.d.ts
+│   │       ├── patch.d.ts
+│   │       ├── pool.d.ts
+│   │       ├── pool-stats.d.ts
+│   │       ├── proxy-agent.d.ts
+│   │       ├── readable.d.ts
+│   │       ├── README.md
+│   │       ├── retry-agent.d.ts
+│   │       ├── retry-handler.d.ts
+│   │       ├── round-robin-pool.d.ts
+│   │       ├── snapshot-agent.d.ts
+│   │       ├── socks5-proxy-agent.d.ts
+│   │       ├── util.d.ts
+│   │       ├── utility.d.ts
+│   │       ├── webidl.d.ts
+│   │       └── websocket.d.ts
+│   ├── w3c-xmlserializer
+│   │   ├── lib
+│   │   │   ├── attributes.js
+│   │   │   ├── constants.js
+│   │   │   └── serialize.js
+│   │   ├── LICENSE.md
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── webidl-conversions
+│   │   ├── lib
+│   │   │   └── index.js
+│   │   ├── LICENSE.md
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── whatwg-mimetype
+│   │   ├── lib
+│   │   │   ├── index.js
+│   │   │   ├── mime-type.js
+│   │   │   ├── mime-type-parameters.js
+│   │   │   ├── parser.js
+│   │   │   ├── serializer.js
+│   │   │   ├── sniff.js
+│   │   │   └── utils.js
+│   │   ├── LICENSE.txt
+│   │   ├── package.json
+│   │   └── README.md
+│   ├── whatwg-url
+│   │   ├── index.js
+│   │   ├── lib
+│   │   │   ├── encoding.js
+│   │   │   ├── Function.js
+│   │   │   ├── infra.js
+│   │   │   ├── percent-encoding.js
+│   │   │   ├── urlencoded.js
+│   │   │   ├── URL-impl.js
+│   │   │   ├── URL.js
+│   │   │   ├── URLSearchParams-impl.js
+│   │   │   ├── URLSearchParams.js
+│   │   │   ├── url-state-machine.js
+│   │   │   ├── utils.js
+│   │   │   └── VoidFunction.js
+│   │   ├── LICENSE.txt
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   └── webidl2js-wrapper.js
+│   ├── xmlchars
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── xml
+│   │   │   ├── 1.0
+│   │   │   │   ├── ed4.d.ts
+│   │   │   │   ├── ed4.js
+│   │   │   │   ├── ed4.js.map
+│   │   │   │   ├── ed5.d.ts
+│   │   │   │   ├── ed5.js
+│   │   │   │   └── ed5.js.map
+│   │   │   └── 1.1
+│   │   │       ├── ed2.d.ts
+│   │   │       ├── ed2.js
+│   │   │       └── ed2.js.map
+│   │   ├── xmlchars.d.ts
+│   │   ├── xmlchars.js
+│   │   ├── xmlchars.js.map
+│   │   └── xmlns
+│   │       └── 1.0
+│   │           ├── ed3.d.ts
+│   │           ├── ed3.js
+│   │           └── ed3.js.map
+│   └── xml-name-validator
+│       ├── lib
+│       │   └── xml-name-validator.js
+│       ├── LICENSE.txt
+│       ├── package.json
+│       └── README.md
+├── offline.html
+├── package.json
+├── package-lock.json
+├── pages
+│   ├── account
+│   │   └── index.html
+│   ├── artikel
+│   │   └── index.html
+│   ├── chatbot
+│   │   └── index.html
+│   ├── community
+│   │   └── index.html
+│   ├── home
+│   │   └── index.html
+│   ├── loading
+│   │   └── index.html
+│   ├── login
+│   │   └── index.html
+│   ├── profile
+│   │   ├── et-profile.html
+│   │   └── index.html
+│   ├── scan
+│   │   └── index.html
+│   └── scan-page
+│       └── index.html
+├── partials
+│   ├── artikel
+│   │   └── artikel-content.html
+│   ├── community
+│   │   └── community-content.html
+│   ├── home
+│   │   └── home-content.html
+│   ├── loading
+│   │   └── loading-content.html
+│   ├── login
+│   │   └── login-content.html
+│   ├── profile
+│   │   └── profile-content.html
+│   └── scan
+│       └── scan-content.html
+├── scan-qa.js
+├── scan-result.png
+├── screenshot-test.js
+├── scripts
+│   ├── seed_routines.py
+│   └── upload_articles.py
+├── skills-lock.json
+├── sw.js
+├── thoughts
+│   └── ledgers
+│       ├── CONTINUITY_ses_1188.md
+│       ├── CONTINUITY_ses_11cd.md
+│       ├── CONTINUITY_ses_11de.md
+│       ├── CONTINUITY_ses_1207.md
+│       ├── CONTINUITY_ses_123d.md
+│       ├── CONTINUITY_ses_129c.md
+│       ├── CONTINUITY_ses_12aa.md
+│       ├── CONTINUITY_ses_12ab.md
+│       ├── CONTINUITY_ses_12d4.md
+│       └── CONTINUITY_ses_1340.md
+└── vercel.json
+
+364 directories, 2589 files
