@@ -256,6 +256,11 @@ function handleRequest(req, res) {
       res.end(getProfilePartial());
       break;
 
+    /** Loading page — handles OAuth redirect with #access_token */
+    case pathname === '/loading' || pathname === '/loading/':
+      serveFile(res, path.join(ROOT, 'pages', 'loading', 'index.html'));
+      break;
+
     /** Root — serve index.html */
     case pathname === '/':
       serveFile(res, path.join(ROOT, 'index.html'));
@@ -495,7 +500,8 @@ function printBanner() {
   ║  Mock Mode:  ENABLED                             ║
   ║                                                  ║
   ║  Endpoints:                                      ║
-  ║    GET /                       → Loading           ║
+  ║    GET /                       → Loading (root)     ║
+  ║    GET /loading                → Loading Page       ║
   ║    GET /scan                   → Scan Page         ║
   ║    GET /login                  → Login Page        ║
   ║    GET /home                   → Home Page         ║

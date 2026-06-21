@@ -80,58 +80,8 @@ function createLoadingComponent() {
         keys: ['progress', 'isLoading', 'isComplete', 'statusMessage'],
       });
 
-      this.checkAuthThenStart();
-    },
-
-    checkAuthThenStart() {
-      var self = this;
-
-      function redirectToLogin() {
-        console.log('[Loading] No authenticated user — redirecting to /login.');
-        setTimeout(function () {
-          window.location.href = '/login';
-        }, 400);
-      }
-
-      function userIsAuthenticated() {
-        self._authChecked = true;
-        console.log('[Loading] User authenticated — starting analysis.');
-        self.startProgressSimulation();
-      }
-
-      var authStore = window.Alpine && Alpine.store('auth');
-      if (authStore && authStore.isAuthenticated && authStore.user && authStore.user.id) {
-        userIsAuthenticated();
-        return;
-      }
-
-      var sb = window.__supabase;
-      if (sb) {
-        sb.auth.getSession().then(function (result) {
-          var session = result.data && result.data.session;
-          if (session && session.user) {
-            authStore.login(session.access_token, {
-              id: session.user.id,
-              email: session.user.email,
-              name: session.user.user_metadata?.full_name || session.user.email,
-              avatar: session.user.user_metadata?.avatar_url || '',
-            });
-            userIsAuthenticated();
-          } else {
-            redirectToLogin();
-          }
-        }).catch(function () {
-          redirectToLogin();
-        });
-        return;
-      }
-
-      if (!self._authChecked) {
-        document.addEventListener('supabase:ready', function readyHandler() {
-          document.removeEventListener('supabase:ready', readyHandler);
-          self.checkAuthThenStart();
-        });
-      }
+      // Start progress bar animation immediately — no redirect until it reaches 100%.
+      this.startProgressSimulation();
     },
 
     /**
@@ -202,10 +152,10 @@ function createLoadingComponent() {
       this.$dispatch('analysis:complete', { progress: 100 });
 
       /**
-       * Check if user has skin_type set in Supabase.
-       * If yes → redirect to /home. If no → redirect to /scan to choose.
+       * Auth check deferred until now: progress bar reached 100%.
+       * Redirect based on whether the user is authenticated.
        */
-      this.redirectBasedOnSkinType();
+      this.redirectBasedOnAuth();
     },
 
     /**
@@ -262,6 +212,123 @@ function createLoadingComponent() {
           console.warn('[Loading] Failed to fetch profile:', err.message);
           redirect('/scan');
         });
+    },
+
+    /**
+     * Ensures a profile row exists for the current user.
+     * Upserts with name & avatar from auth metadata, skin_type defaults to 'unsure'.
+     * Calls the callback when done (or on error — proceeds anyway).
+     *
+     * @param {function} callback — called after upsert completes (or on error)
+     * @returns {void}
+     */
+    ensureProfileExists(callback) {
+      var authStore = window.Alpine && Alpine.store('auth');
+      var userId = authStore && authStore.user && authStore.user.id;
+      if (!userId) {
+        callback();
+        return;
+      }
+
+      var name = authStore.user.name || authStore.user.email || 'User';
+      var avatarUrl = authStore.user.avatar || '';
+      var SUPABASE_URL = APP_CONFIG.SUPABASE_URL;
+      var ANON_KEY = APP_CONFIG.SUPABASE_ANON_KEY;
+      var token = authStore.token || ANON_KEY;
+
+      var url = SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
+      var body = JSON.stringify({
+        id: userId,
+        name: name,
+        profile_image_url: avatarUrl,
+        skin_type: 'unsure'
+      });
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'apikey': ANON_KEY,
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json',
+          'Prefer': 'resolution=merge-duplicates'
+        },
+        body: body
+      })
+        .then(function (r) {
+          if (!r.ok) console.warn('[Loading] Profile upsert responded with', r.status);
+          else console.log('[Loading] Profile ensured for user', userId);
+        })
+        .catch(function (err) {
+          console.warn('[Loading] Profile upsert failed:', err.message);
+        })
+        .finally(function () {
+          callback();
+        });
+    },
+
+    /**
+     * Checks auth status after the progress bar reaches 100%.
+     * Redirects to /login if not authenticated, or to /home / /scan
+     * based on skin_type if authenticated.
+     *
+     * @returns {void}
+     */
+    redirectBasedOnAuth() {
+      var self = this;
+
+      function goToLogin() {
+        console.log('[Loading] No authenticated user — redirecting to /login.');
+        setTimeout(function () {
+          window.location.href = '/login';
+        }, 800);
+      }
+
+      function goToScanOrHome() {
+        // Ensure a profile row exists before checking skin_type
+        self.ensureProfileExists(function () {
+          self.redirectBasedOnSkinType();
+        });
+      }
+
+      // 1. Check Alpine auth store
+      var authStore = window.Alpine && Alpine.store('auth');
+      if (authStore && authStore.isAuthenticated && authStore.user && authStore.user.id) {
+        goToScanOrHome();
+        return;
+      }
+
+      // 2. Check Supabase session directly
+      var sb = window.__supabase;
+      if (sb) {
+        sb.auth.getSession().then(function (result) {
+          var session = result.data && result.data.session;
+          if (session && session.user) {
+            if (authStore) {
+              authStore.login(session.access_token, {
+                id: session.user.id,
+                email: session.user.email,
+                name: session.user.user_metadata?.full_name || session.user.email,
+                avatar: session.user.user_metadata?.avatar_url || '',
+              });
+            }
+            goToScanOrHome();
+          } else {
+            goToLogin();
+          }
+        }).catch(function () {
+          goToLogin();
+        });
+        return;
+      }
+
+      // 3. No Supabase yet — wait for it
+      if (!self._authChecked) {
+        self._authChecked = true;
+        document.addEventListener('supabase:ready', function readyHandler() {
+          document.removeEventListener('supabase:ready', readyHandler);
+          self.redirectBasedOnAuth();
+        });
+      }
     },
 
     /**
