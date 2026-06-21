@@ -323,10 +323,10 @@
       })
       .subscribe(function (status) {
         if (status === 'SUBSCRIBED') {
-          console.log('[Community] ✅ Realtime subscribed:', retryChannel + '/' + retryTopic);
+          console.log('[Community] Realtime subscribed:', retryChannel + '/' + retryTopic);
           _realtimeRetries = 0;
         } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-          console.warn('[Community] ❌ Realtime ' + status + ' — auto-retry in 5s (' + (_realtimeRetries + 1) + '/' + MAX_REALTIME_RETRIES + ')');
+          console.warn('[Community] Realtime ' + status + ' — auto-retry in 5s (' + (_realtimeRetries + 1) + '/' + MAX_REALTIME_RETRIES + ')');
           if (_realtimeRetries < MAX_REALTIME_RETRIES) {
             _realtimeRetries++;
             setTimeout(function () {
