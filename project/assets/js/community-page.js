@@ -23,6 +23,10 @@
   var messages = [];
   var renderedCount = 0;
   var realtimeChannel = null;
+  var pollIntervalId = null;
+  var POLL_INTERVAL_MS = 10000; /* 10 detik — fallback polling */
+  var SEND_COOLDOWN_MS = 5000;  /* 5 detik antar kirim pesan */
+  var lastSendTime = 0;
 
   /* ─── DOM refs (populated in init) ─── */
   var chatMessages, inputText, btnSend;
@@ -148,6 +152,14 @@
     if (!text || !text.trim() || !currentUser) return;
     text = text.trim();
 
+    /* Send cooldown: max 1 message per 5 detik */
+    var now = Date.now();
+    if (now - lastSendTime < SEND_COOLDOWN_MS) {
+      console.log('[Community] Send cooldown — wait ' + Math.ceil((SEND_COOLDOWN_MS - (now - lastSendTime)) / 1000) + 's');
+      return;
+    }
+    lastSendTime = now;
+
     /* Optimistic: add temp message immediately */
     var tempId = 'temp_' + Date.now();
     var tempMsg = {
@@ -200,6 +212,67 @@
     renderMessages();
   }
 
+  /* ─── Dedup: merge fetched messages with existing, keep sorted ─── */
+  function dedupMessages(newMessages) {
+    var existingIds = {};
+    for (var i = 0; i < messages.length; i++) {
+      existingIds[messages[i].id] = true;
+    }
+    var added = false;
+    for (var j = 0; j < newMessages.length; j++) {
+      if (!existingIds[newMessages[j].id]) {
+        messages.push(newMessages[j]);
+        existingIds[newMessages[j].id] = true;
+        added = true;
+      }
+    }
+    if (added) {
+      /* Sort by created_at ascending */
+      messages.sort(function (a, b) {
+        return new Date(a.created_at) - new Date(b.created_at);
+      });
+      renderedCount = 0;
+      renderMessages();
+    }
+  }
+
+  /* ─── Polling fallback: fetch latest messages every 10s ─── */
+  function pollNewMessages() {
+    var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/community_messages' +
+      '?select=id,user_id,user_name,user_avatar_url,text,created_at' +
+      '&channel=eq.' + encodeURIComponent(activeChannel) +
+      '&topic=eq.' + encodeURIComponent(activeTopic) +
+      '&order=created_at.asc&limit=100';
+
+    fetch(url, {
+      headers: {
+        'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + currentUser.token
+      }
+    })
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (data) {
+        if (data && data.length > 0) {
+          dedupMessages(data);
+        }
+      })
+      .catch(function (err) {
+        console.warn('[Community] Poll error:', err.message);
+      });
+  }
+
+  function startPolling() {
+    stopPolling();
+    pollIntervalId = setInterval(pollNewMessages, POLL_INTERVAL_MS);
+  }
+
+  function stopPolling() {
+    if (pollIntervalId) {
+      clearInterval(pollIntervalId);
+      pollIntervalId = null;
+    }
+  }
+
   /* ─── Realtime subscription ─── */
   function subscribeRealtime() {
     var sb = window.__supabase;
@@ -234,7 +307,7 @@
           }
         }
 
-        /* Skip if already exists by real ID */
+        /* Skip if already exists */
         for (var j = 0; j < messages.length; j++) {
           if (messages[j].id === msg.id) return;
         }
@@ -265,8 +338,12 @@
     if (activeTopic === topic) return;
     activeTopic = topic;
     localStorage.setItem(LS_ACTIVE_KEY, JSON.stringify({ channel: activeChannel, topic: activeTopic }));
+    stopPolling();
     unsubscribeRealtime();
-    fetchHistory().then(subscribeRealtime);
+    fetchHistory().then(function () {
+      subscribeRealtime();
+      startPolling();
+    });
     highlightTopic();
   }
 
@@ -275,8 +352,12 @@
     if (activeChannel === channel) return;
     activeChannel = channel;
     localStorage.setItem(LS_ACTIVE_KEY, JSON.stringify({ channel: activeChannel, topic: activeTopic }));
+    stopPolling();
     unsubscribeRealtime();
-    fetchHistory().then(subscribeRealtime);
+    fetchHistory().then(function () {
+      subscribeRealtime();
+      startPolling();
+    });
     highlightChannel();
   }
 
@@ -403,8 +484,9 @@
 
       console.log('[Community] Authenticated as:', currentUser.name);
 
-      /* Fetch history + subscribe to realtime */
+      /* Fetch history + subscribe to realtime + start polling fallback */
       fetchHistory().then(subscribeRealtime);
+      startPolling();
     }).catch(function (err) {
       console.error('[Community] Auth error:', err.message);
       window.location.href = '/login';
