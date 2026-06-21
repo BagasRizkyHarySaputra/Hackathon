@@ -299,6 +299,11 @@ function handleRequest(req, res) {
       serveFile(res, path.join(ROOT, 'pages', 'profile', 'index.html'));
       break;
 
+    /** Profile Edit page */
+    case pathname === '/profile/edit':
+      serveFile(res, path.join(ROOT, 'pages', 'profile', 'edit-profile.html'));
+      break;
+
     /** Artikel page */
     case pathname === '/artikel' || pathname === '/artikel/':
       serveFile(res, path.join(ROOT, 'pages', 'artikel', 'index.html'));
