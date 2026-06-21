@@ -1,0 +1,13 @@
+== Unique User ID Idea (2026-06-21) ==
+Context: User wants a permanent identifier per account that survives email/username changes.
+
+Approach: user_serial (BIGSERIAL) in profiles table.
+- Auto-increment, set once on profile creation, never changes.
+- Display as "LICIN-{user_serial}" on profile page.
+- Already implemented: auth.users.id is the internal FK (permanent).
+- user_serial is just a human-friendly display ID.
+
+Related issue: Discord/Google OAuth creates a NEW auth.users row each time
+(same email or not). Fix later with Account Linking:
+  sb.auth.linkIdentity({ provider: 'discord' })
+This links OAuth identity to existing email/password account so data persists.

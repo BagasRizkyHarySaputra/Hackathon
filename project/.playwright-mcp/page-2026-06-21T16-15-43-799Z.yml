@@ -1,0 +1,99 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /home
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /community
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /scan-page
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /artikel
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /profile
+    - img [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e120]:
+        - heading "Hello, lololol!" [level=1] [ref=e121]
+        - paragraph [ref=e122]: Ready to check your skin today?
+      - generic [ref=e123]:
+        - button "Notifications" [ref=e124] [cursor=pointer]
+        - button "Profile" [ref=e125] [cursor=pointer]
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - heading "Skin Diary" [level=2] [ref=e29]
+            - paragraph [ref=e30]: Track your skin journey!
+          - button "Add new entry" [ref=e31] [cursor=pointer]:
+            - img [ref=e32]
+            - generic [ref=e34]: Add new entry
+        - generic [ref=e35]:
+          - generic [ref=e36]: Week 1
+          - generic [ref=e38]: Week 2
+          - generic [ref=e40]: Week 3
+        - generic [ref=e41]:
+          - img [ref=e126]
+          - img [ref=e129]
+          - img [ref=e132]
+        - heading "Progress" [level=2] [ref=e54]
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - img [ref=e60]
+              - img [ref=e65]
+              - slider [ref=e68]: "50"
+              - generic:
+                - generic:
+                  - img
+                  - img
+            - generic [ref=e69]:
+              - generic [ref=e70]: Before
+              - generic [ref=e71]: After
+          - generic [ref=e72]:
+            - generic [ref=e73]: Keep it up
+            - img [ref=e74]
+      - generic [ref=e75]:
+        - heading "Skin Diary Summary" [level=2] [ref=e76]
+        - paragraph [ref=e77]: Overall Improvement
+        - generic [ref=e80]:
+          - img [ref=e81]
+          - generic [ref=e84]:
+            - generic [ref=e85]: +60%
+            - generic [ref=e86]: Improvement
+      - generic [ref=e87]:
+        - heading "Progress" [level=2] [ref=e88]
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - generic [ref=e91]: Blackheads
+            - generic [ref=e92]: 15.0%
+            - generic [ref=e93]: 0.0%
+            - generic [ref=e94]: ↓ 15.0%
+          - generic [ref=e95]:
+            - generic [ref=e96]: Dark Spot
+            - generic [ref=e97]: 10.0%
+            - generic [ref=e98]: 0.0%
+            - generic [ref=e99]: ↓ 10.0%
+          - generic [ref=e100]:
+            - generic [ref=e101]: Nodules
+            - generic [ref=e102]: 5.0%
+            - generic [ref=e103]: 0.0%
+            - generic [ref=e104]: ↓ 5.0%
+          - generic [ref=e105]:
+            - generic [ref=e106]: Popules
+            - generic [ref=e107]: 15.0%
+            - generic [ref=e108]: 5.0%
+            - generic [ref=e109]: ↓ 10.0%
+          - generic [ref=e110]:
+            - generic [ref=e111]: Pustules
+            - generic [ref=e112]: 8.0%
+            - generic [ref=e113]: 0.0%
+            - generic [ref=e114]: ↓ 8.0%
+          - generic [ref=e115]:
+            - generic [ref=e116]: Whiteheads
+            - generic [ref=e117]: 12.0%
+            - generic [ref=e118]: 0.0%
+            - generic [ref=e119]: ↓ 12.0%

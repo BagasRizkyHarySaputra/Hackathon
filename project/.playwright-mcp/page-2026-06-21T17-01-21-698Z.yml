@@ -1,0 +1,32 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /home
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /community
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /scan-page
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /artikel
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /profile
+    - img [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - button "Notifications" [ref=e20] [cursor=pointer]
+      - button "Profile" [ref=e21] [cursor=pointer]
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "Chatbot" [level=2] [ref=e24]
+        - generic [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]: New Chat
+          - img [ref=e28]
+        - generic [ref=e29]:
+          - generic [ref=e30] [cursor=pointer]:
+            - generic [ref=e31]: History
+            - img [ref=e32]
+          - separator [ref=e34]
+      - textbox "Type something..." [ref=e40]

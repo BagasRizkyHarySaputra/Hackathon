@@ -1,0 +1,39 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /home
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /community
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /scan-page
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /artikel
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /profile
+    - img [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - generic [ref=e42]:
+      - button "Notifications" [ref=e43] [cursor=pointer]
+      - button "Profile" [ref=e44] [cursor=pointer]
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "Chatbot" [level=2] [ref=e24]
+        - generic [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]: New Chat
+          - img [ref=e28]
+        - generic [ref=e29]:
+          - generic [ref=e30] [cursor=pointer]:
+            - generic [ref=e31]: History
+            - img [ref=e32]
+          - separator [ref=e34]
+          - generic [ref=e45]:
+            - generic [ref=e67] [cursor=pointer]: Chat 1
+            - generic [ref=e68] [cursor=pointer]: Chat 2
+      - generic [ref=e35]:
+        - generic [ref=e37]:
+          - paragraph [ref=e71]: Halo bot, test aja nih
+          - paragraph [ref=e77]: Mehh…
+        - textbox "Type something..." [active] [ref=e40]

@@ -1,0 +1,48 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - img "LICIN" [ref=e7]
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /home
+        - link "Community" [ref=e11] [cursor=pointer]:
+          - /url: /community
+        - link "Scan" [ref=e12] [cursor=pointer]:
+          - /url: /scan-page
+        - link "Diary" [ref=e13] [cursor=pointer]:
+          - /url: /artikel
+        - link "Profile" [ref=e14] [cursor=pointer]:
+          - /url: /profile
+    - img [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e35]:
+        - heading "Hello, Test!" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Ready to check your skin today?
+      - generic [ref=e38]:
+        - button "Notifications" [ref=e39] [cursor=pointer]
+        - button "Profile" [ref=e40] [cursor=pointer]
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - button "Back" [ref=e27] [cursor=pointer]:
+          - img "<" [ref=e28]
+        - heading "Ready to scan your skin?" [level=1] [ref=e29]
+        - button "Help" [ref=e30] [cursor=pointer]:
+          - img "?" [ref=e31]
+      - generic [ref=e32]:
+        - generic "Camera preview" [ref=e33]
+        - img "Captured skin photo" [ref=e41]
+        - button "Capture photo" [active]
+      - generic [ref=e42]:
+        - img "Product" [ref=e44]
+        - generic [ref=e45]:
+          - heading "Dark Spot Corrector" [level=3] [ref=e46]
+          - paragraph [ref=e47]: Vitamin C serum formulated to fade dark spots and even skin tone.
+        - generic [ref=e48]:
+          - button "Morning" [ref=e49] [cursor=pointer]:
+            - img "Morning" [ref=e50]
+          - button "Night" [ref=e51] [cursor=pointer]:
+            - img "Night" [ref=e52]
+        - button "Save routine" [ref=e53] [cursor=pointer]:
+          - generic [ref=e54]: Save Routine
+          - img [ref=e55]
