@@ -12,29 +12,45 @@ function createLoginComponent() {
     errorMessage: '',
 
     init() {
-      const sb = window.__supabase;
-      if (!sb || !APP_CONFIG.SUPABASE_ANON_KEY) {
-        console.log('[Login] Supabase not configured — mock fallback mode.');
-        return;
+      var self = this;
+
+      function setupOAuthCallback(sb) {
+        /**
+         * Handle OAuth redirect callback: if Supabase placed a session
+         * in the URL fragment, restore it and redirect to home.
+         */
+        sb.auth.getSession().then(({ data: { session } }) => {
+          if (session) {
+            const name = session.user.user_metadata?.full_name
+              || session.user.user_metadata?.name
+              || session.user.email;
+            Alpine.store('auth').login(session.access_token, {
+              id: session.user.id,
+              email: session.user.email,
+              name,
+            });
+            Alpine.store('ui').addToast('success', `Welcome back, ${name}!`);
+            setTimeout(() => { window.location.href = '/loading'; }, 600);
+          }
+        });
       }
-      /**
-       * Handle OAuth redirect callback: if Supabase placed a session
-       * in the URL fragment, restore it and redirect to home.
-       */
-      sb.auth.getSession().then(({ data: { session } }) => {
-        if (session) {
-          const name = session.user.user_metadata?.full_name
-            || session.user.user_metadata?.name
-            || session.user.email;
-          Alpine.store('auth').login(session.access_token, {
-            id: session.user.id,
-            email: session.user.email,
-            name,
-          });
-          Alpine.store('ui').addToast('success', `Welcome back, ${name}!`);
-          setTimeout(() => { window.location.href = '/loading'; }, 600);
-        }
-      });
+
+      const sb = window.__supabase;
+      if (sb && APP_CONFIG.SUPABASE_ANON_KEY) {
+        setupOAuthCallback(sb);
+      } else if (APP_CONFIG.SUPABASE_ANON_KEY && !APP_CONFIG.IS_MOCK_MODE) {
+        // Supabase module not loaded yet — wait for ready event
+        console.log('[Login] Waiting for Supabase client to load...');
+        document.addEventListener('supabase:ready', function readyHandler() {
+          document.removeEventListener('supabase:ready', readyHandler);
+          if (window.__supabase) {
+            console.log('[Login] Supabase client ready — setting up OAuth callback.');
+            setupOAuthCallback(window.__supabase);
+          }
+        });
+      } else {
+        console.log('[Login] Supabase not configured — mock fallback mode.');
+      }
     },
 
     switchTab(tab) {

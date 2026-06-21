@@ -23,7 +23,7 @@
  * ============================================================
  */
 
-const CACHE_NAME = 'skinglow-v1';
+const CACHE_NAME = 'skinglow-v2';
 const OFFLINE_URL = '/offline.html';
 
 /** Pre-cache app shell and offline fallback on install */
@@ -78,9 +78,9 @@ async function handleFetch(request) {
     return staleWhileRevalidate(request);
   }
 
-  // HTML pages → Cache First (app shell)
+  // HTML pages → Network First (always get fresh HTML, cache only for offline)
   if (destination === 'document') {
-    return cacheFirstWithOfflineFallback(request);
+    return networkFirstWithOfflineFallback(request);
   }
 
   // Default → Network First
@@ -119,6 +119,24 @@ async function cacheFirst(request) {
     return networkResponse;
   } catch {
     return new Response('', { status: 404 });
+  }
+}
+
+/**
+ * Network First with offline fallback for document requests.
+ * Always tries network first to get fresh HTML, falls back to cache only when offline.
+ * @param {Request} request
+ * @returns {Promise<Response>}
+ */
+async function networkFirstWithOfflineFallback(request) {
+  try {
+    const networkResponse = await fetch(request);
+    const cache = await caches.open(CACHE_NAME);
+    cache.put(request, networkResponse.clone());
+    return networkResponse;
+  } catch {
+    const cached = await caches.match(request);
+    return cached || caches.match(OFFLINE_URL);
   }
 }
 

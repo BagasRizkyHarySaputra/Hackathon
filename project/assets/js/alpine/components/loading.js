@@ -373,14 +373,22 @@ function createLoadingComponent() {
         return;
       }
 
-      // 3. No Supabase yet — wait for it
+      // 3. No Supabase yet — wait for it (with safety timeout)
       if (!self._authChecked) {
         console.log('[Loading] Supabase not ready — waiting for supabase:ready event...');
         self._authChecked = true;
         document.addEventListener('supabase:ready', function readyHandler() {
           document.removeEventListener('supabase:ready', readyHandler);
+          clearTimeout(self._authTimeoutId);
           self.redirectBasedOnAuth();
         });
+        // Safety: if supabase:ready never fires within 5s, redirect to login anyway
+        self._authTimeoutId = setTimeout(function () {
+          if (!window.__supabase) {
+            console.warn('[Loading] Supabase module failed to load within 5s — redirecting to login.');
+            goToLogin();
+          }
+        }, 5000);
       } else {
         console.warn('[Loading] Auth check exhausted — redirecting to login.');
         goToLogin();
