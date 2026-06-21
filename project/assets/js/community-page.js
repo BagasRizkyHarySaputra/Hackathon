@@ -24,9 +24,10 @@
   var renderedCount = 0;
   var realtimeChannel = null;
   var pollIntervalId = null;
-  var POLL_INTERVAL_MS = 5000;  /* 5 detik — polling fallback */
-  var SEND_COOLDOWN_MS = 5000;  /* 5 detik antar kirim pesan */
+  var POLL_INTERVAL_MS = 5000;
+  var sendCooldownMs = 5000;
   var lastSendTime = 0;
+  var _sending = false;
   var _realtimeRetries = 0;
   var MAX_REALTIME_RETRIES = 5;
 
@@ -149,15 +150,20 @@
       });
   }
 
-  /* ─── Send message to Supabase ─── */
+  /* --- Send message to Supabase --- */
   function sendMessage(text) {
     if (!text || !text.trim() || !currentUser) return;
     text = text.trim();
 
-    /* Send cooldown: max 1 message per 5 detik */
+    /* Guard against double-send (mobile touch + click) */
+    if (_sending) return;
+    _sending = true;
+
+    /* Send cooldown */
     var now = Date.now();
-    if (now - lastSendTime < SEND_COOLDOWN_MS) {
-      console.log('[Community] Send cooldown — wait ' + Math.ceil((SEND_COOLDOWN_MS - (now - lastSendTime)) / 1000) + 's');
+    if (now - lastSendTime < sendCooldownMs) {
+      _sending = false;
+      console.log('[Community] Send cooldown');
       return;
     }
     lastSendTime = now;
@@ -175,7 +181,7 @@
     messages.push(tempMsg);
     renderMessages();
 
-    /* POST to Supabase — realtime will deliver the real row */
+    /* POST to Supabase - get real row back via return=representation */
     var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/community_messages';
     var payload = {
       channel: activeChannel,
@@ -192,7 +198,7 @@
         'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
         'Authorization': 'Bearer ' + currentUser.token,
         'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
+        'Prefer': 'return=representation'
       },
       body: JSON.stringify(payload)
     })
@@ -200,12 +206,39 @@
         if (!r.ok) {
           console.warn('[Community] Send failed:', r.status);
           removeTempMessage(tempId);
+          return;
+        }
+        return r.json();
+      })
+      .then(function (rows) {
+        if (rows && rows.length > 0) {
+          replaceTempMessage(tempId, rows[0]);
+        } else {
+          removeTempMessage(tempId);
         }
       })
       .catch(function (err) {
         console.warn('[Community] Send error:', err.message);
         removeTempMessage(tempId);
+      })
+      .finally(function () {
+        _sending = false;
       });
+  }
+
+  function replaceTempMessage(tempId, realMsg) {
+    var found = false;
+    for (var i = 0; i < messages.length; i++) {
+      if (messages[i].id === tempId) {
+        messages[i] = realMsg;
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      renderedCount = 0;
+      renderMessages();
+    }
   }
 
   function removeTempMessage(tempId) {
@@ -231,6 +264,10 @@
     if (added) {
       /* Sort by created_at ascending */
       messages.sort(function (a, b) {
+        var aTemp = String(a.id).indexOf('temp_') === 0;
+        var bTemp = String(b.id).indexOf('temp_') === 0;
+        if (aTemp && !bTemp) return 1;
+        if (!aTemp && bTemp) return -1;
         return new Date(a.created_at) - new Date(b.created_at);
       });
       renderedCount = 0;
