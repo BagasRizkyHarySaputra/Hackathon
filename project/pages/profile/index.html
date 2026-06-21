@@ -625,7 +625,14 @@
       // ── Load Profile Data from Supabase ──
       function loadProfile() {
         var authStore = window.Alpine && Alpine.store('auth');
-        if (!authStore || !authStore.user) return;
+        if (!authStore || !authStore.user) {
+          // Auth store belum siap — retry setiap 300ms sampai 6 detik
+          var retries = arguments.length > 0 ? arguments[0] : 0;
+          if (retries < 20) {
+            setTimeout(function() { loadProfile(retries + 1); }, 300);
+          }
+          return;
+        }
 
         var userId = authStore.user.id;
         var token = authStore.token || APP_CONFIG.SUPABASE_ANON_KEY;
