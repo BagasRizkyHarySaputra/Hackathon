@@ -77,22 +77,26 @@
                   <!-- Nama Lengkap -->
                   <div class="account-field">
                     <label class="account-field__label">Nama Lengkap*</label>
-                    <input type="text" class="account-field__input" placeholder="" />
+                    <input type="text" id="edit-name" class="account-field__input account-field__input--text" placeholder="Masukkan nama lengkap" />
                   </div>
                   <!-- Email Pengguna -->
                   <div class="account-field">
                     <label class="account-field__label">Email Pengguna*</label>
-                    <input type="email" class="account-field__input" placeholder="" />
+                    <input type="email" id="edit-email" class="account-field__input account-field__input--text" placeholder="Masukkan email" />
                   </div>
                   <!-- Jenis Kelamin -->
                   <div class="account-field">
                     <label class="account-field__label">Jenis Kelamin*</label>
-                    <input type="text" class="account-field__input" placeholder="" />
+                    <select id="edit-gender" class="account-field__input account-field__input--select">
+                      <option value="">Pilih Jenis Kelamin</option>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
                   </div>
                   <!-- Tanggal Lahir -->
                   <div class="account-field">
                     <label class="account-field__label">Tanggal Lahir</label>
-                    <input type="text" class="account-field__input" placeholder="" />
+                    <input type="date" id="edit-birthdate" class="account-field__input account-field__input--date" />
                   </div>
                 </div>
 
@@ -447,23 +451,6 @@
         });
       });
 
-      // ── Save Button ──
-      var saveBtn = document.querySelector('.account-save-btn');
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function() {
-          var fields = document.querySelectorAll('.account-field__input');
-          var data = {};
-          fields.forEach(function(f) {
-            var label = f.previousElementSibling ? f.previousElementSibling.textContent : '';
-            data[label] = f.value;
-          });
-          console.log('Profile saved:', data);
-          saveBtn.textContent = 'Saved!';
-          setTimeout(function() {
-            saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Save';
-          }, 1500);
-        });
-      }
     })();
   </script>
   <script src="/assets/js/router.js"></script>

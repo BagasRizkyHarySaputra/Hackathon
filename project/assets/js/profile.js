@@ -116,10 +116,11 @@
   }
 
   function createDefaultProfile(userId) {
-    // Get user metadata from auth for name/avatar
+    // Get user metadata from auth for name/avatar/email
     var sb = window.__supabase;
     var name = 'User';
     var avatarUrl = '';
+    var email = '';
 
     if (sb) {
       sb.auth.getSession().then(function (result) {
@@ -127,24 +128,27 @@
         if (user) {
           name = user.user_metadata.full_name || user.user_metadata.name || user.email || 'User';
           avatarUrl = user.user_metadata.avatar_url || '';
+          email = user.email || '';
         }
-        upsertProfile(userId, name, avatarUrl, 'unsure');
+        upsertProfile(userId, name, avatarUrl, 'unsure', email);
       }).catch(function () {
-        upsertProfile(userId, 'User', '', 'unsure');
+        upsertProfile(userId, 'User', '', 'unsure', '');
       });
     } else {
-      upsertProfile(userId, 'User', '', 'unsure');
+      upsertProfile(userId, 'User', '', 'unsure', '');
     }
   }
 
-  function upsertProfile(userId, name, avatarUrl, skinType) {
+  function upsertProfile(userId, name, avatarUrl, skinType, email) {
     var url = SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
-    var body = JSON.stringify({
+    var payload = {
       id: userId,
       name: name,
       profile_image_url: avatarUrl,
       skin_type: skinType
-    });
+    };
+    if (email) payload.email = email;
+    var body = JSON.stringify(payload);
 
     fetch(url, {
       method: 'POST',
@@ -217,14 +221,33 @@
   }
 
   function populateEditForm(profile) {
-    var fields = document.querySelectorAll('#account-grid-wrap .account-field__input');
-    if (fields.length >= 1 && profile.name) fields[0].value = profile.name;
-    if (fields.length >= 2) fields[1].value = '';  // email — from auth, not profile table
-    if (fields.length >= 3) fields[2].value = '';  // gender
-    if (fields.length >= 4) fields[3].value = '';  // birth date
+    // Name
+    var nameInput = document.getElementById('edit-name');
+    if (nameInput && profile.name) nameInput.value = profile.name;
 
-    // Pre-select skin type
-    var skinOpts = document.querySelectorAll('#account-grid-wrap .account-skin-option');
+    // Email — from auth store first, then fall back to profile.email column
+    var emailInput = document.getElementById('edit-email');
+    if (emailInput) {
+      var authStore = window.Alpine && Alpine.store('auth');
+      var authEmail = authStore && authStore.user && authStore.user.email;
+      emailInput.value = profile.email || authEmail || '';
+    }
+
+    // Gender
+    var genderSelect = document.getElementById('edit-gender');
+    if (genderSelect && profile.gender) {
+      genderSelect.value = profile.gender;
+    }
+
+    // Birth date
+    var birthdateInput = document.getElementById('edit-birthdate');
+    if (birthdateInput && profile.birth_date) {
+      // birth_date is YYYY-MM-DD from Postgres DATE type
+      birthdateInput.value = profile.birth_date;
+    }
+
+    // Pre-select skin type — use .account-skin-option regardless of page
+    var skinOpts = document.querySelectorAll('.account-skin-option');
     skinOpts.forEach(function (opt) {
       var skin = opt.getAttribute('data-skin');
       if (skin === profile.skin_type) {
@@ -344,7 +367,7 @@
 
   /* ─── Save Profile (wired to account save button) ─── */
   function wireSaveButton() {
-    var saveBtn = getEl('account-save-btn');
+    var saveBtn = document.querySelector('.account-save-btn');
     if (!saveBtn) return;
 
     // Remove existing listeners by cloning (simple approach)
@@ -357,14 +380,19 @@
         return;
       }
 
-      var fields = document.querySelectorAll('#account-grid-wrap .account-field__input');
-      var name = fields.length >= 1 ? fields[0].value.trim() : '';
-      var gender = fields.length >= 3 ? fields[2].value.trim() : '';
-      var birthDate = fields.length >= 4 ? fields[3].value.trim() : '';
+      var nameInput = document.getElementById('edit-name');
+      var emailInput = document.getElementById('edit-email');
+      var genderSelect = document.getElementById('edit-gender');
+      var birthdateInput = document.getElementById('edit-birthdate');
+
+      var name = nameInput ? nameInput.value.trim() : '';
+      var email = emailInput ? emailInput.value.trim() : '';
+      var gender = genderSelect ? genderSelect.value : '';
+      var birthDate = birthdateInput ? birthdateInput.value : '';
 
       // Get selected skin type
       var selectedSkin = 'unsure';
-      var skinOpts = document.querySelectorAll('#account-grid-wrap .account-skin-option');
+      var skinOpts = document.querySelectorAll('.account-skin-option');
       skinOpts.forEach(function (opt) {
         if (opt.classList.contains('account-skin-option--selected')) {
           selectedSkin = opt.getAttribute('data-skin');
@@ -377,11 +405,16 @@
       }
 
       var url = SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
-      var body = JSON.stringify({
+      var payload = {
         id: currentUserId,
         name: name,
         skin_type: selectedSkin
-      });
+      };
+      if (email) payload.email = email;
+      if (gender) payload.gender = gender;
+      if (birthDate) payload.birth_date = birthDate;
+
+      var body = JSON.stringify(payload);
 
       fetch(url, {
         method: 'POST',
@@ -395,16 +428,10 @@
         .then(function () {
           // Update display
           currentProfile.name = name;
+          currentProfile.email = email;
+          currentProfile.gender = gender;
+          currentProfile.birth_date = birthDate;
           currentProfile.skin_type = selectedSkin;
-          renderProfile(currentProfile);
-
-          // Disable fields
-          var allFields = document.querySelectorAll('#account-grid-wrap .account-field__input');
-          allFields.forEach(function (inp) { inp.disabled = true; });
-
-          // Update edit button text
-          var editBtn = getEl('account-edit-btn');
-          if (editBtn) editBtn.textContent = 'Edit Profile';
 
           newBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Saved!';
           setTimeout(function () {

@@ -236,13 +236,16 @@ function createLoadingComponent() {
       var ANON_KEY = APP_CONFIG.SUPABASE_ANON_KEY;
       var token = authStore.token || ANON_KEY;
 
+      var email = authStore.user.email || '';
       var url = SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
-      var body = JSON.stringify({
+      var payload = {
         id: userId,
         name: name,
         profile_image_url: avatarUrl,
         skin_type: 'unsure'
-      });
+      };
+      if (email) payload.email = email;
+      var body = JSON.stringify(payload);
 
       fetch(url, {
         method: 'POST',
