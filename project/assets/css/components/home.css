@@ -159,8 +159,8 @@
   display: grid;
   align-items: center;
   justify-content: center;  
-  grid-template-columns: repeat(3, 0.3fr);
-  gap: 5vw;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
   flex-shrink: 0;
 }
 
@@ -171,6 +171,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.diary-thumb svg {
+  width: 50%;
+  height: 50%;
+}
+
+.diary-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 /* ─── Before / After Image Slider ─── */
 .diary-bottom-row {
@@ -304,11 +316,23 @@ input.ba-slider {
 }
 
 .ba-thumb {
-  width: 5.56vw;
-  height: 7.81vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.ba-thumb svg {
+  width: 3vw;
+  height: 3vw;
+}
+
+.ba-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .home-mascot-bubble { /* ─── Mascot & Bubble (desktop: inside diary card, right of Before/After) ─── */

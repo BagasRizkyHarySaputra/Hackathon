@@ -59,13 +59,13 @@
 
             <div class="diary-grid">
               <div class="diary-thumb">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
               </div>
               <div class="diary-thumb">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
               </div>
               <div class="diary-thumb">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
               </div>
             </div>
 
@@ -77,13 +77,13 @@
 
                   <div class="before-after__right">
                     <div class="ba-thumb">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
                     </div>
                   </div>
                 
                   <div class="before-after__left">
                     <div class="ba-thumb">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5" width="48" height="48"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#95B4C6" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="12" r="4"/></svg>
                     </div>
                   </div>
                 
@@ -161,7 +161,7 @@
                 <span class="progress-row__delta">— 0.0%</span>
               </div>
               <div class="progress-row">
-                <span class="progress-row__name">Popules</span>
+                <span class="progress-row__name">Papules</span>
                 <span class="progress-row__before">15.0%</span>
                 <span class="progress-row__after">5.0%</span>
                 <span class="progress-row__delta progress-row__delta--down">↓ 10.0%</span>
@@ -185,37 +185,15 @@
     </div>
   </div>
   
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
   <script src="/config/app.config.js"></script>
   <script type="module" src="/assets/js/supabase/supabase-client.js"></script>
-  <script>
-    (function() {
-      var container = document.querySelector('.before-after__container');
-      if (!container) return;
-      var slider = container.querySelector('.ba-slider');
-      if (!slider) return;
-
-      function updateSlider(pos) {
-        container.style.setProperty('--ba-position', pos + '%');
-      }
-
-      slider.addEventListener('input', function(e) {
-        updateSlider(e.target.value);
-      });
-
-      container.addEventListener('click', function(e) {
-        var rect = container.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var pct = Math.round((x / rect.width) * 100);
-        pct = Math.max(1, Math.min(100, pct));
-        slider.value = pct;
-        updateSlider(pct);
-      });
-
-      updateSlider(slider.value);
-    })();
-  </script>
+  <script src="/assets/js/alpine/app.js"></script>
+  <script src="/assets/js/alpine/stores/ui.store.js"></script>
+  <script src="/assets/js/alpine/stores/auth.store.js"></script>
   <script src="/assets/js/components/sidebar.js"></script>
   <script src="/assets/js/components/header.js"></script>
-<script src="/assets/js/router.js"></script>
+  <script src="/assets/js/components/home.js"></script>
+  <script src="/assets/js/router.js"></script>
 </body>
 </html>
