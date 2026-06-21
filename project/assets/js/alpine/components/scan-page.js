@@ -45,7 +45,13 @@ function createScanPageComponent() {
     routineType: 'morning',
 
     /** @type {number} API call timeout in ms */
-    _API_TIMEOUT_MS: 30000,
+    _API_TIMEOUT_MS: 90000,
+
+    /** @type {string|null} Telegram file_id of the stored original photo */
+    _telegramFileId: null,
+
+    /** @type {number|null} Telegram message_id containing the photo */
+    _telegramMessageId: null,
 
     /** @type {MediaStream|null} Active camera stream (for cleanup) */
     _stream: null,
@@ -149,6 +155,49 @@ function createScanPageComponent() {
     },
 
     /**
+     * Uploads the original captured photo to Telegram Bot API
+     * for unlimited cloud storage. Runs in parallel with ML analysis.
+     * Sets _telegramFileId and _telegramMessageId on success.
+     * @param {Blob} blob Original image blob
+     */
+    _uploadToTelegram(blob) {
+      var self = this;
+      this._telegramFileId = null;
+      this._telegramMessageId = null;
+
+      return new Promise(function (resolve) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          fetch('/api/telegram/send-photo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ photo: reader.result }),
+          })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data.ok && data.file_id) {
+                self._telegramFileId = data.file_id;
+                self._telegramMessageId = data.message_id || null;
+                console.log('[ScanPage] Photo saved to Telegram. file_id:', data.file_id);
+              } else {
+                console.warn('[ScanPage] Telegram upload failed:', data.error || data.detail || data);
+              }
+              resolve();
+            })
+            .catch(function (err) {
+              console.warn('[ScanPage] Telegram upload error:', err.message);
+              resolve();
+            });
+        };
+        reader.onerror = function () {
+          console.warn('[ScanPage] FileReader error for Telegram upload.');
+          resolve();
+        };
+        reader.readAsDataURL(blob);
+      });
+    },
+
+    /**
      * Sends canvas blob to YOLO ML API (local Python server).
      * On success: replaces capturedImage with annotated image,
      *             saves health_score to Supabase,
@@ -165,6 +214,9 @@ function createScanPageComponent() {
           self._showError('Could not capture image data. Please try again.');
           return;
         }
+
+        // Upload original photo to Telegram (returns Promise, awaited before save)
+        var telegramPromise = self._uploadToTelegram(blob);
 
         var formData = new FormData();
         formData.append('file', blob, 'scan.jpg');
@@ -219,8 +271,11 @@ function createScanPageComponent() {
             self.isAnalyzing = false;
             self.showPopup = true;
 
-            // Save health score to Supabase (async, non-blocking)
-            self._saveToSupabase(data);
+            // Wait for Telegram upload to finish before saving to Supabase
+            // so that telegram_file_id is included in the row.
+            telegramPromise.then(function () {
+              self._saveToSupabase(data);
+            });
           })
           .catch(function (err) {
             clearTimeout(timeoutId);
@@ -265,6 +320,8 @@ function createScanPageComponent() {
         whiteheads: healthScore.whiteheads || 0,
         acne_counts: apiData.acne_counts || {},
         issues_found: apiData.issues_found || [],
+        telegram_file_id: self._telegramFileId || null,
+        telegram_message_id: self._telegramMessageId || null,
       };
 
       var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/scan_results';

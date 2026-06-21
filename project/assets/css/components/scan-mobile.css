@@ -152,6 +152,24 @@
     border-right-width: 4px;
   }
 
+  /* ─── Analyzing popup (1:1 square — mobile) ─── */
+  .scan-analyzing-popup {
+    width: clamp(36vw, 40vw, 220px);
+    height: clamp(36vw, 40vw, 220px);
+    border-radius: clamp(4vw, 5vw, 28px);
+    gap: clamp(2.5vw, 3vw, 16px);
+  }
+
+  .scan-analyzing-spinner {
+    width: clamp(7vw, 8vw, 44px);
+    height: clamp(7vw, 8vw, 44px);
+    border-width: clamp(0.5vw, 0.6vw, 3px);
+  }
+
+  .scan-analyzing-text {
+    font-size: clamp(2.5vw, 3vw, 14px);
+  }
+
   /* ─── Camera permission (mobile size) ─── */
   .scan-camera-error {
     border-radius: 3.5vw;
