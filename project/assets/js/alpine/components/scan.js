@@ -124,7 +124,7 @@ function createScanComponent() {
       var skinTypeValue = self.selectedType === 'unsure' ? null : self.selectedType;
 
       var url = SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId);
-      var body = JSON.stringify({ skin_type: skinTypeValue });
+      var body = JSON.stringify({ skin_type: skinTypeValue, scan_completed: true });
 
       fetch(url, {
         method: 'PATCH',

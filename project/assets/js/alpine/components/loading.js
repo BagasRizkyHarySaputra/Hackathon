@@ -185,9 +185,9 @@ function createLoadingComponent() {
         return;
       }
 
-      // Fetch profile skin_type from Supabase using user's real JWT
-      var token = (authStore && authStore.token) || ANON_KEY;  // real JWT in production
-      var url = SUPABASE_URL + '/rest/v1/profiles?select=skin_type&id=eq.' + encodeURIComponent(userId);
+      // Fetch scan_completed flag from Supabase using user's real JWT
+      var token = (authStore && authStore.token) || ANON_KEY;
+      var url = SUPABASE_URL + '/rest/v1/profiles?select=scan_completed,skin_type&id=eq.' + encodeURIComponent(userId);
 
       fetch(url, {
         headers: {
@@ -200,12 +200,13 @@ function createLoadingComponent() {
           return r.json();
         })
         .then(function (data) {
-          var skinType = data && data.length > 0 ? data[0].skin_type : null;
-          if (skinType && skinType !== 'unsure') {
-            console.log('[Loading] Skin type found: ' + skinType + ' — redirecting to /home.');
+          var row = data && data.length > 0 ? data[0] : null;
+          var scanCompleted = row && row.scan_completed === true;
+          if (scanCompleted) {
+            console.log('[Loading] Scan completed (skin_type=' + (row.skin_type || 'null') + ') — redirecting to /home.');
             redirect('/home');
           } else {
-            console.log('[Loading] No skin type set — redirecting to /scan.');
+            console.log('[Loading] Scan not completed — redirecting to /scan.');
             redirect('/scan');
           }
         })
@@ -236,34 +237,49 @@ function createLoadingComponent() {
       var SUPABASE_URL = APP_CONFIG.SUPABASE_URL;
       var ANON_KEY = APP_CONFIG.SUPABASE_ANON_KEY;
       var token = authStore.token || ANON_KEY;
-
       var email = authStore.user.email || '';
-      var url = SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
-      var payload = {
-        id: userId,
-        name: name,
-        profile_image_url: avatarUrl,
-        skin_type: 'unsure'
-      };
-      if (email) payload.email = email;
-      var body = JSON.stringify(payload);
 
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'apikey': ANON_KEY,
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json',
-          'Prefer': 'resolution=merge-duplicates'
-        },
-        body: body
-      })
+      var headers = {
+        'apikey': ANON_KEY,
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      };
+
+      // Step 1: Check if profile already exists (trigger may have created it)
+      var checkUrl = SUPABASE_URL + '/rest/v1/profiles?select=id&id=eq.' + encodeURIComponent(userId);
+      fetch(checkUrl, { headers: headers })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (rows) {
+          if (rows && rows.length > 0) {
+            // Profile exists — PATCH name/email/avatar only, do NOT touch skin_type
+            console.log('[Loading] Profile already exists for user', userId);
+            var patchUrl = SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId);
+            var patchPayload = { name: name, profile_image_url: avatarUrl };
+            if (email) patchPayload.email = email;
+            return fetch(patchUrl, {
+              method: 'PATCH',
+              headers: headers,
+              body: JSON.stringify(patchPayload)
+            });
+          } else {
+            // Profile doesn't exist — create it WITHOUT skin_type (let DB default handle it)
+            console.log('[Loading] Creating new profile for user', userId);
+            var postUrl = SUPABASE_URL + '/rest/v1/profiles';
+            var postPayload = { id: userId, name: name, profile_image_url: avatarUrl };
+            if (email) postPayload.email = email;
+            return fetch(postUrl, {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify(postPayload)
+            });
+          }
+        })
         .then(function (r) {
-          if (!r.ok) console.warn('[Loading] Profile upsert responded with', r.status);
+          if (r && !r.ok) console.warn('[Loading] Profile operation responded with', r.status);
           else console.log('[Loading] Profile ensured for user', userId);
         })
         .catch(function (err) {
-          console.warn('[Loading] Profile upsert failed:', err.message);
+          console.warn('[Loading] Profile operation failed:', err.message);
         })
         .finally(function () {
           callback();

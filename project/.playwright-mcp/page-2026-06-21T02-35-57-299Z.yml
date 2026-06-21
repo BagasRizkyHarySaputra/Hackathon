@@ -1,0 +1,26 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - img [ref=e5]
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img
+        - img
+        - generic:
+          - generic [ref=e8]:
+            - button "Sign In" [active] [ref=e9] [cursor=pointer]
+            - button "Sign Up" [ref=e10] [cursor=pointer]
+          - generic [ref=e11]:
+            - button "Google" [ref=e12] [cursor=pointer]
+            - button "Discord" [ref=e13] [cursor=pointer]
+          - generic [ref=e16]: Or
+          - generic [ref=e19]:
+            - textbox "Email" [ref=e21]: test-skg-2026@example.com
+            - generic [ref=e22]:
+              - textbox "Password" [ref=e23]: TestPass123!
+              - button [ref=e24] [cursor=pointer]
+            - paragraph [ref=e25]:
+              - text: Don't have an account?
+              - link "Sign Up" [ref=e26] [cursor=pointer]:
+                - /url: "#"
+      - button "Sign In" [ref=e45] [cursor=pointer]:
+        - generic [ref=e29]: Sign In
