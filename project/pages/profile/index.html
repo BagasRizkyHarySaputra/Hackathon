@@ -624,7 +624,11 @@
 
       function setEditing(enabled) {
         isEditing = enabled;
-        inputs.forEach(function(inp) { inp.disabled = !enabled; });
+        inputs.forEach(function(inp) {
+          // Email field stays disabled always — email is the immutable unique identifier
+          if (inp.id === 'profile-email') return;
+          inp.disabled = !enabled;
+        });
         skinOptions.forEach(function(opt) {
           opt.classList.toggle('account-skin-option--disabled', !enabled);
         });
@@ -753,7 +757,7 @@
           if (newValues.name) payload.name = newValues.name;
           if (newValues.gender) payload.gender = newValues.gender;
           if (newValues.birth_date) payload.birth_date = newValues.birth_date;
-          if (newValues.email) payload.email = newValues.email;
+          // Email is never PATCHed — it's the immutable unique identifier (managed by Supabase Auth)
           if (newValues.skin_type) payload.skin_type = newValues.skin_type;
 
           var token = authStore.token || APP_CONFIG.SUPABASE_ANON_KEY;
