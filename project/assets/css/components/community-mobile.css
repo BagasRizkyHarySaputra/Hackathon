@@ -333,6 +333,11 @@
     line-height: 1.45;
   }
 
+  .chat-bubble__name {
+    font-size: 2.4vw;
+    margin-bottom: 0.15em;
+  }
+
   .chat-input {
     padding: 2.3vh 2.7vw;
     gap: 1.8vw;
