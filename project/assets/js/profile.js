@@ -370,6 +370,10 @@
     var saveBtn = document.querySelector('.account-save-btn');
     if (!saveBtn) return;
 
+    // Only wire for edit-profile page (has edit-* fields)
+    // profile/index.html has its own inline save handler with profile-* IDs
+    if (!document.getElementById('edit-name')) return;
+
     // Remove existing listeners by cloning (simple approach)
     var newBtn = saveBtn.cloneNode(true);
     saveBtn.parentNode.replaceChild(newBtn, saveBtn);
@@ -470,11 +474,29 @@
       item.classList.remove('settings-bar__item--disabled');
       item.style.cursor = 'pointer';
       item.addEventListener('click', function () {
+        // Clear Alpine store
         var authStore = window.Alpine && Alpine.store('auth');
-        if (authStore) authStore.logout();
-        // authStore.logout() calls sb.auth.signOut() internally,
-        // no need to call it again here — just redirect.
-        window.location.href = '/';
+        if (authStore) {
+          authStore.token = null;
+          authStore.user = null;
+          authStore.isAuthenticated = false;
+        }
+
+        // Directly nuke Supabase session from localStorage
+        // (don't call signOut() — it might hang on mock server)
+        var keysToRemove = [];
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k && k.indexOf('sb-') === 0) {
+            keysToRemove.push(k);
+          }
+        }
+        for (var j = 0; j < keysToRemove.length; j++) {
+          localStorage.removeItem(keysToRemove[j]);
+        }
+
+        // Redirect
+        window.location.href = '/login';
       });
     });
   }

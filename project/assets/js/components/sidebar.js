@@ -1,4 +1,39 @@
 (function() {
+  // ── Auth Guard ──────────────────────────────────
+  // In production: check for real Supabase session key (sb-*-auth-token).
+  // In mock mode: check for any sb-* localStorage key.
+  var hasSession = false;
+  try {
+    var isProduction = typeof APP_CONFIG !== 'undefined' && !APP_CONFIG.IS_MOCK_MODE;
+    var supabaseRef = isProduction && APP_CONFIG.SUPABASE_URL
+      ? APP_CONFIG.SUPABASE_URL.replace(/^https?:\/\//, '').split('.')[0]
+      : null;
+
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (!k) continue;
+
+      if (isProduction && supabaseRef) {
+        // Production: only accept real Supabase token key
+        if (k.indexOf('sb-' + supabaseRef + '-auth-token') === 0) {
+          hasSession = true;
+          break;
+        }
+      } else {
+        // Mock/fallback: accept any sb-* key
+        if (k.indexOf('sb-') === 0) {
+          hasSession = true;
+          break;
+        }
+      }
+    }
+  } catch (e) {}
+  if (!hasSession) {
+    window.location.href = '/login';
+    return;
+  }
+  // ────────────────────────────────────────────────
+
   var root = document.getElementById('sidebar-root');
   if (!root) return;
 

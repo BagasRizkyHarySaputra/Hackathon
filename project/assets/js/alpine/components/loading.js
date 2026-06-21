@@ -185,13 +185,14 @@ function createLoadingComponent() {
         return;
       }
 
-      // Fetch profile skin_type from Supabase
+      // Fetch profile skin_type from Supabase using user's real JWT
+      var token = (authStore && authStore.token) || ANON_KEY;  // real JWT in production
       var url = SUPABASE_URL + '/rest/v1/profiles?select=skin_type&id=eq.' + encodeURIComponent(userId);
 
       fetch(url, {
         headers: {
           'apikey': ANON_KEY,
-          'Authorization': 'Bearer ' + ANON_KEY
+          'Authorization': 'Bearer ' + token
         }
       })
         .then(function (r) {
@@ -270,6 +271,33 @@ function createLoadingComponent() {
     },
 
     /**
+     * Check for mock auth session in localStorage (mock mode only).
+     * Restores the Alpine auth store from the stored session if found.
+     *
+     * @param {function} onAuthenticated — redirect to scan/home
+     * @param {function} onUnauthenticated — redirect to /login
+     * @returns {void}
+     */
+    _checkMockAuthAndRedirect(onAuthenticated, onUnauthenticated) {
+      if (!APP_CONFIG.IS_MOCK_MODE) {
+        onUnauthenticated();
+        return;
+      }
+      try {
+        var mockData = JSON.parse(localStorage.getItem('sb-mock-token'));
+        if (mockData && mockData.access_token && mockData.user) {
+          var authStore = window.Alpine && Alpine.store('auth');
+          if (authStore) {
+            authStore.login(mockData.access_token, mockData.user);
+          }
+          onAuthenticated();
+          return;
+        }
+      } catch (e) {}
+      onUnauthenticated();
+    },
+
+    /**
      * Checks auth status after the progress bar reaches 100%.
      * Redirects to /login if not authenticated, or to /home / /scan
      * based on skin_type if authenticated.
@@ -293,19 +321,38 @@ function createLoadingComponent() {
         });
       }
 
-      // 1. Check Alpine auth store
+      // 1. Check Alpine auth store — in mock mode, also restore from localStorage
       var authStore = window.Alpine && Alpine.store('auth');
-      if (authStore && authStore.isAuthenticated && authStore.user && authStore.user.id) {
-        goToScanOrHome();
-        return;
+      if (authStore) {
+        if (authStore.isAuthenticated && authStore.user && authStore.user.id) {
+          console.log('[Loading] Auth found in store — user:', authStore.user.id);
+          goToScanOrHome();
+          return;
+        }
+        // Mock-only fallback: try to sync from localStorage mock session
+        if (APP_CONFIG.IS_MOCK_MODE) {
+          try {
+            var mockData = JSON.parse(localStorage.getItem('sb-mock-token'));
+            if (mockData && mockData.access_token && mockData.user) {
+              console.log('[Loading] Restored mock session from localStorage — user:', mockData.user.id);
+              authStore.login(mockData.access_token, mockData.user);
+              goToScanOrHome();
+              return;
+            }
+          } catch(e) {
+            console.warn('[Loading] Failed to read sb-mock-token from localStorage:', e);
+          }
+        }
       }
 
       // 2. Check Supabase session directly
       var sb = window.__supabase;
       if (sb) {
+        var selfForCb = self;
         sb.auth.getSession().then(function (result) {
           var session = result.data && result.data.session;
           if (session && session.user) {
+            console.log('[Loading] Found Supabase session — user:', session.user.id);
             if (authStore) {
               authStore.login(session.access_token, {
                 id: session.user.id,
@@ -316,21 +363,27 @@ function createLoadingComponent() {
             }
             goToScanOrHome();
           } else {
-            goToLogin();
+            console.log('[Loading] No Supabase session — checking mock fallback...');
+            selfForCb._checkMockAuthAndRedirect(goToScanOrHome, goToLogin);
           }
-        }).catch(function () {
-          goToLogin();
+        }).catch(function (err) {
+          console.warn('[Loading] getSession error — checking mock fallback:', err.message);
+          self._checkMockAuthAndRedirect(goToScanOrHome, goToLogin);
         });
         return;
       }
 
       // 3. No Supabase yet — wait for it
       if (!self._authChecked) {
+        console.log('[Loading] Supabase not ready — waiting for supabase:ready event...');
         self._authChecked = true;
         document.addEventListener('supabase:ready', function readyHandler() {
           document.removeEventListener('supabase:ready', readyHandler);
           self.redirectBasedOnAuth();
         });
+      } else {
+        console.warn('[Loading] Auth check exhausted — redirecting to login.');
+        goToLogin();
       }
     },
 

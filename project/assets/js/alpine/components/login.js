@@ -60,6 +60,32 @@ function createLoginComponent() {
       return this.showConfirmPassword ? 'text' : 'password';
     },
 
+    /** Real-time password match check for sign-up form */
+    get passwordMismatch() {
+      return this.activeTab === 'signup' && this.confirmPassword.length > 0 && this.password !== this.confirmPassword;
+    },
+
+    get passwordMatchHint() {
+      if (!this.confirmPassword) return '';
+      if (this.password !== this.confirmPassword) return 'Passwords do not match';
+      return 'Passwords match';
+    },
+
+    /** Real-time email format validation */
+    get isValidEmail() {
+      if (!this.email) return false;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.email);
+    },
+
+    /** Sanitize user input to prevent script injection */
+    sanitizeInput(str) {
+      if (typeof str !== 'string') return '';
+      return str
+        .replace(/<[^>]*>/g, '')   // strip HTML tags
+        .replace(/[<>"'`]/g, '')   // strip dangerous chars
+        .trim();
+    },
+
     validateForm() {
       this.errorMessage = '';
 
@@ -68,8 +94,7 @@ function createLoginComponent() {
         return false;
       }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(this.email)) {
+      if (!this.isValidEmail) {
         this.errorMessage = 'Please enter a valid email address.';
         return false;
       }
@@ -99,6 +124,42 @@ function createLoginComponent() {
       return true;
     },
 
+        /**
+     * Store a mock session in localStorage (mock mode only).
+     * In production, Supabase Auth handles session persistence automatically.
+     */
+    _storeMockSession(token, user) {
+      if (!APP_CONFIG.IS_MOCK_MODE) return;
+
+      Alpine.store('auth').setToken(token);
+      Alpine.store('auth').setUser(user);
+      Alpine.store('auth').isAuthenticated = true;
+
+      try {
+        // Store in localStorage for cross-page persistence in mock mode
+        localStorage.setItem('sb-mock-token', JSON.stringify({
+          access_token: token,
+          user: {
+            id: user.id,
+            email: user.email,
+            name: this.sanitizeInput(user.name),
+          },
+        }));
+        // Also store mock user list for sign-in credential check (sanitized)
+        var sanitizedEmail = this.sanitizeInput(user.email);
+        var stored = JSON.parse(localStorage.getItem('sb-mock-users') || '[]');
+        var existing = stored.findIndex(function(u) { return u.email === sanitizedEmail; });
+        if (existing === -1) {
+          stored.push({ email: sanitizedEmail, password: this.password, name: this.sanitizeInput(user.name) });
+        } else {
+          stored[existing] = { email: sanitizedEmail, password: this.password, name: this.sanitizeInput(user.name) };
+        }
+        localStorage.setItem('sb-mock-users', JSON.stringify(stored));
+      } catch(e) {
+        console.warn('[Login] Could not persist mock session', e);
+      }
+    },
+
     async handleSubmit(event) {
       event.preventDefault();
       if (!this.validateForm()) return;
@@ -108,7 +169,7 @@ function createLoginComponent() {
 
       try {
         const sb = window.__supabase;
-        const useSupabase = sb && APP_CONFIG.SUPABASE_ANON_KEY;
+        const useSupabase = sb && APP_CONFIG.SUPABASE_ANON_KEY && !APP_CONFIG.IS_MOCK_MODE;
 
         if (useSupabase) {
           if (this.activeTab === 'signin') {
@@ -144,19 +205,53 @@ function createLoginComponent() {
           /** Fallback: mock mode */
           await new Promise(resolve => setTimeout(resolve, 1200));
 
-          const mockToken = 'mock_jwt_token_' + Date.now();
-          const mockUser = {
-            name: this.fullName || this.email.split('@')[0],
-            email: this.email,
-            role: 'user',
-          };
+          if (this.activeTab === 'signin') {
+            // Check if this user signed up in mock mode before
+            var storedUsers = [];
+            try { storedUsers = JSON.parse(localStorage.getItem('sb-mock-users') || '[]'); } catch(e) {}
+            var found = storedUsers.find(function(u) { return u.email === this.email && u.password === this.password; }.bind(this));
 
-          Alpine.store('auth').setToken(mockToken);
-          Alpine.store('auth').setUser(mockUser);
+            if (!found) {
+              this.errorMessage = 'Invalid email or password. Please try again or sign up.';
+              this.isSubmitting = false;
+              return;
+            }
 
-          Alpine.store('ui').addToast('success', `Welcome back, ${mockUser.name}!`);
+            const mockToken = 'mock_jwt_token_' + Date.now();
+            const mockUser = {
+              id: 'mock_' + btoa(this.email).replace(/=/g, ''),
+              name: found.name,
+              email: this.email,
+              role: 'user',
+            };
+            this._storeMockSession(mockToken, mockUser);
+            Alpine.store('ui').addToast('success', `Welcome back, ${mockUser.name}!`);
+            setTimeout(function () { window.location.href = '/loading'; }, 800);
+          } else {
+            // Sign up in mock mode — store user but DON'T auto-login
+            var sanitizedName = this.sanitizeInput(this.fullName || this.email.split('@')[0]);
+            var sanitizedEmail = this.sanitizeInput(this.email);
+            var mockUser = {
+              name: sanitizedName,
+              email: sanitizedEmail,
+            };
+            // Store credentials so sign-in can find them later (sanitized)
+            try {
+              var stored = JSON.parse(localStorage.getItem('sb-mock-users') || '[]');
+              var existing = stored.findIndex(function(u) { return u.email === sanitizedEmail; });
+              if (existing === -1) {
+                stored.push({ email: sanitizedEmail, password: this.password, name: sanitizedName });
+              } else {
+                stored[existing] = { email: sanitizedEmail, password: this.password, name: sanitizedName };
+              }
+              localStorage.setItem('sb-mock-users', JSON.stringify(stored));
+            } catch(e) { console.warn('[Login] Could not persist mock user', e); }
 
-          setTimeout(() => { window.location.href = '/loading'; }, 800);
+            Alpine.store('ui').addToast('success', 'Account created! Please sign in.');
+            this.activeTab = 'signin';
+            this.isSubmitting = false;
+            return; // Don't redirect — stay on login page
+          }
         }
       } catch (error) {
         this.errorMessage = 'Login failed. Please try again.';

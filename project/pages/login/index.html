@@ -51,9 +51,12 @@
                   <span class="login-input-group__icon">
                     <img src="/assets/icons/artikel/Email.svg" alt="" />
                   </span>
-                  <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
+                  <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" :class="{ 'login-input--error': email.length > 0 && !isValidEmail, 'login-input--success': isValidEmail }" />
                 </div>
-                <div class="login-input-group">
+                <div class="login-hint" x-show="email.length > 0 && !isValidEmail" x-cloak>
+                  <span class="login-hint--error">Please enter a valid email address</span>
+                </div>
+                <div class="login-input-group" x-show="!(email.length > 0 && !isValidEmail)" x-transition:leave.duration.300ms>
                   <span class="login-input-group__icon">
                     <img src="/assets/icons/artikel/Lock.svg" alt="" />
                   </span>
@@ -78,9 +81,12 @@
                   <span class="login-input-group__icon">
                     <img src="/assets/icons/artikel/Email.svg" alt="" />
                   </span>
-                  <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" />
+                  <input class="login-input" type="email" x-model="email" placeholder="Email" autocomplete="email" :class="{ 'login-input--error': email.length > 0 && !isValidEmail, 'login-input--success': isValidEmail }" />
                 </div>
-                <div class="login-input-group">
+                <div class="login-hint" x-show="email.length > 0 && !isValidEmail" x-cloak>
+                  <span class="login-hint--error">Please enter a valid email address</span>
+                </div>
+                <div class="login-input-group" x-show="!(email.length > 0 && !isValidEmail)" x-transition:leave.duration.300ms>
                   <span class="login-input-group__icon">
                     <img src="/assets/icons/artikel/Lock.svg" alt="" />
                   </span>
@@ -90,25 +96,31 @@
                     <img x-show="showPassword" src="/assets/icons/artikel/eye.svg" alt="" />
                   </button>
                 </div>
-                <div class="login-input-group">
+                <div class="login-input-group" x-show="!(email.length > 0 && !isValidEmail)" x-transition:leave.duration.300ms>
                   <span class="login-input-group__icon">
                     <img src="/assets/icons/artikel/Lock.svg" alt="" />
                   </span>
-                  <input class="login-input" :type="confirmPasswordType" x-model="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" />
+                  <input class="login-input" :type="confirmPasswordType" x-model="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" :class="{ 'login-input--error': passwordMismatch, 'login-input--success': confirmPassword && !passwordMismatch }" />
                   <button class="login-input-group__toggle" type="button" @click="toggleConfirmPassword">
                     <img x-show="!showConfirmPassword" src="/assets/icons/artikel/eye.svg" alt="" />
                     <img x-show="showConfirmPassword" src="/assets/icons/artikel/eye.svg" alt="" />
                   </button>
                 </div>
+                <div class="login-hint" x-show="passwordMismatch && !(email.length > 0 && !isValidEmail)" x-cloak>
+                  <span class="login-hint--error">Passwords do not match</span>
+                </div>
+                <div class="login-hint" x-show="confirmPassword && !passwordMismatch && activeTab === 'signup' && !(email.length > 0 && !isValidEmail)" x-cloak>
+                  <span class="login-hint--success">Passwords match</span>
+                </div>
                 <div class="login-error" x-text="errorMessage" x-show="errorMessage"></div>
-                <p class="login-account-link">Already have an account? <a href="#" @click.prevent="switchTab('signin')">Sign In</a></p>
+                <p class="login-account-link" x-show="!confirmPassword">Already have an account? <a href="#" @click.prevent="switchTab('signin')">Sign In</a></p>
               </form>
             </div>
           </div>
         </div>
         
         <div class="login-btn-wrap">
-          <button class="login-btn" type="button" @click="handleSubmit" :class="{ 'login-btn--loading': isSubmitting }">
+          <button class="login-btn" type="button" @click="handleSubmit" :class="{ 'login-btn--loading': isSubmitting, 'login-btn--disabled': email.length > 0 && !isValidEmail }" :disabled="email.length > 0 && !isValidEmail">
             <span x-text="activeTab === 'signin' ? 'Sign In' : 'Sign Up'">Sign In</span>
           </button>
         </div>

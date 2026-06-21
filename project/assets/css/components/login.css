@@ -420,6 +420,30 @@
   min-height: 3cqw;
 }
 
+/* ── Real-time password match hint ─────────────── */
+.login-hint {
+  font-size: 2.6cqw;
+  text-align: left;
+  margin-top: 0.2cqw;
+  min-height: 2.8cqw;
+}
+.login-hint--error {
+  color: #D32F2F;
+}
+.login-hint--success {
+  color: #2E7D32;
+}
+
+/* ── Input state for password match ────────────── */
+.login-input--error {
+  border-color: #D32F2F;
+  box-shadow: 0 0 0 0.5cqw rgba(211, 47, 47, 0.1);
+}
+.login-input--success {
+  border-color: #2E7D32;
+  box-shadow: 0 0 0 0.5cqw rgba(46, 125, 50, 0.1);
+}
+
 /* 7. Perbaikan Tombol Besar "Sign In" */
 /* Container pembungkus tombol */
 /* Container pembungkus tombol */
@@ -483,6 +507,12 @@
 
 .login-btn--loading {
   opacity: 0.7;
+  pointer-events: none;
+}
+
+.login-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
   pointer-events: none;
 }
 
