@@ -11,11 +11,22 @@ Accepts an image, runs YOLO inference, returns:
 Endpoints:
   GET  /health        -> { status: "ok" }
   POST /analyze       -> structured analysis result
+
+Run (HTTP):
+  uvicorn main:app --reload --port 8002
+
+Run (HTTPS - recommended for mixed-content fix):
+  python main.py    <-- auto-detects SSL certs in project root
+  OR
+  uvicorn main:app --host 0.0.0.0 --port 8002 \\
+    --ssl-keyfile ../localhost+3-key.pem \\
+    --ssl-certfile ../localhost+3.pem
 """
 
 import base64
 import io
 import os
+import ssl
 
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -99,7 +110,16 @@ async def analyze(file: UploadFile = File(...)):
     img_w, img_h = image.size
 
     # Run inference
-    results = model.predict(source=image, save=False, conf=0.05, verbose=False)
+    results = model.predict(
+        source=image,
+        save=False,
+        conf=0.15,
+        iou=0.5,
+        imgsz=1280,
+        augment=True,
+        max_det=300,
+        verbose=False,
+    )
     result = results[0]
 
     # Build class name lookup
@@ -130,7 +150,7 @@ async def analyze(file: UploadFile = File(...)):
     # ---------------------------------------------------------------
     # Annotated image with bounding boxes (YOLO result.plot())
     # ---------------------------------------------------------------
-    annotated_array = result.plot()  # numpy array in BGR format
+    annotated_array = result.plot(line_width=1, font_size=5)  # thin boxes + small text
     # Convert BGR -> RGB for PIL
     annotated_array = annotated_array[:, :, ::-1]
     annotated_pil = Image.fromarray(annotated_array)
@@ -176,3 +196,32 @@ async def analyze(file: UploadFile = File(...)):
         "product": product,
         "issues_found": list(acne_counts.keys()),
     }
+
+
+# ---------------------------------------------------------------------------
+# Entry point (supports HTTPS via local SSL certs)
+# ---------------------------------------------------------------------------
+if __name__ == "__main__":
+    import uvicorn
+
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    cert_file = os.path.join(project_root, "localhost+3.pem")
+    key_file = os.path.join(project_root, "localhost+3-key.pem")
+
+    ssl_kwargs = {}
+    if os.path.exists(cert_file) and os.path.exists(key_file):
+        ssl_kwargs = {
+            "ssl_certfile": cert_file,
+            "ssl_keyfile": key_file,
+        }
+        print("[ML API] SSL certificates found — serving HTTPS on port 8002")
+    else:
+        print("[ML API] SSL certificates not found — serving HTTP on port 8002")
+
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8002,
+        reload=True,
+        **ssl_kwargs,
+    )

@@ -60,5 +60,8 @@ const APP_CONFIG = Object.freeze({
 
   // ML API — YOLO skin analysis (local server during dev, HF Spaces in prod)
   ML_API_ENABLED: true,
-  ML_API_URL: 'http://localhost:8002',
+  ML_API_URL: '/api/ml',
 });
+
+// Expose on window for scripts that use window.APP_CONFIG
+window.APP_CONFIG = APP_CONFIG;
