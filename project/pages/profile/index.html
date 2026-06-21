@@ -47,8 +47,8 @@
               </button>
             </div>
             <div class="account-profile-header__info">
-              <h1 class="account-profile-header__name">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
-              <div class="account-profile-header__type">Combination</div>
+              <h1 class="account-profile-header__name" id="profile-header-name">User</h1>
+              <div class="account-profile-header__type" id="profile-header-skin">Not Sure</div>
               <div class="account-profile-header__member">
                 <img src="/assets/icons/profile/calendar.svg" alt="" width="16" height="17" />
                 <span>Member since Juni 2026</span>
@@ -74,15 +74,15 @@
                   <div class="account-form-grid">
                     <div class="account-field">
                       <label class="account-field__label">Nama Lengkap*</label>
-                      <input type="text" class="account-field__input" disabled />
+                      <input type="text" class="account-field__input" id="profile-name" disabled />
                     </div>
                     <div class="account-field">
                       <label class="account-field__label">Email Pengguna*</label>
-                      <input type="email" class="account-field__input" disabled />
+                      <input type="email" class="account-field__input" id="profile-email" disabled />
                     </div>
                     <div class="account-field">
                       <label class="account-field__label">Jenis Kelamin*</label>
-                      <select class="account-field__input account-field__input--select" disabled>
+                      <select class="account-field__input account-field__input--select" id="profile-gender" disabled>
                         <option value="">Pilih Jenis Kelamin</option>
                         <option value="Pria">Pria</option>
                         <option value="Wanita">Wanita</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="account-field">
                       <label class="account-field__label">Tanggal Lahir</label>
-                      <input type="date" class="account-field__input account-field__input--date" disabled />
+                      <input type="date" class="account-field__input account-field__input--date" id="profile-birthdate" disabled />
                     </div>
                   </div>
                   <div class="account-save-wrap">
@@ -613,16 +613,6 @@
         });
       }
 
-      // ── Save Changes ──
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function() {
-          inputs.forEach(function(inp) { inp.disabled = true; });
-          editBtn.textContent = 'Edit Profile';
-          // TODO: Send data to backend API
-          console.log('Profile changes saved');
-        });
-      }
-
       // ── Skin Type Selection ──
       var skinOptions = document.querySelectorAll('#account-grid-wrap .account-skin-option');
       skinOptions.forEach(function(opt) {
@@ -631,6 +621,130 @@
           opt.classList.add('account-skin-option--selected');
         });
       });
+
+      // ── Load Profile Data from Supabase ──
+      function loadProfile() {
+        var authStore = window.Alpine && Alpine.store('auth');
+        if (!authStore || !authStore.user) return;
+
+        var userId = authStore.user.id;
+        var token = authStore.token || APP_CONFIG.SUPABASE_ANON_KEY;
+        var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/profiles?id=eq.' + encodeURIComponent(userId);
+        var authEmail = authStore.user.email || '';
+
+        fetch(url, {
+          headers: {
+            'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(profiles) {
+          var profile = profiles && profiles[0];
+          if (!profile) return;
+
+          // Header name
+          var headerName = document.getElementById('profile-header-name');
+          if (headerName) headerName.textContent = profile.name || authStore.user.name || 'User';
+
+          // Header skin type
+          var headerSkin = document.getElementById('profile-header-skin');
+          var skinLabel = { oily: 'Oily Skin', dry: 'Dry Skin', combination: 'Combination Skin', sensitive: 'Sensitive Skin', unsure: 'Not Sure' };
+          if (headerSkin) headerSkin.textContent = skinLabel[profile.skin_type] || 'Not Sure';
+
+          // Avatar
+          if (profile.profile_image_url) {
+            var avatarImg = document.getElementById('profile-avatar-img');
+            if (avatarImg) avatarImg.src = profile.profile_image_url;
+          }
+
+          // Name field
+          var nameInput = document.getElementById('profile-name');
+          if (nameInput) nameInput.value = profile.name || '';
+
+          // Email — prefer auth email (Discord/Google), fallback ke profile.email
+          var emailInput = document.getElementById('profile-email');
+          if (emailInput) emailInput.value = authEmail || profile.email || '';
+
+          // Gender
+          var genderSelect = document.getElementById('profile-gender');
+          if (genderSelect && profile.gender) genderSelect.value = profile.gender;
+
+          // Birth date
+          var birthdateInput = document.getElementById('profile-birthdate');
+          if (birthdateInput && profile.birth_date) birthdateInput.value = profile.birth_date;
+
+          // Set skin type selection
+          skinOptions.forEach(function(o) {
+            o.classList.toggle('account-skin-option--selected', o.getAttribute('data-skin') === profile.skin_type);
+          });
+
+          // Member since
+          var memberSpan = document.querySelector('.account-profile-header__member span');
+          if (memberSpan) {
+            var created = authStore.user.created_at;
+            if (created) {
+              var d = new Date(created);
+              var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+              memberSpan.textContent = 'Member since ' + months[d.getMonth()] + ' ' + d.getFullYear();
+            }
+          }
+        })
+        .catch(function(err) {
+          console.warn('[Profile] Failed to load profile:', err.message);
+        });
+      }
+
+      // ── Save Changes to Supabase ──
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
+          var authStore = window.Alpine && Alpine.store('auth');
+          if (!authStore || !authStore.user) return;
+
+          var nameInput = document.getElementById('profile-name');
+          var emailInput = document.getElementById('profile-email');
+          var genderSelect = document.getElementById('profile-gender');
+          var birthdateInput = document.getElementById('profile-birthdate');
+          var selectedSkin = document.querySelector('#account-grid-wrap .account-skin-option--selected');
+
+          var payload = { id: authStore.user.id };
+          if (nameInput && nameInput.value) payload.name = nameInput.value;
+          if (genderSelect && genderSelect.value) payload.gender = genderSelect.value;
+          if (birthdateInput && birthdateInput.value) payload.birth_date = birthdateInput.value;
+          if (emailInput && emailInput.value) payload.email = emailInput.value;
+          if (selectedSkin) payload.skin_type = selectedSkin.getAttribute('data-skin');
+
+          var token = authStore.token || APP_CONFIG.SUPABASE_ANON_KEY;
+          var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/profiles?on_conflict=id';
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json',
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify(payload)
+          })
+          .then(function(r) {
+            if (r.ok) {
+              // Disable inputs after save
+              inputs.forEach(function(inp) { inp.disabled = true; });
+              editBtn.textContent = 'Edit Profile';
+              console.log('[Profile] Saved successfully');
+            } else {
+              console.warn('[Profile] Save failed:', r.status);
+            }
+          })
+          .catch(function(err) {
+            console.warn('[Profile] Save error:', err.message);
+          });
+        });
+      }
+
+      // ── Load profile on page load ──
+      loadProfile();
     })();
   </script>
   <script src="/assets/js/router.js"></script>

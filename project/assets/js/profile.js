@@ -230,7 +230,7 @@
     if (emailInput) {
       var authStore = window.Alpine && Alpine.store('auth');
       var authEmail = authStore && authStore.user && authStore.user.email;
-      emailInput.value = profile.email || authEmail || '';
+      emailInput.value = authEmail || profile.email || '';
     }
 
     // Gender
