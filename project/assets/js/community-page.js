@@ -24,9 +24,11 @@
   var renderedCount = 0;
   var realtimeChannel = null;
   var pollIntervalId = null;
-  var POLL_INTERVAL_MS = 10000; /* 10 detik — fallback polling */
+  var POLL_INTERVAL_MS = 5000;  /* 5 detik — polling fallback */
   var SEND_COOLDOWN_MS = 5000;  /* 5 detik antar kirim pesan */
   var lastSendTime = 0;
+  var _realtimeRetries = 0;
+  var MAX_REALTIME_RETRIES = 5;
 
   /* ─── DOM refs (populated in init) ─── */
   var chatMessages, inputText, btnSend;
@@ -283,6 +285,10 @@
 
     unsubscribeRealtime();
 
+    /* Capture current topic so retry doesn't subscribe to wrong channel */
+    var retryChannel = activeChannel;
+    var retryTopic = activeTopic;
+
     realtimeChannel = sb.channel('community:' + activeChannel + ':' + activeTopic, {
       config: { broadcast: { self: false } }
     })
@@ -317,9 +323,19 @@
       })
       .subscribe(function (status) {
         if (status === 'SUBSCRIBED') {
-          console.log('[Community] Realtime subscribed:', activeChannel + '/' + activeTopic);
+          console.log('[Community] ✅ Realtime subscribed:', retryChannel + '/' + retryTopic);
+          _realtimeRetries = 0;
         } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-          console.warn('[Community] Realtime error:', status);
+          console.warn('[Community] ❌ Realtime ' + status + ' — auto-retry in 5s (' + (_realtimeRetries + 1) + '/' + MAX_REALTIME_RETRIES + ')');
+          if (_realtimeRetries < MAX_REALTIME_RETRIES) {
+            _realtimeRetries++;
+            setTimeout(function () {
+              /* Only retry if still on same topic (user didn't switch away) */
+              if (activeChannel === retryChannel && activeTopic === retryTopic) {
+                subscribeRealtime();
+              }
+            }, 5000);
+          }
         }
       });
   }
