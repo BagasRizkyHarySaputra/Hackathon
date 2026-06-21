@@ -87,17 +87,10 @@ document.addEventListener('alpine:init', () => {
           }
         );
 
-        // If not on the login, scan, or loading page, redirect to /loading.
-        const isLoginPage = window.location.pathname === '/login'
-                          || window.location.pathname === '/login/'
-                          || window.location.pathname.startsWith('/pages/login/');
-        const isScanPage = window.location.pathname === '/scan'
-                        || window.location.pathname === '/scan/'
-                        || window.location.pathname.startsWith('/pages/scan/');
-        const isLoadingPage = window.location.pathname === '/loading'
-                        || window.location.pathname === '/loading/'
-                        || window.location.pathname.startsWith('/pages/loading/');
-        if (!isLoginPage && !isScanPage && !isLoadingPage) {
+        // Only auto-redirect on SIGNED_IN if there's an OAuth hash fragment
+        // (actual login). Skip if user is just navigating between pages
+        // and supabase-js is refreshing the token internally.
+        if (window.location.hash.startsWith('#access_token=')) {
           const name = session.user.user_metadata?.full_name
                     || session.user.user_metadata?.name
                     || session.user.email;
