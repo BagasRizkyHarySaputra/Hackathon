@@ -74,8 +74,17 @@ function createLoadingComponent() {
      * @returns {void}
      */
     _authChecked: false,
+    _authTimeoutId: null,
 
     init() {
+      // OAuth callback: if on root '/' with access_token in URL fragment,
+      // redirect to /loading to preserve the proper UX flow
+      if (window.location.pathname === '/' && window.location.hash.includes('access_token')) {
+        console.log('[Loading] OAuth callback detected on / — redirecting to /loading');
+        window.location.replace('/loading' + window.location.hash);
+        return;
+      }
+
       console.log('[INFO] [Loading] Component mounted.', {
         keys: ['progress', 'isLoading', 'isComplete', 'statusMessage'],
       });
