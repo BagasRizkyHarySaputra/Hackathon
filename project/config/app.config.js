@@ -28,8 +28,8 @@ const APP_CONFIG = Object.freeze({
   VERSION: '0.1.0',
   DESCRIPTION: 'AI-powered skin analysis and glow detection application.',
 
-  // API — swap mock URL → real FastAPI URL in Phase 2
-  API_BASE_URL: 'http://localhost:8001',
+  // API — relative paths work on both local dev and Vercel deployment
+  API_BASE_URL: '',
   API_TIMEOUT_MS: 10000,
 
   // HTMX Global Settings
