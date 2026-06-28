@@ -58,9 +58,9 @@ const APP_CONFIG = Object.freeze({
   // Mock Mode — false in production (uses real Supabase Auth)
   IS_MOCK_MODE: false,
 
-  // ML API — YOLO skin analysis (local server during dev, HF Spaces in prod)
+  // ML API — YOLO skin analysis (proxied through /api/ml → Hugging Face Spaces)
   ML_API_ENABLED: true,
-  ML_API_URL: 'http://127.0.0.1:8002',
+  ML_API_URL: '/api/ml',
 });
 
 // Expose on window for scripts that use window.APP_CONFIG

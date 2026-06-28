@@ -1,6 +1,5 @@
 ---
 title: LICIN
-emoji: 
 colorFrom: blue
 colorTo: pink
 sdk: docker

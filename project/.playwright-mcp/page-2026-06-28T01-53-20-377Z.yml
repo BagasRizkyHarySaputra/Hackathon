@@ -1,0 +1,18 @@
+- main [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - button "Back":
+        - img "<"
+      - heading "Ready to scan your skin?" [level=1] [ref=e7]
+      - button "Help":
+        - img "?"
+    - generic [ref=e8]:
+      - generic "Camera preview" [ref=e9]
+      - img "Captured skin photo" [ref=e11]
+      - alert [ref=e12]:
+        - img [ref=e13]
+        - paragraph [ref=e16]: Camera Access Required
+        - paragraph
+        - button "Allow Camera Access" [ref=e17] [cursor=pointer]
+        - paragraph [ref=e18]: We need camera access to scan your skin
+      - button "Capture photo"

@@ -508,9 +508,8 @@ function handleRequest(req, res) {
 }
 
 /**
- * Proxies POST /api/ml/analyze requests to the local YOLO ML API.
- * This avoids mixed-content errors (HTTPS -> HTTP) by proxying through
- * the same-origin server.
+ * Proxies POST /api/ml/analyze requests to the Hugging Face ML API.
+ * This avoids CORS issues by proxying through the same-origin server.
  */
 function proxyToMLAPI(req, res) {
   const bodyChunks = [];
@@ -518,11 +517,16 @@ function proxyToMLAPI(req, res) {
   req.on('end', function () {
     var body = Buffer.concat(bodyChunks);
 
+    console.log('[ML-API Proxy] Request received:');
+    console.log('  Content-Type:', req.headers['content-type']);
+    console.log('  Body length:', body.length);
+
     var options = {
-      hostname: '127.0.0.1',
-      port: 8002,
+      hostname: 'de13ugg1ng-licin-ml-api.hf.space',
+      port: 443,
       path: '/analyze',
       method: 'POST',
+      family: 4,  // Force IPv4 to avoid IPv6 timeout issues
       headers: {
         'Content-Type': req.headers['content-type'] || 'multipart/form-data',
         'Content-Length': body.length,
@@ -531,15 +535,18 @@ function proxyToMLAPI(req, res) {
       timeout: 60000,
     };
 
-    var proxyReq = http.request(options, function (proxyRes) {
+    var proxyReq = https.request(options, function (proxyRes) {
+      console.log('[ML-API Proxy] HF response:', proxyRes.statusCode);
       res.writeHead(proxyRes.statusCode, proxyRes.headers);
       proxyRes.pipe(res);
     });
 
     proxyReq.on('error', function (err) {
-      console.error('[ML-API Proxy] Error:', err.message);
+      console.error('[ML-API Proxy] Error:', err);
+      console.error('[ML-API Proxy] Error message:', err.message);
+      console.error('[ML-API Proxy] Error code:', err.code);
       res.writeHead(502, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'ML API unavailable', detail: err.message }));
+      res.end(JSON.stringify({ error: 'ML API unavailable', detail: err.message || err.code }));
     });
 
     proxyReq.on('timeout', function () {

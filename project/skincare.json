@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "nama": "Avoskin Your Skin Bae Salicylic Acid 2%",
+    "gambar": "https://www.avoskinbeauty.com/cdn/shop/products/serum-avoskin-your-skin-bae-salicylic-acid-30ml.png",
+    "deskripsi": "Serum dengan Salicylic Acid 2% dan Zinc sebagai eksfoliator membersihkan sel kulit mati hingga ke dalam pori-pori, mengontrol minyak berlebih, dan melawan bakteri penyebab jerawat.",
+    "tags": ["blackheads", "whiteheads"],
+    "bpom": "NA18210112469",
+    "harga": "Rp130.000"
+  },
+  {
+    "id": 2,
+    "nama": "Somethinc Acne Treatment 2% Salicylic Acid Serum",
+    "gambar": "https://somethinc.com/cdn/shop/products/2_bha_salicylic_acid_acne_treatment.png",
+    "deskripsi": "Serum dengan 2% Salicylic Acid generasi baru dan 4X Acne Combat untuk mengurangi jerawat & komedo, membersihkan pori tersumbat, serta melawan bakteri penyebab jerawat.",
+    "tags": ["blackheads", "whiteheads", "papules"],
+    "bpom": "NA18201200145",
+    "harga": "Rp89.000"
+  },
+  {
+    "id": 3,
+    "nama": "Somethinc SKINGLOW AHA BHA PHA Exfoliating Toner",
+    "gambar": "https://somethinc.com/cdn/shop/products/aha_bha_pha_exfoliating_toner.png",
+    "deskripsi": "Toner eksfoliasi harian dengan AHA, BHA, PHA & Chamomile yang membersihkan komedo hitam & putih, mencerahkan kulit, dan menyamarkan PIE & PIH.",
+    "tags": ["blackheads", "whiteheads", "dark_spot"],
+    "bpom": "NA18251206561",
+    "harga": "Rp95.000"
+  },
+  {
+    "id": 4,
+    "nama": "La Roche-Posay Effaclar K(+)",
+    "gambar": "https://www.larocheposay.co.id/sites/default/files/styles/product/public/effaclar_k_plus.png",
+    "deskripsi": "Lotion eksfoliasi mikro dengan Salicylic Acid, LHA, dan Zinc yang mengurangi komedo hitam, menghaluskan tekstur kulit, dan mengontrol minyak berlebih.",
+    "tags": ["whiteheads", "blackheads"],
+    "bpom": "NA18191201185",
+    "harga": "Rp299.000"
+  },
+  {
+    "id": 5,
+    "nama": "Skintific 2% Salicylic Acid Anti Acne Serum",
+    "gambar": "https://skintific.co.id/cdn/shop/products/salicylic_acid_serum.png",
+    "deskripsi": "Serum dengan ACSD Salicylic Acid enkapsulasi dan 4% Niacinamide, Centella, Ceramide & Peptide yang memperbaiki skin barrier sambil mengatasi jerawat.",
+    "tags": ["whiteheads", "papules", "blackheads"],
+    "bpom": "NA11201201816",
+    "harga": "Rp169.000"
+  },
+  {
+    "id": 6,
+    "nama": "Facerinna Salicylic Acid Acne Gel Cleanser",
+    "gambar": "https://www.watsons.co.id/images/products/facerinna_salicylic_acid_cleanser.png",
+    "deskripsi": "Pembersih wajah dengan Salicylic Acid dan Centella Asiatica yang membersihkan pori-pori dari kotoran dan minyak penyebab jerawat, cocok untuk kulit sensitif.",
+    "tags": ["whiteheads", "blackheads"],
+    "bpom": "NA11251201816",
+    "harga": "Rp49.000"
+  },
+  {
+    "id": 7,
+    "nama": "Npure Cica Acne Spot",
+    "gambar": "https://npureofficial.id/cdn/shop/products/npure_cica_acne_spot.png",
+    "deskripsi": "Acne spot treatment dengan 2% Salicylic Acid, 4% Niacinamide, 1% Panthenol & Centella Asiatica untuk papules, pustules hingga nodules, tanpa mengeringkan kulit.",
+    "tags": ["papules", "pustules", "nodules", "dark_spot"],
+    "bpom": "NA18210107001",
+    "harga": "Rp69.000"
+  },
+  {
+    "id": 8,
+    "nama": "Labore AcnePro Biome Acne Spot Gel",
+    "gambar": "https://www.beautyhaul.com/cdn/shop/products/labore_acnepro_spot_gel.png",
+    "deskripsi": "Gel totol jerawat dengan AcnePro Biome™ Technology, Targeted Salicylic Acid & Micro Encapsulation Retinol untuk papule, pustule, hingga nodule — hasil terlihat dalam 6 jam.",
+    "tags": ["papules", "pustules", "nodules"],
+    "bpom": "NA18230117861",
+    "harga": "Rp145.000"
+  },
+  {
+    "id": 9,
+    "nama": "Skineye AC PURE White Powder",
+    "gambar": "https://skineye.id/wp-content/uploads/ac_pure_white_powder.png",
+    "deskripsi": "Serbuk formula khusus yang dicampur dengan serum untuk mengeluarkan jerawat dan membunuh bakteri penyebab jerawat, cocok untuk semua jenis jerawat termasuk cystic dan nodule.",
+    "tags": ["papules", "pustules", "whiteheads", "blackheads"],
+    "bpom": "NA26240100309",
+    "harga": "Rp89.000"
+  },
+  {
+    "id": 10,
+    "nama": "NPURE Acne Clear Patch",
+    "gambar": "https://npureofficial.id/cdn/shop/products/npure_acne_clear_patch.png",
+    "deskripsi": "Acne patch dengan Advanced Korean Hydrocolloid, Centella Asiatica, Salicylic Acid & Niacinamide untuk papule, pustule, cystic, dan nodule — melindungi dan mengangkat jerawat dalam 6 jam.",
+    "tags": ["papules", "pustules", "whiteheads"],
+    "bpom": "NA26250100407",
+    "harga": "Rp25.000"
+  },
+  {
+    "id": 11,
+    "nama": "Nurilab Acne Conclearing Spot Drying Lotion",
+    "gambar": "https://nurilab.id/wp-content/uploads/acne_conclearing_spot_drying_lotion.png",
+    "deskripsi": "Spot drying lotion dengan Salicylic Acid 1%, Sulfur 1% & Zinc Oxide — hasil uji klinis: -64% jerawat papula dan -70% jerawat pustula dalam 14 hari.",
+    "tags": ["pustules", "papules", "blackheads"],
+    "bpom": "NA18240106421",
+    "harga": "Rp45.000"
+  },
+  {
+    "id": 12,
+    "nama": "CeraVe Blemish Control Cleanser",
+    "gambar": "https://www.cerave.co.id/sites/default/files/cerave_blemish_control_cleanser.png",
+    "deskripsi": "Pembersih dengan 2% Salicylic Acid, purifying clay & 3 Ceramide esensial untuk menargetkan noda, mengurangi komedo, dan menjaga skin barrier.",
+    "tags": ["pustules", "whiteheads", "blackheads"],
+    "bpom": "NA11201201626",
+    "harga": "Rp179.000"
+  },
+  {
+    "id": 13,
+    "nama": "CeraVe Resurfacing Retinol Serum",
+    "gambar": "https://www.cerave.co.id/sites/default/files/cerave_resurfacing_retinol_serum.png",
+    "deskripsi": "Serum dengan Encapsulated Retinol, 3 Ceramide & Niacinamide untuk mengurangi noda bekas jerawat, hiperpigmentasi, dan memperbaiki tekstur kulit.",
+    "tags": ["nodules", "dark_spot", "papules"],
+    "bpom": "NA11201200020",
+    "harga": "Rp329.000"
+  },
+  {
+    "id": 14,
+    "nama": "Vitacid Tretinoin Cream 0.1%",
+    "gambar": "https://www.mandjur.co.id/cdn/shop/products/vitacid_tretinoin_cream.png",
+    "deskripsi": "Krim dengan Retinoic Acid (Tretinoin) 0.1% untuk pengobatan jerawat komedogenik, papul, dan pustul — efektif untuk jerawat tingkat I-III dengan banyak komedo.",
+    "tags": ["nodules", "papules", "pustules", "whiteheads"],
+    "bpom": "DKL9028600229B1",
+    "harga": "Rp35.000"
+  },
+  {
+    "id": 15,
+    "nama": "Reticor Tretinoin 0.05% Gel",
+    "gambar": "https://www.mandjur.co.id/cdn/shop/products/reticor_tretinoin_gel.png",
+    "deskripsi": "Gel dengan Tretinoin 0.05% untuk pengobatan acne vulgaris — mengurangi komedo, papul, dan pustula dengan mempercepat pergantian sel kulit.",
+    "tags": ["nodules", "papules", "pustules", "whiteheads", "blackheads"],
+    "bpom": "DKL2235806228B1",
+    "harga": "Rp55.000"
+  },
+  {
+    "id": 16,
+    "nama": "Avoskin Your Skin Bae Alpha Arbutin 3%",
+    "gambar": "https://www.avoskinbeauty.com/cdn/shop/products/alpha_arbutin_serum_avoskin.png",
+    "deskripsi": "Serum dengan Alpha Arbutin 3% dan Grapeseed Extract untuk mencerahkan kulit, menyamarkan noda bekas jerawat kehitaman (PIH), dan menyamarkan pori-pori.",
+    "tags": ["dark_spot"],
+    "bpom": "NA18212000456",
+    "harga": "Rp158.000"
+  },
+  {
+    "id": 17,
+    "nama": "Somethinc Gentle Bright Niacinamide + Alpha Arbutin Serum",
+    "gambar": "https://somethinc.com/cdn/shop/products/gentle_bright_niacinamide_alpha_arbutin.png",
+    "deskripsi": "Serum pencerah gentle dengan Alpha Arbutin & Niacinamide untuk kulit cerah merata, memudarkan noda gelap, hiperpigmentasi, dan pori-pori. Cocok untuk kulit sensitif.",
+    "tags": ["dark_spot", "whiteheads"],
+    "bpom": "NA18251900160",
+    "harga": "Rp99.000"
+  },
+  {
+    "id": 18,
+    "nama": "Facerinna 10% Niacinamide 3% TXA Bright Dark Spot Serum",
+    "gambar": "https://www.watsons.co.id/images/products/facerinna_dark_spot_serum.png",
+    "deskripsi": "Serum dengan 10% Niacinamide dan 3% Tranexamic Acid untuk mengurangi bintik hitam, hiperpigmentasi, bekas jerawat, dan mencerahkan kulit kusam.",
+    "tags": ["dark_spot"],
+    "bpom": "NA18251901656",
+    "harga": "Rp89.000"
+  },
+  {
+    "id": 19,
+    "nama": "HNH Serum Dark Spot",
+    "gambar": "https://hnhskincare.id/wp-content/uploads/hnh_dark_spot_serum.png",
+    "deskripsi": "Serum dengan Vitamin C 20%, Tranexamic Acid & Glutathione untuk menghilangkan bekas jerawat hitam & merah, flek, dan mencerahkan kulit wajah secara merata.",
+    "tags": ["dark_spot"],
+    "bpom": "NA18221901669",
+    "harga": "Rp119.000"
+  },
+  {
+    "id": 20,
+    "nama": "Avoskin Your Skin Bae Tranexamic Acid",
+    "gambar": "https://www.avoskinbeauty.com/cdn/shop/products/tranexamic_acid_serum_avoskin.png",
+    "deskripsi": "Serum dengan Tranexamic Acid untuk menyamarkan PIH (bekas jerawat hitam) dan PIE (bekas jerawat merah), mencerahkan kulit, dan meratakan warna kulit.",
+    "tags": ["dark_spot", "papules"],
+    "bpom": "NA18211500390",
+    "harga": "Rp154.000"
+  }
+]

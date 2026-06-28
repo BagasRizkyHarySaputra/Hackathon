@@ -6,7 +6,7 @@ fetch.js
 
 .env
 .env.*
-
+core*
 # Node.js
 
 node_modules/

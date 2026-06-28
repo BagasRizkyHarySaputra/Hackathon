@@ -1,0 +1,10 @@
+- main [ref=e3]:
+  - generic [ref=e6]:
+    - heading "Analyzing your skin glow..." [level=1] [ref=e8]:
+      - text: Analyzing your skin
+      - text: glow...
+    - paragraph [ref=e9]: Please wait a moment
+    - 'progressbar "Analysis progress: 10%" [ref=e11]'
+    - generic [ref=e13]:
+      - img [ref=e14]
+      - generic [ref=e16]: 10%

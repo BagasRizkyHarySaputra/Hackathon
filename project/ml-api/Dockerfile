@@ -4,7 +4,7 @@ FROM python:3.11-slim
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     libglib2.0-0 \
-    libgl1-mesa-glx \
+    libgl1 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -13,9 +13,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy model + source
+# Copy model, source, and data files
 COPY best.pt .
 COPY main.py .
+COPY recommendation_engine.py .
+COPY data/ ./data/
 
 # Hugging Face Spaces expects port 7860
 EXPOSE 7860

@@ -1,0 +1,10 @@
+- main [ref=e3]:
+  - generic [ref=e6]:
+    - heading "Analyzing skin tone & texture..." [level=1] [ref=e8]:
+      - text: Analyzing skin tone
+      - text: "& texture..."
+    - paragraph [ref=e9]: Processing color data
+    - 'progressbar "Analysis progress: 50%" [ref=e11]'
+    - generic [ref=e13]:
+      - img [ref=e14]
+      - generic [ref=e16]: 50%

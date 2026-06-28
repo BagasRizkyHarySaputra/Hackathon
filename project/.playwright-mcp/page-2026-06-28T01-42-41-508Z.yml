@@ -1,0 +1,8 @@
+- main [ref=e2]:
+  - generic [ref=e5]:
+    - generic:
+      - heading [level=1]
+    - paragraph
+    - generic:
+      - progressbar
+    - img [ref=e7]

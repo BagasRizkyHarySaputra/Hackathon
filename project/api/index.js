@@ -104,6 +104,13 @@ module.exports = async (req, res) => {
         }
         return serveJSON(res, mockData('login') || { token: 'mock_token', user: { name: 'Demo' }, message: 'OK' });
 
+      /* ── ML API Proxy ── */
+      case '/api/ml/analyze':
+        if (req.method !== 'POST') {
+          return serveJSON(res, { error: 'Method not allowed' }, 405);
+        }
+        return proxyToMLAPI(req, res);
+
       /* ── Chat API ── */
       case '/api/chat/send':
         if (req.method !== 'POST') {
@@ -242,6 +249,59 @@ async function proxyToTelegram(req, res) {
 
     tgReq.write(multipartBody);
     tgReq.end();
+  });
+}
+
+/**
+ * Proxies POST /api/ml/analyze requests to the Hugging Face ML API.
+ * Avoids CORS issues by proxying through the same-origin serverless function.
+ */
+async function proxyToMLAPI(req, res) {
+  return new Promise((resolve) => {
+    const https = require('https');
+    const bodyChunks = [];
+    
+    req.on('data', (chunk) => { bodyChunks.push(chunk); });
+    req.on('end', () => {
+      const body = Buffer.concat(bodyChunks);
+      
+      const proxyReq = https.request({
+        hostname: 'de13ugg1ng-licin-ml-api.hf.space',
+        port: 443,
+        path: '/analyze',
+        method: 'POST',
+        family: 4,  // Force IPv4 to avoid IPv6 timeout issues
+        headers: {
+          'Content-Type': req.headers['content-type'] || 'multipart/form-data',
+          'Content-Length': body.length,
+          'Accept': 'application/json',
+        },
+        timeout: 60000,
+      }, (proxyRes) => {
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        proxyRes.pipe(res);
+        proxyRes.on('end', () => resolve());
+      });
+      
+      proxyReq.on('error', (err) => {
+        console.error('[ML-API Proxy] Error:', err.message);
+        resolve(serveJSON(res, { error: 'ML API unavailable', detail: err.message }, 502));
+      });
+      
+      proxyReq.on('timeout', () => {
+        proxyReq.destroy();
+        console.error('[ML-API Proxy] Timeout');
+        resolve(serveJSON(res, { error: 'ML API timeout' }, 504));
+      });
+      
+      proxyReq.write(body);
+      proxyReq.end();
+    });
+    
+    req.on('error', (err) => {
+      console.error('[ML-API Proxy] Request error:', err.message);
+      resolve(serveJSON(res, { error: 'Invalid request' }, 400));
+    });
   });
 }
 

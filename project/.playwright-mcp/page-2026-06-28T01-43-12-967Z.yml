@@ -1,0 +1,12 @@
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - heading "What's Your Skin Type?" [level=1] [ref=e5]
+    - generic [ref=e6]:
+      - button "Oily Skin" [ref=e7] [cursor=pointer]
+      - button "Dry Skin" [ref=e8] [cursor=pointer]
+      - button "Combination Skin" [ref=e9] [cursor=pointer]
+      - button "Normal Skin" [ref=e10] [cursor=pointer]
+      - button "Sensitive Skin" [ref=e11] [cursor=pointer]
+      - button "Not Sure :(" [ref=e12] [cursor=pointer]
+    - button "Confirm" [disabled] [ref=e14]
+    - img [ref=e16]

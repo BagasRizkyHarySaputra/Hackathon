@@ -1,0 +1,16 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - img [ref=e5]
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic:
+          - img
+        - generic:
+          - img
+        - generic:
+          - generic [ref=e8]
+          - generic [ref=e11]
+          - generic [ref=e16]: Or
+          - generic [ref=e19]
+      - button "Sign In" [ref=e28] [cursor=pointer]:
+        - generic [ref=e29]: Sign In
