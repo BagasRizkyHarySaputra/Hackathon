@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkinGlow — Sign in to your account" />
+  <meta name="description" content="LICIN — Sign in to your account" />
   <meta name="theme-color" content="#eef2fa" />
-  <title>SkinGlow — Sign In</title>
+  <title>LICIN — Sign In</title>
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/mascot.css" />
   <link rel="stylesheet" href="/assets/css/components/loading.css" />
   <link rel="stylesheet" href="/assets/css/components/login.css" />
 <link rel="stylesheet" href="/assets/css/components/login-mobile.css" />
@@ -16,13 +17,17 @@
     <div class="login-layout" x-data="createLoginComponent()">
       
       <div class="login-mascot" aria-hidden="true">
-        <img class="login-mascot__svg" src="/assets/icons/water-drop-mascot.svg" alt="SkinGlow mascot"/>
+        <img class="login-mascot__svg" src="/assets/icons/water-drop-mascot.svg" alt="LICIN mascot"/>
       </div>
 
       <div class="login-card-area">
         <div class="login-card-container" :data-tab="activeTab" :anim-direction="animDirection">
-          <img class="login-card-svg login-card-svg--signin" src="/assets/shape/Sign-In.svg" alt="" aria-hidden="true" />
-          <img class="login-card-svg login-card-svg--signup" src="/assets/shape/Sign-up.svg" alt="" aria-hidden="true" />
+          <span class="login-card-svg-stretch login-card-svg-stretch--signin">
+            <img class="login-card-svg login-card-svg--signin" src="/assets/shape/Sign-In.svg" alt="" aria-hidden="true" />
+          </span>
+          <span class="login-card-svg-stretch login-card-svg-stretch--signup">
+            <img class="login-card-svg login-card-svg--signup" src="/assets/shape/Sign-up.svg" alt="" aria-hidden="true" />
+          </span>
 
           <div class="login-card-content">
             <div class="login-tabs">
@@ -141,5 +146,6 @@
   <script src="/assets/js/htmx/interceptors.js"></script>
   <script src="/assets/js/pwa/sw-register.js"></script>
   <script src="/assets/js/router.js"></script>
+  <script defer src="/assets/js/components/mascot.js"></script>
 </body>
 </html>

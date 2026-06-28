@@ -11,6 +11,14 @@
  *
  * ENDPOINTS:
  *   GET /api/loading/partial     → Returns loading page HTML partial
+ *   GET /api/home/partial        → Returns home page HTML partial
+ *   GET /api/scan/partial        → Returns skin type scan HTML partial
+ *   GET /api/artikel/partial     → Returns artikel HTML partial
+ *   GET /api/community/partial   → Returns community HTML partial
+ *   GET /api/profile/partial     → Returns profile HTML partial
+ *   GET /api/chatbot/partial     → Returns chatbot HTML partial
+ *   GET /api/scan-page/partial   → Returns scan-page (camera) HTML partial
+ *   GET /api/account/partial     → Returns account HTML partial
  *   GET /api/analysis/status     → Returns mock analysis status JSON
  *   GET /                        → Serves index.html
  *   GET /offline.html            → Serves offline fallback
@@ -182,6 +190,76 @@ function getProfilePartial() {
 }
 
 /**
+ * Generates the community page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getCommunityPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'community', 'community-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Community loading...</p>';
+  }
+}
+
+/**
+ * Generates the home page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getHomePartial() {
+  const partialPath = path.join(ROOT, 'partials', 'home', 'home-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Home loading...</p>';
+  }
+}
+
+/**
+ * Generates the chatbot page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getChatbotPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'chatbot', 'chatbot-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>ChatBot loading...</p>';
+  }
+}
+
+/**
+ * Generates the scan-page (camera) HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getScanPagePartial() {
+  const partialPath = path.join(ROOT, 'partials', 'scan-page', 'scan-page-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Scan page loading...</p>';
+  }
+}
+
+/**
+ * Generates the account page HTML partial dynamically.
+ *
+ * @returns {string} HTML partial string
+ */
+function getAccountPartial() {
+  const partialPath = path.join(ROOT, 'partials', 'account', 'account-content.html');
+  try {
+    return fs.readFileSync(partialPath, 'utf-8');
+  } catch {
+    return '<p>Account loading...</p>';
+  }
+}
+
+/**
  * Main request handler. Routes requests to appropriate handlers.
  *
  * @param {http.IncomingMessage} req
@@ -251,6 +329,7 @@ function handleRequest(req, res) {
       proxyTelegramPhoto(req, res);
       break;
 
+
     /** HTMX Partial — Scan page content */
     case pathname === '/api/scan/partial':
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -273,6 +352,30 @@ function handleRequest(req, res) {
     case pathname === '/api/profile/partial':
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(getProfilePartial());
+      break;
+
+    /** HTMX Partial — Home page content */
+    case pathname === '/api/home/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getHomePartial());
+      break;
+
+    /** HTMX Partial — Chatbot page content */
+    case pathname === '/api/chatbot/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getChatbotPartial());
+      break;
+
+    /** HTMX Partial — Scan-page (camera) content */
+    case pathname === '/api/scan-page/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getScanPagePartial());
+      break;
+
+    /** HTMX Partial — Account page content */
+    case pathname === '/api/account/partial':
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(getAccountPartial());
       break;
 
     /** Loading page — handles OAuth redirect with #access_token */
@@ -734,7 +837,7 @@ if (sslOptions) {
 function printBanner() {
   console.log(`
   ╔══════════════════════════════════════════════════╗
-  ║  SkinGlow Mock Server                            ║
+  ║  LICIN Mock Server                            ║
   ║  HTTPS:  https://localhost:${PORT}                  ║
   ║  Network: https://192.168.1.8:${PORT}               ║
   ║  HTTP:   ${httpUrl || '(no HTTP redirect)'}  ║
@@ -755,11 +858,15 @@ function printBanner() {
   ║    GET /api/loading/partial    → Loading HTML      ║
   ║    GET /api/analysis/status    → Status JSON       ║
   ║    GET /api/login/partial      → Login HTML        ║
-  ║    GET /api/scan/partial       → Scan HTML         ║
-  ║    GET /api/artikel/partial    → Artikel HTML      ║
-  ║    GET /api/community/partial  → Community HTML    ║
-  ║    GET /api/profile/partial    → Profile HTML      ║
-  ║    Any path + ?dry_run=true    → 200 OK            ║
+  ║    GET /api/home/partial       → Home HTML          ║
+  ║    GET /api/scan/partial       → Scan HTML          ║
+  ║    GET /api/artikel/partial    → Artikel HTML       ║
+  ║    GET /api/community/partial  → Community HTML     ║
+  ║    GET /api/profile/partial    → Profile HTML       ║
+  ║    GET /api/chatbot/partial    → Chatbot HTML       ║
+  ║    GET /api/scan-page/partial  → Scan-Page HTML     ║
+  ║    GET /api/account/partial    → Account HTML       ║
+  ║    Any path + ?dry_run=true    → 200 OK             ║
   ╚══════════════════════════════════════════════════╝
   `);
 }

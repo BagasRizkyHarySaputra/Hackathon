@@ -1,16 +1,17 @@
 /**
- * SkinGlow — ChatBot Page Logic
+ * LICIN — ChatBot Page Logic
  *
  * Features:
  *   - Chat list (create/switch/rename) stored in Supabase `chatbot_chats`
  *   - Messages stored in Supabase `chatbot_messages`
- *   - Bot auto-replies "Mehh…" after each user message (client-side insert)
+ *   - Bot auto-replies via DG-AI (free AI API, no auth needed)
  *   - Realtime subscription for live message updates
  *   - Auth-gated — redirects to /login if not signed in
  *   - Each user has their own isolated chat space (RLS-protected)
  *
  * Storage: Supabase tables `chatbot_chats` + `chatbot_messages` (RLS-protected)
  * Realtime: Supabase Realtime (postgres_changes INSERT subscription)
+ * AI: DG-AI (dg-ai.scriptsnsenses.workers.dev) — gpt-oss-120b model
  */
 (function () {
   'use strict';
@@ -27,13 +28,16 @@
   var _sending = false;
   var _realtimeRetries = 0;
   var MAX_REALTIME_RETRIES = 5;
+  var quotaLimit = 50;
+  var quotaRemaining = 50;
+  var QUOTA_TABLE = 'user_daily_quota';
 
+  var DG_AI_URL = 'https://dg-ai.scriptsnsenses.workers.dev/v1/chat/gpt-oss-120b';
   var BOT_AVATAR = '/assets/icons/water-drop-mascot.svg';
-  var BOT_REPLY_TEXT = 'Mehh…';
   var BOT_REPLY_DELAY = 700;
 
   /* ─── DOM refs (populated in init) ─── */
-  var historyList, chatMessages, inputText, btnSend, btnNewChat;
+  var historyList, chatMessages, inputText, btnSend, btnNewChat, limitCounter;
 
   /* ─── HTML Escape ─── */
   function esc(str) {
@@ -42,20 +46,31 @@
     return d.innerHTML;
   }
 
+  /* ─── Update Limit Counter Display ─── */
+  function updateLimitCounter() {
+    if (!limitCounter) return;
+    limitCounter.textContent = quotaRemaining + '/' + quotaLimit;
+  }
+
   /* ─── Message Row HTML ─── */
   function msgHTML(msg) {
     var text = esc(msg.text);
     var isUser = msg.sender_type === 'user';
 
     if (isUser) {
+      /* User avatar: image if available, fallback to initial letter */
+      var avatarUrl = currentUser && currentUser.avatar;
+      var initial = currentUser ? esc(currentUser.name.charAt(0).toUpperCase()) : '';
+      var userAvatarHTML = avatarUrl
+        ? '<img src="' + esc(avatarUrl) + '" alt="" class="chat-avatar__mascot" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'" /><div class="chat-avatar__circle" style="display:none">' + initial + '</div>'
+        : '<div class="chat-avatar__circle">' + initial + '</div>';
+
       return (
         '<div class="chat-msg-row chat-msg-row--sent">' +
         '<div class="chat-bubble chat-bubble--sent">' +
         '<p class="chat-bubble__text">' + text + '</p>' +
         '</div>' +
-        '<div class="chat-avatar">' +
-        '<div class="chat-avatar__circle chat-avatar__circle--self"></div>' +
-        '</div>' +
+        '<div class="chat-avatar">' + userAvatarHTML + '</div>' +
         '</div>'
       );
     }
@@ -332,7 +347,181 @@
       });
   }
 
-  /* ─── Send message + bot auto-reply ─── */
+  /* ─── Fetch or init daily quota from Supabase ─── */
+  function fetchOrInitQuota() {
+    if (!currentUser) return Promise.reject('No user');
+
+    var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/' + QUOTA_TABLE +
+      '?user_id=eq.' + encodeURIComponent(currentUser.id) +
+      '&select=id,queries_remaining,query_limit,reset_at';
+
+    return fetch(url, {
+      headers: {
+        'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + currentUser.token
+      }
+    })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (rows) {
+        if (rows && rows.length > 0) {
+          var q = rows[0];
+          /* Check if quota expired (past reset_at) */
+          var now = new Date();
+          var resetAt = new Date(q.reset_at + 'Z');
+          if (now >= resetAt) {
+            /* Reset quota for new day */
+            return resetQuota(q.id);
+          }
+          quotaLimit = q.query_limit;
+          quotaRemaining = q.queries_remaining;
+          updateLimitCounter();
+          return q;
+        }
+        /* No record yet — create one */
+        return createQuota();
+      })
+      .catch(function (err) {
+        console.warn('[ChatBot] Quota fetch failed:', err.message);
+        /* Fallback: use local defaults */
+        quotaLimit = 50;
+        quotaRemaining = 50;
+        updateLimitCounter();
+      });
+  }
+
+  function createQuota() {
+    var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/' + QUOTA_TABLE;
+    var payload = {
+      user_id: currentUser.id,
+      queries_remaining: 50,
+      query_limit: 50
+    };
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + currentUser.token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (rows) {
+        if (rows && rows.length > 0) {
+          quotaLimit = rows[0].query_limit;
+          quotaRemaining = rows[0].queries_remaining;
+          updateLimitCounter();
+        }
+      })
+      .catch(function (err) {
+        console.warn('[ChatBot] Quota create failed:', err.message);
+      });
+  }
+
+  function resetQuota(quotaId) {
+    var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/' + QUOTA_TABLE + '?id=eq.' + encodeURIComponent(quotaId);
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    var payload = {
+      queries_remaining: 50,
+      reset_at: tomorrow.toISOString()
+    };
+
+    return fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + currentUser.token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (rows) {
+        if (rows && rows.length > 0) {
+          quotaLimit = rows[0].query_limit;
+          quotaRemaining = rows[0].queries_remaining;
+          updateLimitCounter();
+        }
+      })
+      .catch(function (err) {
+        console.warn('[ChatBot] Quota reset failed:', err.message);
+      });
+  }
+
+  /* ─── Decrement quota atomically via Supabase RPC ─── */
+  function decrementQuota() {
+    if (!currentUser) return Promise.reject('No user');
+
+    var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/rpc/decrement_quota';
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + currentUser.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ p_user_id: currentUser.id })
+    })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (result) {
+        if (result && result.length > 0) {
+          quotaRemaining = result[0].queries_remaining;
+          quotaLimit = result[0].query_limit;
+          updateLimitCounter();
+        }
+      });
+  }
+
+  /* ─── Get AI reply from DG-AI (free, no auth) ─── */
+  function getBotReply(userMsg) {
+    /* Build context: last 5 messages + system prompt */
+    var contextMessages = [];
+    var startIdx = Math.max(0, messages.length - 5);
+    for (var i = startIdx; i < messages.length; i++) {
+      var m = messages[i];
+      if (m.sender_type === 'user' || m.sender_type === 'bot') {
+        contextMessages.push({
+          role: m.sender_type === 'user' ? 'user' : 'assistant',
+          content: m.text
+        });
+      }
+    }
+
+    /* API only expects user + assistant; insert system as first message */
+    var payload = {
+      messages: [
+        {
+          role: 'system',
+          content: 'Kamu adalah LICIN, asisten khusus perawatan wajah dan kesehatan kulit. Hanya jawab pertanyaan seputar: skincare, tips merawat muka, berita terbaru tentang skincare, produk wajah, dan masalah kulit. Jawab singkat, padat, max 2-3 kalimat dalam Bahasa Indonesia santai. Gunakan emoji sesekali. Jika pertanyaan di luar topik perawatan wajah/skincare, jawab persis: "Hmm, kayanya ini bukan ranahku. Kamu boleh tanya hal lain kok! ^-^"'
+        }
+      ].concat(contextMessages),
+      max_tokens: 200
+    };
+
+    return fetch(DG_AI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('AI HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var reply = data && data.response && data.response.choices && data.response.choices[0] && data.response.choices[0].message && data.response.choices[0].message.content;
+        if (!reply) throw new Error('Empty AI response');
+        return reply;
+      });
+  }
+
+  /* ─── Send message + AI bot reply ─── */
   function sendMessage(text) {
     if (!text || !text.trim() || !currentUser || !activeChatId) return;
     text = text.trim();
@@ -362,23 +551,33 @@
           removeTempMessage(tempId);
         }
 
-        /* Bot auto-reply after delay */
-        setTimeout(function () {
-          insertMessage(activeChatId, 'bot', BOT_REPLY_TEXT)
-            .then(function (botMsg) {
-              if (botMsg) {
-                messages.push(botMsg);
-                renderMessages();
-              }
-            })
-            .catch(function (err) {
-              console.warn('[ChatBot] Bot reply failed:', err.message);
-            });
-        }, BOT_REPLY_DELAY);
+        /* Get AI reply */
+        return getBotReply(text);
+      })
+      .then(function (aiReply) {
+        /* Insert AI response as bot message */
+        return insertMessage(activeChatId, 'bot', aiReply);
+      })
+      .then(function (botMsg) {
+        if (botMsg) {
+          messages.push(botMsg);
+          renderMessages();
+        }
       })
       .catch(function (err) {
-        console.warn('[ChatBot] Send failed:', err.message);
-        removeTempMessage(tempId);
+        console.warn('[ChatBot] AI reply failed:', err.message);
+        /* Fallback: friendly message instead of "Mehh…" */
+        var fallback = 'Maaf, aku lagi sibuk. Coba tanya lagi nanti ya! 😊';
+        insertMessage(activeChatId, 'bot', fallback)
+          .then(function (botMsg) {
+            if (botMsg) {
+              messages.push(botMsg);
+              renderMessages();
+            }
+          })
+          .catch(function (e) {
+            console.warn('[ChatBot] Fallback insert failed:', e.message);
+          });
       })
       .finally(function () {
         _sending = false;
@@ -552,11 +751,30 @@
     }
   }
 
+  /* ─── Toggle Chatbot Panel (mobile) ─── */
+  var chatbotPanel = null;
+  var chatbotBurger = null;
+  var chatbotCollapsedHeader = null;
+  var chatbotCollapsedBurger = null;
+
+  function toggleChatbotPanel() {
+    if (!chatbotPanel || !chatbotCollapsedHeader) return;
+    var isCollapsed = chatbotPanel.classList.toggle('collapsed');
+    chatbotCollapsedHeader.classList.toggle('chatbot-collapsed-header--visible', isCollapsed);
+  }
+
   /* ─── Handle send button ─── */
   function handleSend() {
     var text = inputText.value.trim();
     if (!text) return;
+    if (quotaRemaining <= 0) return;
     inputText.value = '';
+
+    /* Decrement quota first, then send */
+    decrementQuota().catch(function (err) {
+      console.warn('[ChatBot] Decrement quota failed:', err.message);
+    });
+
     sendMessage(text);
   }
 
@@ -577,13 +795,17 @@
         id: session.user.id,
         email: session.user.email,
         name: (session.user.user_metadata && (session.user.user_metadata.full_name || session.user.user_metadata.name)) || session.user.email,
-        token: session.access_token
+        token: session.access_token,
+        avatar: (session.user.user_metadata && session.user.user_metadata.avatar_url) || ''
       };
 
       console.log('[ChatBot] Authenticated as:', currentUser.name);
 
-      /* Fetch chat list, then auto-select first chat or create new */
-      fetchChats().then(function () {
+      /* Fetch daily quota first, then fetch chats */
+      fetchOrInitQuota().then(function () {
+        /* Fetch chat list, then auto-select first chat or create new */
+        return fetchChats();
+      }).then(function () {
         if (chats.length > 0) {
           switchToChat(chats[0].id);
         } else {
@@ -604,11 +826,18 @@
     inputText = document.getElementById('chat-input-text');
     btnSend = document.getElementById('btn-send');
     btnNewChat = document.getElementById('btn-new-chat');
+    limitCounter = document.getElementById('chat-limit-counter');
+    chatbotPanel = document.getElementById('chatbot-panel');
+    chatbotBurger = document.getElementById('chatbot-burger');
+    chatbotCollapsedHeader = document.getElementById('chatbot-collapsed-header');
+    chatbotCollapsedBurger = document.getElementById('chatbot-collapsed-burger');
 
     if (!chatMessages || !inputText || !btnSend) {
       console.warn('[ChatBot] Required elements missing');
       return;
     }
+
+    updateLimitCounter();
 
     /* Wire send events */
     btnSend.addEventListener('click', handleSend);
@@ -619,6 +848,23 @@
     /* New chat button */
     if (btnNewChat) {
       btnNewChat.addEventListener('click', createNewChat);
+    }
+
+    /* Mobile panel toggle */
+    if (chatbotBurger) {
+      chatbotBurger.addEventListener('click', toggleChatbotPanel);
+    }
+    if (chatbotCollapsedBurger) {
+      chatbotCollapsedBurger.addEventListener('click', toggleChatbotPanel);
+    }
+
+    /* Auto-close panel on history item click (mobile) */
+    if (historyList) {
+      historyList.addEventListener('click', function () {
+        if (chatbotPanel && window.innerWidth <= 768) {
+          toggleChatbotPanel();
+        }
+      });
     }
 
     /* Wait for Supabase client, then start */

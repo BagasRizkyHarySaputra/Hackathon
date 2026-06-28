@@ -1,5 +1,5 @@
 """
-SkinGlow - YOLO Skin Analysis API (FastAPI)
+LICIN - YOLO Skin Analysis API (FastAPI)
 
 Accepts an image, runs YOLO inference, returns:
   - markers (bounding box positions for overlay)
@@ -36,7 +36,7 @@ from ultralytics import YOLO
 # ---------------------------------------------------------------------------
 # App
 # ---------------------------------------------------------------------------
-app = FastAPI(title="SkinGlow Analyzer API", version="1.1.0")
+app = FastAPI(title="LICIN API", version="1.1.0")
 
 app.add_middleware(
     CORSMiddleware,

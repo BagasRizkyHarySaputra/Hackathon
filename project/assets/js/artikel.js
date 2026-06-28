@@ -360,7 +360,7 @@
   function showDetailView(slug) {
     if (listingView) listingView.style.display = 'none';
     if (detailView) detailView.style.display = '';
-    document.title = 'SkinGlow — Artikel';
+    document.title = 'LICIN — Artikel';
     loadArticleFromSupabase(slug);
   }
 
@@ -375,7 +375,7 @@
   function showListing() {
     if (listingView) listingView.style.display = '';
     if (detailView) detailView.style.display = 'none';
-    document.title = 'SkinGlow — Artikel';
+    document.title = 'LICIN — Artikel';
   }
 
   /* ─── Back button ─── */

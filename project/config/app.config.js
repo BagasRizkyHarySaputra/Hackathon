@@ -23,8 +23,8 @@
  */
 
 const APP_CONFIG = Object.freeze({
-  APP_NAME: 'SkinGlow Analyzer',
-  SHORT_NAME: 'SkinGlow',
+  APP_NAME: 'LICIN',
+  SHORT_NAME: 'LICIN',
   VERSION: '0.1.0',
   DESCRIPTION: 'AI-powered skin analysis and glow detection application.',
 
@@ -37,7 +37,7 @@ const APP_CONFIG = Object.freeze({
   HTMX_INDICATOR_CLASS: 'htmx-loading',
 
   // PWA
-  SW_CACHE_NAME: 'skinglow-v1',
+  SW_CACHE_NAME: 'licin-v1',
   SW_OFFLINE_URL: '/offline.html',
 
   // Loading Page
@@ -60,7 +60,7 @@ const APP_CONFIG = Object.freeze({
 
   // ML API — YOLO skin analysis (local server during dev, HF Spaces in prod)
   ML_API_ENABLED: true,
-  ML_API_URL: '/api/ml',
+  ML_API_URL: 'http://127.0.0.1:8002',
 });
 
 // Expose on window for scripts that use window.APP_CONFIG

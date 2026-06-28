@@ -23,7 +23,7 @@
  * ============================================================
  */
 
-const CACHE_NAME = 'skinglow-v2';
+const CACHE_NAME = 'licin-v2';
 const OFFLINE_URL = '/offline.html';
 
 /** Pre-cache app shell and offline fallback on install */

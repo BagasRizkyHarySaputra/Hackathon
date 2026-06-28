@@ -1,5 +1,5 @@
 """
-SkinGlow - YOLO Skin Analysis API (FastAPI)
+LICIN - YOLO Skin Analysis API (FastAPI)
 
 Accepts an image, runs YOLO inference, returns:
   - markers (bounding box positions for overlay)
@@ -28,15 +28,17 @@ import io
 import os
 import ssl
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Query
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from ultralytics import YOLO
 
+from recommendation_engine import RecommendationEngine
+
 # ---------------------------------------------------------------------------
 # App
 # ---------------------------------------------------------------------------
-app = FastAPI(title="SkinGlow Analyzer API", version="1.1.0")
+app = FastAPI(title="LICIN API", version="1.1.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -47,10 +49,13 @@ app.add_middleware(
 )
 
 # ---------------------------------------------------------------------------
-# Model
+# Model & Recommendation Engine
 # ---------------------------------------------------------------------------
 MODEL_PATH = os.environ.get("MODEL_PATH", "best.pt")
 model = YOLO(MODEL_PATH)
+
+# Initialize recommendation engine (loads pagi.json & malam.json)
+recommender = RecommendationEngine()
 
 # Weight per acne type for health score calculation (same as scan.py)
 CLASS_WEIGHTS = {
@@ -65,31 +70,51 @@ CLASS_WEIGHTS = {
 # All expected acne types (for zero-fill when not detected)
 ALL_CLASSES = ["nodules", "pustules", "papules", "dark spot", "blackheads", "whiteheads"]
 
+# 9-Grid face zone mapping (3x3 grid)
+FACE_ZONES = {
+    0: "Dahi Kiri",
+    1: "Dahi Tengah",
+    2: "Dahi Kanan",
+    3: "Pipi Kiri",
+    4: "Hidung/T-zone",
+    5: "Pipi Kanan",
+    6: "Dagu Kiri",
+    7: "Dagu Tengah",
+    8: "Dagu Kanan",
+}
+
 
 # ---------------------------------------------------------------------------
-# Product recommendation (dummy for now - real logic later)
+# Grid detection helper
 # ---------------------------------------------------------------------------
-def _recommend_product(acne_counts: dict) -> dict:
-    """Return { name, description } based on dominant acne type."""
-    if acne_counts.get("nodules", 0) > 0 or acne_counts.get("pustules", 0) > 0:
-        return {
-            "name": "Acne Treatment Serum",
-            "description": "Salicylic acid and niacinamide formula targets severe acne and reduces inflammation.",
-        }
-    if acne_counts.get("dark spot", 0) > 0:
-        return {
-            "name": "Dark Spot Corrector",
-            "description": "Vitamin C serum formulated to fade dark spots and even skin tone.",
-        }
-    if acne_counts.get("blackheads", 0) > 0 or acne_counts.get("whiteheads", 0) > 0:
-        return {
-            "name": "Pore Refining Toner",
-            "description": "Exfoliates and refines pores to reduce comedones and blackheads.",
-        }
-    return {
-        "name": "Gentle Cleanser",
-        "description": "Maintains clear healthy skin with gentle daily cleansing.",
-    }
+def get_grid_cell(cx: float, cy: float) -> int:
+    """
+    Map center coordinates (cx, cy) in percentage (0-100) to a 3×3 grid cell (0-8).
+    
+    Grid layout:
+      [0] [1] [2]    (top row: y < 33.33)
+      [3] [4] [5]    (mid row: 33.33 ≤ y < 66.67)
+      [6] [7] [8]    (bottom row: y ≥ 66.67)
+    
+    Column: x < 33.33 (left), 33.33 ≤ x < 66.67 (center), x ≥ 66.67 (right)
+    """
+    # Determine row (0=top, 1=mid, 2=bottom)
+    if cy < 33.33:
+        row = 0
+    elif cy < 66.67:
+        row = 1
+    else:
+        row = 2
+    
+    # Determine column (0=left, 1=center, 2=right)
+    if cx < 33.33:
+        col = 0
+    elif cx < 66.67:
+        col = 1
+    else:
+        col = 2
+    
+    return row * 3 + col
 
 
 # ---------------------------------------------------------------------------
@@ -101,7 +126,10 @@ async def health():
 
 
 @app.post("/analyze")
-async def analyze(file: UploadFile = File(...)):
+async def analyze(
+    file: UploadFile = File(...),
+    budget: str = Query("standard", regex="^(economy|standard|premium)$")
+):
     """Accept an image file -> run YOLO -> return structured analysis results."""
 
     # Read + open image
@@ -127,6 +155,7 @@ async def analyze(file: UploadFile = File(...)):
 
     acne_counts: dict[str, int] = {}
     markers: list[dict] = []
+    grid_counts: dict[int, int] = {}  # Count acne per grid cell
 
     if result.boxes is not None:
         for box in result.boxes:
@@ -139,12 +168,19 @@ async def analyze(file: UploadFile = File(...)):
             cx = ((x1 + x2) / 2) / img_w * 100
             cy = ((y1 + y2) / 2) / img_h * 100
 
+            # Determine grid cell and face zone
+            grid_id = get_grid_cell(cx, cy)
+            face_zone = FACE_ZONES[grid_id]
+            grid_counts[grid_id] = grid_counts.get(grid_id, 0) + 1
+
             markers.append({
                 "id": f"{class_name}_{len(markers)}",
                 "label": class_name.title(),
                 "x": f"{cx:.1f}",
                 "y": f"{cy:.1f}",
                 "severity": CLASS_WEIGHTS.get(class_name, 2),
+                "grid_id": grid_id,
+                "face_zone": face_zone,
             })
 
     # ---------------------------------------------------------------
@@ -186,15 +222,34 @@ async def analyze(file: UploadFile = File(...)):
         if cls not in health_score:
             health_score[cls] = 0.0
 
-    product = _recommend_product(acne_counts)
+    # Build grid statistics with face zone names
+    grid_stats = [
+        {
+            "grid_id": grid_id,
+            "face_zone": FACE_ZONES[grid_id],
+            "acne_count": grid_counts.get(grid_id, 0),
+        }
+        for grid_id in range(9)
+    ]
+
+    # Generate product recommendations based on analysis
+    total_acne = sum(acne_counts.values())
+    ml_result = {
+        "total_acne": total_acne,
+        "acne_counts": acne_counts,
+        "issues_found": list(acne_counts.keys()),
+        "grid_stats": grid_stats,
+    }
+    recommendations = recommender.generate_recommendations(ml_result, budget_level=budget)
 
     return {
         "markers": markers,
         "acne_counts": acne_counts,
         "health_score": health_score,
         "annotated_image": annotated_b64,
-        "product": product,
+        "recommendations": recommendations,
         "issues_found": list(acne_counts.keys()),
+        "grid_stats": grid_stats,
     }
 
 

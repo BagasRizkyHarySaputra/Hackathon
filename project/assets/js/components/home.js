@@ -1,5 +1,5 @@
 /**
- * SkinGlow — Home Page Logic
+ * LICIN — Home Page Logic
  *
  * Loads diary photos from Supabase scan_results and displays them
  * in the 3 diary-thumb cards. Photos are served via Telegram proxy.
@@ -26,9 +26,11 @@
   function setThumbPhoto(index, fileId) {
     if (!DIARY_THUMBS[index]) return;
     var thumb = DIARY_THUMBS[index];
-    thumb.innerHTML = '<img src="/api/telegram/photo?file_id=' + encodeURIComponent(fileId) +
+    var photoUrl = '/api/telegram/photo?file_id=' + encodeURIComponent(fileId);
+    console.log('[Home] setThumbPhoto(' + index + ') - Week ' + (index+1) + ' - URL:', photoUrl);
+    thumb.innerHTML = '<img src="' + photoUrl +
       '" alt="Diary photo" style="width:100%;height:100%;object-fit:cover;border-radius:1vw;" ' +
-      'onerror="this.parentElement.innerHTML=\'' + PLACEHOLDER_SVG + '\'" />';
+      'onerror="this.parentElement.innerHTML=\'' + PLACEHOLDER_SVG + '\'; console.error(\'[Home] Photo load failed for Week ' + (index+1) + '\');" />';
   }
 
   function resetThumb(index) {
@@ -97,20 +99,43 @@
       var bucketStart = new Date(cycleStart);
       var buckets = [[], [], []];
 
+      console.log('[Home] Bucketing ' + scans.length + ' scans. Start date:', bucketStart.toISOString());
+
       scans.forEach(function (scan) {
         var scanDate = new Date(scan.created_at);
         var dayOffset = Math.floor((scanDate - bucketStart) / (1000 * 60 * 60 * 24)) + 1;
+
+        console.log('[Home] Scan date:', scanDate.toISOString(), '| Day offset:', dayOffset);
 
         if (dayOffset >= 1 && dayOffset <= 7) buckets[0].push(scan);
         else if (dayOffset >= 8 && dayOffset <= 14) buckets[1].push(scan);
         else if (dayOffset >= 15 && dayOffset <= 21) buckets[2].push(scan);
       });
 
+      console.log('[Home] Bucket counts - Week 1:', buckets[0].length, '| Week 2:', buckets[1].length, '| Week 3:', buckets[2].length);
+
       var picks = [
         buckets[0].length > 0 ? buckets[0][0] : null,
         buckets[1].length > 0 ? buckets[1][buckets[1].length - 1] : null,
         buckets[2].length > 0 ? buckets[2][buckets[2].length - 1] : null,
       ];
+
+      console.log('[Home] Picks selected:', picks.map(function(p, i) {
+        return 'Week ' + (i+1) + ': ' + (p ? 'scan with file_id=' + p.telegram_file_id : 'null');
+      }).join(' | '));
+
+      // Fallback: if all buckets empty, show most recent 3 scans
+      var allEmpty = !picks[0] && !picks[1] && !picks[2];
+      if (allEmpty && scans.length > 0) {
+        // Take up to 3 most recent scans
+        var recent = scans.slice(-3);
+        picks = [
+          recent[0] || null,
+          recent[1] || null,
+          recent[2] || null,
+        ];
+        console.log('[Home] Using fallback: showing ' + recent.length + ' most recent scans');
+      }
 
       picks.forEach(function (scan, i) {
         if (scan && scan.telegram_file_id) {

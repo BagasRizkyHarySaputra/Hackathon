@@ -1,7 +1,6 @@
 # Secrets
 
 fetch.js
-*.local.js
 
 # Environment variables
 
@@ -21,24 +20,8 @@ node_modules/
 dist/
 build/
 
-# OS & crash files
+# OS files
 
 .DS_Store
 Thumbs.db
-core.*
-
-# ML models
-
-*.pt
-
-# Sync conflicts
-
-*.sync-conflict*
-
-# Internal logs
-
-.logs/
-
-# Secrets
-
 fetch.js

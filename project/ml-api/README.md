@@ -1,5 +1,5 @@
 ---
-title: SkinGlow Analyzer
+title: LICIN
 emoji: 
 colorFrom: blue
 colorTo: pink
@@ -7,14 +7,14 @@ sdk: docker
 app_port: 7860
 ---
 
-# SkinGlow Analyzer API
+# LICIN API
 
 FastAPI server wrapping a YOLO model for acne detection.
 
 ## Deploy to Hugging Face Spaces
 
 1. Go to https://huggingface.co/new-space
-2. Space name: `skinglow-analyzer`
+2. Space name: `licin`
 3. License: `mit`
 4. Space SDK: **Docker**
 5. Upload all files from this directory (`ml-api/`) via git or drag & drop

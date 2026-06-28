@@ -5,7 +5,7 @@
   FEATURE: Scan Page — HTMX Partial Content
   PURPOSE:
     HTML partial returned by HTMX for the skin type selection screen.
-    Contains the same markup as the fallback in pages/scan/index.html
+    Matches the button-based UI in pages/scan/index.html.
   HTMX CONTRACT:
     - Served via GET /api/scan/partial
   ============================================================
@@ -22,41 +22,39 @@
 </div>
 
 <div class="scan-layout" x-data="createScanComponent()">
-  <!-- Card -->
   <div class="scan-card">
-    <!-- Mascot — bottom-right outside card, VERY LARGE -->
-    <div class="scan-mascot" aria-hidden="true">
-      <img 
-        src="/assets/icons/water-drop-mascot.svg" 
-        alt="" 
-        class="scan-mascot__img"
-      />
-    </div>
-
     <h1 class="scan-card__title">What's Your Skin Type?</h1>
 
     <div class="scan-card__options">
       <template x-for="type in skinTypes" :key="type.id">
-        <div
-          class="scan-type-card"
-          :class="{ 'scan-type-card--selected': selectedType === type.id }"
-          :style="'--card-color: ' + type.color"
+        <button
+          class="scan-type-btn"
+          :class="{ 'scan-type-btn--selected': selectedType === type.id }"
           @click="selectType(type.id)"
+          type="button"
         >
-          <div class="scan-type-card__shine"></div>
-          <div class="scan-type-card__content">
-            <span class="scan-type-card__label" x-text="type.label"></span>
-          </div>
-          <button
-            class="scan-type-card__ok"
-            @click.stop="selectType(type.id); confirmSelection()"
-            :disabled="selectedType !== type.id"
-            type="button"
-          >
-            OK
-          </button>
-        </div>
+          <span x-text="type.label"></span>
+        </button>
       </template>
+    </div>
+
+    <div class="scan-card__action">
+      <button
+        class="scan-confirm-btn"
+        @click="confirmSelection()"
+        :disabled="!selectedType"
+        type="button"
+      >
+        Confirm
+      </button>
+    </div>
+
+    <div class="scan-mascot" aria-hidden="true">
+      <img
+        src="/assets/icons/water-drop-mascot.svg"
+        alt="Mascot"
+        class="scan-mascot__img"
+      />
     </div>
   </div>
 </div>

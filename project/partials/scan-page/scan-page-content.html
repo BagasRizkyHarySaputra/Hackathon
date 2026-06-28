@@ -1,0 +1,147 @@
+<!--
+  ============================================================
+  FILE: partials/scan-page/scan-page-content.html
+  ============================================================
+  FEATURE: Scan Page (Camera) — HTMX Partial
+  PURPOSE:
+    HTML fragment for the skin scan camera page with
+    camera preview, capture button, and product results.
+    Matches pages/scan-page/index.html.
+  HTMX CONTRACT:
+    - Served via GET /api/scan-page/partial
+  ============================================================
+-->
+<div class="scan-page-viewport">
+  <div class="loading-bg-blur" aria-hidden="true">
+    <div class="loading-bg-blur__blob--pink-tl"></div>
+    <div class="loading-bg-blur__blob--blue-tr"></div>
+    <div class="loading-bg-blur__blob--dusty-center"></div>
+    <div class="loading-bg-blur__blob--blue-bl"></div>
+    <div class="loading-bg-blur__blob--pink-br"></div>
+    <div class="loading-bg-blur__blob--slate"></div>
+  </div>
+
+  <div class="home-app app-layout">
+    <div id="sidebar-root" data-active="scan"></div>
+
+    <main class="app-main app-main--scroll">
+      <header id="header-root" class="home-header" data-show-greeting="true"></header>
+
+      <div class="scan-card-wrap" x-data="createScanPageComponent()">
+        <!-- Card Header -->
+        <div class="scan-card-header">
+          <button class="scan-card-header__back" aria-label="Back" onclick="history.back()">
+            <img src="/assets/images/scan-page/kurang-dari.svg" alt="<" class="scan-icon-back" />
+          </button>
+          <h1 class="scan-card-header__title">Ready to scan your skin?</h1>
+          <button class="scan-card-header__help" aria-label="Help">
+            <img src="/assets/images/scan-page/tanda-tanya.svg" alt="?" class="scan-icon-help" />
+          </button>
+        </div>
+
+        <!-- Camera / Scan Area -->
+        <div class="scan-camera-area">
+          <video
+            class="scan-camera-area__video"
+            x-ref="video"
+            autoplay
+            playsinline
+            muted
+            aria-label="Camera preview"
+          ></video>
+
+          <canvas
+            class="scan-camera-area__canvas"
+            x-ref="canvas"
+            aria-hidden="true"
+          ></canvas>
+
+          <img
+            x-show="capturedImage"
+            :src="capturedImage"
+            class="scan-camera-area__preview"
+            alt="Captured skin photo"
+          />
+
+          <!-- Analyzing Loading Overlay -->
+          <div
+            class="scan-analyzing-overlay"
+            x-show="isAnalyzing"
+            x-transition:enter="analyzing-enter"
+            x-transition:enter-start="analyzing-enter-start"
+            x-transition:enter-end="analyzing-enter-end"
+            style="display: none;"
+          >
+            <div class="scan-analyzing-popup">
+              <div class="scan-analyzing-spinner"></div>
+              <p class="scan-analyzing-text">Analyzing your skin...</p>
+            </div>
+          </div>
+
+          <div class="scan-frame" aria-hidden="true">
+            <div class="scan-frame__corner scan-frame__corner--tl"></div>
+            <div class="scan-frame__corner scan-frame__corner--tr"></div>
+            <div class="scan-frame__corner scan-frame__corner--bl"></div>
+            <div class="scan-frame__corner scan-frame__corner--br"></div>
+          </div>
+
+          <div class="scan-camera-error" x-show="cameraError && !cameraReady" role="alert">
+            <svg class="scan-camera-error__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <p class="scan-camera-error__title">Camera Access Required</p>
+            <p class="scan-camera-error__text" x-text="cameraError"></p>
+            <button class="scan-camera-error__btn" @click="requestCamera()">
+              Allow Camera Access
+            </button>
+            <p class="scan-camera-error__hint">We need camera access to scan your skin</p>
+          </div>
+
+          <button
+            class="scan-camera-btn"
+            :class="{ 'scan-camera-btn--hidden': showPopup }"
+            aria-label="Capture photo"
+            @click="capturePhoto()"
+            :disabled="!cameraReady"
+          >
+            <img src="/assets/images/scan-page/Camera.svg" alt="" />
+          </button>
+        </div>
+
+        <!-- Product card -->
+        <template x-if="product && showPopup">
+          <div class="scan-overlay-card">
+            <div class="scan-overlay-card__image-wrap">
+              <img src="/assets/images/scan-page/product-cleanser.png" alt="Product" class="scan-overlay-card__image" onerror="this.style.display='none'" />
+            </div>
+            <div class="scan-overlay-card__info">
+              <h3 class="scan-overlay-card__name" x-text="product?.name"></h3>
+              <p class="scan-overlay-card__desc" x-text="product?.description"></p>
+            </div>
+            <div class="scan-overlay-card__routine">
+              <button
+                class="scan-results-routine-btn"
+                :class="{ 'active': routineType === 'morning' }"
+                @click="routineType = 'morning'"
+              >
+                <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
+              </button>
+              <button
+                class="scan-results-routine-btn"
+                :class="{ 'active': routineType === 'night' }"
+                @click="routineType = 'night'"
+              >
+                <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
+              </button>
+            </div>
+            <button class="scan-overlay-card__save" @click="saveRoutine()" aria-label="Save routine">
+              <span>Save Routine</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </template>
+      </div>
+    </main>
+  </div>
+</div>

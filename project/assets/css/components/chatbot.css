@@ -197,6 +197,23 @@
 .chat-messages-scroll {
   flex: 1;
   overflow-y: auto;
+  position: relative;
+}
+
+/* ─── Chat Limit Counter ─── */
+.chat-limit-counter {
+  position: absolute;
+  top: 0.8vh;
+  left: 1.2vw;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.8125rem);
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+  line-height: 1.5;
+  background: transparent;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ─── Chat Messages ─── */
@@ -262,7 +279,12 @@
     
     /* 3. Inner shadow terang (putih) di bagian kiri dan bawah */
     inset 4px -4px 4px rgba(255, 255, 255, 0.4);
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #5A3E4B;
 }
 
 .chat-avatar__circle--self {

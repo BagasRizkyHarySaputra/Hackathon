@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkinGlow — ChatBot" />
+  <meta name="description" content="LICIN — ChatBot" />
   <meta name="theme-color" content="#ffffff" />
-  <title>SkinGlow — ChatBot</title>
+  <title>LICIN — ChatBot</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/mascot.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
   <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/header.css" />
@@ -40,8 +41,15 @@
 
         <div class="chatbot-layout">
           <!-- ChatBot Panel (middle) -->
-        <div class="chatbot-panel">
-          <h2 class="chatbot-panel__title">Chatbot</h2>
+        <div class="chatbot-panel" id="chatbot-panel">
+          <div class="chatbot-panel__header">
+            <button class="chatbot-panel__burger" id="chatbot-burger" aria-label="Toggle chatbot panel">
+              <span class="chatbot-panel__burger-line"></span>
+              <span class="chatbot-panel__burger-line"></span>
+              <span class="chatbot-panel__burger-line"></span>
+            </button>
+            <h2 class="chatbot-panel__title">Chatbot</h2>
+          </div>
 
           <!-- New Chat Card -->
             <div class="chatbot-card action-card" id="btn-new-chat">
@@ -74,7 +82,17 @@
         </div>
           <!-- Chat Area (rightmost) -->
           <div class="chat-area">
+            <!-- Collapsed header (visible on mobile when panel is closed) -->
+            <div class="chatbot-collapsed-header" id="chatbot-collapsed-header">
+              <button class="chatbot-panel__burger" id="chatbot-collapsed-burger" aria-label="Open chatbot panel">
+                <span class="chatbot-panel__burger-line"></span>
+                <span class="chatbot-panel__burger-line"></span>
+                <span class="chatbot-panel__burger-line"></span>
+              </button>
+              <h2 class="chatbot-panel__title">Chatbot</h2>
+            </div>
             <div class="chat-messages-scroll">
+              <div class="chat-limit-counter" id="chat-limit-counter">50/50</div>
               <div class="chat-messages" id="chat-messages">
                 <!-- dynamically populated -->
               </div>
@@ -107,5 +125,6 @@
   <script src="/assets/js/components/header.js"></script>
   <script src="/assets/js/router.js"></script>
   <script src="/assets/js/chatbot-page.js"></script>
+  <script defer src="/assets/js/components/mascot.js"></script>
 </body>
 </html>

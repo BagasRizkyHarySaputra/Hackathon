@@ -4,7 +4,7 @@
   ============================================================
   FEATURE: App Shell — PWA Entry Point
   PURPOSE:
-    Main entry point for the SkinGlow Analyzer PWA. Serves as
+    Main entry point for the LICIN PWA. Serves as
     the application shell with navigation and toast container.
   HTMX CONTRACT:
     - Navigation links use hx-get for partial page swaps
@@ -19,16 +19,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkinGlow Analyzer — AI-powered skin analysis and glow detection." />
+  <meta name="description" content="LICIN — AI-powered skin analysis and glow detection." />
   <meta name="theme-color" content="#95B4C6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="SkinGlow" />
+  <meta name="apple-mobile-web-app-title" content="LICIN" />
   <link rel="manifest" href="/manifest.json" />
   <link rel="icon" type="image/png" href="/assets/icons/icon-192.png" />
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/mascot.css" />
   <link rel="stylesheet" href="/assets/css/components/loading.css" />
-  <title>SkinGlow Analyzer</title>
+  <title>LICIN</title>
 </head>
 <body>
   <div id="app">
@@ -85,5 +86,6 @@
   <script src="/assets/js/htmx/config.js"></script>
   <script src="/assets/js/htmx/interceptors.js"></script>
   <script src="/assets/js/pwa/sw-register.js"></script>
+  <script defer src="/assets/js/components/mascot.js"></script>
 </body>
 </html>

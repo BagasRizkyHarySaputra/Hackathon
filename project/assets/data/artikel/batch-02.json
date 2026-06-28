@@ -24,7 +24,7 @@
     "Simple-desc": "Avoid these common skincare mistakes: over-cleansing, skipping sunscreen, and using too many active ingredients at once.",
     "Description": "Washing your face too often or using the wrong cleanser can strip your skin of its natural oils. Your skin compensates by producing even more sebum, leading to breakouts and irritation. UV exposure is the number one cause of premature aging. Even on cloudy days, UVA rays penetrate through clouds and windows. Always apply SPF 30+ every morning. Layering retinol, AHA, BHA, and vitamin C all at once overwhelms your skin barrier. Introduce one active at a time and wait 2-4 weeks before adding another. Use lukewarm water instead of hot water, pat dry with a clean towel never rub, apply products from thinnest to thickest consistency, and always patch-test new products on your jawline first.",
     "Link-Image": "/assets/images/article-mistakes.png",
-    "Source": "SkinGlow Editorial Team"
+    "Source": "LICIN Editorial Team"
   },
   {
     "id": "simple-routine",
@@ -33,7 +33,7 @@
     "Simple-desc": "A basic three-step routine: cleanse, moisturize, and protect with sunscreen. Keep it simple and consistent for the best results.",
     "Description": "A basic routine involves three steps: cleansing, moisturizing, and applying sunscreen. Cleanser removes dirt, oil, and impurities. Moisturizer keeps the skin hydrated and supports the skin barrier. Sunscreen protects against UV damage and premature aging. A minimal routine maintains healthy skin, prevents dehydration and irritation, supports long-term skin health, and is suitable for most skin types. Choose products that match your skin type. Introduce new products gradually. Avoid using too many active ingredients at once. Be patient and consistent with your routine. Cleanse morning and night, apply moisturizer to damp skin for better absorption, sunscreen is non-negotiable rain or shine, and consistency beats complexity every time.",
     "Link-Image": "/assets/images/article-routine.png",
-    "Source": "SkinGlow Editorial Team"
+    "Source": "LICIN Editorial Team"
   },
   {
     "id": "lifestyle-habits",
@@ -42,6 +42,6 @@
     "Simple-desc": "Your skin reflects your overall health. Sleep, diet, stress levels, and hydration all play crucial roles in skin appearance.",
     "Description": "During deep sleep, your body increases blood flow to the skin, rebuilding collagen and repairing UV damage. Aim for 7-9 hours of quality sleep each night to support natural cell turnover. High-glycemic foods and dairy have been linked to increased acne in some individuals. Incorporate omega-3 fatty acids, antioxidants from fruits and vegetables, and plenty of water. Cortisol spikes from chronic stress trigger excess oil production and inflammation. Practice mindfulness, exercise regularly, and set boundaries to keep stress in check. Drink at least 8 glasses of water daily, change pillowcases weekly to reduce bacteria, avoid touching your face throughout the day, and exercise boosts circulation for a natural glow.",
     "Link-Image": "/assets/images/article-lifestyle.png",
-    "Source": "SkinGlow Editorial Team"
+    "Source": "LICIN Editorial Team"
   }
 ]

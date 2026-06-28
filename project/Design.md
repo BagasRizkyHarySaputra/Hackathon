@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-**SkinGlow Analyzer** is a Progressive Web App (PWA) that provides AI-powered
+**LICIN** is a Progressive Web App (PWA) that provides AI-powered
 skin analysis and glow detection. Users upload a photo, and the app analyzes
 skin tone, texture, hydration, and glow levels — presenting results in an
 intuitive dashboard.
@@ -89,14 +89,14 @@ All configuration lives in `config/app.config.js`.
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `APP_NAME` | string | `'SkinGlow Analyzer'` | Application display name |
-| `SHORT_NAME` | string | `'SkinGlow'` | PWA short name for home screen |
+| `APP_NAME` | string | `'LICIN'` | Application display name |
+| `SHORT_NAME` | string | `'LICIN'` | PWA short name for home screen |
 | `VERSION` | string | `'0.1.0'` | Semantic version |
 | `API_BASE_URL` | string | `'http://localhost:8001'` | Mock/real API base URL |
 | `API_TIMEOUT_MS` | number | `10000` | Request timeout in ms |
 | `HTMX_DEFAULT_SWAP` | string | `'innerHTML'` | Default HTMX swap strategy |
 | `HTMX_INDICATOR_CLASS` | string | `'htmx-loading'` | CSS class for loading state |
-| `SW_CACHE_NAME` | string | `'skinglow-v1'` | Service Worker cache name |
+| `SW_CACHE_NAME` | string | `'licin-v1'` | Service Worker cache name |
 | `SW_OFFLINE_URL` | string | `'/offline.html'` | Offline fallback page URL |
 | `LOADING_PROGRESS_INTERVAL_MS` | number | `80` | Progress bar tick interval |
 | `LOADING_SIMULATION_DURATION_MS` | number | `8000` | Total simulated duration |
@@ -118,8 +118,8 @@ All configuration lives in `config/app.config.js`.
 
 ### Manifest Fields
 
-- `name`: SkinGlow Analyzer
-- `short_name`: SkinGlow
+- `name`: LICIN
+- `short_name`: LICIN
 - `display`: standalone
 - `theme_color`: #95B4C6 (blue-grey from design palette)
 - `background_color`: #ffffff
@@ -200,7 +200,7 @@ Based on Figma export (`layer_Login.json`):
 - [ ] Implement `GET /api/login/partial` returning same HTML partial (mock ready)
 - [ ] Implement `GET /api/analysis/status` returning real progress data
 - [ ] FastAPI endpoints must return **identical HTML partials** as mock server
-- [ ] Update Service Worker cache version (`skinglow-v2`)
+- [x] Update Service Worker cache version (`licin-v2`)
 - [ ] Set `APP_CONFIG.IS_MOCK_MODE = false`
 - [ ] Add CORS headers in FastAPI matching current mock server headers
 - [ ] Test all HTMX interceptors work unchanged with real API

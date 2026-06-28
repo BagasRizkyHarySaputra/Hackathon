@@ -1,4 +1,4 @@
-# Mock Server — SkinGlow Analyzer
+# Mock Server — LICIN
 
 ## Overview
 
@@ -27,6 +27,14 @@ The server starts on **http://localhost:8001**.
 | `GET` | `/api/loading/partial` | Loading page HTML partial |
 | `GET` | `/api/analysis/status` | Mock analysis status JSON |
 | `GET` | `/api/login/partial` | Login page HTML partial |
+| `GET` | `/api/home/partial` | Home page HTML partial |
+| `GET` | `/api/scan/partial` | Scan (skin type) HTML partial |
+| `GET` | `/api/artikel/partial` | Artikel HTML partial |
+| `GET` | `/api/community/partial` | Community HTML partial |
+| `GET` | `/api/profile/partial` | Profile HTML partial |
+| `GET` | `/api/chatbot/partial` | Chatbot HTML partial |
+| `GET` | `/api/scan-page/partial` | Scan-page (camera) HTML partial |
+| `GET` | `/api/account/partial` | Account HTML partial |
 | `POST` | `/api/auth/login` | Mock login response JSON |
 | `GET` | `/offline.html` | PWA offline fallback |
 | `GET` | `/pages/loading/` | Loading page (standalone) |

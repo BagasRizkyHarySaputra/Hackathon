@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SkinGlow — Scan your skin" />
+  <meta name="description" content="LICIN — Scan your skin" />
   <meta name="theme-color" content="#ffffff" />
-  <title>SkinGlow — Scan</title>
+  <title>LICIN — Scan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/mascot.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
   <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/header.css" />
@@ -118,38 +119,75 @@
 
  </div>
 
-         <!-- Product card below camera area (mobile-style) -->
-         <template x-if="product && showPopup">
-           <div class="scan-overlay-card">
-             <div class="scan-overlay-card__image-wrap">
-               <img src="/assets/images/scan-page/product-cleanser.png" alt="Product" class="scan-overlay-card__image" onerror="this.style.display='none'" />
-             </div>
-             <div class="scan-overlay-card__info">
-               <h3 class="scan-overlay-card__name" x-text="product?.name"></h3>
-               <p class="scan-overlay-card__desc" x-text="product?.description"></p>
-             </div>
-             <div class="scan-overlay-card__routine">
-               <button
-                 class="scan-results-routine-btn"
-                 :class="{ 'active': routineType === 'morning' }"
-                 @click="routineType = 'morning'"
-               >
-                 <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
-               </button>
-               <button
-                 class="scan-results-routine-btn"
-                 :class="{ 'active': routineType === 'night' }"
-                 @click="routineType = 'night'"
-               >
-                 <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
-               </button>
-             </div>
-             <button class="scan-overlay-card__save" @click="saveRoutine()" aria-label="Save routine">
-               <span>Save Routine</span>
-               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-             </button>
-           </div>
-         </template>
+          <!-- Product card slider below camera area (mobile-style) -->
+          <template x-if="getProductCount() > 0 && showPopup">
+            <div class="scan-overlay-card">
+              <!-- Navigation arrows -->
+              <button 
+                class="scan-overlay-card__nav scan-overlay-card__nav--prev"
+                @click="prevProduct()"
+                x-show="canGoPrev()"
+                aria-label="Previous product"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              
+              <button 
+                class="scan-overlay-card__nav scan-overlay-card__nav--next"
+                @click="nextProduct()"
+                x-show="canGoNext()"
+                aria-label="Next product"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+
+              <!-- Product content -->
+              <div class="scan-overlay-card__image-wrap">
+                <img src="/assets/images/scan-page/product-cleanser.png" alt="Product" class="scan-overlay-card__image" onerror="this.style.display='none'" />
+              </div>
+              <div class="scan-overlay-card__info">
+                <div class="scan-overlay-card__counter" x-text="(currentProductIndex + 1) + ' / ' + getProductCount()"></div>
+                <h3 class="scan-overlay-card__name" x-text="getCurrentProduct()?.name"></h3>
+                <p class="scan-overlay-card__desc" x-text="getCurrentProduct()?.description"></p>
+              </div>
+
+              <!-- Dot indicators -->
+              <div class="scan-overlay-card__dots" x-show="getProductCount() > 1">
+                <template x-for="(item, index) in getCurrentProducts()" :key="index">
+                  <button 
+                    class="scan-overlay-card__dot"
+                    :class="{ 'active': index === currentProductIndex }"
+                    @click="currentProductIndex = index"
+                    :aria-label="'Go to product ' + (index + 1)"
+                  ></button>
+                </template>
+              </div>
+
+              <!-- Routine type selector -->
+              <div class="scan-overlay-card__routine">
+                <button
+                  class="scan-results-routine-btn"
+                  :class="{ 'active': routineType === 'morning' }"
+                  @click="switchRoutineType('morning')"
+                >
+                  <img src="/assets/images/scan-page/Morning-cropped.svg" alt="Morning" class="scan-results-routine-icon" />
+                </button>
+                <button
+                  class="scan-results-routine-btn"
+                  :class="{ 'active': routineType === 'night' }"
+                  @click="switchRoutineType('night')"
+                >
+                  <img src="/assets/images/scan-page/Night-cropped.svg" alt="Night" class="scan-results-routine-icon" />
+                </button>
+              </div>
+
+              <!-- Save button -->
+              <button class="scan-overlay-card__save" @click="saveRoutine()" aria-label="Save routine">
+                <span>Save Routine</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </template>
 
          </div>
       </main>
@@ -166,5 +204,6 @@
   <script src="/assets/js/alpine/components/scan-page.js"></script>
   <script src="/assets/js/router.js"></script>
   <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script defer src="/assets/js/components/mascot.js"></script>
 </body>
 </html>

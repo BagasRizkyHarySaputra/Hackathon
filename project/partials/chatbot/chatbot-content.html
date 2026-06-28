@@ -1,0 +1,104 @@
+<!--
+  ============================================================
+  FILE: partials/chatbot/chatbot-content.html
+  ============================================================
+  FEATURE: ChatBot Page — HTMX Partial
+  PURPOSE:
+    HTML fragment for the chatbot page with history panel
+    and live chat area. Matches pages/chatbot/index.html.
+  HTMX CONTRACT:
+    - Served via GET /api/chatbot/partial
+  ============================================================
+-->
+<div class="community-viewport">
+  <div class="loading-bg-blur" aria-hidden="true">
+    <div class="loading-bg-blur__blob--pink-tl"></div>
+    <div class="loading-bg-blur__blob--blue-tr"></div>
+    <div class="loading-bg-blur__blob--dusty-center"></div>
+    <div class="loading-bg-blur__blob--blue-bl"></div>
+    <div class="loading-bg-blur__blob--pink-br"></div>
+    <div class="loading-bg-blur__blob--slate"></div>
+  </div>
+
+  <div class="community-app app-layout">
+    <div id="sidebar-root" data-active="community"></div>
+
+    <main class="app-main app-main--fixed app-main--chatbot">
+      <div class="home-main__top-bg"></div>
+
+      <header id="header-root" class="home-header"></header>
+
+      <div class="chatbot-layout">
+        <!-- ChatBot Panel -->
+        <div class="chatbot-panel" id="chatbot-panel">
+          <div class="chatbot-panel__header">
+            <button class="chatbot-panel__burger" id="chatbot-burger" aria-label="Toggle chatbot panel">
+              <span class="chatbot-panel__burger-line"></span>
+              <span class="chatbot-panel__burger-line"></span>
+              <span class="chatbot-panel__burger-line"></span>
+            </button>
+            <h2 class="chatbot-panel__title">Chatbot</h2>
+          </div>
+
+          <div class="chatbot-card action-card" id="btn-new-chat">
+            <span class="action-card__text">New Chat</span>
+            <div class="action-card__btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+          </div>
+
+          <div class="chatbot-card history-card">
+            <div class="history-header">
+              <span class="history-title">History</span>
+              <svg class="history-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B4B4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+
+            <hr class="history-divider">
+
+            <div class="history-list" id="history-list">
+              <!-- dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+          <div class="chatbot-collapsed-header" id="chatbot-collapsed-header">
+            <button class="chatbot-panel__burger" id="chatbot-collapsed-burger" aria-label="Open chatbot panel">
+              <span class="chatbot-panel__burger-line"></span>
+              <span class="chatbot-panel__burger-line"></span>
+              <span class="chatbot-panel__burger-line"></span>
+            </button>
+            <h2 class="chatbot-panel__title">Chatbot</h2>
+          </div>
+
+          <div class="chat-messages-scroll">
+            <div class="chat-limit-counter" id="chat-limit-counter">50/50</div>
+            <div class="chat-messages" id="chat-messages">
+              <!-- dynamically populated -->
+            </div>
+          </div>
+
+          <div class="chat-input">
+            <div class="emoji-picker" id="emoji-picker">
+              <div class="emoji-picker__categories" id="emoji-cats"></div>
+              <div class="emoji-picker__grid" id="emoji-grid"></div>
+            </div>
+            <div class="chat-input__field">
+              <input type="text" class="chat-input__textbox" id="chat-input-text" placeholder="Type something..." autocomplete="off" />
+            </div>
+            <div class="chat-input__actions">
+              <img src="/assets/icons/nav/face-smile-wink.svg" alt="" class="chat-input__icon" id="btn-emoji" />
+              <img src="/assets/icons/nav/paper-plane.svg" alt="" class="chat-input__icon chat-input__icon--send" id="btn-send" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

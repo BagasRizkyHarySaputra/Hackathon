@@ -1,5 +1,5 @@
 /**
- * SkinGlow — Shared Chat Engine
+ * LICIN — Shared Chat Engine
  *
  * Handles send/receive, auto-reply, localStorage persistence,
  * seed loading from /db-sementara/, and DOM rendering.
@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  const LS_PREFIX = 'skinglow_chat_';
+  const LS_PREFIX = 'licin_chat_';
   const AVATAR_SRC = '/assets/icons/water-drop-mascot.svg';
   const AUTO_REPLY_TEXT = 'Meehh…';
   const AUTO_REPLY_DELAY = 700;

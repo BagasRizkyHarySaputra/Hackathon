@@ -1,6 +1,6 @@
 {
-  "name": "SkinGlow Analyzer",
-  "short_name": "SkinGlow",
+  "name": "LICIN",
+  "short_name": "LICIN",
   "description": "AI-powered skin analysis and glow detection application.",
   "start_url": "/",
   "display": "standalone",

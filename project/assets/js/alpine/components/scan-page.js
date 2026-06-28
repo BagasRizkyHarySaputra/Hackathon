@@ -1,5 +1,5 @@
 /**
- * SkinGlow — Scan Page Component
+ * LICIN — Scan Page Component
  *
  * Captures a photo from the camera, sends to YOLO ML API (local Python server),
  * replaces the captured photo with the YOLO annotated image (bounding boxes),
@@ -34,6 +34,15 @@ function createScanPageComponent() {
 
     /** @type {Object|null} Recommended product from analysis */
     product: null,
+
+    /** @type {Object} All recommended products from ML API */
+    products: {
+      morning: [],
+      night: []
+    },
+
+    /** @type {number} Current product index in slider */
+    currentProductIndex: 0,
 
     /** @type {Object|null} Full health score profile from API */
     healthScore: null,
@@ -262,11 +271,73 @@ function createScanPageComponent() {
             // Store full health score profile
             self.healthScore = data.health_score || null;
 
-            // Dummy product (real recommendation handled later)
-            self.product = data.product || {
-              name: 'Gentle Cleanser',
-              description: 'Maintains clear healthy skin with gentle daily cleansing.',
-            };
+            // Extract product recommendations from ML API
+            if (data.recommendations) {
+              console.log('[ScanPage] Extracting product recommendations...');
+              
+              // Extract morning products (pagi)
+              self.products.morning = [];
+              if (data.recommendations.pagi && typeof data.recommendations.pagi === 'object') {
+                Object.keys(data.recommendations.pagi).forEach(function(categoryKey) {
+                  var category = data.recommendations.pagi[categoryKey];
+                  if (category.options && Array.isArray(category.options) && category.options.length > 0) {
+                    // Only take the first (top-ranked) product, not all alternatives
+                    var topProduct = category.options[0];
+                    self.products.morning.push({
+                      name: topProduct.nama,
+                      description: topProduct.deskripsi,
+                      type: topProduct.jenis,
+                      bpom: topProduct.bpom,
+                      price: topProduct.harga,
+                      size: topProduct.ukuran,
+                      coverage: topProduct.problem_coverage,
+                      problems: topProduct.masalah
+                    });
+                  }
+                });
+              }
+
+              // Extract night products (malam)
+              self.products.night = [];
+              if (data.recommendations.malam && typeof data.recommendations.malam === 'object') {
+                Object.keys(data.recommendations.malam).forEach(function(categoryKey) {
+                  var category = data.recommendations.malam[categoryKey];
+                  if (category.options && Array.isArray(category.options) && category.options.length > 0) {
+                    // Only take the first (top-ranked) product, not all alternatives
+                    var topProduct = category.options[0];
+                    self.products.night.push({
+                      name: topProduct.nama,
+                      description: topProduct.deskripsi,
+                      type: topProduct.jenis,
+                      bpom: topProduct.bpom,
+                      price: topProduct.harga,
+                      size: topProduct.ukuran,
+                      coverage: topProduct.problem_coverage,
+                      problems: topProduct.masalah
+                    });
+                  }
+                });
+              }
+
+              console.log('[ScanPage] Extracted ' + self.products.morning.length + ' morning products, ' + self.products.night.length + ' night products.');
+              
+              // Set first product as default for backward compatibility
+              self.product = self.products.morning[0] || self.products.night[0] || {
+                name: 'No recommendations',
+                description: 'Your skin looks great! Keep up your current routine.',
+              };
+            } else {
+              // Fallback if no recommendations
+              self.product = {
+                name: 'Gentle Cleanser',
+                description: 'Maintains clear healthy skin with gentle daily cleansing.',
+              };
+              self.products.morning = [self.product];
+              self.products.night = [self.product];
+            }
+
+            // Reset slider to first product
+            self.currentProductIndex = 0;
 
             self.isAnalyzing = false;
             self.showPopup = true;
@@ -385,28 +456,193 @@ function createScanPageComponent() {
 
     _showError(msg) {
       this.analysis = { markers: [] };
-      this.product = { name: 'Could not analyze', description: msg };
+      const errorProduct = { name: 'Could not analyze', description: msg };
+      this.product = errorProduct;
+      // Populate products arrays so error card can show with new condition
+      this.products.morning = [errorProduct];
+      this.products.night = [errorProduct];
+      this.currentProductIndex = 0;
       this.isAnalyzing = false;
       this.showPopup = true;
+    },
+
+    /**
+     * Get current products array based on selected routine type
+     */
+    getCurrentProducts() {
+      return this.products[this.routineType] || [];
+    },
+
+    /**
+     * Get current product being displayed in slider
+     */
+    getCurrentProduct() {
+      const products = this.getCurrentProducts();
+      return products[this.currentProductIndex] || null;
+    },
+
+    /**
+     * Get total count of products for current routine
+     */
+    getProductCount() {
+      return this.getCurrentProducts().length;
+    },
+
+    /**
+     * Check if can navigate to next product
+     */
+    canGoNext() {
+      return this.currentProductIndex < this.getProductCount() - 1;
+    },
+
+    /**
+     * Check if can navigate to previous product
+     */
+    canGoPrev() {
+      return this.currentProductIndex > 0;
+    },
+
+    /**
+     * Navigate to next product in slider
+     */
+    nextProduct() {
+      if (this.canGoNext()) {
+        this.currentProductIndex++;
+      }
+    },
+
+    /**
+     * Navigate to previous product in slider
+     */
+    prevProduct() {
+      if (this.canGoPrev()) {
+        this.currentProductIndex--;
+      }
+    },
+
+    /**
+     * Switch routine type and reset slider position
+     */
+    switchRoutineType(type) {
+      if (this.routineType !== type) {
+        this.routineType = type;
+        this.currentProductIndex = 0;
+      }
     },
 
     /**
      * Saves the selected routine.
      */
     saveRoutine() {
-      console.log('[ScanPage] Routine saved:', this.routineType);
+      console.log('[ScanPage] Saving routine to Supabase...');
+      var self = this;
 
-      if (this.$store && this.$store.ui) {
-        this.$store.ui.showToast(
-          'Routine saved: ' + this.routineType,
-          'success'
-        );
+      // Get auth from Alpine store
+      var authStore = window.Alpine && window.Alpine.store('auth');
+      var userId = authStore && authStore.user ? authStore.user.id : null;
+      var token = authStore ? authStore.token : null;
+
+      // DEBUG: Log auth state
+      console.log('[ScanPage] Auth Debug:', {
+        hasAuthStore: !!authStore,
+        hasUser: !!(authStore && authStore.user),
+        userId: userId,
+        hasToken: !!token,
+        tokenPreview: token ? token.substring(0, 20) + '...' : null
+      });
+
+      if (!userId) {
+        console.error('[ScanPage] Cannot save routine: User not authenticated');
+        if (this.$store && this.$store.ui) {
+          this.$store.ui.showToast('Please sign in to save your routine', 'error');
+        }
+        return;
       }
 
-      this.$dispatch('scan:routine-saved', {
-        routine: this.routineType,
-        product: this.product ? this.product.name : null,
-      });
+      // Prepare payload for Supabase
+      var payload = {
+        user_id: userId,
+        morning_products: this.products.morning,
+        night_products: this.products.night,
+        health_score: this.healthScore,
+        updated_at: new Date().toISOString()
+      };
+
+      // POST through Supabase REST API with UPSERT (on_conflict handles duplicate user_id)
+      var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/saved_routines?on_conflict=user_id';
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + (token || APP_CONFIG.SUPABASE_ANON_KEY),
+          'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function(res) {
+          if (!res.ok) {
+            return res.text().then(function(errorText) {
+              throw new Error('Supabase save failed: HTTP ' + res.status + ' - ' + errorText);
+            });
+          }
+          console.log('[ScanPage] Routine saved to Supabase successfully.');
+
+          // Show success message
+          var totalProducts = self.products.morning.length + self.products.night.length;
+          if (self.$store && self.$store.ui) {
+            self.$store.ui.showToast(
+              'Routine saved! ' + totalProducts + ' products saved.',
+              'success'
+            );
+          }
+
+          // Dispatch event for any listeners
+          self.$dispatch('scan:routine-saved', {
+            morning: self.products.morning.length,
+            night: self.products.night.length,
+            total: totalProducts
+          });
+
+          // Full page reload for fresh scan
+          setTimeout(function() {
+            window.location.reload();
+          }, 1500); // 1.5s delay untuk kasih waktu baca toast
+        })
+        .catch(function(err) {
+          console.error('[ScanPage] Failed to save routine:', err);
+          if (self.$store && self.$store.ui) {
+            self.$store.ui.showToast('Failed to save routine: ' + err.message, 'error');
+          }
+        });
+    },
+
+    /**
+     * Reset scan page state for a new scan.
+     * Called after successfully saving a routine.
+     */
+    resetScan() {
+      console.log('[ScanPage] Resetting scan page for new scan...');
+      
+      // Reset all state variables to initial values
+      this.capturedImage = null;
+      this.showPopup = false;
+      this.isAnalyzing = false;
+      this.analysis = null;
+      this.product = null;
+      this.products = {
+        morning: [],
+        night: []
+      };
+      this.currentProductIndex = 0;
+      this.healthScore = null;
+      this.savedToSupabase = false;
+      
+      // Restart camera stream
+      this.requestCamera();
+      
+      console.log('[ScanPage] Reset complete. Ready for new scan.');
     },
 
     /**

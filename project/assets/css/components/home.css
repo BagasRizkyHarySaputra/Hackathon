@@ -165,6 +165,8 @@
 }
 
 .diary-thumb {
+  width: 12vw;
+  height: 12vw;
   aspect-ratio: 1;
   background: rgba(135, 150, 168, 0.15);
   border-radius: 1vw;

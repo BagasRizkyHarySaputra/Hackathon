@@ -1,0 +1,239 @@
+/**
+ * ============================================================
+ * FILE: assets/css/components/mascot.css
+ * ============================================================
+ * FEATURE: Floating Draggable Mascot (LICIN water-drop)
+ *
+ * PURPOSE:
+ *   Renders a small floating water-drop mascot that stays on top
+ *   of every page inside the main site. Users can drag it freely
+ *   around the viewport; its position is persisted across pages
+ *   via localStorage. The mascot gently bobs, sways, and blinks
+ *   to feel alive.
+ *
+ * DEPENDENCIES:
+ *   - Inline SVG injected by assets/js/components/mascot.js
+ *   - Loaded on every page (link tag in <head>, script near </body>)
+ *
+ * USAGE:
+ *   <link rel="stylesheet" href="/assets/css/components/mascot.css" />
+ *   ...
+ *   <script defer src="/assets/js/components/mascot.js"></script>
+ *
+ * PHASE: Frontend — purely cosmetic, no backend dependency
+ * ============================================================
+ */
+
+/* ──────────────────────────────────────────────
+ * Root container — fixed, draggable, top-most layer
+ * ────────────────────────────────────────────── */
+.mascot-fab {
+  --mascot-size: 84px;            /* base render size; JS uses inner px value */
+  --mascot-shadow: 0 8px 24px rgba(149, 180, 198, 0.45);
+  --mascot-shadow-active: 0 14px 36px rgba(149, 180, 198, 0.55);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  width: var(--mascot-size);
+  height: calc(var(--mascot-size) * 1.0967); /* match SVG viewBox aspect ratio */
+  z-index: 9998;                    /* below toast (9999), above everything else */
+  pointer-events: auto;
+  touch-action: none;               /* required for pointer drag on touch devices */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: grab;
+  will-change: transform;
+  filter: drop-shadow(var(--mascot-shadow));
+  transition: filter 0.25s ease;
+  /* Position is driven by transform: translate(...) set inline by JS */
+}
+
+.mascot-fab[data-dragging="true"] {
+  cursor: grabbing;
+  filter: drop-shadow(var(--mascot-shadow-active));
+}
+
+.mascot-fab[hidden] { display: none; }
+
+/* The mascot is rendered via an <img> with a blob: SVG URL (see mascot.js).
+   Loading via <img> gives the SVG its own isolated, transparent rendering
+   context — the file's <g style="mix-blend-mode:color-burn/screen"> groups
+   blend against that transparent backdrop instead of the page, so pastel
+   gradients always resolve correctly regardless of page background. */
+.mascot-fab__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;            /* let the container handle pointer events */
+  user-select: none;
+  -webkit-user-drag: none;          /* prevent native image drag gesture */
+  transform-origin: center;
+
+  /* Float + sway compose cleanly because mascot-float targets the `translate`
+     property while mascot-sway targets `transform`. The container holds the
+     position via `transform: translate(X,Y)`, so we must NOT animate transform
+     for the float. */
+  animation:
+    mascot-float 3.4s ease-in-out infinite,
+    mascot-sway 5.2s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────
+ * Animation: gentle vertical float (uses the standalone `translate` property
+ * so it composes with mascot-sway's transform: rotate() without override)
+ * ────────────────────────────────────────────── */
+@keyframes mascot-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+
+/* Slight rotational sway applied to the mascot image */
+@keyframes mascot-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+
+@keyframes mascot-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+
+/* ──────────────────────────────────────────────
+ * Animation: pop a tad bigger on tap/release
+ * ────────────────────────────────────────────── */
+.mascot-fab__pop {
+  animation: mascot-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+  transform-origin: center;
+}
+
+@keyframes mascot-pop {
+  0%   { transform: scale(0.85); }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* NOTE: `.mascot-fab__body` / `.mascot-fab__eye--left/right` animations
+   (inner-SVG float and blink) have been removed. The mascot is now rendered
+   via <img>, which does not expose SVG internals to external CSS, so those
+   hooks were unreachable. Float is applied to the <img> via mascot-float
+   (using the `translate` property so it composes with sway's transform). */
+
+/* Pause animations while dragging so the mascot feels "grabbed" */
+.mascot-fab[data-dragging="true"] .mascot-fab__svg,
+.mascot-fab[data-dragging="true"] .mascot-fab__pop {
+  animation-play-state: paused;
+}
+
+/* ──────────────────────────────────────────────
+ * Hint tooltip — appears once, then fades out
+ * ────────────────────────────────────────────── */
+.mascot-fab__hint {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 2px;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 5px 9px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #3a5868;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mascot-fab__hint--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mascot-fab__hint::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  transform: rotate(45deg);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ──────────────────────────────────────────────
+ * Chat bubble — appears on first tap, redirects on second
+ * ────────────────────────────────────────────── */
+.mascot-fab__chat-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  font-size: 12px;
+  line-height: 1.3;
+  white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1;
+}
+
+.mascot-fab__chat-bubble--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.mascot-fab__chat-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -6px;
+  width: 11px;
+  height: 11px;
+  background: #764ba2;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+/* ──────────────────────────────────────────────
+ * Mobile tuning — slightly smaller on small viewports
+ * ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .mascot-fab {
+    --mascot-size: 68px;
+    right: 16px;
+    bottom: 88px;                   /* sit above bottom nav/header on mobile */
+  }
+}
+
+@media (max-width: 380px) {
+  .mascot-fab {
+    --mascot-size: 60px;
+    right: 12px;
+  }
+}
+
+/* ──────────────────────────────────────────────
+ * Reduced motion — kill animations for accessibility
+ * ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mascot-fab__svg,
+  .mascot-fab__pop {
+    animation: none !important;
+  }
+  .mascot-fab__hint { display: none !important; }
+}

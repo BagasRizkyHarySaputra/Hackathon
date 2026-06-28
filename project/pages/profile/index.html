@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components/mascot.css" />
   <link rel="stylesheet" href="/assets/css/components/global.css" />
   <link rel="stylesheet" href="/assets/css/components/sidebar.css" />
   <link rel="stylesheet" href="/assets/css/components/header.css" />
@@ -573,6 +574,91 @@
         document.getElementById('routine-night').style.display = routine === 'night' ? '' : 'none';
       };
 
+      // ── Load Saved Routine from localStorage ──
+      window.loadSavedRoutine = function() {
+        try {
+          // Get auth from Alpine store
+          var auth = Alpine.store('auth');
+          if (!auth || !auth.user) {
+            // Auth store not ready - retry every 300ms up to 6 seconds
+            var retries = arguments.length > 0 ? arguments[0] : 0;
+            if (retries < 20) {
+              setTimeout(function() { window.loadSavedRoutine(retries + 1); }, 300);
+            } else {
+              console.log('[Profile] Not authenticated after retries, using default routine');
+            }
+            return;
+          }
+
+          var userId = auth.user.id;
+          var token = auth.token;
+
+          // Fetch from Supabase
+          fetch(APP_CONFIG.SUPABASE_URL + '/rest/v1/saved_routines?user_id=eq.' + userId, {
+            method: 'GET',
+            headers: {
+              'apikey': APP_CONFIG.SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json'
+            }
+          })
+            .then(function(response) {
+              if (!response.ok) {
+                throw new Error('Failed to fetch routine: ' + response.statusText);
+              }
+              return response.json();
+            })
+            .then(function(data) {
+              // Supabase returns an array, get first result
+              if (!data || data.length === 0) {
+                console.log('[Profile] No saved routine found, using defaults');
+                return;
+              }
+
+              var routine = data[0];
+              var morningProducts = routine.morning_products || [];
+              var nightProducts = routine.night_products || [];
+
+              // Helper to generate routine item HTML
+              function generateRoutineItemHTML(product) {
+                return `
+                  <div class="routine-item">
+                    <div class="routine-item__img">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </div>
+                    <div class="routine-item__info">
+                      <div class="routine-item__name">${product.name || 'Unknown Product'}</div>
+                      <p class="routine-item__desc">${product.description || ''}</p>
+                    </div>
+                  </div>
+                `;
+              }
+
+              // Populate morning routine
+              var morningContainer = document.getElementById('routine-morning');
+              if (morningContainer && morningProducts.length > 0) {
+                morningContainer.innerHTML = morningProducts.map(generateRoutineItemHTML).join('');
+              }
+
+              // Populate night routine
+              var nightContainer = document.getElementById('routine-night');
+              if (nightContainer && nightProducts.length > 0) {
+                nightContainer.innerHTML = nightProducts.map(generateRoutineItemHTML).join('');
+              }
+
+              console.log('[Profile] Loaded saved routine from Supabase:', morningProducts.length, 'morning products,', nightProducts.length, 'night products');
+            })
+            .catch(function(err) {
+              console.error('[Profile] Failed to load saved routine from Supabase:', err.message);
+            });
+        } catch (err) {
+          console.error('[Profile] Failed to load saved routine:', err.message);
+        }
+      };
+
       // ── Account Edit Toggle ──
       window.toggleAccountEdit = function() {
         var grid        = document.getElementById('profile-grid');
@@ -798,8 +884,14 @@
 
       // ── Load profile on page load ──
       loadProfile();
+      
+      // Wait for Alpine to be ready before loading routine
+      document.addEventListener('alpine:init', function() {
+        loadSavedRoutine();
+      });
     })();
   </script>
   <script src="/assets/js/router.js"></script>
+  <script defer src="/assets/js/components/mascot.js"></script>
 </body>
 </html>

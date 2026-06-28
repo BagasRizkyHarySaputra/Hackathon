@@ -18,7 +18,7 @@
     overflow: visible;
     min-height: 100dvh;
     align-items: flex-start;
-    padding: 4vh 0 6vh;
+    padding: 10vh 0 6vh;
   }
 
   .login-layout {
@@ -47,7 +47,62 @@
   }
 
   .login-card-container {
+    height: 50vh;
+    aspect-ratio: unset;
+  }
+
+  /* wrapper: stretch + z-index swap */
+  .login-card-svg-stretch {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    transform: scaleY(1.25);
+    transform-origin: center;
+    pointer-events: none;
+  }
+
+  .login-card-svg-stretch--signin { z-index: 2; }
+  .login-card-svg-stretch--signup { z-index: 1; }
+
+  /* forward: signin swings behind signup */
+  .login-card-container[anim-direction="forward"][data-tab="signup"]
+    .login-card-svg-stretch--signin {
+    animation: spanSwapToBack 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .login-card-container[anim-direction="forward"][data-tab="signup"]
+    .login-card-svg-stretch--signup {
+    animation: spanSwapToFront 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  /* backward: signup swings behind signin */
+  .login-card-container[anim-direction="backward"][data-tab="signin"]
+    .login-card-svg-stretch--signup {
+    animation: spanSwapToBack 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  .login-card-container[anim-direction="backward"][data-tab="signin"]
+    .login-card-svg-stretch--signin {
+    animation: spanSwapToFront 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes spanSwapToBack {
+    0%   { z-index: 2; }
+    50%  { z-index: 2; }
+    51%  { z-index: 1; }
+    100% { z-index: 1; }
+  }
+  @keyframes spanSwapToFront {
+    0%   { z-index: 1; }
+    50%  { z-index: 1; }
+    51%  { z-index: 2; }
+    100% { z-index: 2; }
+  }
+
+  .login-card-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
   }
 
   .login-btn-wrap {
@@ -68,8 +123,8 @@
   }
 
   .login-tabs {
-    margin-bottom: 4vw;
-    gap: 20vw;
+    margin-bottom: 2vw;
+    gap: 40vw;
     justify-content: center;
   }
 
@@ -114,7 +169,7 @@
   }
 
   .login-form {
-    gap: 1.2vh;
+    gap: 0vh;
   }
 
   .login-input-group {
@@ -129,13 +184,13 @@
 
   .login-input-group__icon svg,
   .login-input-group__icon img {
-    width: 6vw;
-    height: 6vw;
+    width: 4vw;
+    height: 4vw;
   }
 
   .login-input {
-    height: 100%;
-    font-size: 3.8vw;
+    height: 85%;
+    font-size: 2.8vw;
     padding: 0 3vw 0 11vw;
     border-radius: 2.5vw;
   }
@@ -145,5 +200,8 @@
     width: 6vw;
     height: 6vw;
   }
-
+  .login-account-link {
+    font-size: 3vw;
+    margin-top: 1vh;
+  }
 }

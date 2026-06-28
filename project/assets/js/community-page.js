@@ -1,5 +1,5 @@
 /**
- * SkinGlow — Community Page Logic
+ * LICIN — Community Page Logic
  *
  * Features:
  *   - Channel switching (General / Skincare)
@@ -14,7 +14,7 @@
 (function () {
   'use strict';
 
-  var LS_ACTIVE_KEY = 'skinglow_community_active';
+  var LS_ACTIVE_KEY = 'licin_community_active';
 
   /* ─── State ─── */
   var currentUser = null;
