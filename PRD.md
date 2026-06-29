@@ -215,6 +215,10 @@
 | 001 | `migrations/001_scan_results.sql` | Creates `scan_results` table (clear_skin, nodules, pustules, papules, dark_spot, blackheads, whiteheads, acne_counts, issues_found) dengan RLS |
 | 002 | `migrations/002_scan_results_telegram.sql` | Adds `telegram_file_id` + `telegram_message_id` columns untuk cloud photo storage |
 | 003 | `migrations/003_chatbot.sql` | Creates `chatbot_chats` + `chatbot_messages` tables dengan RLS & Realtime |
+| 004 | `migrations/004_routine_extras.sql` | Adds `morning_routine` + `night_routine` columns ke `skincare_routines` (dropped, merged into seed script) |
+| 005 | `migrations/005_gdrive_storage.sql` | Adds `gdrive_file_id` + `gdrive_url` + partial index (abandoned — Google Drive approach failed with 403 storage quota) |
+| 006 | `supabase/migrations/006_purge_telegram.sql` | ***DESTRUCTIVE*** — Deletes rows without `gdrive_file_id`, drops `telegram_file_id` + `telegram_message_id` (already applied, 8 rows remain) |
+| 007 | `supabase/migrations/007_add_telegram_file_id.sql` | Restores `telegram_file_id` column + partial index (reverted back to Telegram) |
 
 ---
 
@@ -331,16 +335,28 @@
 - [x] Alpine stores: ui.store (toasts, theme), auth.store (Supabase Auth)
 - [x] Centralized config: config/app.config.js
 - [x] .env file (Supabase keys, Telegram bot, ZenMux API key)
-- [x] Database migrations: scan_results, chatbot_chats, chatbot_messages
+- [x] Database migrations: 001–007 (scan_results, chatbot, gdrive, telegram)
 - [x] Python seed scripts: seed_routines.py, upload_articles.py
-- [x] Telegram Bot photo proxy (send-photo + photo endpoints)
+- [x] Telegram Bot photo proxy (send-photo — auth required, photo — public)
+- [x] Mock server (mock/server.js) sync with production API routes (Telegram, not GDrive)
+- [x] E2E Playwright test — Telegram upload + display flow verified (2026-06-28)
+- [x] PWA icons: icon-192.png, icon-512.png (generated)
+- [x] iOS meta tags: apple-touch-icon, apple-mobile-web-app-capable
+- [x] Install prompt banner (install-prompt.js + beforeinstallprompt handler)
+- [x] XSS fix: index.html line 53 changed from x-html to x-text
+- [x] Auth middleware: POST endpoints protected, GET /api/telegram/photo public (img src limitation)
+- [x] Diary grid fix: pickBestScan() prioritizes scans with telegram_file_id
 - [x] 10/11 pages sudah responsive (tips-artikel sudah responsive)
 
 #### Known Issues
 
 - [ ] **Account toggle form belum save** — Profile page Account mode toggle works (show/hide), tapi Save button hanya console.log
 - [ ] **Komponen belum dipisah** — `components/layout/` dan `components/ui/` masih kosong, komponen masih embedded di halaman
+- [x] **Telegram fallback di home.js** — Fixed via pickBestScan() — memilih scan dengan telegram_file_id, skip yang tidak punya foto.
 - [x] **Chatbot bot reply** — Sudah diganti AI-powered via DG-AI API (gpt-oss-120b, 60k req/day free, no auth)
+- [x] **XSS via x-html** — index.html line 53, fixed by changing to x-text + white-space:pre-line
+- [x] **Diary grid foto tidak tampil** — Karena scan lama tidak punya telegram_file_id. Fixed via pickBestScan() helper.
+- [x] **API key rotation** — rotate-zen-keys.sh di ~/.config/opencode/ sudah dihapus. Key marketku diperbarui. Cause: shell script auto-rotates API keys on restart.
 
 ### Phase 2 — Backend Integration (In Progress)
 
@@ -352,6 +368,10 @@
 | Vercel deployment |  Done | Rewrites + serverless API |
 | Chatbot Realtime |  Done | Supabase postgres_changes subscription |
 | Telegram photo storage |  Done | Bot proxy endpoints |
+| PWA setup |  Done | Icons, iOS meta tags, install prompt |
+| Mock-Prod sync |  Done | mock/server.js routes synced with api/index.js (Telegram) |
+| E2E testing |  Done | Playwright test: upload + display verified (2026-06-28) |
+| Security fixes |  Done | XSS fixed, auth middleware on POST, BOT_TOKEN naming |
 
 ### Phase 3 — Production Polish
 
@@ -371,8 +391,9 @@
 | `SUPABASE_URL` | `.env` | Supabase client + scripts |
 | `SUPABASE_ANON_KEY` | `.env` | Supabase client (frontend) |
 | `SUPABASE_SERVICE_ROLE_KEY` | `.env` | Seed scripts (admin) |
-| `TELEGRAM_BOT_TOKEN` | `.env` | Vercel API + Mock server |
-| `TELEGRAM_CHAT_ID` | `.env` | Vercel API + Mock server |
+| `TELEGRAM_BOT_TOKEN` | `.env` | Vercel API + Mock server (fallback: `BOT_TOKEN`) |
+| `TELEGRAM_CHAT_ID` | `.env` | Vercel API + Mock server (chat ID: 6265895260) |
+
 | `ZENMUX_API_KEY` | `.env` | Future AI chatbot integration |
 
 ---
