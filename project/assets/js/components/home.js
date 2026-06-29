@@ -23,14 +23,31 @@
   /** Acne type display order */
   var ACNE_ORDER = ['blackheads', 'dark_spot', 'nodules', 'papules', 'pustules', 'whiteheads'];
 
-  function setThumbPhoto(index, fileId) {
+  function setThumbPhoto(index, photoUrl) {
     if (!DIARY_THUMBS[index]) return;
     var thumb = DIARY_THUMBS[index];
-    var photoUrl = '/api/telegram/photo?file_id=' + encodeURIComponent(fileId);
     console.log('[Home] setThumbPhoto(' + index + ') - Week ' + (index+1) + ' - URL:', photoUrl);
-    thumb.innerHTML = '<img src="' + photoUrl +
-      '" alt="Diary photo" style="width:100%;height:100%;object-fit:cover;border-radius:1vw;" ' +
-      'onerror="this.parentElement.innerHTML=\'' + PLACEHOLDER_SVG + '\'; console.error(\'[Home] Photo load failed for Week ' + (index+1) + '\');" />';
+
+    function tryLoad(retries) {
+      thumb.innerHTML = '';
+      var img = document.createElement('img');
+      img.src = photoUrl;
+      img.alt = 'Diary photo';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:1vw;';
+      img.onerror = function () {
+        if (retries > 0) {
+          var delay = Math.min(1000 * Math.pow(2, 5 - retries), 16000);
+          console.warn('[Home] Photo load failed for Week ' + (index+1) + ', retrying in ' + delay + 'ms (' + retries + ' tries left)');
+          setTimeout(function () { tryLoad(retries - 1); }, delay);
+        } else {
+          thumb.innerHTML = PLACEHOLDER_SVG;
+          console.error('[Home] Photo load failed for Week ' + (index+1) + ' — all retries exhausted.');
+        }
+      };
+      thumb.appendChild(img);
+    }
+
+    tryLoad(5);
   }
 
   function resetThumb(index) {
@@ -114,32 +131,45 @@
 
       console.log('[Home] Bucket counts - Week 1:', buckets[0].length, '| Week 2:', buckets[1].length, '| Week 3:', buckets[2].length);
 
+      // Pick the most recent scan in each bucket that has a photo
+      function pickBestScan(bucket) {
+        for (var i = bucket.length - 1; i >= 0; i--) {
+          var scan = bucket[i];
+          if (scan && (scan.gdrive_url || scan.telegram_file_id)) {
+            return scan;
+          }
+        }
+        return null;
+      }
+
       var picks = [
-        buckets[0].length > 0 ? buckets[0][0] : null,
-        buckets[1].length > 0 ? buckets[1][buckets[1].length - 1] : null,
-        buckets[2].length > 0 ? buckets[2][buckets[2].length - 1] : null,
+        pickBestScan(buckets[0]),
+        pickBestScan(buckets[1]),
+        pickBestScan(buckets[2]),
       ];
 
       console.log('[Home] Picks selected:', picks.map(function(p, i) {
         return 'Week ' + (i+1) + ': ' + (p ? 'scan with file_id=' + p.telegram_file_id : 'null');
       }).join(' | '));
 
-      // Fallback: if all buckets empty, show most recent 3 scans
+      // Fallback: if all buckets have no scan with a photo, use most recent scans that have a photo
       var allEmpty = !picks[0] && !picks[1] && !picks[2];
       if (allEmpty && scans.length > 0) {
-        // Take up to 3 most recent scans
-        var recent = scans.slice(-3);
+        var recentWithPhoto = scans.filter(function (scan) {
+          return scan && (scan.gdrive_url || scan.telegram_file_id);
+        }).slice(-3);
         picks = [
-          recent[0] || null,
-          recent[1] || null,
-          recent[2] || null,
+          recentWithPhoto[0] || null,
+          recentWithPhoto[1] || null,
+          recentWithPhoto[2] || null,
         ];
-        console.log('[Home] Using fallback: showing ' + recent.length + ' most recent scans');
+        console.log('[Home] Using fallback: showing ' + recentWithPhoto.length + ' most recent scans with photo');
       }
 
       picks.forEach(function (scan, i) {
-        if (scan && scan.telegram_file_id) {
-          setThumbPhoto(i, scan.telegram_file_id);
+        if (scan && (scan.gdrive_url || scan.telegram_file_id)) {
+          var photoUrl = scan.gdrive_url || ('/api/telegram/photo?file_id=' + encodeURIComponent(scan.telegram_file_id));
+          setThumbPhoto(i, photoUrl);
         } else {
           resetThumb(i);
         }
@@ -266,18 +296,26 @@
     var baRight = document.querySelector('.before-after__right .ba-thumb');
     var baLeft = document.querySelector('.before-after__left .ba-thumb');
 
-    function setBaPhoto(el, fileId) {
-      if (!el || !fileId) return;
-      el.innerHTML = '<img src="/api/telegram/photo?file_id=' + encodeURIComponent(fileId) +
-        '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:1vw;" ' +
-        'onerror="this.style.display=\'none\'" />';
+    function setBaPhoto(el, photoUrl) {
+      if (!el || !photoUrl) return;
+      var img = document.createElement('img');
+      img.src = photoUrl;
+      img.alt = '';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:1vw;';
+      img.onerror = function () {
+        img.style.display = 'none';
+      };
+      el.innerHTML = '';
+      el.appendChild(img);
     }
 
-    if (first && first.telegram_file_id) {
-      setBaPhoto(baLeft, first.telegram_file_id);
+    if (first && (first.gdrive_url || first.telegram_file_id)) {
+      var photoUrl = first.gdrive_url || ('/api/telegram/photo?file_id=' + encodeURIComponent(first.telegram_file_id));
+      setBaPhoto(baLeft, photoUrl);
     }
-    if (last && last.telegram_file_id) {
-      setBaPhoto(baRight, last.telegram_file_id);
+    if (last && (last.gdrive_url || last.telegram_file_id)) {
+      var photoUrl = last.gdrive_url || ('/api/telegram/photo?file_id=' + encodeURIComponent(last.telegram_file_id));
+      setBaPhoto(baRight, photoUrl);
     }
   }
 
