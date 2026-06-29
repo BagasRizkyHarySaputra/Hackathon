@@ -3,12 +3,14 @@ document.addEventListener('alpine:init', () => {
     isAuthenticated: false,
     token: null,
     user: null,
+    isAdmin: false,
 
     login(token, user) {
       this.token = token;
       this.user = user;
       this.isAuthenticated = true;
-      console.log('[Auth Store] User logged in.', { email: user?.email });
+      this.isAdmin = user?.role === 'admin';
+      console.log('[Auth Store] User logged in.', { email: user?.email, role: user?.role });
     },
 
     setToken(token) {
@@ -48,6 +50,7 @@ document.addEventListener('alpine:init', () => {
             email: session.user.email,
             name: session.user.user_metadata?.full_name || session.user.email,
             avatar: session.user.user_metadata?.avatar_url || '',
+            role: session.user.app_metadata?.role || session.user.user_metadata?.role || 'user',
           }
         );
         console.log('[Auth Store] Session restored from Supabase.');
@@ -84,6 +87,7 @@ document.addEventListener('alpine:init', () => {
             email: session.user.email,
             name: session.user.user_metadata?.full_name || session.user.email,
             avatar: session.user.user_metadata?.avatar_url || '',
+            role: session.user.app_metadata?.role || session.user.user_metadata?.role || 'user',
           }
         );
 

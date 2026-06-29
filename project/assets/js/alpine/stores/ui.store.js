@@ -34,6 +34,9 @@ document.addEventListener('alpine:init', () => {
     /** @type {'light'|'dark'} Current UI theme */
     theme: 'light',
 
+    /** @type {boolean} Whether PWA install prompt is available */
+    installAvailable: false,
+
     /**
      * Pushes a toast notification to the queue.
      * Auto-removes after the specified duration.

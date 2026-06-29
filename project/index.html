@@ -26,6 +26,7 @@
   <meta name="apple-mobile-web-app-title" content="LICIN" />
   <link rel="manifest" href="/manifest.json" />
   <link rel="icon" type="image/png" href="/assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/components/mascot.css" />
   <link rel="stylesheet" href="/assets/css/components/loading.css" />
@@ -49,7 +50,7 @@
         </div>
         <div class="loading-content" x-data="createLoadingComponent()" @beforeunload.window="destroy()">
           <div class="loading-heading-wrapper">
-            <h1 class="loading-heading" x-html="statusMessage.replace('\n', '<br>')"></h1>
+            <h1 class="loading-heading" x-text="statusMessage" style="white-space: pre-line"></h1>
           </div>
           <p class="loading-subtext" x-text="subtext"></p>
           <div class="loading-progress-wrapper">
@@ -86,6 +87,30 @@
   <script src="/assets/js/htmx/config.js"></script>
   <script src="/assets/js/htmx/interceptors.js"></script>
   <script src="/assets/js/pwa/sw-register.js"></script>
+  <script src="/assets/js/pwa/install-prompt.js"></script>
   <script defer src="/assets/js/components/mascot.js"></script>
+
+  <!-- PWA Install Banner -->
+  <div
+    id="install-banner"
+    x-data
+    x-show="$store.ui && $store.ui.installAvailable"
+    x-cloak
+    style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9998; background: #ffffff; border-top: 1px solid #e5e5e5; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); padding: 12px 16px;"
+  >
+    <div style="max-width: 480px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+      <span style="font-size: 14px; color: #44474c;">Install LICIN for quick access from your home screen.</span>
+      <div style="display: flex; gap: 8px; flex-shrink: 0;">
+        <button
+          @click="$store.ui.installAvailable = false"
+          style="padding: 8px 12px; font-size: 13px; color: #6e7f99; background: transparent; border: none; cursor: pointer;"
+        >Later</button>
+        <button
+          @click="triggerInstallPrompt()"
+          style="padding: 8px 16px; font-size: 13px; color: #ffffff; background: #95b4c6; border: none; border-radius: 6px; cursor: pointer;"
+        >Install</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
