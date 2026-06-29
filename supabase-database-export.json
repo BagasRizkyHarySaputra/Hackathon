@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "exported_at": "2026-06-28T19:57:57.687803",
+    "supabase_url": "https://gvkzgicbykyjkusxranv.supabase.co",
+    "total_tables": 5
+  },
+  "schemas": {
+    "public": {
+      "tables": {
+        "profiles": {
+          "type": "BASE TABLE",
+          "columns": [],
+          "constraints": [],
+          "indexes": [],
+          "row_count": 13,
+          "sample_data": [
+            {
+              "id": "b89916af-ac65-4705-b545-6b6c6af41c57",
+              "name": "Bagas Rizky Hary Saputra",
+              "profile_image_url": "https://lh3.googleusercontent.com/a/ACg8ocLc63OtZ7wkKe86wbOOqugKtw0ZkxHrVUZCS0xXJBefreHyYamo=s96-c",
+              "skin_type": "sensitive",
+              "created_at": "2026-06-20T16:14:02.550318+00:00",
+              "updated_at": "2026-06-27T23:12:58.319952+00:00",
+              "email": "bagasrizkyharysaputra@gmail.com",
+              "gender": "Pria",
+              "birth_date": "1705-06-13",
+              "scan_completed": true
+            },
+            {
+              "id": "ceec9ee6-3ee7-4e4c-9f62-8218c6dabad6",
+              "name": "Bagas Rizky Hary Saputra",
+              "profile_image_url": "https://lh3.googleusercontent.com/a/ACg8ocIRnx2z0xlFZdIFqzsY8bm3VDc2nHsAcBS_2BcRkwiFMQXR8zs=s96-c",
+              "skin_type": "sensitive",
+              "created_at": "2026-06-27T15:43:13.109557+00:00",
+              "updated_at": "2026-06-27T15:50:42.546151+00:00",
+              "email": "martabakteam7@gmail.com",
+              "gender": null,
+              "birth_date": null,
+              "scan_completed": true
+            },
+            {
+              "id": "02c3a2a5-16b6-4c97-979b-465f3c43716d",
+              "name": "RIEVA ASANCAYA ANEELA EL DAVIQ",
+              "profile_image_url": "https://lh3.googleusercontent.com/a/ACg8ocLAIv92j2Ci9LRKvY_1Wq21vuC3fnYwc0cYO2-DiIRG83lvdg=s96-c",
+              "skin_type": "combination",
+              "created_at": "2026-06-27T23:12:54.181623+00:00",
+              "updated_at": "2026-06-27T23:13:06.506997+00:00",
+              "email": "rieva.asancaya37@smk.belajar.id",
+              "gender": null,
+              "birth_date": null,
+              "scan_completed": true
+            }
+          ]
+        },
+        "posts": {
+          "type": "BASE TABLE",
+          "columns": [],
+          "constraints": [],
+          "indexes": [],
+          "row_count": 0,
+          "sample_data": []
+        }
+      },
+      "views": {}
+    },
+    "auth": {
+      "tables": {
+        "users": {
+          "type": "BASE TABLE",
+          "columns": [],
+          "constraints": [],
+          "indexes": [],
+          "row_count": 0,
+          "sample_data": []
+        }
+      },
+      "views": {}
+    },
+    "storage": {
+      "tables": {
+        "buckets": {
+          "type": "BASE TABLE",
+          "columns": [],
+          "constraints": [],
+          "indexes": [],
+          "row_count": 0,
+          "sample_data": []
+        },
+        "objects": {
+          "type": "BASE TABLE",
+          "columns": [],
+          "constraints": [],
+          "indexes": [],
+          "row_count": 0,
+          "sample_data": []
+        }
+      },
+      "views": {}
+    }
+  }
+}
