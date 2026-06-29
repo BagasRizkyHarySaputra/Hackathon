@@ -35,7 +35,7 @@ jobs:
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev libayatana-appindicator3-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -61,5 +61,5 @@ jobs:
             Android APK coming soon — visit [pwabuilder.com](https://pwabuilder.com) with the PWA URL to generate it manually.
           releaseDraft: false
           prerelease: false
-          uploadUpdaterJson: true
+          includeUpdaterJson: true
           projectPath: project
