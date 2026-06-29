@@ -153,6 +153,7 @@
     height: 11.6vw;
     max-width: 50px;
     max-height: 50px;
+    font-size: 5vw;
   }
 
   .channel-label {
@@ -390,5 +391,52 @@
   .emoji-picker__item {
     font-size: 5.5vw;
     padding: 0.5vh 0;
+  }
+
+  /* ═══ Polls (mobile) ═══ */
+  .chat-bubble--poll {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .chat-polls {
+    padding: 1.8vh 2.7vw 0;
+    gap: 2.3vw;
+  }
+  .poll-card {
+    border-radius: 3.7vw;
+    padding: 2.3vh 3.2vw;
+    border-width: 1px;
+  }
+  .poll-card__question {
+    font-size: 3.2vw;
+    margin-bottom: 1.8vh;
+  }
+  .poll-option {
+    padding: 1.4vh 2.3vw;
+    margin-bottom: 1vh;
+    border-radius: 2.3vw;
+    gap: 2.3vw;
+  }
+  .poll-option__bar {
+    border-radius: 2.3vw;
+  }
+  .poll-option__text {
+    font-size: 2.8vw;
+  }
+  .poll-option__count {
+    font-size: 2.4vw;
+  }
+  .poll-card__footer {
+    font-size: 2.3vw;
+  }
+  .chat-input__poll-btn {
+    width: 9.3vw;
+    height: 9.3vw;
+    font-size: 4.6vw;
+  }
+  .community-modal--poll {
+    min-width: 85vw;
   }
 }

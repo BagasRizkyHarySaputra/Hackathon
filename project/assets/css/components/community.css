@@ -81,6 +81,14 @@
   border-radius: 50%;
   background: #CACDD6;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5vw;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  user-select: none;
   box-shadow: 
     /* 1. Drop shadow di bagian bawah (luar) */
     0px 6px 8px rgba(0, 0, 0, 0.15),
@@ -533,4 +541,273 @@
 .chat-messages-scroll::-webkit-scrollbar-thumb {
   background: rgba(110, 127, 153, 0.25);
   border-radius: 0.14vw;
+}
+
+/* ─── Admin Controls ─── */
+.topic-panel__admin-btn {
+  width: 1.8vw;
+  max-width: 26px;
+  height: 1.8vw;
+  max-height: 26px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(110, 127, 153, 0.5);
+  background: transparent;
+  color: rgba(110, 127, 153, 0.6);
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: auto;
+  transition: all 0.15s;
+  line-height: 1;
+}
+.topic-panel__admin-btn:hover {
+  border-color: rgba(110, 127, 153, 0.9);
+  color: rgba(110, 127, 153, 0.9);
+  background: rgba(149, 180, 198, 0.15);
+}
+
+.channel-admin-ctrl {
+  margin-top: 1vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.channel-add-btn {
+  background: transparent;
+  border: 1.5px dashed rgba(110, 127, 153, 0.4);
+  border-radius: 20px;
+  color: rgba(110, 127, 153, 0.6);
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.channel-add-btn:hover {
+  border-color: rgba(110, 127, 153, 0.8);
+  color: rgba(110, 127, 153, 0.9);
+  background: rgba(149, 180, 198, 0.1);
+}
+
+/* ─── Admin Modal ─── */
+.community-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.community-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  min-width: 340px;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.community-modal h3 {
+  font-family: 'Onest', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin: 0;
+}
+.community-modal input,
+.community-modal select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid rgba(110,127,153,0.3);
+  border-radius: 10px;
+  font-family: 'Onest', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.community-modal input:focus,
+.community-modal select:focus {
+  border-color: rgba(110,127,153,0.7);
+}
+.community-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.community-modal-actions button {
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Onest', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.community-modal-btn-primary {
+  background: #6E7F99;
+  color: #fff;
+}
+.community-modal-btn-primary:hover {
+  background: #5a6b85;
+}
+.community-modal-btn-cancel {
+  background: transparent;
+  color: #6E7F99;
+}
+.community-modal-btn-cancel:hover {
+  background: rgba(110,127,153,0.1);
+}
+
+/* ─── Poll Button (left of chat input) ─── */
+.chat-input__poll-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(110,127,153,0.4);
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  padding: 0;
+  line-height: 1;
+}
+.chat-input__poll-btn:hover {
+  border-color: rgba(110,127,153,0.8);
+  background: rgba(149,180,198,0.1);
+}
+.chat-input__poll-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.chat-input__poll-btn:hover .chat-input__poll-icon {
+  opacity: 1;
+}
+
+/* ─── Poll Cards ─── */
+.chat-bubble--poll {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.poll-card {
+  background: #FFFFFF;
+  border-radius: 1.11vw;
+  border: 2px solid #FFFFFF;
+  padding: 1.8vh 1.39vw;
+  box-shadow: 0px 6px 8px rgba(0,0,0,0.12), inset 4px -4px 8px rgba(255,255,255,0.8);
+}
+.poll-card__question {
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 1.2vh;
+}
+.poll-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+  padding: 0.8vh 0.8vw;
+  margin-bottom: 0.6vh;
+  border-radius: 0.6vw;
+  background: rgba(149,180,198,0.1);
+  cursor: pointer;
+  transition: background 0.15s;
+  overflow: hidden;
+  user-select: none;
+}
+.poll-option:hover {
+  background: rgba(149,180,198,0.2);
+}
+.poll-option--selected {
+  background: rgba(149,180,198,0.35);
+  font-weight: 600;
+}
+.poll-option__bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(149,180,198,0.15);
+  border-radius: 0.6vw;
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+.poll-option__text {
+  position: relative;
+  z-index: 1;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+  color: #2b2b2b;
+  flex: 1;
+}
+.poll-option__count {
+  position: relative;
+  z-index: 1;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.6rem, 0.7vw, 0.7rem);
+  color: rgba(43,43,43,0.5);
+  font-weight: 500;
+}
+.poll-card__footer {
+  margin-top: 0.8vh;
+  font-family: 'Onest', sans-serif;
+  font-size: clamp(0.55rem, 0.65vw, 0.65rem);
+  color: rgba(43,43,43,0.4);
+}
+
+/* ─── Create Poll Modal ─── */
+.community-modal--poll {
+  min-width: 380px;
+}
+.poll-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.poll-option-row input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid rgba(110,127,153,0.3);
+  border-radius: 10px;
+  font-family: 'Onest', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  box-sizing: border-box;
+}
+.poll-option-row input:focus {
+  border-color: rgba(110,127,153,0.7);
+}
+.poll-add-option-btn {
+  background: transparent;
+  border: 1.5px dashed rgba(110,127,153,0.4);
+  border-radius: 10px;
+  color: rgba(110,127,153,0.7);
+  font-family: 'Onest', sans-serif;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.poll-add-option-btn:hover {
+  border-color: rgba(110,127,153,0.8);
+  color: rgba(110,127,153,0.9);
+  background: rgba(149,180,198,0.1);
 }

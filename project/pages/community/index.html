@@ -53,6 +53,10 @@
               <div class="channel-avatar__circle"></div>
             </div>
             <span class="channel-label">Skincare</span>
+
+            <div class="channel-admin-ctrl" id="admin-ctrl-channel" style="display:none">
+              <button class="channel-add-btn" id="btn-add-channel">+ Add Channel</button>
+            </div>
           </div>
 
           <!-- Community Card -->
@@ -67,6 +71,7 @@
                   <span class="topic-panel__burger-line"></span>
                 </button>
                 <h2 class="topic-panel__title">Topic</h2>
+                <button class="topic-panel__admin-btn" id="btn-add-topic" title="Add Topic" style="display:none">+</button>
               </div>
 
               <div class="topic-panel__list" id="topic-list">
@@ -102,6 +107,9 @@
 
               <!-- Input area -->
               <div class="chat-input">
+                <button class="chat-input__poll-btn" id="btn-poll" title="Create Poll" style="display:none">
+                  <img src="/assets/icons/nav/poll.svg" alt="" class="chat-input__poll-icon" />
+                </button>
                 <div class="chat-input__field">
                   <textarea class="chat-input__textbox" id="chat-input-text" placeholder="Type something..." rows="1"></textarea>
                 </div>
@@ -122,6 +130,10 @@
   <script src="/assets/js/components/sidebar.js"></script>
   <script src="/assets/js/components/header.js"></script>
   <script src="/assets/js/router.js"></script>
+  <script defer src="/assets/js/vendor/alpine.min.js"></script>
+  <script src="/assets/js/alpine/app.js"></script>
+  <script src="/assets/js/alpine/stores/ui.store.js"></script>
+  <script src="/assets/js/alpine/stores/auth.store.js"></script>
   <script src="/assets/js/community-page.js"></script>
   <script type="module" src="/assets/js/supabase/supabase-client.js"></script>
   <script defer src="/assets/js/components/mascot.js"></script>
