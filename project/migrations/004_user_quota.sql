@@ -54,6 +54,11 @@ RETURNS TABLE (
 DECLARE
   v_quota public.user_daily_quota%ROWTYPE;
 BEGIN
+  -- Enforce that the caller can only decrement their own quota
+  IF auth.uid() IS NULL OR auth.uid() != p_user_id THEN
+    RAISE EXCEPTION 'Permission denied';
+  END IF;
+
   SELECT * INTO v_quota
   FROM public.user_daily_quota
   WHERE user_id = p_user_id
@@ -84,13 +89,3 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Grant execute to authenticated users
 GRANT EXECUTE ON FUNCTION public.decrement_quota TO authenticated;
-
-
-	
-
-nodules
-pustules
-papules
-dark_spot
-blackheads
-whiteheads

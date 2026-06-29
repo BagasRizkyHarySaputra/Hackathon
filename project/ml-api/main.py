@@ -28,8 +28,9 @@ import io
 import os
 import ssl
 
-from fastapi import FastAPI, File, UploadFile, Query
+from fastapi import FastAPI, File, UploadFile, Query, Security, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import APIKeyHeader
 from PIL import Image
 from ultralytics import YOLO
 
@@ -40,13 +41,31 @@ from recommendation_engine import RecommendationEngine
 # ---------------------------------------------------------------------------
 app = FastAPI(title="LICIN API", version="1.1.0")
 
+# CORS: restrict to explicit origins from environment. Empty/default to same origin.
+_ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "")
+if _ALLOWED_ORIGINS:
+    allow_origins = [o.strip() for o in _ALLOWED_ORIGINS.split(",") if o.strip()]
+else:
+    allow_origins = []
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Internal API key required for /analyze (Vercel proxy authenticates users and forwards this key)
+API_KEY = os.environ.get("ML_API_KEY")
+api_key_header = APIKeyHeader(name="X-API-Key")
+
+def require_api_key(x_api_key: str = Security(api_key_header)):
+    if not API_KEY:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="API key not configured")
+    if x_api_key != API_KEY:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or missing API key")
+    return x_api_key
 
 # ---------------------------------------------------------------------------
 # Model & Recommendation Engine
@@ -128,7 +147,8 @@ async def health():
 @app.post("/analyze")
 async def analyze(
     file: UploadFile = File(...),
-    budget: str = Query("standard", regex="^(economy|standard|premium)$")
+    budget: str = Query("standard", regex="^(economy|standard|premium)$"),
+    api_key: str = Security(require_api_key)
 ):
     """Accept an image file -> run YOLO -> return structured analysis results."""
 
