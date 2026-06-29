@@ -43,12 +43,11 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 const PORT = 8001;
 const ROOT = path.resolve(__dirname, '..');
-
-/** Telegram Bot credentials for photo storage */
-const TELEGRAM_BOT_TOKEN = '8987787750:AAHADzqwz95GaMKuhPOwB2CjtlLcCGDJ8No';
-const TELEGRAM_CHAT_ID = '6265895260';
 
 /** MIME type map for serving static files */
 const MIME_TYPES = {
@@ -62,6 +61,21 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon',
   '.webmanifest': 'application/manifest+json',
 };
+
+/**
+ * Minimal auth guard for mock endpoints that mirror protected production APIs.
+ * Requires a non-empty Bearer token. In production these checks are enforced
+ * by Supabase JWT validation in api/index.js.
+ */
+function requireAuthMock(req, res) {
+  const authHeader = req.headers.authorization || req.headers.Authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ') || authHeader.slice(7).length === 0) {
+    res.writeHead(401, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Unauthorized: missing or invalid Authorization header' }));
+    return false;
+  }
+  return true;
+}
 
 /**
  * Reads a file from disk and serves it with correct MIME type.
@@ -316,15 +330,17 @@ function handleRequest(req, res) {
 
     /** Proxy — Forward ML analysis requests to the local YOLO API */
     case pathname === '/api/ml/analyze' && req.method === 'POST':
+      if (!requireAuthMock(req, res)) break;
       proxyToMLAPI(req, res);
       break;
 
-    /** Proxy — Forward photo to Telegram Bot API for cloud storage */
+    /** Telegram Photo Storage — Upload original captured photo */
     case pathname === '/api/telegram/send-photo' && req.method === 'POST':
-      proxyToTelegram(req, res);
+      if (!requireAuthMock(req, res)) break;
+      proxyTelegramSendPhoto(req, res);
       break;
 
-    /** Proxy — Serve Telegram photo by file_id (for <img> tags) */
+    /** Telegram Photo Storage — Serve photo by file_id (no auth, called via <img src="...">) */
     case pathname === '/api/telegram/photo' && req.method === 'GET':
       proxyTelegramPhoto(req, res);
       break;
@@ -562,116 +578,61 @@ function proxyToMLAPI(req, res) {
 }
 
 /**
- * Proxies POST /api/telegram/send-photo to Telegram Bot API.
- * Receives base64-encoded photo from browser, decodes it,
- * and sends it to Telegram as a photo for unlimited cloud storage.
+ * Creates and returns authenticated Google Drive client.
  */
-function proxyToTelegram(req, res) {
-  const bodyChunks = [];
-  req.on('data', function (chunk) { bodyChunks.push(chunk); });
-  req.on('end', function () {
-    var raw = Buffer.concat(bodyChunks).toString('utf-8');
+/**
+ * Handles POST /api/telegram/send-photo
+ * Mock: Accepts photo data, returns mock Telegram file_id.
+ */
+function proxyTelegramSendPhoto(req, res) {
+  let bodyChunks = [];
+  req.on('data', (chunk) => { bodyChunks.push(chunk); });
+  req.on('end', async () => {
+    try {
+      const contentType = req.headers['content-type'] || '';
 
-    var payload;
-    try { payload = JSON.parse(raw); }
-    catch (e) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Invalid JSON body' }));
-      return;
-    }
-
-    if (!payload.photo) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Missing photo (base64)' }));
-      return;
-    }
-
-    // Strip data URI prefix if present
-    var b64 = payload.photo.replace(/^data:image\/\w+;base64,/, '');
-    var photoBuf = Buffer.from(b64, 'base64');
-
-    // Build multipart body for Telegram Bot API
-    var boundary = '----TelegramBoundary' + Date.now();
-    var parts = [];
-    parts.push(Buffer.from('--' + boundary + '\r\n'));
-    parts.push(Buffer.from('Content-Disposition: form-data; name="chat_id"\r\n\r\n'));
-    parts.push(Buffer.from(TELEGRAM_CHAT_ID + '\r\n'));
-    parts.push(Buffer.from('--' + boundary + '\r\n'));
-    parts.push(Buffer.from('Content-Disposition: form-data; name="photo"; filename="scan.jpg"\r\n'));
-    parts.push(Buffer.from('Content-Type: image/jpeg\r\n\r\n'));
-    parts.push(photoBuf);
-    parts.push(Buffer.from('\r\n--' + boundary + '--\r\n'));
-
-    var multipartBody = Buffer.concat(parts);
-
-    var options = {
-      hostname: 'api.telegram.org',
-      port: 443,
-      path: '/bot' + TELEGRAM_BOT_TOKEN + '/sendPhoto',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data; boundary=' + boundary,
-        'Content-Length': multipartBody.length,
-        'Accept': 'application/json',
-      },
-      timeout: 30000,
-    };
-
-    var tgReq = https.request(options, function (tgRes) {
-      var tgBody = '';
-      tgRes.on('data', function (d) { tgBody += d; });
-      tgRes.on('end', function () {
-        var tgData;
-        try { tgData = JSON.parse(tgBody); }
-        catch (e) { tgData = { ok: false, raw: tgBody }; }
-
-        if (tgData.ok && tgData.result && tgData.result.photo) {
-          // Extract largest photo file_id
-          var photos = tgData.result.photo;
-          var largest = photos[photos.length - 1];
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({
-            ok: true,
-            file_id: largest.file_id,
-            file_unique_id: largest.file_unique_id,
-            width: largest.width,
-            height: largest.height,
-            message_id: tgData.result.message_id,
-          }));
-        } else {
-          console.error('[Telegram Proxy] Upload failed:', tgBody);
-          res.writeHead(502, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: 'Telegram upload failed', detail: tgData.description || tgBody }));
+      // Accept any body format — just need to verify data present
+      if (contentType.includes('application/json')) {
+        const body = JSON.parse(Buffer.concat(bodyChunks).toString());
+        if (!body.photo) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Missing photo (base64)' }));
+          return;
         }
-      });
-    });
+      } else if (Buffer.concat(bodyChunks).length === 0) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Empty photo data' }));
+        return;
+      }
 
-    tgReq.on('error', function (err) {
-      console.error('[Telegram Proxy] Error:', err.message);
-      res.writeHead(502, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Telegram API unavailable', detail: err.message }));
-    });
+      const mockFileId = 'mock_file_' + Date.now();
+      console.log('[Telegram Mock] Uploaded file ID:', mockFileId);
 
-    tgReq.on('timeout', function () {
-      tgReq.destroy();
-      console.error('[Telegram Proxy] Timeout');
-      res.writeHead(504, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Telegram API timeout' }));
-    });
-
-    tgReq.write(multipartBody);
-    tgReq.end();
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        ok: true,
+        file_id: mockFileId,
+      }));
+    } catch (err) {
+      console.error('[Telegram Mock] Error:', err.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Telegram upload mock failed', detail: err.message }));
+    }
+  });
+  req.on('error', (err) => {
+    console.error('[Telegram Mock] Request error:', err.message);
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Invalid request' }));
   });
 }
 
 /**
- * Serves a Telegram photo by file_id.
- * Calls Telegram getFile API to get file_path, then proxies the actual image.
- * Used by <img> tags on the home page diary thumbs.
+ * Handles GET /api/telegram/photo?file_id=xxx
+ * Mock: Returns a 1x1 transparent placeholder PNG as the photo.
  */
 function proxyTelegramPhoto(req, res) {
-  var urlObj = new URL(req.url, 'https://' + (req.headers.host || 'localhost'));
-  var fileId = urlObj.searchParams.get('file_id');
+  const url = new URL(req.url, 'https://' + (req.headers.host || 'localhost'));
+  const fileId = url.searchParams.get('file_id');
 
   if (!fileId) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -679,60 +640,16 @@ function proxyTelegramPhoto(req, res) {
     return;
   }
 
-  // Step 1: get file_path from Telegram
-  var getFileOpts = {
-    hostname: 'api.telegram.org',
-    port: 443,
-    path: '/bot' + TELEGRAM_BOT_TOKEN + '/getFile?file_id=' + encodeURIComponent(fileId),
-    method: 'GET',
-    timeout: 10000,
-  };
+  console.log('[Telegram Mock] Serving photo file_id:', fileId);
 
-  https.get(getFileOpts, function (gfRes) {
-    var body = '';
-    gfRes.on('data', function (d) { body += d; });
-    gfRes.on('end', function () {
-      var data;
-      try { data = JSON.parse(body); }
-      catch (e) {
-        res.writeHead(502, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Telegram getFile parse error' }));
-        return;
-      }
-
-      if (!data.ok || !data.result || !data.result.file_path) {
-        res.writeHead(404, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'File not found', detail: data }));
-        return;
-      }
-
-      // Step 2: proxy the actual image from Telegram file server
-      var filePath = data.result.file_path;
-      var fileOpts = {
-        hostname: 'api.telegram.org',
-        port: 443,
-        path: '/file/bot' + TELEGRAM_BOT_TOKEN + '/' + filePath,
-        method: 'GET',
-        timeout: 15000,
-      };
-
-      https.get(fileOpts, function (fileRes) {
-        res.writeHead(fileRes.statusCode, {
-          'Content-Type': fileRes.headers['content-type'] || 'image/jpeg',
-          'Cache-Control': 'public, max-age=86400',
-        });
-        fileRes.pipe(res);
-      }).on('error', function (err) {
-        console.error('[Telegram Photo Proxy] Download error:', err.message);
-        res.writeHead(502, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Photo download failed', detail: err.message }));
-      });
-    });
-  }).on('error', function (err) {
-    console.error('[Telegram Photo Proxy] getFile error:', err.message);
-    res.writeHead(502, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Telegram getFile failed', detail: err.message }));
+  // Return a minimal 1x1 transparent PNG
+  const placeholder = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==', 'base64');
+  res.writeHead(200, {
+    'Content-Type': 'image/png',
+    'Content-Length': placeholder.length,
+    'Cache-Control': 'public, max-age=31536000',
   });
+  res.end(placeholder);
 }
 
 /**

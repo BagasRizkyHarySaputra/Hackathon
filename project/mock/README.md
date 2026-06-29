@@ -35,6 +35,8 @@ The server starts on **http://localhost:8001**.
 | `GET` | `/api/chatbot/partial` | Chatbot HTML partial |
 | `GET` | `/api/scan-page/partial` | Scan-page (camera) HTML partial |
 | `GET` | `/api/account/partial` | Account HTML partial |
+| `POST` | `/api/telegram/send-photo` | Mock Telegram photo upload — returns mock file_id |
+| `GET` | `/api/telegram/photo` | Mock Telegram photo serve — returns placeholder image |
 | `POST` | `/api/auth/login` | Mock login response JSON |
 | `GET` | `/offline.html` | PWA offline fallback |
 | `GET` | `/pages/loading/` | Loading page (standalone) |
