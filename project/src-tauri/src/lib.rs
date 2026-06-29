@@ -18,7 +18,13 @@ pub fn run() {
 }
 
 async fn check_update(app: tauri::AppHandle) {
-    let updater = app.updater();
+    let updater = match app.updater() {
+        Ok(u) => u,
+        Err(e) => {
+            eprintln!("Failed to initialize updater: {}", e);
+            return;
+        }
+    };
     match updater.check().await {
         Ok(Some(update)) => {
             // Update found — dialog shown automatically by the updater plugin
