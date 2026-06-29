@@ -54,5 +54,9 @@ jobs:
           releaseName: 'LICIN v${{ github.ref_name }}'
           releaseBody: |
             See the assets to download this version and install.
+
+            ## Phone app (PWA)
+            Open https://licin.vercel.app on your phone browser and tap "Add to Home Screen" to install.
+            Android APK coming soon — visit [pwabuilder.com](https://pwabuilder.com) with the PWA URL to generate it manually.
           releaseDraft: true
           prerelease: false

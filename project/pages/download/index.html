@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Download LICIN desktop app for Windows, macOS, and Linux." />
+  <meta name="description" content="Download LICIN app for desktop and phone. Available for Windows, macOS, Linux, and Android." />
   <title>Download LICIN</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,15 +22,25 @@
       border-radius: 20px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       padding: 40px 48px;
-      max-width: 520px;
+      max-width: 560px;
       width: 100%;
       text-align: center;
     }
-    .logo { width: 80px; height: 80px; margin-bottom: 16px; }
-    h1 { font-size: 24px; color: #1a1d23; margin-bottom: 8px; }
-    .subtitle { font-size: 14px; color: #6e7f99; margin-bottom: 32px; line-height: 1.5; }
+    .logo { width: 80px; height: 80px; margin-bottom: 16px; border-radius: 18px; }
+    h1 { font-size: 24px; color: #1a1d23; margin-bottom: 4px; }
+    .subtitle { font-size: 14px; color: #6e7f99; margin-bottom: 8px; line-height: 1.5; }
     .version { font-size: 13px; color: #95b4c6; margin-bottom: 24px; }
-    .platforms { display: flex; flex-direction: column; gap: 12px; }
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1d23;
+      margin: 28px 0 12px;
+      padding-top: 20px;
+      border-top: 1px solid #eef1f6;
+      text-align: left;
+    }
+    .section-title:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+    .platforms { display: flex; flex-direction: column; gap: 10px; }
     .btn {
       display: flex;
       align-items: center;
@@ -53,33 +63,111 @@
       border-color: #95b4c6;
     }
     .btn-primary:hover { background: #7fa3b9; border-color: #7fa3b9; }
+    .btn-phone {
+      background: #10b981;
+      color: #fff;
+      border-color: #10b981;
+    }
+    .btn-phone:hover { background: #059669; border-color: #059669; }
     .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .pwa-note { margin-top: 24px; font-size: 13px; color: #9ca3af; }
-    .pwa-note a { color: #95b4c6; text-decoration: none; }
-    .pwa-note a:hover { text-decoration: underline; }
+    .install-steps {
+      text-align: left;
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.6;
+    }
+    .install-steps ol {
+      margin-left: 18px;
+      margin-top: 6px;
+    }
+    .install-steps li { margin-bottom: 4px; }
+    .install-steps code {
+      background: #eef1f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #eef1f6;
+    }
+    .note { margin-top: 24px; font-size: 13px; color: #9ca3af; }
+    .note a { color: #95b4c6; text-decoration: none; }
+    .note a:hover { text-decoration: underline; }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: #eef1f6;
+      color: #6e7f99;
+      margin-left: 6px;
+    }
   </style>
 </head>
 <body>
   <div class="card">
     <img class="logo" src="/assets/icons/icon-192.png" alt="LICIN" width="80" height="80" />
     <h1>Download LICIN</h1>
-    <p class="subtitle">Get the native desktop app for the best experience. Auto-updates included.</p>
+    <p class="subtitle">Get the app on your device. Choose your platform below.</p>
     <p class="version" id="version">Version latest</p>
 
+    <!-- Phone / Mobile Section -->
+    <div class="section-title"> Phone</div>
     <div class="platforms">
-      <a class="btn btn-primary" href="https://github.com/{{owner}}/licin/releases/latest" target="_blank" rel="noopener">
+      <a class="btn btn-phone" href="https://github.com/BagasRizkyHarySaputra/Hackathon/releases/latest" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+        Download APK for Android
+        <span class="badge">Coming soon</span>
+      </a>
+    </div>
+
+    <div class="install-steps">
+      <strong> Install from browser (PWA):</strong>
+      <ol>
+        <li>Open <strong><a href="/" style="color:#95b4c6;">licin.vercel.app</a></strong> in Chrome or Safari</li>
+        <li>Tap the <strong>Share</strong> icon (Safari) or menu ⋮ (Chrome)</li>
+        <li>Tap <strong>"Add to Home Screen"</strong></li>
+        <li>LICIN icon appears on your home screen — done!</li>
+      </ol>
+    </div>
+
+    <div class="divider">or</div>
+
+    <!-- Desktop Section -->
+    <div class="section-title"> Desktop</div>
+    <div class="platforms">
+      <a class="btn btn-primary" href="https://github.com/BagasRizkyHarySaputra/Hackathon/releases/latest" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
         Download for Windows
       </a>
-      <a class="btn" href="https://github.com/{{owner}}/licin/releases/latest" target="_blank" rel="noopener">
+      <a class="btn" href="https://github.com/BagasRizkyHarySaputra/Hackathon/releases/latest" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
         Download for macOS
       </a>
-      <a class="btn" href="https://github.com/{{owner}}/licin/releases/latest" target="_blank" rel="noopener">
+      <a class="btn" href="https://github.com/BagasRizkyHarySaputra/Hackathon/releases/latest" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
@@ -87,15 +175,13 @@
       </a>
     </div>
 
-    <p class="pwa-note">
-      Prefer the browser? <a href="/">Open LICIN web app</a> or
-      <a href="/" onclick="localStorage.setItem('pwa-install-prompt','1')">install from browser</a>.
+    <p class="note">
+      Prefer the browser? <a href="/">Open LICIN web app</a>.
     </p>
   </div>
 
   <script>
-    // Fetch latest version from GitHub
-    fetch('https://api.github.com/repos/{{owner}}/licin/releases/latest')
+    fetch('https://api.github.com/repos/BagasRizkyHarySaputra/Hackathon/releases/latest')
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (data?.tag_name) {

@@ -1,0 +1,58 @@
+name: PWA Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'manifest.json'
+      - 'sw.js'
+      - 'offline.html'
+      - 'assets/**'
+      - 'pages/**'
+      - 'partials/**'
+      - 'components/**'
+      - 'config/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp manifest.json _site/ 2>/dev/null || true
+          cp sw.js _site/ 2>/dev/null || true
+          cp offline.html _site/ 2>/dev/null || true
+          cp -r assets _site/
+          cp -r pages _site/
+          cp -r partials _site/
+          cp -r components _site/ 2>/dev/null || true
+          cp -r config _site/ 2>/dev/null || true
+          # Copy root-level page redirects
+          for f in home scan login community profile artikel chatbot account download; do
+            mkdir -p "_site/$f"
+            cp "pages/$f/index.html" "_site/$f/" 2>/dev/null || true
+          done
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
