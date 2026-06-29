@@ -40,7 +40,7 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://raw.githubusercontent.com/{{owner}}/licin/main/src-tauri/latest.json"
+        "https://github.com/BagasRizkyHarySaputra/Hackathon/releases/latest/download/latest.json"
       ],
       "dialog": true,
       "pubkey": ""

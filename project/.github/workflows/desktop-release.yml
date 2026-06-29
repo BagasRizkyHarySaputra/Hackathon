@@ -4,21 +4,21 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            args: ''
+          - platform: ubuntu-22.04
+            args: '--target x86_64-unknown-linux-gnu'
           - platform: macos-latest
-            target: aarch64-apple-darwin
-            args: ''
+            args: '--target aarch64-apple-darwin'
           - platform: windows-latest
-            target: x86_64-pc-windows-msvc
-            args: ''
+            args: '--target x86_64-pc-windows-msvc'
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -26,15 +26,12 @@ jobs:
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.target }}
 
       - name: Install Linux dependencies
-        if: matrix.platform == 'ubuntu-latest'
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev
-          librsvg2-dev patchelf libssl-dev libayatana-appindicator3-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev libayatana-appindicator3-dev
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -45,7 +42,7 @@ jobs:
         run: npm ci
 
       - name: Build Tauri app
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -58,5 +55,6 @@ jobs:
             ## Phone app (PWA)
             Open https://licin.vercel.app on your phone browser and tap "Add to Home Screen" to install.
             Android APK coming soon — visit [pwabuilder.com](https://pwabuilder.com) with the PWA URL to generate it manually.
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
+          uploadUpdaterJson: true
