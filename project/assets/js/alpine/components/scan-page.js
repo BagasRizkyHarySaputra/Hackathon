@@ -59,9 +59,6 @@ function createScanPageComponent() {
     /** @type {string|null} Telegram file_id of the stored original photo */
     _telegramFileId: null,
 
-    /** @type {number|null} Telegram message_id containing the photo */
-    _telegramMessageId: null,
-
     /** @type {MediaStream|null} Active camera stream (for cleanup) */
     _stream: null,
 
@@ -71,6 +68,23 @@ function createScanPageComponent() {
     init() {
       console.log('[ScanPage] Component mounted.');
       this.requestCamera();
+      
+      // Touch swipe support for product slider
+      this._touchStartX = 0;
+      this._touchEndX = 0;
+      this._handleTouchStart = this._handleTouchStart.bind(this);
+      this._handleTouchMove = this._handleTouchMove.bind(this);
+      this._handleTouchEnd = this._handleTouchEnd.bind(this);
+      
+      // Add touch listeners to overlay card
+      this.$nextTick(() => {
+        const card = this.$el.querySelector('.scan-overlay-card');
+        if (card) {
+          card.addEventListener('touchstart', this._handleTouchStart, { passive: true });
+          card.addEventListener('touchmove', this._handleTouchMove, { passive: true });
+          card.addEventListener('touchend', this._handleTouchEnd, { passive: true });
+        }
+      });
     },
 
     /**
@@ -165,28 +179,33 @@ function createScanPageComponent() {
 
     /**
      * Uploads the original captured photo to Telegram Bot API
-     * for unlimited cloud storage. Runs in parallel with ML analysis.
-     * Sets _telegramFileId and _telegramMessageId on success.
+     * via the serverless proxy. Runs in parallel with ML analysis.
+     * Sets _telegramFileId on success.
      * @param {Blob} blob Original image blob
      */
-    _uploadToTelegram(blob) {
+    _uploadPhoto(blob) {
       var self = this;
-      this._telegramFileId = null;
-      this._telegramMessageId = null;
+      self._telegramFileId = null;
+
+      var authStore = window.Alpine && Alpine.store('auth');
+      var token = (authStore && authStore.token) || '';
 
       return new Promise(function (resolve) {
         var reader = new FileReader();
         reader.onload = function () {
+          var headers = { 'Content-Type': 'application/json' };
+          if (token) {
+            headers['Authorization'] = 'Bearer ' + token;
+          }
           fetch('/api/telegram/send-photo', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: headers,
             body: JSON.stringify({ photo: reader.result }),
           })
             .then(function (res) { return res.json(); })
             .then(function (data) {
               if (data.ok && data.file_id) {
                 self._telegramFileId = data.file_id;
-                self._telegramMessageId = data.message_id || null;
                 console.log('[ScanPage] Photo saved to Telegram. file_id:', data.file_id);
               } else {
                 console.warn('[ScanPage] Telegram upload failed:', data.error || data.detail || data);
@@ -215,6 +234,8 @@ function createScanPageComponent() {
      */
     _analyzeWithAPI(canvas) {
       var self = this;
+      var authStore = window.Alpine && Alpine.store('auth');
+      var token = (authStore && authStore.token) || '';
       this.isAnalyzing = true;
 
       canvas.toBlob(function (blob) {
@@ -225,7 +246,7 @@ function createScanPageComponent() {
         }
 
         // Upload original photo to Telegram (returns Promise, awaited before save)
-        var telegramPromise = self._uploadToTelegram(blob);
+        var telegramPromise = self._uploadPhoto(blob);
 
         var formData = new FormData();
         formData.append('file', blob, 'scan.jpg');
@@ -243,8 +264,14 @@ function createScanPageComponent() {
           controller.abort();
         }, self._API_TIMEOUT_MS);
 
+        var mlHeaders = {};
+        if (token) {
+          mlHeaders['Authorization'] = 'Bearer ' + token;
+        }
+
         fetch(url, {
           method: 'POST',
+          headers: mlHeaders,
           body: formData,
           signal: controller.signal,
         })
@@ -392,7 +419,6 @@ function createScanPageComponent() {
         acne_counts: apiData.acne_counts || {},
         issues_found: apiData.issues_found || [],
         telegram_file_id: self._telegramFileId || null,
-        telegram_message_id: self._telegramMessageId || null,
       };
 
       var url = APP_CONFIG.SUPABASE_URL + '/rest/v1/scan_results';
@@ -518,6 +544,53 @@ function createScanPageComponent() {
       if (this.canGoPrev()) {
         this.currentProductIndex--;
       }
+    },
+
+    /**
+     * Handle touch start for swipe detection
+     */
+    _handleTouchStart(e) {
+      this._touchStartX = e.changedTouches[0].screenX;
+    },
+
+    /**
+     * Handle touch move for swipe detection
+     */
+    _handleTouchMove(e) {
+      this._touchEndX = e.changedTouches[0].screenX;
+    },
+
+    /**
+     * Handle touch end - detect swipe and trigger navigation
+     */
+    _handleTouchEnd() {
+      const swipeThreshold = 50; // minimum distance for swipe
+      const diff = this._touchStartX - this._touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        const card = this.$el.querySelector('.scan-overlay-card');
+        if (card) {
+          // Add sliding animation class
+          card.classList.add('scan-overlay-card--sliding');
+          
+          if (diff > 0) {
+            // Swiped left - next product
+            this.nextProduct();
+          } else {
+            // Swiped right - previous product
+            this.prevProduct();
+          }
+          
+          // Remove animation class after transition
+          setTimeout(() => {
+            card.classList.remove('scan-overlay-card--sliding');
+          }, 300);
+        }
+      }
+      
+      // Reset touch positions
+      this._touchStartX = 0;
+      this._touchEndX = 0;
     },
 
     /**
