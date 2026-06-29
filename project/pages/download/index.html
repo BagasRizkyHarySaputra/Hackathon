@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Download LICIN desktop app for Windows, macOS, and Linux." />
+  <title>Download LICIN</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8edf5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      padding: 40px 48px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo { width: 80px; height: 80px; margin-bottom: 16px; }
+    h1 { font-size: 24px; color: #1a1d23; margin-bottom: 8px; }
+    .subtitle { font-size: 14px; color: #6e7f99; margin-bottom: 32px; line-height: 1.5; }
+    .version { font-size: 13px; color: #95b4c6; margin-bottom: 24px; }
+    .platforms { display: flex; flex-direction: column; gap: 12px; }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #1a1d23;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: #eef1f6; border-color: #d1d5db; transform: translateY(-1px); }
+    .btn-primary {
+      background: #95b4c6;
+      color: #fff;
+      border-color: #95b4c6;
+    }
+    .btn-primary:hover { background: #7fa3b9; border-color: #7fa3b9; }
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .pwa-note { margin-top: 24px; font-size: 13px; color: #9ca3af; }
+    .pwa-note a { color: #95b4c6; text-decoration: none; }
+    .pwa-note a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="/assets/icons/icon-192.png" alt="LICIN" width="80" height="80" />
+    <h1>Download LICIN</h1>
+    <p class="subtitle">Get the native desktop app for the best experience. Auto-updates included.</p>
+    <p class="version" id="version">Version latest</p>
+
+    <div class="platforms">
+      <a class="btn btn-primary" href="https://github.com/{{owner}}/licin/releases/latest" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download for Windows
+      </a>
+      <a class="btn" href="https://github.com/{{owner}}/licin/releases/latest" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download for macOS
+      </a>
+      <a class="btn" href="https://github.com/{{owner}}/licin/releases/latest" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download for Linux
+      </a>
+    </div>
+
+    <p class="pwa-note">
+      Prefer the browser? <a href="/">Open LICIN web app</a> or
+      <a href="/" onclick="localStorage.setItem('pwa-install-prompt','1')">install from browser</a>.
+    </p>
+  </div>
+
+  <script>
+    // Fetch latest version from GitHub
+    fetch('https://api.github.com/repos/{{owner}}/licin/releases/latest')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.tag_name) {
+          document.getElementById('version').textContent = 'Version ' + data.tag_name;
+        }
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicoverbruggen/tauri-v2-schema/main/schema.json",
+  "productName": "LICIN",
+  "version": "0.1.0",
+  "identifier": "com.licin.app",
+  "build": {
+    "beforeDevCommand": "",
+    "devUrl": "http://localhost:3000",
+    "beforeBuildCommand": "",
+    "frontendDist": "../assets"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "LICIN",
+        "width": 390,
+        "height": 844,
+        "minWidth": 320,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://raw.githubusercontent.com/{{owner}}/licin/main/src-tauri/latest.json"
+      ],
+      "dialog": true,
+      "pubkey": ""
+    }
+  }
+}

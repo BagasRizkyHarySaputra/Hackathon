@@ -26,6 +26,8 @@
     { "source": "/account/", "destination": "/pages/account/index.html" },
     { "source": "/chatbot", "destination": "/pages/chatbot/index.html" },
     { "source": "/chatbot/", "destination": "/pages/chatbot/index.html" },
+    { "source": "/download", "destination": "/pages/download/index.html" },
+    { "source": "/download/", "destination": "/pages/download/index.html" },
     { "source": "/manifest.json", "destination": "/manifest.json" },
     { "source": "/sw.js", "destination": "/sw.js" },
     { "source": "/offline.html", "destination": "/offline.html" },

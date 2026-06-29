@@ -1,0 +1,14 @@
+{
+  "identifier": "default",
+  "description": "Default capabilities for LICIN",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "updater:default",
+    "core:window:default",
+    "core:window:allow-close",
+    "core:window:allow-set-size",
+    "core:window:allow-set-title"
+  ]
+}

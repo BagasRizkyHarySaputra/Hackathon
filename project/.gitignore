@@ -45,6 +45,9 @@ Thumbs.db
 .cache/
 .vercel
 
+# Rust / Tauri build artifacts
+src-tauri/target/
+
 # Dev artifacts
 .omo/
 .playwright-mcp/
