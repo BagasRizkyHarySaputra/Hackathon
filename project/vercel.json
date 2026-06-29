@@ -1,6 +1,10 @@
 {
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index" },
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/config/(.*)", "destination": "/config/$1" },
+    { "source": "/partials/(.*)", "destination": "/partials/$1" },
+    { "source": "/pages/(.*)", "destination": "/pages/$1" },
     { "source": "/loading", "destination": "/pages/loading/index.html" },
     { "source": "/loading/", "destination": "/pages/loading/index.html" },
     { "source": "/home", "destination": "/pages/home/index.html" },

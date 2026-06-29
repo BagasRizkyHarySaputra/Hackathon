@@ -6,7 +6,7 @@ fetch.js
 
 .env
 .env.*
-core*
+
 # Node.js
 
 node_modules/
@@ -25,3 +25,5 @@ build/
 .DS_Store
 Thumbs.db
 fetch.js
+.vercel
+.env*
